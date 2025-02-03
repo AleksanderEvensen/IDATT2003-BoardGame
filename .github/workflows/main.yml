@@ -8,7 +8,7 @@ on:
     branches:
       - main
       - dev
-  workflow_dispatch: # Allows manual triggering of the workflow
+  workflow_dispatch: 
 
 permissions:
   contents: read
@@ -67,7 +67,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
       - name: Build Package
         run: mvn clean package
       - name: Upload Package
@@ -87,7 +87,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
       
       - name: Generate Javadoc and Coverage Reports
         run: |
