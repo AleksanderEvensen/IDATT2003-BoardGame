@@ -8,7 +8,7 @@ on:
     branches:
       - main
       - dev
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,6 +32,11 @@ jobs:
           java-version: '21'
       - name: Build with Maven
         run: mvn compile
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-classes
+          path: target/classes/
 
   test:
     name: Test
@@ -77,6 +82,7 @@ jobs:
           path: target/idatt2002demo-1.0-SNAPSHOT-jar-with-dependencies.jar
 
   deployPages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -88,24 +94,23 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      
+      - name: Download Test Reports and Coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
       - name: Generate Javadoc and Coverage Reports
         run: |
-          mvn clean test
           mvn javadoc:javadoc
-          mvn jacoco:report
           mkdir -p page
           cp -rf target/site/* page/
           cp -rf target/site/jacoco/* page/
-      
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      
       - name: Upload index.html
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'page/'
-      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
