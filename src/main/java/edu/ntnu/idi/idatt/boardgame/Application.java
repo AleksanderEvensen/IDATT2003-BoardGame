@@ -8,7 +8,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+/**
+ * The main application class.
+ */
 public class Application extends javafx.application.Application {
+
+    /**
+     * The main entry point for all JavaFX applications.
+     * @param stage the primary stage for this application, onto which the application scene can be set.
+     * @throws IOException if an input or output exception occurs.
+     */
+
+
     @Override
     public void start(Stage stage) throws IOException {
 
