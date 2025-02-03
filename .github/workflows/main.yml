@@ -104,7 +104,6 @@ jobs:
           mvn javadoc:javadoc
           mkdir -p page
           cp -rf target/site/* page/
-          cp -rf target/site/jacoco/* page/
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload index.html
