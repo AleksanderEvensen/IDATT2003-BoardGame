@@ -91,6 +91,7 @@ jobs:
       
       - name: Generate Javadoc and Coverage Reports
         run: |
+          mvn clean test
           mvn javadoc:javadoc
           mvn jacoco:report
           mkdir -p page
