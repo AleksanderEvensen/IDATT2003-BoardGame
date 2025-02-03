@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest {
@@ -10,6 +11,7 @@ class ApplicationTest {
   void CreatesApplicationWithNoExceptions() {
     assertDoesNotThrow(() -> {
       var app = new Application();
+      Assertions.assertEquals(app.getClass(), Application.class);
     });
   }
 }
