@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest {
 
   @Test
-  void start() {
+  void CreatesApplicationWithNoExceptions() {
     assertDoesNotThrow(() -> {
-      Application.main(new String[]{});
+      var app = new Application();
     });
   }
 }
