@@ -1,9 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    private Map<Integer, Tile> tiles;
+    private Map<Integer, Tile> tiles = new HashMap<>();
 
     public void addTile(Tile tile) {
         tiles.put(tile.getTileId(), tile);
