@@ -27,16 +27,62 @@ public class Player {
         this.currentTile = tile;
     }
 
-    public void move(int steps, boolean forward) {
-        Tile newTile = currentTile;
+    /**
+     * Moves the player one til in the given direction
+     * @param forward
+     * @return true if the player moved, false if the player could not move
+     */
+    public boolean moveOneTile(boolean forward) {
+        if (forward && currentTile.getNextTile().isPresent()) {
+            currentTile = currentTile.getNextTile().get();
+            return true;
+        } else if (!forward && currentTile.getLastTile().isPresent()) {
+            currentTile = currentTile.getLastTile().get();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Moves the player the given amount of steps
+     * If there is not more tile to move forward, the player will try to move backwards
+     * If backwards is not possible anymore, the rest of the steps will be returned.
+     * @param steps the steps to move
+     * @return the amount of steps the player actually moved
+     */
+    public int move(int steps) {
+        boolean shouldMoveForward = true;
+        int tilesMoved = steps;
+
         for (int i = 0; i < steps; i++) {
-            if (forward && newTile.getNextTile().isPresent()) {
-                newTile = newTile.getNextTile().get();
-            } else if (!forward && newTile.getLastTile().isPresent()) {
-                newTile = newTile.getLastTile().get();
+            boolean didMove = this.moveOneTile(shouldMoveForward);
+            // If moved then continue moving forward
+            if (didMove) continue;
+
+            // Otherwise reverse the direction and try to move backwards
+            shouldMoveForward = false;
+            didMove = this.moveOneTile(false);
+            if (!didMove) {
+                tilesMoved = i;
+                break;
             }
         }
 
+        this.currentTile.getAction().ifPresent(action -> action.perform(this));
+
+        return tilesMoved;
+    }
+
+    public void moveToTile(Tile tile) {
+        this.moveToTile(tile, true);
+    }
+
+    public void moveToTile(Tile tile, boolean shouldPerformAction) {
+        this.currentTile = tile;
+
+        if (shouldPerformAction){
+            this.currentTile.getAction().ifPresent(action -> action.perform(this));
+        }
     }
 
 }
