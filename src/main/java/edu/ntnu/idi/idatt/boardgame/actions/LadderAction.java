@@ -15,6 +15,11 @@ public class LadderAction implements TileAction {
     }
 
     @Override
+    public void onPlayerLand(Player player) {
+        return;
+    }
+
+    @Override
     public void perform(Player player) {
         // Ladder shouldn't start chain reaction
         player.moveToTile(destinationTile, false);
