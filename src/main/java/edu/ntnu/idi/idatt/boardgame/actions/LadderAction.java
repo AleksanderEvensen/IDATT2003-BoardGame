@@ -14,10 +14,6 @@ public class LadderAction implements TileAction {
         this.destinationTile = destinationTile;
     }
 
-    @Override
-    public void onPlayerLand(Player player) {
-        return;
-    }
 
     @Override
     public void perform(Player player) {

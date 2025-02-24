@@ -4,6 +4,4 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
 
 public interface TileAction {
     void perform(Player player);
-
-  void onPlayerLand(Player player);
 }
