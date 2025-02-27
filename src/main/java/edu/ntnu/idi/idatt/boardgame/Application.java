@@ -37,7 +37,7 @@ public class Application extends javafx.application.Application {
 
         var btn = new Button("Hello!");
         btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            var dice = Utils.throwDice(1).getFirst();
+            var dice = Utils.throwDice(1).get(0);
             Player currentPlayer = players.get(currentPlayerIndex);
 
             System.out.printf("Player %s rolled %d\n", currentPlayer.getName(), dice);
