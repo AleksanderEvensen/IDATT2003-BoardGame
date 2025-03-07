@@ -4,7 +4,7 @@ import edu.ntnu.idi.idatt.boardgame.game.ladder.LadderBoard;
 
 public class LadderGame {
 
-    private LadderBoard board;
+    private final LadderBoard board;
 
     public LadderGame() {
         this.board = new LadderBoard();

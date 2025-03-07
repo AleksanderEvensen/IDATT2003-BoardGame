@@ -2,14 +2,14 @@ package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
  * A class representing a tile on the playing board
  */
-public class Tile {
+public class Tile implements Serializable {
     private final int tileId;
-
     // Nullable fields
     private TileAction action = null;
     private Tile nextTile = null;
