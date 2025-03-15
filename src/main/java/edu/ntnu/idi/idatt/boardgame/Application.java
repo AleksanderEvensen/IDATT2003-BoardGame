@@ -1,22 +1,32 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.components.TileComponent;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
+import edu.ntnu.idi.idatt.boardgame.model.Board;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 /**
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public LadderGame game = new LadderGame();
     public List<Player> players = new ArrayList<>();
     public int currentPlayerIndex = 0;
 
@@ -27,39 +37,22 @@ public class Application extends javafx.application.Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
+        var json = new LocalFileProvider().get("games/ladder.json");
+        var gameJson = Utils.bytesToString(json.readAllBytes());
+        Game game = GameFactory.createGame(gameJson);
 
-        this.players.add(new Player(1, "Aleks"));
-        this.players.add(new Player(2, "Yazan"));
-
-        this.players.forEach(p -> p.placeOnTile(game.getBoard().getTile(0)));
-
-        System.out.printf("Current player: %s\n", players.get(currentPlayerIndex).getName());
-
-        var btn = new Button("Hello!");
-        btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            var dice = Utils.throwDice(1).get(0);
-            Player currentPlayer = players.get(currentPlayerIndex);
-
-            System.out.printf("Player %s rolled %d\n", currentPlayer.getName(), dice);
-            System.out.printf("Player moved %d tiles\n", dice);
-            currentPlayer.move(dice);
-            if (currentPlayer.getCurrentTile().getTileId() == 90) {
-                System.out.printf("Player %s won the game!\n", currentPlayer.getName());
-                System.exit(0);
+        GridPane boardView = new GridPane();
+        AtomicReference<TileComponent> tileView = new AtomicReference<>();
+        game.getBoard().getTiles().forEach((k,v) -> {
+            tileView.set(new TileComponent(v.getTileId()));
+            if(v.getAction().isPresent()){
             }
-
-            System.out.println("Player status:");
-            players.forEach(player -> {
-                System.out.printf("  Player(%d, %s) is on tile %d\n", player.getPlayerId(), player.getName(), player.getCurrentTile().getTileId());
-            });
-            System.out.println("====================================");
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            System.out.printf("\n Current player: %s\n", players.get(currentPlayerIndex).getName());
+            tileView.get().setBackgroundColor(Color.YELLOW);
+            boardView.add(tileView.get(), v.getCol(), v.getRow());
         });
-        var box = new VBox(btn);
-        box.setAlignment(javafx.geometry.Pos.CENTER);
 
-        Scene scene = new Scene(box, 320, 240);
+        Scene scene = new Scene(boardView, 800, 800);
+        scene.getStylesheets().add("main.css");
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

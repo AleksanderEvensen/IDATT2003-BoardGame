@@ -21,4 +21,11 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns a string from array of bytes
+     */
+    public static String bytesToString(byte[] bytes) {
+        return new String(bytes);
+    }
+
 }

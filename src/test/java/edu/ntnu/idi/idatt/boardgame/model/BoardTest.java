@@ -10,7 +10,7 @@ class BoardTest {
   Board board;
   @BeforeEach
   void setUp() {
-    board = new Board();
+    board = new Board(1,1);
   }
 
   @Test

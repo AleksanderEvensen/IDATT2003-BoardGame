@@ -5,12 +5,14 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Logger;
 
 /**
  * A FileProvider implementation for storing and retrieving files
  * on the local disk using the default filesystem.
  */
 public class LocalFileProvider implements FileProvider {
+  Logger logger = Logger.getLogger(LocalFileProvider.class.getName());
 
   @Override
   public void save(String path, InputStream data) {
@@ -40,7 +42,12 @@ public class LocalFileProvider implements FileProvider {
 
   @Override
   public InputStream get(String path) {
+    InputStream stream = getClass().getResourceAsStream("/" + path);
+    if (stream != null) {
+      return stream;
+    }
     if (!exists(path)) {
+      logger.info("File does not exist");
       return null;
     }
     try {
