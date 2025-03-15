@@ -1,4 +1,5 @@
 {
+  "id": "ladder",
   "name": "Ladder Game",
   "description": "A simple board game with ladders and snakes",
   "board": {

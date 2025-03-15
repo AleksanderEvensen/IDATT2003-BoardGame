@@ -10,7 +10,6 @@ import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
  */
 public final class TileActionAdapter {
 
-
   public static RuntimeTypeAdapterFactory<TileAction> getFactory() {
     return RuntimeTypeAdapterFactory
         .of(TileAction.class, "type")

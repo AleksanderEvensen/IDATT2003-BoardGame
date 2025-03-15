@@ -3,7 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.actions;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
-public class LadderAction implements TileAction {
+public class LadderAction implements TileAction, HasStyleResolver {
 
     private final Tile destinationTile;
     public LadderAction(Tile destinationTile) {
@@ -34,4 +34,13 @@ public class LadderAction implements TileAction {
     }
 
 
+    /**
+     * Get the style resolver for the action.
+     *
+     * @return the style resolver.
+     */
+    @Override
+    public LadderActionStyleResolver getStyleResolver() {
+        return new LadderActionStyleResolver();
+    }
 }

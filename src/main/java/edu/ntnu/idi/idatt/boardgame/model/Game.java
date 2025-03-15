@@ -5,11 +5,17 @@ public class Game {
     private final Board board;
     private final String name;
     private final String description;
+    private final String id;
 
-    public Game(Board board, String name, String description) {
+    public Game(Board board, String name, String description, String id) {
         this.board = board;
         this.name = name;
         this.description = description;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Board getBoard() {

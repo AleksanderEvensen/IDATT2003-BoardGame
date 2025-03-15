@@ -1,20 +1,16 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
-import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -37,19 +33,35 @@ public class Application extends javafx.application.Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        var json = new LocalFileProvider().get("games/ladder.json");
-        var gameJson = Utils.bytesToString(json.readAllBytes());
-        Game game = GameFactory.createGame(gameJson);
+        GameManager gameManager = new GameManager(new LocalFileProvider());
+
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            tile.getAction().ifPresent(action -> {
+                System.out.println(action);
+            });
+        });
 
         GridPane boardView = new GridPane();
         AtomicReference<TileComponent> tileView = new AtomicReference<>();
-        game.getBoard().getTiles().forEach((k,v) -> {
-            tileView.set(new TileComponent(v.getTileId()));
-            if(v.getAction().isPresent()){
-            }
-            tileView.get().setBackgroundColor(Color.YELLOW);
-            boardView.add(tileView.get(), v.getCol(), v.getRow());
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            TileComponent tileComponent = new TileComponent(tile.getTileId());
+            boardView.add(tileComponent, tile.getCol(), tile.getRow());
+            tileView.set(tileComponent);
         });
+
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            tile.getAction().ifPresent(action -> {
+                if (action instanceof HasStyleResolver) {
+                    TileActionStyleResolver styleResolver = ((HasStyleResolver) action).getStyleResolver();
+                    styleResolver.resolveStyle(tile, action, boardView);
+                }
+            });
+        });
+
+
 
         Scene scene = new Scene(boardView, 800, 800);
         scene.getStylesheets().add("main.css");
