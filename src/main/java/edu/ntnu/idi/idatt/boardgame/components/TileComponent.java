@@ -15,35 +15,45 @@ public class TileComponent extends StackPane {
   private Ikon iconView;
   private Color defaultColor = Color.WHITE;
   private Label idLabel = new Label();
+  private FontIcon icon;
 
   public TileComponent(int id) {
     this(id, null);
   }
 
-  public TileComponent(int id, Ikon icon) {
+  public TileComponent(int id, Ikon iconCode) {
     this.id = id;
 
     background = new Rectangle(50, 50);
     background.setFill(defaultColor);
-    background.setArcWidth(10);
-    background.setArcHeight(10);
     idLabel.setText(String.valueOf(id));
     getChildren().add(background);
-    getChildren().add(idLabel);
     getStyleClass().add("tile");
 
-
-    iconView = icon;
-    if (iconView != null) {
-      getChildren().add(FontIcon.of(iconView, 25, Color.WHITE));
-      setAlignment(Pos.CENTER);
-      setPrefSize(50, 50);
+    if (iconCode != null) {
+      iconView = iconCode;
+      icon = FontIcon.of(iconView, 25, Color.WHITE);
+      getChildren().add(icon);
     }
 
+    setAlignment(Pos.CENTER);
+    setPrefSize(50, 50);
   }
 
-  public void setIcon(Ikon icon) {
-     iconView = icon;
+  public void setIcon(Ikon iconCode, double angle) {
+    iconView = iconCode;
+    if (iconView != null) {
+      if (icon != null) {
+        getChildren().remove(icon);
+      }
+      icon = FontIcon.of(iconView, 25, Color.WHITE);
+      icon.setRotate(angle);
+      getChildren().add(icon);
+    }
+  }
+
+  public void setIcon(Ikon iconCode) {
+    setIcon(iconCode, 0);
   }
 
   public void setBackgroundColor(Color color) {
