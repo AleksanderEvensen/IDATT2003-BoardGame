@@ -6,27 +6,42 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * A class representing a tile on the playing board
+ * A class representing a tile on the playing board, with an optional grid location.
  */
 public class Tile implements Serializable {
+
     private final int tileId;
+    private int row;
+    private int col;
     // Nullable fields
-    private TileAction action = null;
-    private Tile nextTile = null;
-    private Tile lastTile = null;
+    private TileAction action;
+    private Tile nextTile;
+    private Tile lastTile;
 
     /**
-     * Initialize a new tile with only the TileId
-     * @param tileId the id
+     * Creates a tile with only an ID.
+     * @param tileId the tile ID
      */
     public Tile(int tileId) {
         this.tileId = tileId;
     }
 
     /**
-     * Initialize a new tile with the TileId and the action
-     * @param tileId the tile id
-     * @param action the action for the tile
+     * Creates a tile with an ID and a grid position.
+     * @param tileId the tile ID
+     * @param row the row position
+     * @param col the column position
+     */
+    public Tile(int tileId, int row, int col) {
+        this.tileId = tileId;
+        this.row = row;
+        this.col = col;
+    }
+
+    /**
+     * Creates a tile with an ID and an action.
+     * @param tileId the tile ID
+     * @param action the tile action
      */
     public Tile(int tileId, TileAction action) {
         this(tileId);
@@ -34,9 +49,21 @@ public class Tile implements Serializable {
     }
 
     /**
-     * Initialize a new tile with the TileId, the action and the next tile
-     * @param tileId the tile id
-     * @param action the action for the tile
+     * Creates a tile with an ID, a grid position, and an action.
+     * @param tileId the tile ID
+     * @param row the row position
+     * @param col the column position
+     * @param action the tile action
+     */
+    public Tile(int tileId, int row, int col, TileAction action) {
+        this(tileId, row, col);
+        this.action = action;
+    }
+
+    /**
+     * Creates a tile with an ID, action, and a reference to the next tile.
+     * @param tileId the tile ID
+     * @param action the tile action
      * @param nextTile the next tile
      */
     public Tile(int tileId, TileAction action, Tile nextTile) {
@@ -45,11 +72,24 @@ public class Tile implements Serializable {
     }
 
     /**
-     * Initialize a new tile with the TileId, the action, the next tile and the last(previous) tile
-     * @param tileId the tile id
-     * @param action the action for the tile
+     * Creates a tile with an ID, grid position, action, and a reference to the next tile.
+     * @param tileId the tile ID
+     * @param row the row position
+     * @param col the column position
+     * @param action the tile action
      * @param nextTile the next tile
-     * @param lastTile the last(previous) tile
+     */
+    public Tile(int tileId, int row, int col, TileAction action, Tile nextTile) {
+        this(tileId, row, col, action);
+        this.nextTile = nextTile;
+    }
+
+    /**
+     * Creates a tile with an ID, action, next tile, and last tile.
+     * @param tileId the tile ID
+     * @param action the tile action
+     * @param nextTile the next tile
+     * @param lastTile the last tile
      */
     public Tile(int tileId, TileAction action, Tile nextTile, Tile lastTile) {
         this(tileId, action, nextTile);
@@ -57,55 +97,102 @@ public class Tile implements Serializable {
     }
 
     /**
-     * Get the next tile
-     * @return the next tile, if the next til is null, then the Optional will be empty
+     * Creates a tile with an ID, grid position, action, next tile, and last tile.
+     * @param tileId the tile ID
+     * @param row the row position
+     * @param col the column position
+     * @param action the tile action
+     * @param nextTile the next tile
+     * @param lastTile the last tile
      */
-    public Optional<Tile> getNextTile() {
-        // Safely return the nextTile
-        return Optional.ofNullable(nextTile);
+    public Tile(int tileId, int row, int col, TileAction action, Tile nextTile, Tile lastTile) {
+        this(tileId, row, col, action, nextTile);
+        this.lastTile = lastTile;
     }
 
     /**
-     * Get the last(previous) tile
-     * @return the last tile, if the last tile is null, then the Optional will be empty
+     * Returns the tile's ID.
+     * @return the tile ID
      */
-    public Optional<Tile> getLastTile() {
-        // Safely return the lastTile
-        return Optional.ofNullable(lastTile);
-    }
-
     public int getTileId() {
         return tileId;
     }
 
     /**
-     * Get the action of the tile
-     * @return the action, if the action is null, then the Optional will be empty
+     * Returns the row position of this tile.
+     * @return the row
+     */
+    public int getRow() {
+        return row;
+    }
+
+    /**
+     * Returns the column position of this tile.
+     * @return the column
+     */
+    public int getCol() {
+        return col;
+    }
+
+    /**
+     * Sets the row of this tile.
+     * @param row the new row value
+     */
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    /**
+     * Sets the column of this tile.
+     * @param col the new column value
+     */
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    /**
+     * Returns the next tile if present.
+     * @return an Optional containing the next tile if not null
+     */
+    public Optional<Tile> getNextTile() {
+        return Optional.ofNullable(nextTile);
+    }
+
+    /**
+     * Returns the last tile if present.
+     * @return an Optional containing the last tile if not null
+     */
+    public Optional<Tile> getLastTile() {
+        return Optional.ofNullable(lastTile);
+    }
+
+    /**
+     * Returns the action if present.
+     * @return an Optional containing the tile action if not null
      */
     public Optional<TileAction> getAction() {
-        // Safely return the action
         return Optional.ofNullable(action);
     }
 
     /**
-     * Sets the next tile
-     * @param nextTile the new tile
+     * Sets the next tile reference.
+     * @param nextTile the next tile
      */
     public void setNextTile(Tile nextTile) {
         this.nextTile = nextTile;
     }
 
     /**
-     * Sets the last(previous) tile
-     * @param lastTile the new tile
+     * Sets the last tile reference.
+     * @param lastTile the last tile
      */
     public void setLastTile(Tile lastTile) {
         this.lastTile = lastTile;
     }
 
     /**
-     * Sets the action of the tile
-     * @param action the new action
+     * Sets the action.
+     * @param action the tile action
      */
     public void setAction(TileAction action) {
         this.action = action;

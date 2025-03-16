@@ -1,5 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +20,6 @@ import java.util.List;
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public LadderGame game = new LadderGame();
     public List<Player> players = new ArrayList<>();
     public int currentPlayerIndex = 0;
 
@@ -28,12 +31,29 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        LocalFileProvider fileProvider = new LocalFileProvider();
+        GameManager gameManager = new GameManager(fileProvider);
+        Game game = gameManager.getGame("ladder");
+
+
         this.players.add(new Player(1, "Aleks"));
         this.players.add(new Player(2, "Yazan"));
-
         this.players.forEach(p -> p.placeOnTile(game.getBoard().getTile(0)));
+        System.out.println("Players:");
 
-        System.out.printf("Current player: %s\n", players.get(currentPlayerIndex).getName());
+        System.out.println("====================================");
+        game.getBoard().getTiles().forEach((k, tile) -> {
+          if (tile.getAction().isPresent()) {
+              if (tile.getAction().get() instanceof LadderAction) {
+                  int destinationTileId = ((LadderAction) tile.getAction().get()).getDestinationTile().getTileId();
+                  System.out.printf("Tile %d has a ladder to tile %d %b\n",
+                      tile.getTileId(),
+                      ((LadderAction) tile.getAction().get()).getDestinationTile().getTileId(),
+                      ((LadderAction) tile.getAction().get()).getDestinationTile() == game.getBoard().getTile(destinationTileId)
+                      );
+              }
+          }
+        });
 
         var btn = new Button("Hello!");
         btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
