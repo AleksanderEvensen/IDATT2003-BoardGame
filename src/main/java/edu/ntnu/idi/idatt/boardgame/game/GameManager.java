@@ -7,16 +7,38 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+/**
+ * Manages the loading and retrieval of games.
+ * <p>
+ * This class is responsible for loading games from JSON files and providing access to loaded games.
+ * </p>
+ *
+ * @see edu.ntnu.idi.idatt.boardgame.model.Game
+ * @since v1.0.0
+ */
 public class GameManager {
   private final HashMap<String, Game> games = new HashMap<>();
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(GameManager.class.getName());
 
+  /**
+   * Constructs a GameManager with the specified file provider.
+   *
+   * @param fileProvider the file provider for loading game files
+   */
   public GameManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
     loadGame("games/ladder.json");
   }
 
+  /**
+   * Loads a game from the specified file path.
+   * <p>
+   * The game is loaded from a JSON file and added to the games map.
+   * </p>
+   *
+   * @param path the path to the game file
+   */
   public void loadGame(String path) {
     try {
       InputStream inputStream = fileProvider.get(path);
@@ -28,8 +50,14 @@ public class GameManager {
     }
   }
 
+  /**
+   * Retrieves a game by its ID.
+   *
+   * @param id the game ID
+   * @return the game with the specified ID, or null if not found
+   * @see edu.ntnu.idi.idatt.boardgame.model.Game
+   */
   public Game getGame(String id) {
     return games.get(id);
   }
-
 }

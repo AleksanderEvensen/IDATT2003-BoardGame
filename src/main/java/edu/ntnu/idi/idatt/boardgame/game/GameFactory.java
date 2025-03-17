@@ -39,6 +39,10 @@ public class GameFactory {
     return gson.toJson(game);
   }
 
+  /**
+   * Create a game from a board.
+   *
+   */
   private static Gson getGson() {
     return new GsonBuilder()
         .registerTypeAdapter(Game.class, new GameAdapter())

@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import edu.ntnu.idi.idatt.boardgame.model.tiles.BoardRangeException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class Board implements HasTileReferenceResolver {
     public void addTile(Tile tile) {
         if (tile.getRow() < 0 || tile.getRow() >= rowCount
             || tile.getCol() < 0 || tile.getCol() >= colCount) {
-            throw new IllegalArgumentException(
+            throw new BoardRangeException(
                 "Invalid tile location (row=" + tile.getRow()
                     + ", col=" + tile.getCol() + ")."
                     + " Must be within 0 <= row < " + rowCount
