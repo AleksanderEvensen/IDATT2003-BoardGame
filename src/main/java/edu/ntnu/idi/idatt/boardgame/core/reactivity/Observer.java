@@ -2,11 +2,13 @@ package edu.ntnu.idi.idatt.boardgame.core.reactivity;
 
 
 
-/*
+/**
   * An observer interface for the observer pattern.
   *
   * @param <T> the type of the observable value.
   * @param <K> the type of the value that is passed to the observer.
+ * @since v1.0.0
+ * @see edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable
  */
 public interface Observer<T, K> {
 
