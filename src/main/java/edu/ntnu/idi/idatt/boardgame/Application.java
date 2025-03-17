@@ -37,47 +37,6 @@ public class Application extends javafx.application.Application {
         LocalFileProvider fileProvider = new LocalFileProvider();
         GameManager gameManager = new GameManager(fileProvider);
         Game game = gameManager.getGame("ladder");
-
-        System.out.println(GameFactory.createJson(game));
-
-        game.getBoard().getTiles().forEach((k, tile) -> {
-            if (tile.getAction().isPresent()){
-                if(tile.getAction().get() instanceof LadderAction){
-                    LadderAction ladderAction = (LadderAction) tile.getAction().get();
-                    System.out.printf("Tile %d has a ladder to tile %d and entity matches -> %b\n",
-                        tile.getTileId(),
-                        ladderAction.getDestinationTile().getTileId(),
-                        ladderAction.getDestinationTile().equals(game.getBoard().getTile(ladderAction.getDestinationTile().getTileId()))
-                        );
-                }
-            }
-        });
-
-        game.getBoard().getTiles().forEach((k, tile) -> {
-            if (tile.getNextTile().isPresent()){
-                Tile nextTile = tile.getNextTile().get();
-                System.out.printf("Tile %d has a next tile %d and entity matches -> %b\n",
-                    tile.getTileId(),
-                    nextTile.getTileId(),
-                    nextTile.equals(game.getBoard().getTile(nextTile.getTileId()))
-                );
-            }
-        });
-
-        game.getBoard().getTiles().forEach((k, tile) -> {
-            if (tile.getPreviousTile().isPresent()){
-                Tile previousTile = tile.getPreviousTile().get();
-                System.out.printf("Tile %d has a pre tile %d and entity matches -> %b\n",
-                    tile.getTileId(),
-                    previousTile.getTileId(),
-                    previousTile.equals(game.getBoard().getTile(previousTile.getTileId()))
-                );
-            }
-        });
-
-
-
-
         this.players.add(new Player(1, "Aleks"));
         this.players.add(new Player(2, "Yazan"));
         this.players.forEach(player -> player.placeOnTile(game.getBoard().getTile(0)));
