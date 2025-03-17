@@ -43,12 +43,10 @@ public class LadderActionStyleResolver extends TileActionStyleResolver {
     if (angle < 0) {
       angle += 360;
     }
-
+          startTile.setIcon(FontAwesomeSolid.ARROW_UP, angle);
       if (isPositive) {
-        startTile.setIcon(FontAwesomeSolid.ARROW_UP, angle);
         startTile.setBackgroundColor(Color.GREEN);
       } else {
-        startTile.setIcon(FontAwesomeSolid.ARROW_UP, angle);
         startTile.setBackgroundColor(Color.RED);
       }
 

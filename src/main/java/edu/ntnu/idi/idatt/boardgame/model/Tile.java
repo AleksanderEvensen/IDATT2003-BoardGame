@@ -197,4 +197,17 @@ public class Tile implements Serializable {
     public void setAction(TileAction action) {
         this.action = action;
     }
+
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "tileId=" + tileId +
+                ", row=" + row +
+                ", col=" + col +
+                ", action=" + action +
+                ", nextTile=" + nextTile +
+                ", lastTile=" + lastTile +
+                '}';
+    }
 }

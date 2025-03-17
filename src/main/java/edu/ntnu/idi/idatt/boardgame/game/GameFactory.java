@@ -23,8 +23,8 @@ public class GameFactory {
    * @return the game.
    */
   public static Game createGame(String json) {
-    Game game = GameLoader.loadGame(json);
-    Gson gson = getGson(game);
+    Game tempGame = GameLoader.loadGame(json);
+    Gson gson = getGson(tempGame);
     return gson.fromJson(json, Game.class);
   }
 
@@ -42,6 +42,7 @@ public class GameFactory {
 
   private static Gson getGson(Game game) {
     return new GsonBuilder()
+
         .registerTypeAdapterFactory(TileActionAdapter.getFactory())
         .registerTypeAdapter(Tile.class, new TileAdapter(game.getBoard()))
         .registerTypeAdapter(LadderAction.class, new LadderActionAdapter(game.getBoard()))

@@ -1,11 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.concurrent.atomic.AtomicReference;
@@ -34,13 +36,18 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
         GameManager gameManager = new GameManager(new LocalFileProvider());
-
-        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+        Game ladderGame = gameManager.getGame("ladder");
+        ladderGame.getBoard().getTiles().entrySet().forEach(entry -> {
             Tile tile = entry.getValue();
             tile.getAction().ifPresent(action -> {
-                System.out.println(action);
+             if (action instanceof LadderAction){
+                 LadderAction ladderAction = (LadderAction) action;
+                 System.out.println(ladderAction.getDestinationTile() == ladderGame.getBoard().getTile(ladderAction.getDestinationTile().getTileId()));
+             }
             });
         });
+
+        System.out.println(ladderGame.getBoard().getTile(0));
 
         GridPane boardView = new GridPane();
         AtomicReference<TileComponent> tileView = new AtomicReference<>();

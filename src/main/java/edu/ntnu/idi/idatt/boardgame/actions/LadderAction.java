@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.actions;
 
+import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
@@ -43,4 +44,7 @@ public class LadderAction implements TileAction, HasStyleResolver {
     public LadderActionStyleResolver getStyleResolver() {
         return new LadderActionStyleResolver();
     }
+
+
+
 }
