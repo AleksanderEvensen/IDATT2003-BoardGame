@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 
 import java.io.Serializable;
@@ -8,15 +9,21 @@ import java.util.Optional;
 /**
  * A class representing a tile on the playing board, with an optional grid location.
  */
-public class Tile implements Serializable {
+public class Tile implements Serializable, HasTileReferenceResolver {
 
     private final int tileId;
     private int row;
     private int col;
     // Nullable fields
     private TileAction action;
-    private Tile nextTile;
-    private Tile lastTile;
+    private int previousTileId;
+    private int nextTileId;
+    private int lastTileId;
+    // Transient fields that are not serialized
+    private transient Tile previousTile;
+    private transient Tile nextTile;
+    private transient Tile lastTile;
+
 
     /**
      * Creates a tile with only an ID.
@@ -167,6 +174,14 @@ public class Tile implements Serializable {
     }
 
     /**
+     * Returns the previous tile if present.
+     * @return an Optional containing the previous tile if not null
+     */
+    public Optional<Tile> getPreviousTile() {
+        return Optional.ofNullable(previousTile);
+    }
+
+    /**
      * Returns the action if present.
      * @return an Optional containing the tile action if not null
      */
@@ -191,10 +206,34 @@ public class Tile implements Serializable {
     }
 
     /**
+     * Sets the previous tile reference.
+     * @param previousTile the previous tile
+     */
+    public void setPreviousTile(Tile previousTile) {
+        this.previousTile = previousTile;
+    }
+
+    /**
      * Sets the action.
      * @param action the tile action
      */
     public void setAction(TileAction action) {
         this.action = action;
+    }
+
+    @Override
+    public void resolveReferences(Board board) {
+        if (nextTileId != 0) {
+            nextTile = board.getTile(nextTileId);
+        }
+        if (previousTileId != 0) {
+            previousTile = board.getTile(previousTileId);
+        }
+        if (lastTileId != 0) {
+            lastTile = board.getTile(lastTileId);
+        }
+        if (action instanceof HasTileReferenceResolver) {
+            ((HasTileReferenceResolver) action).resolveReferences(board);
+        }
     }
 }

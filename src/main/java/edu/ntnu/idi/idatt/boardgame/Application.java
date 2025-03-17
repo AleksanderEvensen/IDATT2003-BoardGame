@@ -2,9 +2,12 @@ package edu.ntnu.idi.idatt.boardgame;
 
 import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -35,25 +38,53 @@ public class Application extends javafx.application.Application {
         GameManager gameManager = new GameManager(fileProvider);
         Game game = gameManager.getGame("ladder");
 
+        System.out.println(GameFactory.createJson(game));
+
+        game.getBoard().getTiles().forEach((k, tile) -> {
+            if (tile.getAction().isPresent()){
+                if(tile.getAction().get() instanceof LadderAction){
+                    LadderAction ladderAction = (LadderAction) tile.getAction().get();
+                    System.out.printf("Tile %d has a ladder to tile %d and entity matches -> %b\n",
+                        tile.getTileId(),
+                        ladderAction.getDestinationTile().getTileId(),
+                        ladderAction.getDestinationTile().equals(game.getBoard().getTile(ladderAction.getDestinationTile().getTileId()))
+                        );
+                }
+            }
+        });
+
+        game.getBoard().getTiles().forEach((k, tile) -> {
+            if (tile.getNextTile().isPresent()){
+                Tile nextTile = tile.getNextTile().get();
+                System.out.printf("Tile %d has a next tile %d and entity matches -> %b\n",
+                    tile.getTileId(),
+                    nextTile.getTileId(),
+                    nextTile.equals(game.getBoard().getTile(nextTile.getTileId()))
+                );
+            }
+        });
+
+        game.getBoard().getTiles().forEach((k, tile) -> {
+            if (tile.getPreviousTile().isPresent()){
+                Tile previousTile = tile.getPreviousTile().get();
+                System.out.printf("Tile %d has a pre tile %d and entity matches -> %b\n",
+                    tile.getTileId(),
+                    previousTile.getTileId(),
+                    previousTile.equals(game.getBoard().getTile(previousTile.getTileId()))
+                );
+            }
+        });
+
+
+
 
         this.players.add(new Player(1, "Aleks"));
         this.players.add(new Player(2, "Yazan"));
-        this.players.forEach(p -> p.placeOnTile(game.getBoard().getTile(0)));
+        this.players.forEach(player -> player.placeOnTile(game.getBoard().getTile(0)));
         System.out.println("Players:");
 
         System.out.println("====================================");
-        game.getBoard().getTiles().forEach((k, tile) -> {
-          if (tile.getAction().isPresent()) {
-              if (tile.getAction().get() instanceof LadderAction) {
-                  int destinationTileId = ((LadderAction) tile.getAction().get()).getDestinationTile().getTileId();
-                  System.out.printf("Tile %d has a ladder to tile %d %b\n",
-                      tile.getTileId(),
-                      ((LadderAction) tile.getAction().get()).getDestinationTile().getTileId(),
-                      ((LadderAction) tile.getAction().get()).getDestinationTile() == game.getBoard().getTile(destinationTileId)
-                      );
-              }
-          }
-        });
+
 
         var btn = new Button("Hello!");
         btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

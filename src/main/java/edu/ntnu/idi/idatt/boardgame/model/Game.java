@@ -1,6 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-public class Game {
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+
+public class Game implements HasTileReferenceResolver {
 
     private final Board board;
     private final String name;
@@ -29,5 +31,11 @@ public class Game {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public void resolveReferences(Board board) {
+        this.board.resolveReferences(board);
+    }
+
 
 }

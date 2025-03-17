@@ -1,20 +1,27 @@
 package edu.ntnu.idi.idatt.boardgame.actions;
 
+import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
-public class LadderAction implements TileAction {
+public class LadderAction implements TileAction, HasTileReferenceResolver {
 
-    private final Tile destinationTile;
+    private int destinationTileId;
+    private transient Tile destinationTile;
     public LadderAction(Tile destinationTile) {
         if (destinationTile == null) {
             throw new IllegalArgumentException("Destination tile cannot be null");
         }
         this.destinationTile = destinationTile;
+        this.destinationTileId = destinationTile.getTileId();
     }
 
     public Tile getDestinationTile() {
         return destinationTile;
+    }
+
+    public void setDestinationTile(Tile destinationTile) {
+        this.destinationTile = destinationTile;
     }
 
     @Override
@@ -31,5 +38,10 @@ public class LadderAction implements TileAction {
         return "LadderAction{" +
                 "destinationTile=" + destinationTile +
                 '}';
+    }
+
+    @Override
+    public void resolveReferences(Board board) {
+        destinationTile = board.getTile(destinationTileId);
     }
 }

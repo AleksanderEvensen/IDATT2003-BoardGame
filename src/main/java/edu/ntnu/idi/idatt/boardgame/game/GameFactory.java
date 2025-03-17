@@ -2,12 +2,10 @@ package edu.ntnu.idi.idatt.boardgame.game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.game.adapters.LadderActionAdapter;
+import edu.ntnu.idi.idatt.boardgame.game.adapters.GameAdapter;
 import edu.ntnu.idi.idatt.boardgame.game.adapters.TileActionAdapter;
-import edu.ntnu.idi.idatt.boardgame.game.adapters.TileAdapter;
+import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
 
 /**
@@ -23,9 +21,10 @@ public class GameFactory {
    * @return the game.
    */
   public static Game createGame(String json) {
-    Game game = GameLoader.loadGame(json);
-    Gson gson = getGson(game);
-    return gson.fromJson(json, Game.class);
+    Gson gson = getGson();
+    Game game = gson.fromJson(json, Game.class);
+    game.resolveReferences(game.getBoard());
+    return game;
   }
 
   /**
@@ -36,15 +35,14 @@ public class GameFactory {
    * @return a JSON representation of the game.
    */
   public static String createJson(Game game) {
-    Gson gson = getGson(game);
+    Gson gson = getGson();
     return gson.toJson(game);
   }
 
-  private static Gson getGson(Game game) {
+  private static Gson getGson() {
     return new GsonBuilder()
+        .registerTypeAdapter(Game.class, new GameAdapter())
         .registerTypeAdapterFactory(TileActionAdapter.getFactory())
-        .registerTypeAdapter(Tile.class, new TileAdapter(game.getBoard()))
-        .registerTypeAdapter(LadderAction.class, new LadderActionAdapter(game.getBoard()))
         .create();
   }
 }

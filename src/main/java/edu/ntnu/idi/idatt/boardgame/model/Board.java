@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import java.util.Map;
  * Represents a board with a fixed row and column size. Each Tile must be placed
  * within the valid range when added. The board stores tiles by their tileId.
  */
-public class Board {
+public class Board implements HasTileReferenceResolver {
 
     private final int rowCount;
     private final int colCount;
@@ -73,4 +74,8 @@ public class Board {
         return colCount;
     }
 
+    @Override
+    public void resolveReferences(Board board) {
+        tiles.values().forEach(tile -> tile.resolveReferences(this));
+    }
 }
