@@ -16,7 +16,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  */
 public class LadderAction implements TileAction, HasTileReferenceResolver {
 
-    private int destinationTileId;
+    private final int destinationTileId;
     private transient Tile destinationTile;
 
     /**
