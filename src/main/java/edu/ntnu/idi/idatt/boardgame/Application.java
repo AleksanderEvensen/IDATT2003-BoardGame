@@ -1,6 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.Board;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +23,6 @@ import java.util.List;
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public LadderGame game = new LadderGame();
     public List<Player> players = new ArrayList<>();
     public int currentPlayerIndex = 0;
 
@@ -28,12 +34,16 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        LocalFileProvider fileProvider = new LocalFileProvider();
+        GameManager gameManager = new GameManager(fileProvider);
+        Game game = gameManager.getGame("ladder");
         this.players.add(new Player(1, "Aleks"));
         this.players.add(new Player(2, "Yazan"));
+        this.players.forEach(player -> player.placeOnTile(game.getBoard().getTile(0)));
+        System.out.println("Players:");
 
-        this.players.forEach(p -> p.placeOnTile(game.getBoard().getTile(0)));
+        System.out.println("====================================");
 
-        System.out.printf("Current player: %s\n", players.get(currentPlayerIndex).getName());
 
         var btn = new Button("Hello!");
         btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
