@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idatt.boardgame.actions.ladder.;
+package edu.ntnu.idi.idatt.boardgame.actions.ladder;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;

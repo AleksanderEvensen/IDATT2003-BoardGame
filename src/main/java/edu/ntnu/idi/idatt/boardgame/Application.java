@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.board.GameBoardBuilder;
 import edu.ntnu.idi.idatt.boardgame.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
@@ -9,6 +10,7 @@ import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.concurrent.atomic.AtomicReference;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -35,32 +37,10 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         LocalFileProvider fileProvider = new LocalFileProvider();
         GameManager gameManager = new GameManager(fileProvider);
-
-        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
-            Tile tile = entry.getValue();
-            tile.getAction().ifPresent(action -> {
-                System.out.println(action);
-            });
-        });
-
-        GridPane boardView = new GridPane();
-        AtomicReference<TileComponent> tileView = new AtomicReference<>();
-        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
-            Tile tile = entry.getValue();
-            TileComponent tileComponent = new TileComponent(tile.getTileId());
-            boardView.add(tileComponent, tile.getCol(), tile.getRow());
-            tileView.set(tileComponent);
-        });
-
-        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
-            Tile tile = entry.getValue();
-            tile.getAction().ifPresent(action -> {
-                if (action instanceof HasStyleResolver) {
-                    TileActionStyleResolver styleResolver = ((HasStyleResolver) action).getStyleResolver();
-                    styleResolver.resolveStyle(tile, action, boardView);
-                }
-            });
-        });
+        GridPane boardView = new GameBoardBuilder(gameManager.getGame("ladder"))
+                .addTiles()
+                .resolveActionStyles()
+                .build();
 
 
 

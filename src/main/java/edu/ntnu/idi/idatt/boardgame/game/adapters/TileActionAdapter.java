@@ -1,6 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.game.adapters;
 
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 
@@ -27,7 +29,10 @@ public final class TileActionAdapter {
   public static RuntimeTypeAdapterFactory<TileAction> getFactory() {
     return RuntimeTypeAdapterFactory
         .of(TileAction.class, "type")
-        .registerSubtype(LadderAction.class, "LADDER");
+        .registerSubtype(LadderAction.class, "LADDER")
+        .registerSubtype(FreezeAction.class, "FREEZE")
+        .registerSubtype(ImmunityAction.class, "IMMUNITY");
+
   }
 
   private TileActionAdapter() {
