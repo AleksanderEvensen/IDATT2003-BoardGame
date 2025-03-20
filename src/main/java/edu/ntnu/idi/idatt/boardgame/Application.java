@@ -1,23 +1,23 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
-import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
+
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import java.util.concurrent.atomic.AtomicReference;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 /**
  * The main application class.
@@ -33,43 +33,39 @@ public class Application extends javafx.application.Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-
         LocalFileProvider fileProvider = new LocalFileProvider();
         GameManager gameManager = new GameManager(fileProvider);
-        Game game = gameManager.getGame("ladder");
-        this.players.add(new Player(1, "Aleks"));
-        this.players.add(new Player(2, "Yazan"));
-        this.players.forEach(player -> player.placeOnTile(game.getBoard().getTile(0)));
-        System.out.println("Players:");
 
-        System.out.println("====================================");
-
-
-        var btn = new Button("Hello!");
-        btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            var dice = Utils.throwDice(1).get(0);
-            Player currentPlayer = players.get(currentPlayerIndex);
-
-            System.out.printf("Player %s rolled %d\n", currentPlayer.getName(), dice);
-            System.out.printf("Player moved %d tiles\n", dice);
-            currentPlayer.move(dice);
-            if (currentPlayer.getCurrentTile().getTileId() == 90) {
-                System.out.printf("Player %s won the game!\n", currentPlayer.getName());
-                System.exit(0);
-            }
-
-            System.out.println("Player status:");
-            players.forEach(player -> {
-                System.out.printf("  Player(%d, %s) is on tile %d\n", player.getPlayerId(), player.getName(), player.getCurrentTile().getTileId());
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            tile.getAction().ifPresent(action -> {
+                System.out.println(action);
             });
-            System.out.println("====================================");
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            System.out.printf("\n Current player: %s\n", players.get(currentPlayerIndex).getName());
         });
-        var box = new VBox(btn);
-        box.setAlignment(javafx.geometry.Pos.CENTER);
 
-        Scene scene = new Scene(box, 320, 240);
+        GridPane boardView = new GridPane();
+        AtomicReference<TileComponent> tileView = new AtomicReference<>();
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            TileComponent tileComponent = new TileComponent(tile.getTileId());
+            boardView.add(tileComponent, tile.getCol(), tile.getRow());
+            tileView.set(tileComponent);
+        });
+
+        gameManager.getGame("ladder").getBoard().getTiles().entrySet().forEach(entry -> {
+            Tile tile = entry.getValue();
+            tile.getAction().ifPresent(action -> {
+                if (action instanceof HasStyleResolver) {
+                    TileActionStyleResolver styleResolver = ((HasStyleResolver) action).getStyleResolver();
+                    styleResolver.resolveStyle(tile, action, boardView);
+                }
+            });
+        });
+
+
+
+        Scene scene = new Scene(boardView, 800, 800);
+        scene.getStylesheets().add("main.css");
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.game.adapters;
 
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 
 /**

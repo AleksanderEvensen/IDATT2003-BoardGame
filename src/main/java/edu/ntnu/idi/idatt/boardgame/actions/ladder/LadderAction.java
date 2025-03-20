@@ -1,5 +1,9 @@
-package edu.ntnu.idi.idatt.boardgame.actions;
+package edu.ntnu.idi.idatt.boardgame.actions.ladder;
 
+import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -14,7 +18,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v0.0.1
  */
-public class LadderAction implements TileAction, HasTileReferenceResolver {
+public class LadderAction implements TileAction, HasTileReferenceResolver, HasStyleResolver {
 
     private final int destinationTileId;
     private transient Tile destinationTile;
@@ -53,6 +57,7 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
 
     /**
      * Performs the ladder action, moving the player to the destination tile.
+     * if the player is immune, the player will not move when the destination tile is lower than the current tile.
      *
      * @param player the player to move
      * @throws IllegalArgumentException if the player is null
@@ -62,6 +67,12 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
     public void perform(Player player) {
         if (player == null) {
             throw new IllegalArgumentException("Player cannot be null");
+        }
+        if (player.getCurrentTile() == null) {
+            throw new IllegalArgumentException("Player must be on a tile");
+        }
+        if (player.getCurrentTile().getTileId() > destinationTile.getTileId() && player.isImmune()) {
+            player.setImmunityTurns(player.getImmunityTurns() - 1);
         }
         player.moveToTile(destinationTile, false);
         System.out.printf("Player %s triggered a LadderAction and moved to tile %d\n", player.getName(), destinationTile.getTileId());
@@ -83,5 +94,15 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
     @Override
     public void resolveReferences(Board board) {
         destinationTile = board.getTile(destinationTileId);
+    }
+
+    /**
+     * Get the style resolver for the action.
+     *
+     * @return the style resolver.
+     */
+    @Override
+    public TileActionStyleResolver getStyleResolver() {
+        return new LadderActionStyleResolver();
     }
 }
