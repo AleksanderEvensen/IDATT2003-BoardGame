@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idatt.boardgame.actions.ladder;
+package edu.ntnu.idi.idatt.boardgame.actions.ladder.;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
@@ -27,20 +27,40 @@ public class LadderActionStyleResolver extends TileActionStyleResolver {
         .findFirst()
         .orElse(null);
 
-    if (startTile != null) {
-      startTile.setBackgroundColor(Color.valueOf("#ff0000"));
-      startTile.setIcon(FontAwesomeSolid.ARROW_UP);
-    }
-
     TileComponent destinationTile = tileComponents.stream()
         .filter(tileComponent -> tileComponent.getTileId() == ladderAction.getDestinationTile()
             .getTileId())
         .findFirst().orElse(null);
 
-    if (destinationTile != null) {
-      destinationTile.setBackgroundColor(Color.valueOf("#ff6f72"));
+    if (startTile == null || destinationTile == null) {
+      return;
+    }
+
+    boolean isPositive = ladderAction.getDestinationTile().getTileId() > tile.getTileId();
+
+    double angle = Math.toDegrees(Math.atan2(
+        ladderAction.getDestinationTile().getRow() - tile.getRow(),
+        ladderAction.getDestinationTile().getCol() - tile.getCol()
+    )) + 90;
+    if (angle < 0) {
+      angle += 360;
+    }
+
+    if (isPositive) {
+      startTile.setIcon(FontAwesomeSolid.ARROW_UP, angle);
+      startTile.setBackgroundColor(Color.GREEN);
+    } else {
+      startTile.setIcon(FontAwesomeSolid.ARROW_UP, angle);
+      startTile.setBackgroundColor(Color.RED);
     }
 
 
+    if (isPositive) {
+      destinationTile.setBackgroundColor(Color.valueOf("#6ee7b7"));
+    } else {
+      destinationTile.setBackgroundColor(Color.valueOf("#ff6f72"));
+    }
+
   }
+
 }
