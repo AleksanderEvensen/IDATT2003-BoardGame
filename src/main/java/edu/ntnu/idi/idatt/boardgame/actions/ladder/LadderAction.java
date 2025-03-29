@@ -1,5 +1,7 @@
-package edu.ntnu.idi.idatt.boardgame.actions;
+package edu.ntnu.idi.idatt.boardgame.actions.ladder;
 
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -16,14 +18,14 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  */
 public class LadderAction implements TileAction, HasTileReferenceResolver {
 
-    private int destinationTileId;
-    private transient Tile destinationTile;
+    private final int destinationTileId;
+    private Tile destinationTile;
 
     /**
-     * Constructs a LadderAction with the specified destination tile.
+     * Constructs a ladder action with a destination tile.
      *
-     * @param destinationTile the tile to move the player to
-     * @throws IllegalArgumentException if the destination tile is null
+     * @param destinationTile the destination tile
+     * @see edu.ntnu.idi.idatt.boardgame.model.Tile
      */
     public LadderAction(Tile destinationTile) {
         if (destinationTile == null) {
@@ -34,9 +36,20 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
     }
 
     /**
+     * Constructs a ladder action with a destination tile ID.
+     * This constructor is used for deserialization.
+     *
+     * @param destinationTileId the destination tile ID
+     */
+    public LadderAction(int destinationTileId) {
+        this.destinationTileId = destinationTileId;
+    }
+
+    /**
      * Returns the destination tile.
      *
      * @return the destination tile
+     * @see edu.ntnu.idi.idatt.boardgame.model.Tile
      */
     public Tile getDestinationTile() {
         return destinationTile;
@@ -53,6 +66,8 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
 
     /**
      * Performs the ladder action, moving the player to the destination tile.
+     * if the player is immune, the player will not move when the destination tile
+     * is lower than the current tile.
      *
      * @param player the player to move
      * @throws IllegalArgumentException if the player is null
@@ -63,8 +78,15 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
         if (player == null) {
             throw new IllegalArgumentException("Player cannot be null");
         }
+        if (player.getCurrentTile() == null) {
+            throw new IllegalArgumentException("Player must be on a tile");
+        }
+        if (player.getCurrentTile().getTileId() > destinationTile.getTileId() && player.isImmune()) {
+            player.setImmunityTurns(player.getImmunityTurns() - 1);
+        }
         player.moveToTile(destinationTile, false);
-        System.out.printf("Player %s triggered a LadderAction and moved to tile %d\n", player.getName(), destinationTile.getTileId());
+        System.out.printf("Player %s triggered a LadderAction and moved to tile %d\n", player.getName(),
+                destinationTile.getTileId());
     }
 
     @Override
@@ -84,4 +106,5 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
     public void resolveReferences(Board board) {
         destinationTile = board.getTile(destinationTileId);
     }
+
 }

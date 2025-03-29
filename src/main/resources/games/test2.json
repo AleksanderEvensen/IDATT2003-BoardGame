@@ -1,0 +1,29 @@
+{
+  "id": "test2",
+  "name": "Ladder Game",
+  "description": "A simple board game with ladders and snakes",
+  "minPlayers": 2,
+  "maxPlayers": 2,
+  "numberOfDice": 1,
+  "imagePath": "images/ladder.png",
+  "board": {
+    "rowCount": 10,
+    "colCount": 9,
+    "tiles": {
+      "0": {
+        "tileId": 0,
+        "row": 1,
+        "col": 0,
+        "nextTileId": 1,
+        "previousTileId": null
+
+      },
+      "1": {
+        "tileId": 1,
+        "row": 10,
+        "col": 10,
+        "nextTileId": 2,
+        "previousTileId": 0
+      }
+    }}
+}

@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
 /**
- * An exception that is thrown when a file cannot be deleted.
+ * An exception that is thrown when a file cannot be saved.
  */
 public class FileSaveException extends RuntimeException {
 

@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import java.util.Optional;
 
 /**
  * A class representing a game with a board.
@@ -17,6 +18,10 @@ public class Game implements HasTileReferenceResolver {
     private final String name;
     private final String description;
     private final String id;
+    private final int minPlayers;
+    private final int maxPlayers;
+    private final int numberOfDice;
+    private Optional<String> imagePath;
 
     /**
      * Constructs a game with the specified board, name, description, and ID.
@@ -26,11 +31,15 @@ public class Game implements HasTileReferenceResolver {
      * @param description the game description
      * @param id the game ID
      */
-    public Game(Board board, String name, String description, String id) {
+    public Game(Board board, String name, String description, String id, int minPlayers, int maxPlayers, int numberOfDice, String imagePath) {
         this.board = board;
         this.name = name;
         this.description = description;
         this.id = id;
+        this.minPlayers = minPlayers;
+        this.maxPlayers = maxPlayers;
+        this.numberOfDice = numberOfDice;
+        this.imagePath = Optional.ofNullable(imagePath);
     }
 
     /**
@@ -68,6 +77,42 @@ public class Game implements HasTileReferenceResolver {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the minimum number of players required to play the game.
+     *
+     * @return the minimum number of players
+     */
+    public int getMinPlayers() {
+        return minPlayers;
+    }
+
+    /**
+     * Returns the maximum number of players that can play the game.
+     *
+     * @return the maximum number of players
+     */
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    /**
+     * Returns the number of dice used in the game.
+     *
+     * @return the number of dice
+     */
+    public int getNumberOfDice() {
+        return numberOfDice;
+    }
+
+    /**
+     * Returns the path to the image of the game.
+     *
+     * @return the path to the image
+     */
+    public Optional<String> getImagePath() {
+        return imagePath;
     }
 
     /**

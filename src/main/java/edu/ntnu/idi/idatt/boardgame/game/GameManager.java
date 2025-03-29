@@ -29,6 +29,7 @@ public class GameManager {
   public GameManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
     loadGame("games/ladder.json");
+    loadGame("games/test2.json");
   }
 
   /**

@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.actions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import org.junit.jupiter.api.BeforeEach;
