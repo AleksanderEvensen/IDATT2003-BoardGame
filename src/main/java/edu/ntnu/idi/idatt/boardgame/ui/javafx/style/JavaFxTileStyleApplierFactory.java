@@ -10,6 +10,9 @@ import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplierFactory;
 /**
  * JavaFX implementation of the TileStyleApplierFactory.
  * This factory creates JavaFX-specific style appliers for each action type.
+ *
+ * @see TileStyleApplier
+ * @since v2.0.0
  */
 public class JavaFxTileStyleApplierFactory implements TileStyleApplierFactory {
 

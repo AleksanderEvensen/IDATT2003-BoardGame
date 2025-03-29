@@ -16,6 +16,9 @@ import javafx.scene.paint.Color;
 
 /**
  * JavaFX-specific implementation of the immunity tile style applier.
+ *
+ * @see TileStyleApplier
+ * @since v2.0.0
  */
 public class JavaFxImmunityStyleApplier implements TileStyleApplier {
 

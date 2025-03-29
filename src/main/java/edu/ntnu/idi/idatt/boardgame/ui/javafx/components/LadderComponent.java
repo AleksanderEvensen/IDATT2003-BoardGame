@@ -7,6 +7,8 @@ import javafx.scene.effect.DropShadow;
 
 /**
  * A component representing a ladder on the game board.
+ *
+ * @since v2.0.0
  */
 public class LadderComponent extends Pane {
 

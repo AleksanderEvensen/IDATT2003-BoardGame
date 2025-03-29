@@ -60,6 +60,10 @@ public class GameAdapter implements JsonSerializer<Game>, JsonDeserializer<Game>
     int minPlayers = jsonObj.get("minPlayers").getAsInt();
     int maxPlayers = jsonObj.get("maxPlayers").getAsInt();
     int numberOfDice = jsonObj.get("numberOfDice").getAsInt();
-    return new Game(board, name, description, id, minPlayers, maxPlayers, numberOfDice);
+    if (jsonObj.get("imagePath") == null) {
+      return new Game(board, name, description, id, minPlayers, maxPlayers, numberOfDice, null);
+    }
+    String imagePath = jsonObj.get("imagePath").getAsString();
+    return new Game(board, name, description, id, minPlayers, maxPlayers, numberOfDice, imagePath);
   }
 }

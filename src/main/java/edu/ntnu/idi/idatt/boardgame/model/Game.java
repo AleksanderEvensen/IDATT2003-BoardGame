@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import java.util.Optional;
 
 /**
  * A class representing a game with a board.
@@ -20,6 +21,7 @@ public class Game implements HasTileReferenceResolver {
     private final int minPlayers;
     private final int maxPlayers;
     private final int numberOfDice;
+    private Optional<String> imagePath;
 
     /**
      * Constructs a game with the specified board, name, description, and ID.
@@ -29,7 +31,7 @@ public class Game implements HasTileReferenceResolver {
      * @param description the game description
      * @param id the game ID
      */
-    public Game(Board board, String name, String description, String id, int minPlayers, int maxPlayers, int numberOfDice) {
+    public Game(Board board, String name, String description, String id, int minPlayers, int maxPlayers, int numberOfDice, String imagePath) {
         this.board = board;
         this.name = name;
         this.description = description;
@@ -37,7 +39,7 @@ public class Game implements HasTileReferenceResolver {
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
         this.numberOfDice = numberOfDice;
-
+        this.imagePath = Optional.ofNullable(imagePath);
     }
 
     /**
@@ -102,6 +104,15 @@ public class Game implements HasTileReferenceResolver {
      */
     public int getNumberOfDice() {
         return numberOfDice;
+    }
+
+    /**
+     * Returns the path to the image of the game.
+     *
+     * @return the path to the image
+     */
+    public Optional<String> getImagePath() {
+        return imagePath;
     }
 
     /**
