@@ -41,7 +41,6 @@ public class JavaFxTileStyleApplierFactory implements TileStyleApplierFactory {
             return immunityStyleApplier;
         }
 
-        // Default case - could return a default style applier or null
         return null;
     }
 }
