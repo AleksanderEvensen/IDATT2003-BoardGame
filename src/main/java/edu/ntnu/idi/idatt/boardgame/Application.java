@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.ntnu.idi.idatt.boardgame.board.GameBoardBuilder;
+import edu.ntnu.idi.idatt.boardgame.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
@@ -30,7 +31,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         LocalFileProvider fileProvider = new LocalFileProvider();
         GameManager gameManager = new GameManager(fileProvider);
-        GridPane boardView = new GameBoardBuilder(gameManager.getGame("ladder"))
+        GridPane boardView = new GameBoard.Builder(gameManager.getGame("ladder"))
                 .addTiles()
                 .resolveActionStyles()
                 .build();
