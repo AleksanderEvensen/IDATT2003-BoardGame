@@ -2,6 +2,9 @@
   "id": "ladder",
   "name": "Ladder Game",
   "description": "A simple board game with ladders and snakes",
+  "minPlayers": 2,
+  "maxPlayers": 2,
+  "numberOfDice": 1,
   "board": {
     "rowCount": 10,
     "colCount": 9,

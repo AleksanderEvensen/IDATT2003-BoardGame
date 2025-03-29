@@ -1,4 +1,4 @@
 .tile {
-    -fx-border-width: 2;
+    -fx-border-width: 2px;
     -fx-border-color: black;
 }

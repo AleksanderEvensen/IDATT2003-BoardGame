@@ -31,6 +31,10 @@ public class GameAdapter implements JsonSerializer<Game>, JsonDeserializer<Game>
     obj.addProperty("name", src.getName());
     obj.addProperty("description", src.getDescription());
     obj.add("board", context.serialize(src.getBoard()));
+    obj.addProperty("minPlayers", src.getMinPlayers());
+    obj.addProperty("maxPlayers", src.getMaxPlayers());
+    obj.addProperty("numberOfDice", src.getNumberOfDice());
+
 
     return obj;
   }
@@ -53,6 +57,9 @@ public class GameAdapter implements JsonSerializer<Game>, JsonDeserializer<Game>
     String description = jsonObj.get("description").getAsString();
     String id = jsonObj.get("id").getAsString();
     Board board = context.deserialize(jsonObj.get("board"), Board.class);
-    return new Game(board, name, description, id);
+    int minPlayers = jsonObj.get("minPlayers").getAsInt();
+    int maxPlayers = jsonObj.get("maxPlayers").getAsInt();
+    int numberOfDice = jsonObj.get("numberOfDice").getAsInt();
+    return new Game(board, name, description, id, minPlayers, maxPlayers, numberOfDice);
   }
 }

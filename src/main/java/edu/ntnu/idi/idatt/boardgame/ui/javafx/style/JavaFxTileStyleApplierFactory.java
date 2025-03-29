@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idatt.boardgame.ui.javafx;
+package edu.ntnu.idi.idatt.boardgame.ui.javafx.style;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;

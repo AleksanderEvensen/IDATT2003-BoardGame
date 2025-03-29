@@ -2,7 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.ui;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.JavaFxTileStyleApplierFactory;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.JavaFxTileStyleApplierFactory;
 import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier;
 import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplierFactory;
 
