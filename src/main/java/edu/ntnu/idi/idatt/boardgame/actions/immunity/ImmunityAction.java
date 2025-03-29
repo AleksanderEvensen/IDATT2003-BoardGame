@@ -1,11 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.actions.immunity;
 
-import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 
-public class ImmunityAction implements TileAction, HasStyleResolver {
+public class ImmunityAction implements TileAction {
 
   /**
    * Performs the action on the specified player.
@@ -21,16 +19,6 @@ public class ImmunityAction implements TileAction, HasStyleResolver {
     }
 
     player.setImmunityTurns(player.getImmunityTurns() + 1);
-  }
-
-  /**
-   * Get the style resolver for the action.
-   *
-   * @return the style resolver.
-   */
-  @Override
-  public TileActionStyleResolver getStyleResolver() {
-    return new ImmunityActionStyleResolver();
   }
 
 }

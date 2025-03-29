@@ -1,17 +1,15 @@
 package edu.ntnu.idi.idatt.boardgame.actions.freeze;
 
-import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-import edu.ntnu.idi.idatt.boardgame.actions.TileActionStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 
-public class FreezeAction implements TileAction, HasStyleResolver {
-
+public class FreezeAction implements TileAction {
 
   /**
    * Performs the action on the specified player.
    * If the player is immune, the player will not be frozen.
-   * If the player is already frozen, the player will be frozen for an additional turn.
+   * If the player is already frozen, the player will be frozen for an additional
+   * turn.
    *
    * @param player the player on whom the action is performed
    * @throws IllegalArgumentException if the player is null
@@ -29,16 +27,6 @@ public class FreezeAction implements TileAction, HasStyleResolver {
       return;
     }
     player.setFrozenTurns(player.getFrozenTurns() + 1);
-  }
-
-  /**
-   * Get the style resolver for the action.
-   *
-   * @return the style resolver.
-   */
-  @Override
-  public TileActionStyleResolver getStyleResolver() {
-    return new FreezeActionStyleResolver();
   }
 
 }

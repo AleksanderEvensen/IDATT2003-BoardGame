@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.board;
 
-import edu.ntnu.idi.idatt.boardgame.actions.HasStyleResolver;
 import edu.ntnu.idi.idatt.boardgame.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.ui.TileStyleService;
 
 public class GameBoardBuilder {
   private final GameBoard gameBoard;
@@ -20,20 +20,22 @@ public class GameBoardBuilder {
     return this;
   }
 
-  public GameBoardBuilder resolveActionStyles(){
+  /**
+   * Resolves and applies styles for all tiles with actions.
+   * 
+   * @return this builder for chaining
+   */
+  public GameBoardBuilder resolveActionStyles() {
     game.getBoard().getTiles().forEach((id, tile) -> {
-      if (tile.getAction().isPresent() && tile.getAction().get() instanceof HasStyleResolver) {
-        HasStyleResolver action = (HasStyleResolver) tile.getAction().get();
-        action.getStyleResolver().resolveStyle(tile, tile.getAction().get(), gameBoard);
+      if (tile.getAction().isPresent()) {
+        // Use the new styling system directly
+        TileStyleService.applyStyle(tile, tile.getAction().get(), gameBoard);
       }
     });
     return this;
   }
 
-
-
   public GameBoard build() {
     return gameBoard;
   }
-
 }

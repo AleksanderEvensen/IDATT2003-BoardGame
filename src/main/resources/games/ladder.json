@@ -43,7 +43,10 @@
         "row": 9,
         "col": 4,
         "nextTileId": 5,
-        "previousTileId": 3
+        "previousTileId": 3,
+        "action": {
+          "type": "FREEZE"
+        }
       },
       "5": {
         "tileId": 5,
@@ -82,7 +85,10 @@
         "row": 8,
         "col": 8,
         "nextTileId": 10,
-        "previousTileId": 8
+        "previousTileId": 8,
+        "action": {
+          "type": "IMMUNITY"
+        }
       },
       "10": {
         "tileId": 10,
