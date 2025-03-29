@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ntnu.idi.idatt.boardgame.board.GameBoardBuilder;
 import edu.ntnu.idi.idatt.boardgame.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
