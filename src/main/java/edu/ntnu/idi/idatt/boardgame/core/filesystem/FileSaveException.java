@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
 /**
- * Represents an exception that occurs when saving a file.
+ * An exception that is thrown when a file cannot be saved.
  */
 public class FileSaveException extends RuntimeException {
 

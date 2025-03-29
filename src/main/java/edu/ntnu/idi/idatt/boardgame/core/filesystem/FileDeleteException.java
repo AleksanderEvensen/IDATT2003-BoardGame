@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
 /**
- * Represents an exception that occurs when deleting a file.
+ * An exception that is thrown when a file cannot be deleted.
  */
 public class FileDeleteException extends RuntimeException {
 

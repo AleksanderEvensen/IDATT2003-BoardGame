@@ -2,7 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
 
 /**
- * Represents an exception that occurs when reading a file.
+ * An exception that is thrown when a file cannot be read.
  */
 public class FileReadException extends RuntimeException {
 
