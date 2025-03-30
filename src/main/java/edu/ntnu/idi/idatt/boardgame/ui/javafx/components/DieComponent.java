@@ -58,6 +58,9 @@ public class DieComponent extends javafx.scene.image.ImageView {
      * @param value the value of the die
      */
     public void setValue(int value) {
+        if (value < 1 || value > 6) {
+            throw new IllegalArgumentException("Value must be between 1 and 6");
+        }
         this.value = value;
         currentFace = images.get(value - 1);
         setImage(currentFace);
