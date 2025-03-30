@@ -65,7 +65,7 @@ public class Application extends javafx.application.Application {
 
         Button rollButton = new Button("Roll");
         rollButton.setOnAction(event -> {
-            diceRollTimeline.play();
+            diceRollTimeline.playFromStart();
             int face = random.nextInt(6);
             die.setValue(face + 1);
         });
