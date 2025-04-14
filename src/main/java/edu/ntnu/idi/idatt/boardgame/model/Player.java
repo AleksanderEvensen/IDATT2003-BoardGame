@@ -13,8 +13,8 @@ public class Player {
   private final int playerId;
   private final String name;
   private Tile currentTile;
-  private int frozenTurns = 0;
-  private int immunityTurns = 0;
+  private transient int frozenTurns = 0;
+  private transient int immunityTurns = 0;
 
 
   /**

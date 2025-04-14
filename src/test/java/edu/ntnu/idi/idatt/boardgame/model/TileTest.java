@@ -1,114 +1,148 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+
+/**
+ * Test class for the Tile class.
+ */
 class TileTest {
 
-  Tile tile;
-  Tile nextTile;
-  Tile lastTile;
-  TileAction action;
+  private Tile tile;
+  private Tile nextTile;
+  private Tile lastTile;
+  private Tile previousTile;
+  private TileAction action;
 
   @BeforeEach
   void setUp() {
-    tile = new Tile(1);
-    nextTile = new Tile(2);
-    lastTile = new Tile(0);
-    action = player -> {};
+    action = player -> {
+    };
+    nextTile = new Tile.Builder(2).build();
+    previousTile = new Tile.Builder(3).build();
+    lastTile = new Tile.Builder(0).build();
+    tile = new Tile.Builder(1).build();
   }
 
   @Test
-  void testConstructor() {
-    // Act
-    Tile newTile = new Tile(1);
-    Tile newTileWithAction = new Tile(1, action);
-    Tile newTileWithActionAndNextTile = new Tile(1, action, nextTile);
-    Tile newTileWithActionNextTileAndLastTile = new Tile(1, action, nextTile, lastTile);
+  void testBuilderWithMinimalParameters() {
+    Tile simpleTile = new Tile.Builder(1).build();
 
-    // Assert
-    assertEquals(1, newTile.getTileId());
-    assertEquals(1, newTileWithAction.getTileId());
-    assertEquals(1, newTileWithActionAndNextTile.getTileId());
-    assertEquals(1, newTileWithActionNextTileAndLastTile.getTileId());
+    assertEquals(1, simpleTile.getTileId());
+    assertEquals(0, simpleTile.getRow());
+    assertEquals(0, simpleTile.getCol());
+    assertTrue(simpleTile.getAction().isEmpty());
+    assertTrue(simpleTile.getNextTile().isEmpty());
+    assertTrue(simpleTile.getPreviousTile().isEmpty());
+    assertTrue(simpleTile.getLastTile().isEmpty());
+  }
+
+
+  @Test
+  void testPositionMethods() {
+    tile.setRow(5);
+    tile.setCol(7);
+
+    assertEquals(5, tile.getRow());
+    assertEquals(7, tile.getCol());
   }
 
   @Test
-  void getNextTile() {
-    // Arrange
+  void testGetNextTile() {
     tile.setNextTile(nextTile);
 
-    // Act
     Optional<Tile> result = tile.getNextTile();
 
-    // Assert
     assertTrue(result.isPresent());
     assertEquals(nextTile, result.get());
   }
 
   @Test
-  void getLastTile() {
-    // Arrange
+  void testGetPreviousTile() {
+    tile.setPreviousTile(previousTile);
+
+    Optional<Tile> result = tile.getPreviousTile();
+
+    assertTrue(result.isPresent());
+    assertEquals(previousTile, result.get());
+  }
+
+  @Test
+  void testGetLastTile() {
     tile.setLastTile(lastTile);
 
-    // Act
     Optional<Tile> result = tile.getLastTile();
 
-    // Assert
     assertTrue(result.isPresent());
     assertEquals(lastTile, result.get());
   }
 
   @Test
-  void getTileId() {
-    // Act
-    int result = tile.getTileId();
-
-    // Assert
-    assertEquals(1, result);
-  }
-
-  @Test
-  void getAction() {
-    // Arrange
+  void testGetAction() {
     tile.setAction(action);
 
-    // Act
     Optional<TileAction> result = tile.getAction();
 
-    // Assert
     assertTrue(result.isPresent());
     assertEquals(action, result.get());
   }
 
   @Test
-  void setNextTile() {
-    // Act
-    tile.setNextTile(nextTile);
-
-    // Assert
-    assertEquals(nextTile, tile.getNextTile().get());
+  void testEmptyOptionalWhenReferencesAreNull() {
+    assertTrue(tile.getNextTile().isEmpty());
+    assertTrue(tile.getPreviousTile().isEmpty());
+    assertTrue(tile.getLastTile().isEmpty());
+    assertTrue(tile.getAction().isEmpty());
   }
 
   @Test
-  void setLastTile() {
-    // Act
-    tile.setLastTile(lastTile);
+  void testResolveReferences() {
+    Board board = new Board(10, 10);
+    Tile boardTile1 = new Tile.Builder(1).build();
+    Tile boardTile2 = new Tile.Builder(2).build();
+    Tile boardTile3 = new Tile.Builder(3).build();
 
-    // Assert
-    assertEquals(lastTile, tile.getLastTile().get());
+    board.addTile(boardTile1);
+    board.addTile(boardTile2);
+    board.addTile(boardTile3);
+
+    Tile testTile = new Tile.Builder(4)
+        .nextTileId(boardTile1.getTileId())
+        .previousTileId(boardTile2.getTileId())
+        .lastTileId(boardTile3.getTileId())
+        .build();
+
+    testTile.resolveReferences(board);
+
+    assertEquals(boardTile1, testTile.getNextTile().get());
+    assertEquals(boardTile2, testTile.getPreviousTile().get());
+    assertEquals(boardTile3, testTile.getLastTile().get());
   }
 
   @Test
-  void setAction() {
-    // Act
-    tile.setAction(action);
+  void testBuilderPosition() {
+    Tile positionTile = new Tile.Builder(5)
+        .position(3, 4)
+        .build();
 
-    // Assert
-    assertEquals(action, tile.getAction().get());
+    assertEquals(3, positionTile.getRow());
+    assertEquals(4, positionTile.getCol());
   }
+
+  @Test
+  void testBuilderAction() {
+    Tile actionTile = new Tile.Builder(5)
+        .action(action)
+        .build();
+
+    assertEquals(action, actionTile.getAction().get());
+  }
+
+
 }

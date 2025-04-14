@@ -1,15 +1,17 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-
 import java.io.Serializable;
 import java.util.Optional;
 
+import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+
 /**
- * A class representing a tile on the playing board, with an optional grid location.
+ * A class representing a tile on the playing board, with an optional grid
+ * location.
  * <p>
- * Each tile can have an action associated with it, and references to the next, previous, and last tiles.
+ * Each tile can have an action associated with it, and references to the next,
+ * previous, and last tiles.
  * </p>
  *
  * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
@@ -28,109 +30,19 @@ public class Tile implements Serializable, HasTileReferenceResolver {
     private transient Tile lastTile;
 
     /**
-     * Creates a tile with only an ID.
+     * Private constructor used by the Builder.
      *
-     * @param tileId the tile ID
+     * @param builder the builder with configuration
      */
-    public Tile(int tileId) {
-        this.tileId = tileId;
-    }
+    private Tile(Builder builder) {
+        this.tileId = builder.tileId;
+        this.row = builder.row;
+        this.col = builder.col;
+        this.action = builder.action;
+        this.nextTileId = builder.nextTileId;
+        this.lastTileId = builder.lastTileId;
+        this.previousTileId = builder.previousTileId;
 
-    /**
-     * Creates a tile with an ID and a grid position.
-     *
-     * @param tileId the tile ID
-     * @param row the row position
-     * @param col the column position
-     */
-    public Tile(int tileId, int row, int col) {
-        this.tileId = tileId;
-        this.row = row;
-        this.col = col;
-    }
-
-    /**
-     * Creates a tile with an ID and an action.
-     *
-     * @param tileId the tile ID
-     * @param action the tile action
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, TileAction action) {
-        this(tileId);
-        this.action = action;
-    }
-
-    /**
-     * Creates a tile with an ID, a grid position, and an action.
-     *
-     * @param tileId the tile ID
-     * @param row the row position
-     * @param col the column position
-     * @param action the tile action
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, int row, int col, TileAction action) {
-        this(tileId, row, col);
-        this.action = action;
-    }
-
-    /**
-     * Creates a tile with an ID, action, and a reference to the next tile.
-     *
-     * @param tileId the tile ID
-     * @param action the tile action
-     * @param nextTile the next tile
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, TileAction action, Tile nextTile) {
-        this(tileId, action);
-        this.nextTile = nextTile;
-    }
-
-    /**
-     * Creates a tile with an ID, grid position, action, and a reference to the next tile.
-     *
-     * @param tileId the tile ID
-     * @param row the row position
-     * @param col the column position
-     * @param action the tile action
-     * @param nextTile the next tile
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, int row, int col, TileAction action, Tile nextTile) {
-        this(tileId, row, col, action);
-        this.nextTile = nextTile;
-    }
-
-    /**
-     * Creates a tile with an ID, action, next tile, and last tile.
-     *
-     * @param tileId the tile ID
-     * @param action the tile action
-     * @param nextTile the next tile
-     * @param lastTile the last tile
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, TileAction action, Tile nextTile, Tile lastTile) {
-        this(tileId, action, nextTile);
-        this.lastTile = lastTile;
-    }
-
-    /**
-     * Creates a tile with an ID, grid position, action, next tile, and last tile.
-     *
-     * @param tileId the tile ID
-     * @param row the row position
-     * @param col the column position
-     * @param action the tile action
-     * @param nextTile the next tile
-     * @param lastTile the last tile
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
-     */
-    public Tile(int tileId, int row, int col, TileAction action, Tile nextTile, Tile lastTile) {
-        this(tileId, row, col, action, nextTile);
-        this.lastTile = lastTile;
     }
 
     /**
@@ -209,7 +121,7 @@ public class Tile implements Serializable, HasTileReferenceResolver {
      * Returns the action if present.
      *
      * @return an Optional containing the tile action if not null
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
+     * @see TileAction
      */
     public Optional<TileAction> getAction() {
         return Optional.ofNullable(action);
@@ -271,6 +183,94 @@ public class Tile implements Serializable, HasTileReferenceResolver {
         }
         if (action instanceof HasTileReferenceResolver) {
             ((HasTileReferenceResolver) action).resolveReferences(board);
+        }
+    }
+
+    /**
+     * Builder class for constructing Tile objects.
+     */
+    public static class Builder {
+        private final int tileId;
+        private int row = 0;
+        private int col = 0;
+        private TileAction action = null;
+        private int previousTileId;
+        private int nextTileId;
+        private int lastTileId;
+
+        /**
+         * Constructor with required tileId.
+         *
+         * @param tileId the tile ID (required)
+         */
+        public Builder(int tileId) {
+            this.tileId = tileId;
+        }
+
+        /**
+         * Sets the grid position (row and column).
+         *
+         * @param row the row position
+         * @param col the column position
+         * @return this builder for method chaining
+         */
+        public Builder position(int row, int col) {
+            this.row = row;
+            this.col = col;
+            return this;
+        }
+
+        /**
+         * Sets the action for this tile.
+         *
+         * @param action the tile action
+         * @return this builder for method chaining
+         */
+        public Builder action(TileAction action) {
+            this.action = action;
+            return this;
+        }
+
+        /**
+         * Sets the next tile reference.
+         *
+         * @param nextTileId the next tile
+         * @return this builder for method chaining
+         */
+        public Builder nextTileId(int nextTileId) {
+            this.nextTileId = nextTileId;
+            return this;
+        }
+
+        /**
+         * Sets the previous tile reference.
+         *
+         * @param previousTileId the previous tile
+         * @return this builder for method chaining
+         */
+        public Builder previousTileId(int previousTileId) {
+            this.previousTileId = previousTileId;
+            return this;
+        }
+
+        /**
+         * Sets the last tile id.
+         *
+         * @param lastTileId the last tile
+         * @return this builder for method chaining
+         */
+        public Builder lastTileId(int lastTileId) {
+            this.lastTileId = lastTileId;
+            return this;
+        }
+
+        /**
+         * Builds and returns a new Tile instance with the configured properties.
+         *
+         * @return a new Tile instance
+         */
+        public Tile build() {
+            return new Tile(this);
         }
     }
 }

@@ -11,6 +11,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * A component representing a game card to display info about a game.
+ *
+ * @since v2.0.0
+ */
 public class GameCard extends VBox {
 
   private final Game game;

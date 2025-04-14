@@ -16,7 +16,9 @@ class LadderActionTest {
   Player player;
   @BeforeEach
   void setUp() {
-    tile = new Tile(1);
+    tile = new Tile.Builder(1)
+        .position(2, 3)
+        .build();
     ladderAction = new LadderAction(tile);
     player = new Player(0, "Test");
   }
@@ -25,6 +27,7 @@ class LadderActionTest {
   void perform() {
     // Arrange
     final Tile startTile = player.getCurrentTile();
+    player.placeOnTile(tile);
 
     // Act
     ladderAction.perform(player);

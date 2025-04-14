@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.game.GameController;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.DieComponentAnimator;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,29 +48,21 @@ public class Application extends javafx.application.Application {
         VBox root = new VBox();
         root.getChildren().addAll(boardView,die);
         Random random = new Random();
-        Timeline diceRollTimeline = new Timeline();
         die.setValue(4);
 
-        for (int i = 0; i < 10; i++) {
-            KeyFrame keyFrame = new KeyFrame(
-                Duration.millis(100 * i),
-                event -> {
-                    int face = random.nextInt(6); // 0 to 5
-                    System.out.println("Rolling die... " + String.valueOf(face + 1));
+        players.add(new Player(0, "red"));
+        players.add(new Player(1, "blue"));
+        GameController gameController = new GameController();
+        gameController.startGame(gameManager.getGame("ladder"), players);
 
-                    die.setValue(face + 1);
-                }
-            );
-            diceRollTimeline.getKeyFrames().add(keyFrame);
-        }
-        diceRollTimeline.setCycleCount(1);
+
 
         Button rollButton = new Button("Roll");
         rollButton.setOnAction(event -> {
-            diceRollTimeline.playFromStart();
-            int face = random.nextInt(6);
-            die.setValue(face + 1);
+            DieComponentAnimator.animateRoll(die, random.nextInt(6) + 1).play();
+            gameController.rollDiceAndMoveCurrentPlayer();
         });
+
         root.getChildren().add(rollButton);
 
         Scene scene = new Scene(root, 800, 800);

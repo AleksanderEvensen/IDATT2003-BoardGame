@@ -15,11 +15,7 @@
         "row": 9,
         "col": 0,
         "nextTileId": 1,
-        "previousTileId": null,
-        "action": {
-          "type": "LADDER",
-          "destinationTileId": 40
-        }
+        "previousTileId": null
       },
       "1": {
         "tileId": 1,
