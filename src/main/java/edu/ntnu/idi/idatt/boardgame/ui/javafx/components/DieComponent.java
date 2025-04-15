@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
 import java.util.List;
 import java.util.Objects;
+
 import javafx.scene.image.Image;
 
 /**
@@ -24,19 +25,18 @@ public class DieComponent extends javafx.scene.image.ImageView {
     public DieComponent() {
         this.value = 1;
         this.images = List.of(
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/1.png"))),
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/2.png"))),
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/3.png"))),
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/4.png"))),
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/5.png"))),
-            new Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/6.png")))
-        );
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/1.png"))),
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/2.png"))),
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/3.png"))),
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/4.png"))),
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/5.png"))),
+                new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/images/dice/6.png"))));
         currentFace = images.get(value - 1);
         setImage(currentFace);
         setFitHeight(50);

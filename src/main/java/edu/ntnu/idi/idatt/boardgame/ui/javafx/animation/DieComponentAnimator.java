@@ -1,9 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.animation;
 
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
 import java.util.stream.IntStream;
-import javafx.animation.Timeline;
+
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class DieComponentAnimator {
@@ -25,15 +26,13 @@ public class DieComponentAnimator {
     IntStream.range(0, 10).forEach(i -> {
       KeyFrame keyFrame = new KeyFrame(
           Duration.millis(i * 100),
-          event -> die.setValue((int) (Math.random() * 6) + 1)
-      );
+          event -> die.setValue((int) (Math.random() * 6) + 1));
       timeline.getKeyFrames().add(keyFrame);
     });
 
     KeyFrame finalFrame = new KeyFrame(
         Duration.millis(1000),
-        event -> die.setValue(finalValue)
-    );
+        event -> die.setValue(finalValue));
     timeline.getKeyFrames().add(finalFrame);
 
     return timeline;

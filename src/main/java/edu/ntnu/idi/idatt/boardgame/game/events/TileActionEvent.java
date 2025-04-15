@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.game.events;
 
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
@@ -18,22 +19,22 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  * @since v2.0.0
  */
-public class LadderActionEvent implements GameEvent {
+public class TileActionEvent implements GameEvent {
     private final Player player;
-    private final Tile fromTile;
-    private final Tile toTile;
+    private final TileAction tileAction;
+    private final Tile tile;
 
     /**
-     * Creates a new LadderActionEvent.
+     * Creates a new TileActionEvent.
      *
      * @param player   the player who used the ladder
-     * @param fromTile the tile where the ladder starts
-     * @param toTile   the tile where the ladder ends
+     * @param tile     the tile where the action was triggered
+     * @param tileAction the tile where the ladder starts
      */
-    public LadderActionEvent(Player player, Tile fromTile, Tile toTile) {
+    public TileActionEvent(Player player, Tile tile, TileAction tileAction) {
         this.player = player;
-        this.fromTile = fromTile;
-        this.toTile = toTile;
+        this.tile = tile;
+        this.tileAction = tileAction;
     }
 
     /**
@@ -50,16 +51,16 @@ public class LadderActionEvent implements GameEvent {
      *
      * @return the source tile
      */
-    public Tile getFromTile() {
-        return fromTile;
+    public TileAction getTileAction() {
+        return tileAction;
     }
 
     /**
-     * Gets the tile where the ladder ends.
+     * Gets the tile where the action was triggered.
      *
-     * @return the destination tile
+     * @return the start tile
      */
-    public Tile getToTile() {
-        return toTile;
+    public Tile getTile() {
+        return tile;
     }
 }

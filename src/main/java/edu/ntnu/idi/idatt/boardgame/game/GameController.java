@@ -1,17 +1,17 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import edu.ntnu.idi.idatt.boardgame.Utils;
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.game.events.DiceRolledEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEndedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameStartedEvent;
-import edu.ntnu.idi.idatt.boardgame.game.events.LadderActionEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerMovedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerSkippedTurnEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
@@ -65,7 +65,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.gameStarted = false;
     this.gameEnded = false;
     this.lastDiceRolls = new ArrayList<>();
-    logger.info("GameController initialized");
   }
 
   /**
@@ -79,17 +78,12 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   public void startGame(Game game, List<Player> players) {
     if (game == null) {
-      logger.severe("Attempted to start game with null game");
       throw new IllegalArgumentException("Game cannot be null");
     }
     if (players == null) {
-      logger.severe("Attempted to start game with null players list");
       throw new IllegalArgumentException("Players list cannot be null");
     }
     if (players.size() < game.getMinPlayers() || players.size() > game.getMaxPlayers()) {
-      logger.severe(String.format(
-          "Invalid number of players. Required: %d-%d, got: %d",
-          game.getMinPlayers(), game.getMaxPlayers(), players.size()));
       throw new IllegalStateException("Invalid number of players. Required: "
           + game.getMinPlayers() + "-" + game.getMaxPlayers() + ", got: " + players.size());
     }
@@ -100,23 +94,17 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.gameStarted = true;
     this.gameEnded = false;
 
-    logger.info("Starting game: " + game.getName() + " (ID: " + game.getId() + ")");
-    logger.info("Players: " + formatPlayerList(players));
-
     findLastTile();
     Tile startTile = game.getBoard().getTile(0);
     if (startTile == null) {
-      logger.severe("Game board doesn't have a start tile (ID: 0)");
       throw new IllegalStateException("Game board doesn't have a start tile (ID: 0)");
     }
 
     for (Player player : players) {
       player.placeOnTile(startTile);
-      logger.fine("Placed player " + player.getName() + " (ID: " + player.getPlayerId() + ") on start tile");
     }
 
     notifyObservers(new GameStartedEvent(game, players));
-    logger.info("Game started successfully");
   }
 
   /**
@@ -153,7 +141,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     }
 
     this.lastTile = highestTile;
-    logger.info("Last tile identified as tile ID: " + highestId);
   }
 
   /**
@@ -164,17 +151,13 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   public int rollDiceAndMoveCurrentPlayer() {
     if (!gameStarted || gameEnded) {
-      logger.warning("Attempted to roll dice when game is not in progress");
       throw new IllegalStateException("Game is not in progress");
     }
 
     Player currentPlayer = getCurrentPlayer();
-    logger.info("Rolling dice for player: " + currentPlayer.getName() + " (ID: " + currentPlayer.getPlayerId() + ")");
 
     if (currentPlayer.isFrozen()) {
       currentPlayer.setFrozenTurns(currentPlayer.getFrozenTurns() - 1);
-      logger.info("Player " + currentPlayer.getName() + " is frozen for " +
-          (currentPlayer.getFrozenTurns() == 0 ? "this turn" : currentPlayer.getFrozenTurns() + " more turns"));
       notifyObservers(new PlayerSkippedTurnEvent(currentPlayer, "Player is frozen"));
       advanceToNextPlayer();
       return 0;
@@ -184,20 +167,20 @@ public class GameController extends Observable<GameController, GameEvent> {
     int diceValue = diceRolls.stream().mapToInt(Integer::intValue).sum();
     this.lastDiceRolls = diceRolls;
 
-    logger.info("Player " + currentPlayer.getName() + " rolled: " + diceRolls + " (total: " + diceValue + ")");
     notifyObservers(new DiceRolledEvent(currentPlayer, diceValue, diceRolls));
 
     Tile startTile = currentPlayer.getCurrentTile();
-    logger.fine("Player starting position: Tile ID " + startTile.getTileId());
 
     int actualStepsMoved = currentPlayer.move(diceValue);
     Tile endTile = currentPlayer.getCurrentTile();
 
-    logger.info("Player " + currentPlayer.getName() + " moved from tile " +
-        startTile.getTileId() + " to tile " + endTile.getTileId() +
-        " (" + actualStepsMoved + " steps moved)");
-
     notifyObservers(new PlayerMovedEvent(currentPlayer, startTile, endTile, diceValue, actualStepsMoved));
+
+    if (endTile.getAction().isPresent()) {
+      TileAction tileAction = endTile.getAction().get();
+      tileAction.perform(currentPlayer);
+      notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+    }
 
     checkGameEnd(currentPlayer);
 
@@ -215,7 +198,6 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   private List<Integer> rollDice() {
     int diceCount = game.getNumberOfDice();
-    logger.fine("Rolling " + diceCount + " dice");
     return Utils.throwDice(diceCount);
   }
 
@@ -239,36 +221,22 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   public int movePlayer(Player player, int steps) {
     if (!gameStarted) {
-      logger.warning("Attempted to move player when game is not started");
       throw new IllegalStateException("Game is not started");
     }
     if (!players.contains(player)) {
-      logger.warning("Attempted to move player not in the game: " + player.getName());
       throw new IllegalArgumentException("Player is not in this game");
     }
 
-    logger.info("Moving player " + player.getName() + " by " + steps + " steps");
     Tile startTile = player.getCurrentTile();
     int actualStepsMoved = player.move(steps);
     Tile endTile = player.getCurrentTile();
 
-    logger.info("Player " + player.getName() + " moved from tile " +
-        startTile.getTileId() + " to tile " + endTile.getTileId() +
-        " (" + actualStepsMoved + " steps moved)");
-
     notifyObservers(new PlayerMovedEvent(player, startTile, endTile, steps, actualStepsMoved));
 
-    // Handle ladder actions
-    if (startTile != endTile && endTile.getAction().isPresent() &&
-        endTile.getAction().get() instanceof LadderAction) {
-      Tile beforeLadderTile = endTile;
-      Tile afterLadderTile = player.getCurrentTile();
-
-      if (beforeLadderTile != afterLadderTile) {
-        logger.info("Player " + player.getName() + " used ladder from tile " +
-            beforeLadderTile.getTileId() + " to tile " + afterLadderTile.getTileId());
-        notifyObservers(new LadderActionEvent(player, beforeLadderTile, afterLadderTile));
-      }
+    if (endTile.getAction().isPresent()) {
+      TileAction tileAction = endTile.getAction().get();
+      tileAction.perform(player);
+      notifyObservers(new TileActionEvent(player, endTile, tileAction));
     }
 
     checkGameEnd(player);
@@ -287,21 +255,17 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   public void placePlayerOnTile(Player player, int tileId) {
     if (!gameStarted) {
-      logger.warning("Attempted to place player when game is not started");
       throw new IllegalStateException("Game is not started");
     }
     if (!players.contains(player)) {
-      logger.warning("Attempted to place player not in the game: " + player.getName());
       throw new IllegalArgumentException("Player is not in this game");
     }
 
     Tile tile = game.getBoard().getTile(tileId);
     if (tile == null) {
-      logger.warning("Attempted to place player on non-existent tile ID: " + tileId);
       throw new IllegalArgumentException("Tile with ID " + tileId + " doesn't exist");
     }
 
-    logger.info("Placing player " + player.getName() + " on tile " + tileId);
     Tile oldTile = player.getCurrentTile();
     player.placeOnTile(tile);
 
@@ -317,7 +281,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   private void checkGameEnd(Player player) {
     if (lastTile != null && player.getCurrentTile() == lastTile) {
       gameEnded = true;
-      logger.info("Game ended - Player " + player.getName() + " reached the final tile");
       notifyObservers(new GameEndedEvent(game, player));
     }
   }
@@ -328,7 +291,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   private void advanceToNextPlayer() {
     currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     Player nextPlayer = players.get(currentPlayerIndex);
-    logger.info("Turn advanced to player: " + nextPlayer.getName());
     notifyObservers(new PlayerTurnChangedEvent(nextPlayer));
   }
 
@@ -340,7 +302,6 @@ public class GameController extends Observable<GameController, GameEvent> {
    */
   public Player getCurrentPlayer() {
     if (!gameStarted) {
-      logger.warning("Attempted to get current player when game has not started");
       throw new IllegalStateException("Game has not started");
     }
 

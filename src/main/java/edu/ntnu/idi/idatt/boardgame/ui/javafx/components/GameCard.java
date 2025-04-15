@@ -7,7 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -24,7 +30,6 @@ public class GameCard extends VBox {
   public GameCard(Game game, Runnable onSelect) {
     this.game = game;
 
-    // Styling for the card
     this.setSpacing(10);
     this.setPadding(new Insets(10));
     this.setStyle("-fx-background-color: white; -fx-border-radius: 8; -fx-background-radius: 8;");
@@ -50,15 +55,11 @@ public class GameCard extends VBox {
             200,
             120,
             false,
-            true
-        )
-    );
+            true));
 
     imageView.setFitWidth(200);
     imageWrapper.getChildren().add(imageView);
 
-
-    // Title and description
     Label nameLabel = new Label(game.getName());
     nameLabel.setFont(Font.font("System", 16));
     nameLabel.setStyle("-fx-font-weight: bold;");
@@ -67,24 +68,19 @@ public class GameCard extends VBox {
     descriptionLabel.setWrapText(true);
     descriptionLabel.setFont(Font.font("System", 12));
 
-    // Players
     Label playersLabel = new Label(
         game.getMinPlayers() == game.getMaxPlayers()
             ? game.getMinPlayers() + " players"
-            : game.getMinPlayers() + "-" + game.getMaxPlayers() + " players"
-    );
+            : game.getMinPlayers() + "-" + game.getMaxPlayers() + " players");
     playersLabel.setFont(Font.font(12));
 
-    // Dice
     Label diceLabel = new Label(game.getNumberOfDice() > 0
         ? game.getNumberOfDice() + " dice"
-        : "No dice"
-    );
+        : "No dice");
     diceLabel.setFont(Font.font(12));
 
     VBox infoBox = new VBox(4, playersLabel, diceLabel);
     this.getChildren().addAll(imageWrapper, nameLabel, descriptionLabel, infoBox);
-
 
     this.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
       setSelected(true);
@@ -101,10 +97,10 @@ public class GameCard extends VBox {
 
   private void updateStyle() {
     if (isSelected) {
-      this.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(6), new BorderWidths(2))));
+      this.setBorder(
+          new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(6), new BorderWidths(2))));
     } else {
       this.setBorder(null);
     }
   }
 }
-

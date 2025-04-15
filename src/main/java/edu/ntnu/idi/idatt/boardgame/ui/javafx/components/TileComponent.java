@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
+import org.kordamp.ikonli.Ikon;
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -8,18 +11,17 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import org.kordamp.ikonli.Ikon;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * A customizable tile component for JavaFX-based board games.
  *
- * <p>Features:
+ * <p>
+ * Features:
  * <ul>
- *   <li>Customizable size, background color, and corner radii.</li>
- *   <li>Optional icon display with rotation.</li>
- *   <li>Hover and click support via handlers.</li>
- *   <li>Ability to toggle highlight and display an ID label.</li>
+ * <li>Customizable size, background color, and corner radii.</li>
+ * <li>Optional icon display with rotation.</li>
+ * <li>Hover and click support via handlers.</li>
+ * <li>Ability to toggle highlight and display an ID label.</li>
  * </ul>
  */
 public class TileComponent extends StackPane {
@@ -30,7 +32,6 @@ public class TileComponent extends StackPane {
     void onTileClicked(TileComponent tile);
   }
 
-  // Default styling
   private static final double DEFAULT_WIDTH = 60.0;
   private static final double DEFAULT_HEIGHT = 60.0;
   private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
@@ -40,7 +41,6 @@ public class TileComponent extends StackPane {
   private static final double DEFAULT_CORNER_RADIUS = 5.0;
   private static final Font DEFAULT_FONT = Font.font("Arial", 12);
 
-  // Fields
   private int tileId;
   private boolean isHighlighted;
   private boolean isSelectable;
@@ -63,8 +63,9 @@ public class TileComponent extends StackPane {
   /**
    * Constructs a tile component with a specified ID and optional icon.
    *
-   * @param tileId    The integer ID of the tile.
-   * @param iconCode  The Ikon code for the icon (e.g., from FontAwesome, Material, etc.).
+   * @param tileId   The integer ID of the tile.
+   * @param iconCode The Ikon code for the icon (e.g., from FontAwesome, Material,
+   *                 etc.).
    */
   public TileComponent(int tileId, Ikon iconCode) {
     this.tileId = tileId;
@@ -100,7 +101,6 @@ public class TileComponent extends StackPane {
    * Internal method to handle mouse events like hover and click.
    */
   private void setupMouseHandlers() {
-    // Hover effect
     setOnMouseEntered(e -> {
       if (isSelectable && !isHighlighted) {
         background.setFill(backgroundColor.brighter());
@@ -115,7 +115,6 @@ public class TileComponent extends StackPane {
       setCursor(Cursor.DEFAULT);
     });
 
-    // Click event
     setOnMouseClicked(this::handleMouseClick);
   }
 
@@ -145,7 +144,6 @@ public class TileComponent extends StackPane {
    */
   public void setIcon(Ikon iconCode, double rotation) {
     if (iconCode != null) {
-      // Remove the old icon if present
       if (icon != null) {
         getChildren().remove(icon);
       }
