@@ -72,9 +72,7 @@ public class AnimationQueue {
         animation.statusProperty().addListener((obs, oldStatus, newStatus) -> {
             if (newStatus == Status.STOPPED) {
                 logger.fine("Animation complete: " + queuedAnimation.description);
-                javafx.application.Platform.runLater(() -> {
-                    playNext();
-                });
+                javafx.application.Platform.runLater(this::playNext);
             }
         });
         animation.play();

@@ -28,7 +28,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * The main entry point for all JavaFX applications.
-     * 
+     *
      * @param stage the primary stage for this application, onto which the
      *              application scene can be set.
      * @throws IOException if an input or output exception occurs.
@@ -41,15 +41,17 @@ public class Application extends javafx.application.Application {
         Game game = gameManager.getGame("ladder");
 
         GameController gameController = new GameController();
+        JavaFXPlayer player1 = new JavaFXPlayer(1, "Player 1", Color.RED, "default_pawn.png");
+        JavaFXPlayer player2 = new JavaFXPlayer(2, "Player 2", Color.BLUE, "crown_pawn.png");
+        List<Player> players = List.of(player1, player2);
 
         GameBoard gameBoard = new GameBoard.Builder(game)
                 .addTiles()
                 .resolveActionStyles()
+                .addPlayers(players)
                 .build();
 
-        JavaFXPlayer player1 = new JavaFXPlayer(1, "Player 1", Color.RED, "default_pawn.png");
-        JavaFXPlayer player2 = new JavaFXPlayer(2, "Player 2", Color.BLUE, "crown_pawn.png");
-        List<Player> players = List.of(player1, player2);
+
 
         GameBoardController gameBoardController = new GameBoardController(gameBoard, gameController);
 

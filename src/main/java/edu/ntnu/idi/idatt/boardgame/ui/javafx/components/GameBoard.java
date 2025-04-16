@@ -96,29 +96,6 @@ public class GameBoard extends GridPane {
     logger.fine("Added player " + player.getName() + " to the board");
   }
 
-  /**
-   * Updates a player's position on the board.
-   *
-   * @param player the player to update
-   */
-  public void updatePlayerPosition(Player player) {
-    PlayerBlipView blipView = playerBlips.get(player);
-    if (blipView == null) {
-      logger.warning("Attempted to update position of unregistered player: " + player.getName());
-      return;
-    }
-
-    Tile currentTile = player.getCurrentTile();
-    if (currentTile == null) {
-      logger.warning("Player " + player.getName() + " is not on any tile");
-      return;
-    }
-
-    javafx.application.Platform.runLater(() -> {
-
-      positionPlayerBlipOnTile(player, blipView, currentTile);
-    });
-  }
 
   /**
    * Helper method that positions a player blip on a specific tile.

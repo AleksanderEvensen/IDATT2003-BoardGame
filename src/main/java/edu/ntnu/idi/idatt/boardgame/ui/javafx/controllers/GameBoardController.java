@@ -73,11 +73,7 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
      */
     private void handleGameStarted(GameStartedEvent event) {
         logger.info("Game started with " + event.getPlayers().size() + " players");
-
         gameBoard.getAnimationQueue().stopAndClear();
-        for (Player player : event.getPlayers()) {
-            gameBoard.addPlayer(player);
-        }
     }
 
     /**
