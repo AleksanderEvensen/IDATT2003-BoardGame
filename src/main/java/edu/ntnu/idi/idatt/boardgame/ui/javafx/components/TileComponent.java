@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
+import static edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts.DEFAULT_FONT;
+
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts;
 import org.kordamp.ikonli.Ikon;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -26,20 +29,13 @@ import javafx.scene.text.Font;
  */
 public class TileComponent extends StackPane {
 
+
   /** Functional interface for handling tile click events. */
   @FunctionalInterface
   public interface TileClickHandler {
     void onTileClicked(TileComponent tile);
   }
 
-  private static final double DEFAULT_WIDTH = 60.0;
-  private static final double DEFAULT_HEIGHT = 60.0;
-  private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
-  private static final Color DEFAULT_HIGHLIGHT_COLOR = Color.GOLD;
-  private static final Color DEFAULT_BORDER_COLOR = Color.DARKGRAY;
-  private static final double DEFAULT_BORDER_WIDTH = 1.5;
-  private static final double DEFAULT_CORNER_RADIUS = 5.0;
-  private static final Font DEFAULT_FONT = Font.font("Arial", 12);
 
   private int tileId;
   private boolean isHighlighted;
@@ -71,15 +67,12 @@ public class TileComponent extends StackPane {
     this.tileId = tileId;
     this.isHighlighted = false;
     this.isSelectable = true;
-    this.backgroundColor = DEFAULT_BACKGROUND_COLOR;
-    this.highlightColor = DEFAULT_HIGHLIGHT_COLOR;
+    this.backgroundColor = StyleConsts.TILE_DEFAULT_BACKGROUND_COLOR;
+    this.highlightColor = StyleConsts.TILE_DEFAULT_HIGHLIGHT_COLOR;
 
-    background = new Rectangle(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    background = new Rectangle(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
     background.setFill(backgroundColor);
-    background.setStroke(DEFAULT_BORDER_COLOR);
-    background.setStrokeWidth(DEFAULT_BORDER_WIDTH);
-    background.setArcWidth(DEFAULT_CORNER_RADIUS);
-    background.setArcHeight(DEFAULT_CORNER_RADIUS);
+    background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
 
     idLabel = new Label(String.valueOf(tileId));
     idLabel.setFont(DEFAULT_FONT);
@@ -92,7 +85,7 @@ public class TileComponent extends StackPane {
 
     getChildren().addAll(background, idLabel);
     setAlignment(Pos.CENTER);
-    setPrefSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    setPrefSize(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
 
     setupMouseHandlers();
   }
@@ -133,7 +126,7 @@ public class TileComponent extends StackPane {
    * @param iconCode The Ikon code to use (e.g., FontAwesome, Material, etc.).
    */
   public void setIcon(Ikon iconCode) {
-    setIcon(iconCode, 0.0);
+    setIcon(iconCode, 0.0, Color.BLACK);
   }
 
   /**
@@ -142,13 +135,14 @@ public class TileComponent extends StackPane {
    * @param iconCode The Ikon code to use.
    * @param rotation The rotation angle in degrees.
    */
-  public void setIcon(Ikon iconCode, double rotation) {
+  public void setIcon(Ikon iconCode, double rotation, Color color) {
     if (iconCode != null) {
       if (icon != null) {
         getChildren().remove(icon);
       }
       icon = FontIcon.of(iconCode, 25, Color.BLACK);
       icon.setRotate(rotation);
+      icon.setIconColor(color);
       getChildren().add(icon);
     }
   }
@@ -184,11 +178,10 @@ public class TileComponent extends StackPane {
     if (highlight) {
       background.setFill(highlightColor);
       background.setStroke(Color.BLACK);
-      background.setStrokeWidth(DEFAULT_BORDER_WIDTH + 1.0);
+      background.setStrokeWidth(1.0);
     } else {
       background.setFill(backgroundColor);
-      background.setStroke(DEFAULT_BORDER_COLOR);
-      background.setStrokeWidth(DEFAULT_BORDER_WIDTH);
+      background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
     }
   }
 

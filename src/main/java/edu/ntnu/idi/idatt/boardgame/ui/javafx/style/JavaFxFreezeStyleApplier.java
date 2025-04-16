@@ -44,7 +44,7 @@ public class JavaFxFreezeStyleApplier implements TileStyleApplier {
             return;
         }
 
-        actionTile.setIcon(FontAwesomeSolid.SNOWFLAKE, FreezeStyle.ICON_ROTATION);
+        actionTile.setIcon(FontAwesomeSolid.SNOWFLAKE, FreezeStyle.ICON_ROTATION, Color.WHITE);
         actionTile.setBackgroundColor(Color.valueOf(FreezeStyle.BACKGROUND_COLOR));
     }
 }

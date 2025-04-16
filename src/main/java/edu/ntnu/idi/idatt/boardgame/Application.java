@@ -70,7 +70,8 @@ public class Application extends javafx.application.Application {
         controlPanel.getChildren().add(rollButton);
         root.getChildren().add(controlPanel);
 
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, 1200, 1000);
+        stage.setFullScreen(true);
         stage.setTitle("Board Game");
         stage.setScene(scene);
         stage.show();

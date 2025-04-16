@@ -39,6 +39,7 @@ public class GameBoard extends GridPane {
     this.playerBlips = new ConcurrentHashMap<>();
     this.animationQueue = new AnimationQueue();
 
+
     overlayPane.setPickOnBounds(false);
     overlayPane.setManaged(false);
   }

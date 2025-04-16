@@ -11,7 +11,7 @@ import javafx.scene.shape.Line;
  */
 public class LadderComponent extends Pane {
 
-  private final Color railColor = Color.SADDLEBROWN;
+  private final Color railColor = Color.BLACK;
   private final Color rungColor = Color.BURLYWOOD;
 
   /**
@@ -31,7 +31,7 @@ public class LadderComponent extends Pane {
     double perpX = -dy / length;
     double perpY = dx / length;
 
-    double railWidth = 10.0;
+    double railWidth = 40.0;
 
     double rail1StartX = startX - perpX * railWidth / 2;
     double rail1StartY = startY - perpY * railWidth / 2;
@@ -46,8 +46,8 @@ public class LadderComponent extends Pane {
     Line rail1 = new Line(rail1StartX, rail1StartY, rail1EndX, rail1EndY);
     Line rail2 = new Line(rail2StartX, rail2StartY, rail2EndX, rail2EndY);
 
-    rail1.setStrokeWidth(3);
-    rail2.setStrokeWidth(3);
+    rail1.setStrokeWidth(6);
+    rail2.setStrokeWidth(6);
     rail1.setStroke(railColor);
     rail2.setStroke(railColor);
 
@@ -62,7 +62,7 @@ public class LadderComponent extends Pane {
       double y2 = rail2StartY + (rail2EndY - rail2StartY) * t;
 
       Line rung = new Line(x1, y1, x2, y2);
-      rung.setStrokeWidth(2);
+      rung.setStrokeWidth(5);
       rung.setStroke(rungColor);
       this.getChildren().add(rung);
     }
