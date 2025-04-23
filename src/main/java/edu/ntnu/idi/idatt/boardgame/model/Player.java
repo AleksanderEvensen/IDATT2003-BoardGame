@@ -13,9 +13,8 @@ public class Player {
   private final int playerId;
   private final String name;
   private Tile currentTile;
-  private int frozenTurns = 0;
-  private int immunityTurns = 0;
-
+  private transient int frozenTurns = 0;
+  private transient int immunityTurns = 0;
 
   /**
    * Constructs a player with the specified ID and name.
@@ -87,7 +86,8 @@ public class Player {
   /**
    * Moves the player the given number of steps.
    * <p>
-   * If there are no more tiles to move forward, the player will try to move backward. If moving
+   * If there are no more tiles to move forward, the player will try to move
+   * backward. If moving
    * backward is not possible anymore, the rest of the steps will be returned.
    * </p>
    *
@@ -101,12 +101,11 @@ public class Player {
 
     for (int i = 0; i < steps; i++) {
       boolean didMove = this.moveOneTile(shouldMoveForward);
-      // If moved then continue moving forward
+
       if (didMove) {
         continue;
       }
 
-      // Otherwise reverse the direction and try to move backward
       shouldMoveForward = false;
       didMove = this.moveOneTile(false);
       if (!didMove) {
@@ -114,8 +113,6 @@ public class Player {
         break;
       }
     }
-
-    this.currentTile.getAction().ifPresent(action -> action.perform(this));
 
     return tilesMoved;
   }
@@ -131,7 +128,8 @@ public class Player {
   }
 
   /**
-   * Moves the player to the specified tile and optionally performs the tile's action.
+   * Moves the player to the specified tile and optionally performs the tile's
+   * action.
    *
    * @param tile                the tile to move to
    * @param shouldPerformAction true to perform the tile's action, false otherwise
@@ -153,7 +151,6 @@ public class Player {
   public boolean isFrozen() {
     return frozenTurns > 0;
   }
-
 
   /**
    * Returns the number of turns the player is frozen.

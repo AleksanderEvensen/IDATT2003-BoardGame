@@ -5,9 +5,9 @@ package edu.ntnu.idi.idatt.boardgame.ui.style;
  * This interface contains framework-agnostic styling information.
  */
 public interface LadderTileStyle {
-    String POSITIVE_COLOR = "#6ee7b7"; // Light green
-    String NEGATIVE_COLOR = "#ff6f72"; // Light red
-    String START_POSITIVE_COLOR = "#00FF00"; // Green
-    String START_NEGATIVE_COLOR = "#FF0000"; // Red
+    String POSITIVE_COLOR = "#00bd71";
+    String NEGATIVE_COLOR = "#ff4d4d";
+    String START_POSITIVE_COLOR = "#00FF00";
+    String START_NEGATIVE_COLOR = "#FF0000";
     String ICON_TYPE = "ARROW_UP";
 }

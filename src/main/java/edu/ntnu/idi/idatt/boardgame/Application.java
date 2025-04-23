@@ -1,79 +1,78 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
-import java.util.Random;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameBoardController;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.player.JavaFXPlayer;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public List<Player> players = new ArrayList<>();
+    public List<JavaFXPlayer> players = new ArrayList<>();
     public int currentPlayerIndex = 0;
 
     /**
      * The main entry point for all JavaFX applications.
-     * 
+     *
      * @param stage the primary stage for this application, onto which the
      *              application scene can be set.
      * @throws IOException if an input or output exception occurs.
      */
     @Override
     public void start(Stage stage) throws IOException {
+
         LocalFileProvider fileProvider = new LocalFileProvider();
         GameManager gameManager = new GameManager(fileProvider);
-        GridPane boardView = new GameBoard.Builder(gameManager.getGame("ladder"))
+        Game game = gameManager.getGame("ladder");
+
+        GameController gameController = new GameController();
+        JavaFXPlayer player1 = new JavaFXPlayer(1, "Player 1", Color.RED, "default_pawn.png");
+        JavaFXPlayer player2 = new JavaFXPlayer(2, "Player 2", Color.BLUE, "crown_pawn.png");
+        List<Player> players = List.of(player1, player2);
+
+        GameBoard gameBoard = new GameBoard.Builder(game)
                 .addTiles()
                 .resolveActionStyles()
+                .addPlayers(players)
                 .build();
 
-        DieComponent die = new DieComponent();
-        VBox root = new VBox();
-        root.getChildren().addAll(boardView,die);
-        Random random = new Random();
-        Timeline diceRollTimeline = new Timeline();
-        die.setValue(4);
 
-        for (int i = 0; i < 10; i++) {
-            KeyFrame keyFrame = new KeyFrame(
-                Duration.millis(100 * i),
-                event -> {
-                    int face = random.nextInt(6); // 0 to 5
-                    System.out.println("Rolling die... " + String.valueOf(face + 1));
 
-                    die.setValue(face + 1);
-                }
-            );
-            diceRollTimeline.getKeyFrames().add(keyFrame);
-        }
-        diceRollTimeline.setCycleCount(1);
+        GameBoardController gameBoardController = new GameBoardController(gameBoard, gameController);
 
-        Button rollButton = new Button("Roll");
-        rollButton.setOnAction(event -> {
-            diceRollTimeline.playFromStart();
-            int face = random.nextInt(6);
-            die.setValue(face + 1);
+        gameController.startGame(game, players);
+
+        VBox root = new VBox(10);
+        root.getChildren().add(gameBoard);
+
+        HBox controlPanel = new HBox(10);
+        Button rollButton = new Button("Roll Dice");
+        rollButton.setOnAction(e -> {
+            if (gameController.isGameStarted() && !gameController.isGameEnded()) {
+                gameController.rollDiceAndMoveCurrentPlayer();
+            }
         });
-        root.getChildren().add(rollButton);
+        controlPanel.getChildren().add(rollButton);
+        root.getChildren().add(controlPanel);
 
-        Scene scene = new Scene(root, 800, 800);
-        scene.getStylesheets().add("main.css");
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(root, 1200, 1000);
+        stage.setFullScreen(true);
+        stage.setTitle("Board Game");
         stage.setScene(scene);
         stage.show();
     }

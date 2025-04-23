@@ -44,7 +44,7 @@ public class JavaFxImmunityStyleApplier implements TileStyleApplier {
             return;
         }
 
-        actionTile.setIcon(FontAwesomeSolid.SHIELD_ALT, ImmunityStyle.ICON_ROTATION);
+        actionTile.setIcon(FontAwesomeSolid.SHIELD_ALT, ImmunityStyle.ICON_ROTATION, Color.WHITE);
         actionTile.setBackgroundColor(Color.valueOf(ImmunityStyle.BACKGROUND_COLOR));
     }
 }

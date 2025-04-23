@@ -5,6 +5,7 @@ import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import java.util.logging.Logger;
 
 /**
  * Represents an action where a player moves to a destination tile via a ladder.
@@ -20,6 +21,7 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
 
     private final int destinationTileId;
     private Tile destinationTile;
+    private static final Logger logger = Logger.getLogger(LadderAction.class.getName());
 
     /**
      * Constructs a ladder action with a destination tile.
@@ -85,8 +87,7 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
             player.setImmunityTurns(player.getImmunityTurns() - 1);
         }
         player.moveToTile(destinationTile, false);
-        System.out.printf("Player %s triggered a LadderAction and moved to tile %d\n", player.getName(),
-                destinationTile.getTileId());
+        logger.info("Player " + player.getName() + " moved to tile " + destinationTile.getTileId());
     }
 
     @Override

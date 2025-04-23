@@ -1,15 +1,17 @@
 package edu.ntnu.idi.idatt.boardgame.game.adapters;
 
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 
 /**
  * Adapter for TileAction, registering all subclasses of TileAction.
  * <p>
- * This adapter uses RuntimeTypeAdapterFactory to handle the serialization and deserialization
+ * This adapter uses RuntimeTypeAdapterFactory to handle the serialization and
+ * deserialization
  * of TileAction and its subclasses.
  * </p>
  *
@@ -36,6 +38,6 @@ public final class TileActionAdapter {
   }
 
   private TileActionAdapter() {
-    // Private constructor to prevent instantiation
+
   }
 }

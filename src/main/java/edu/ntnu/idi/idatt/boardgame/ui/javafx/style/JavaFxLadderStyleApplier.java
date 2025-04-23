@@ -5,8 +5,8 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.LadderComponent;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.ui.style.LadderTileStyle;
 import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier;
 import javafx.application.Platform;
@@ -15,9 +15,10 @@ import javafx.scene.paint.Color;
 
 /**
  * JavaFX-specific implementation of the ladder tile style applier.
- * This class applies visual styling to tiles with ladder actions and draws the ladder between them.
+ * This class applies visual styling to tiles with ladder actions and draws the
+ * ladder between them.
  *
- * @see TileStyleApplier
+ * @see edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier
  * @since v2.0.0
  */
 public class JavaFxLadderStyleApplier implements TileStyleApplier {
@@ -40,13 +41,12 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
 
         if (startTile == null || destinationTile == null) {
             System.err.println("Could not find tile components for ladder from " +
-                tile.getTileId() + " to " + ladderAction.getDestinationTile().getTileId());
+                    tile.getTileId() + " to " + ladderAction.getDestinationTile().getTileId());
             return;
         }
 
         boolean isPositive = ladderAction.getDestinationTile().getTileId() > tile.getTileId();
         applyTileColors(startTile, destinationTile, isPositive);
-
 
         Platform.runLater(() -> {
             gameBoard.applyCss();
@@ -67,8 +67,6 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
 
             LadderComponent ladderComponent = new LadderComponent(startX, startY, endX, endY, rungs);
 
-
-
             gameBoard.getOverlayPane().getChildren().add(ladderComponent);
         });
     }
@@ -77,24 +75,25 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
      * Finds a TileComponent by its ID in the GameBoard.
      *
      * @param gameBoard The game board containing the tiles
-     * @param tileId The ID of the tile to find
+     * @param tileId    The ID of the tile to find
      * @return The found TileComponent, or null if not found
      */
     private TileComponent findTileComponent(GameBoard gameBoard, int tileId) {
         return gameBoard.getChildren().stream()
-            .filter(node -> node instanceof TileComponent)
-            .map(node -> (TileComponent) node)
-            .filter(tileComponent -> tileComponent.getTileId() == tileId)
-            .findFirst()
-            .orElse(null);
+                .filter(node -> node instanceof TileComponent)
+                .map(node -> (TileComponent) node)
+                .filter(tileComponent -> tileComponent.getTileId() == tileId)
+                .findFirst()
+                .orElse(null);
     }
 
     /**
-     * Applies appropriate colors to start and destination tiles based on ladder direction.
+     * Applies appropriate colors to start and destination tiles based on ladder
+     * direction.
      *
-     * @param startTile The starting tile
+     * @param startTile       The starting tile
      * @param destinationTile The destination tile
-     * @param isPositive Whether the ladder goes up (true) or down (false)
+     * @param isPositive      Whether the ladder goes up (true) or down (false)
      */
     private void applyTileColors(TileComponent startTile, TileComponent destinationTile, boolean isPositive) {
         if (isPositive) {

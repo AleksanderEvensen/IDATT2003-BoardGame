@@ -1,16 +1,19 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.logging.Logger;
+
 import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * Manages the loading and retrieval of games.
  * <p>
- * This class is responsible for loading games from JSON files and providing access to loaded games.
+ * This class is responsible for loading games from JSON files and providing
+ * access to loaded games.
  * </p>
  *
  * @see edu.ntnu.idi.idatt.boardgame.model.Game
@@ -29,7 +32,7 @@ public class GameManager {
   public GameManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
     loadGame("games/ladder.json");
-    loadGame("games/test2.json");
+    loadGame("games/bezzerwizzer.json");
   }
 
   /**
@@ -60,5 +63,14 @@ public class GameManager {
    */
   public Game getGame(String id) {
     return games.get(id);
+  }
+
+  /**
+   * Returns the IDs of all available games.
+   *
+   * @return a set of game IDs
+   */
+  public Set<String> getAvailableGameIds() {
+    return games.keySet();
   }
 }

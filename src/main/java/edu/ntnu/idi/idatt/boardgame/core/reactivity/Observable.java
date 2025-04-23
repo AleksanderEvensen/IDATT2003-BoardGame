@@ -12,7 +12,7 @@ public abstract class Observable<T, K> {
 
   HashSet<Observer<T, K>> observers;
 
-  Observable() {
+  public Observable() {
     observers = new HashSet<>();
   }
 

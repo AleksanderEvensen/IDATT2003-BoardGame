@@ -1,121 +1,118 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
-import static edu.ntnu.idi.idatt.boardgame.ui.style.TileStyle.TILE_SIZE;
+import static edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts.DEFAULT_FONT;
 
-import javafx.geometry.Insets;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts;
+import org.kordamp.ikonli.Ikon;
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import org.kordamp.ikonli.Ikon;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
- * Represents a single tile in a board game.
- * Provides functionality for displaying, highlighting, and interacting with game tiles.
+ * A customizable tile component for JavaFX-based board games.
+ *
+ * <p>
+ * Features:
+ * <ul>
+ * <li>Customizable size, background color, and corner radii.</li>
+ * <li>Optional icon display with rotation.</li>
+ * <li>Hover and click support via handlers.</li>
+ * <li>Ability to toggle highlight and display an ID label.</li>
+ * </ul>
  */
 public class TileComponent extends StackPane {
 
-  private int id;
-  private Rectangle background;
-  private Color defaultColor = Color.WHITE;
-  private Color highlightColor = Color.GOLD;
-  private final Color borderColor = Color.DARKGRAY;
-  private final Label idLabel;
-  private FontIcon icon;
-  private boolean isHighlighted = false;
-  private boolean isSelectable = true;
-  private TileClickHandler clickHandler;
 
-  /**
-   * Interface for handling tile click events.
-   */
+  /** Functional interface for handling tile click events. */
+  @FunctionalInterface
   public interface TileClickHandler {
     void onTileClicked(TileComponent tile);
   }
 
+
+  private int tileId;
+  private boolean isHighlighted;
+  private boolean isSelectable;
+  private Color backgroundColor;
+  private Color highlightColor;
+  private final Rectangle background;
+  private final Label idLabel;
+  private FontIcon icon;
+  private TileClickHandler clickHandler;
+
   /**
-   * Creates a tile with only an ID.
+   * Constructs a tile component with a specified ID.
    *
-   * @param id The unique identifier for this tile
+   * @param tileId The integer ID of the tile.
    */
-  public TileComponent(int id) {
-    this(id, null);
+  public TileComponent(int tileId) {
+    this(tileId, null);
   }
 
   /**
-   * Creates a tile with an ID and an icon.
+   * Constructs a tile component with a specified ID and optional icon.
    *
-   * @param id The unique identifier for this tile
-   * @param iconCode The icon to display on this tile
+   * @param tileId   The integer ID of the tile.
+   * @param iconCode The Ikon code for the icon (e.g., from FontAwesome, Material,
+   *                 etc.).
    */
-  public TileComponent(int id, Ikon iconCode) {
-    this.id = id;
+  public TileComponent(int tileId, Ikon iconCode) {
+    this.tileId = tileId;
+    this.isHighlighted = false;
+    this.isSelectable = true;
+    this.backgroundColor = StyleConsts.TILE_DEFAULT_BACKGROUND_COLOR;
+    this.highlightColor = StyleConsts.TILE_DEFAULT_HIGHLIGHT_COLOR;
 
-    background = new Rectangle(TILE_SIZE, TILE_SIZE);
-    background.setFill(defaultColor);
-    background.setStroke(borderColor);
-    background.setStrokeWidth(1.5);
-    background.setArcWidth(5);
-    background.setArcHeight(5);
+    background = new Rectangle(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
+    background.setFill(backgroundColor);
+    background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
 
-    idLabel = new Label(String.valueOf(id));
-    idLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+    idLabel = new Label(String.valueOf(tileId));
+    idLabel.setFont(DEFAULT_FONT);
     idLabel.setTextFill(Color.BLACK);
-
-    // Add background and label to the StackPane
-    getChildren().addAll(background, idLabel);
-
-    // Align the ID label to the top-right corner
     StackPane.setAlignment(idLabel, Pos.TOP_RIGHT);
-    // Optionally add a small margin so the text isn't too close to the border
-    StackPane.setMargin(idLabel, new Insets(5, 5, 5, 5));
 
     if (iconCode != null) {
       setIcon(iconCode);
     }
 
+    getChildren().addAll(background, idLabel);
     setAlignment(Pos.CENTER);
-    setPrefSize(TILE_SIZE, TILE_SIZE);
+    setPrefSize(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
+
     setupMouseHandlers();
-    DropShadow dropShadow = new DropShadow();
-    dropShadow.setRadius(3.0);
-    dropShadow.setOffsetX(1.0);
-    dropShadow.setOffsetY(1.0);
-    dropShadow.setColor(Color.gray(0.4, 0.5));
-    setEffect(dropShadow);
   }
 
   /**
-   * Set up mouse event handlers for hover and click effects.
+   * Internal method to handle mouse events like hover and click.
    */
   private void setupMouseHandlers() {
     setOnMouseEntered(e -> {
       if (isSelectable && !isHighlighted) {
-        background.setFill(defaultColor.brighter());
-        setCursor(javafx.scene.Cursor.HAND);
+        background.setFill(backgroundColor.brighter());
+        setCursor(Cursor.HAND);
       }
     });
 
     setOnMouseExited(e -> {
       if (!isHighlighted) {
-        background.setFill(defaultColor);
+        background.setFill(backgroundColor);
       }
-      setCursor(javafx.scene.Cursor.DEFAULT);
+      setCursor(Cursor.DEFAULT);
     });
 
     setOnMouseClicked(this::handleMouseClick);
   }
 
   /**
-   * Handle mouse click events on the tile.
-   *
-   * @param event The mouse event
+   * Invokes the click handler if tile is selectable.
    */
   private void handleMouseClick(MouseEvent event) {
     if (isSelectable && clickHandler != null) {
@@ -124,85 +121,103 @@ public class TileComponent extends StackPane {
   }
 
   /**
-   * Sets an icon on the tile with a specified rotation angle.
+   * Sets the tile's icon with no rotation.
    *
-   * @param iconCode The icon to display
-   * @param angle The rotation angle in degrees
+   * @param iconCode The Ikon code to use (e.g., FontAwesome, Material, etc.).
    */
-  public void setIcon(Ikon iconCode, double angle) {
+  public void setIcon(Ikon iconCode) {
+    setIcon(iconCode, 0.0, Color.BLACK);
+  }
+
+  /**
+   * Sets the tile's icon with a given rotation angle.
+   *
+   * @param iconCode The Ikon code to use.
+   * @param rotation The rotation angle in degrees.
+   */
+  public void setIcon(Ikon iconCode, double rotation, Color color) {
     if (iconCode != null) {
       if (icon != null) {
         getChildren().remove(icon);
       }
       icon = FontIcon.of(iconCode, 25, Color.BLACK);
-      icon.setRotate(angle);
+      icon.setRotate(rotation);
+      icon.setIconColor(color);
       getChildren().add(icon);
     }
   }
 
   /**
-   * Sets an icon on the tile with no rotation.
+   * Sets the background color of the tile.
    *
-   * @param iconCode The icon to display
-   */
-  public void setIcon(Ikon iconCode) {
-    setIcon(iconCode, 0);
-  }
-
-  /**
-   * Changes the background color of the tile.
-   *
-   * @param color The new background color
+   * @param color The color to apply.
    */
   public void setBackgroundColor(Color color) {
-    this.defaultColor = color;
+    this.backgroundColor = color;
     if (!isHighlighted) {
       background.setFill(color);
     }
   }
 
   /**
-   * Toggle the highlight state of this tile.
+   * Sets the highlight color used for the tile.
    *
-   * @param highlight true to highlight, false to remove highlight
+   * @param color The color to use for highlighting.
+   */
+  public void setHighlightColor(Color color) {
+    this.highlightColor = color;
+  }
+
+  /**
+   * Toggles the highlight on or off for the tile.
+   *
+   * @param highlight true to highlight; false to remove highlight.
    */
   public void setHighlighted(boolean highlight) {
     this.isHighlighted = highlight;
     if (highlight) {
       background.setFill(highlightColor);
       background.setStroke(Color.BLACK);
-      background.setStrokeWidth(2.5);
+      background.setStrokeWidth(1.0);
     } else {
-      background.setFill(defaultColor);
-      background.setStroke(borderColor);
-      background.setStrokeWidth(1.5);
+      background.setFill(backgroundColor);
+      background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
     }
   }
 
   /**
-   * Gets the ID of this tile.
+   * Changes the border stroke color of the tile.
    *
-   * @return The tile ID
+   * @param strokeColor New stroke color.
    */
-  public int getTileId() {
-    return id;
+  public void setBorderColor(Color strokeColor) {
+    background.setStroke(strokeColor);
   }
 
   /**
-   * Sets the ID of this tile.
+   * Changes the border stroke width of the tile.
    *
-   * @param id The new tile ID
+   * @param width New stroke width.
    */
-  public void setTileId(int id) {
-    this.id = id;
-    idLabel.setText(String.valueOf(id));
+  public void setBorderWidth(double width) {
+    background.setStrokeWidth(width);
   }
 
   /**
-   * Sets the dimensions of this tile.
+   * Changes the corner radius for the tile.
    *
-   * @param width The width of the tile
-   * @param height The height of the tile
+   * @param radius The new corner radius.
+   */
+  public void setCornerRadius(double radius) {
+    background.setArcWidth(radius);
+    background.setArcHeight(radius);
+  }
+
+  /**
+   * Updates the tile dimensions.
+   *
+   * @param width  The new width of the tile.
+   * @param height The new height of the tile.
    */
   public void setTileSize(double width, double height) {
     setPrefSize(width, height);
@@ -211,21 +226,46 @@ public class TileComponent extends StackPane {
   }
 
   /**
-   * Sets the color used when the tile is highlighted.
+   * Shows or hides the tile's ID label.
    *
-   * @param color The highlight color
+   * @param visible true if the label should be visible; false otherwise.
    */
-  public void setHighlightColor(Color color) {
-    this.highlightColor = color;
-    if (isHighlighted) {
-      background.setFill(color);
-    }
+  public void showId(boolean visible) {
+    idLabel.setVisible(visible);
   }
 
   /**
-   * Sets whether this tile can be selected.
+   * Updates the ID on the tile (also updates the label text).
    *
-   * @param selectable true if the tile can be selected, false otherwise
+   * @param newId The new ID to set.
+   */
+  public void setTileId(int newId) {
+    this.tileId = newId;
+    idLabel.setText(String.valueOf(newId));
+  }
+
+  /**
+   * Changes the font used for the ID label.
+   *
+   * @param font The new font to apply.
+   */
+  public void setIdFont(Font font) {
+    this.idLabel.setFont(font);
+  }
+
+  /**
+   * Changes the text color for the ID label.
+   *
+   * @param color The color to apply to the label text.
+   */
+  public void setIdTextColor(Color color) {
+    this.idLabel.setTextFill(color);
+  }
+
+  /**
+   * Sets whether the tile can be clicked or not.
+   *
+   * @param selectable true if clickable; false otherwise.
    */
   public void setSelectable(boolean selectable) {
     this.isSelectable = selectable;
@@ -233,36 +273,30 @@ public class TileComponent extends StackPane {
   }
 
   /**
-   * Sets the click handler for this tile.
+   * Attaches a click handler to this tile.
    *
-   * @param handler The handler to call when this tile is clicked
+   * @param handler A TileClickHandler that handles clicks.
    */
   public void setOnTileClicked(TileClickHandler handler) {
     this.clickHandler = handler;
   }
 
   /**
-   * Shows or hides the ID label.
-   *
-   * @param show true to show the label, false to hide it
+   * @return the tile ID
    */
-  public void showId(boolean show) {
-    idLabel.setVisible(show);
+  public int getTileId() {
+    return tileId;
   }
 
   /**
-   * Checks if this tile is currently highlighted.
-   *
-   * @return true if highlighted, false otherwise
+   * @return true if the tile is highlighted
    */
   public boolean isHighlighted() {
     return isHighlighted;
   }
 
   /**
-   * Checks if this tile is currently selectable.
-   *
-   * @return true if selectable, false otherwise
+   * @return true if the tile can be selected (clicked).
    */
   public boolean isSelectable() {
     return isSelectable;
