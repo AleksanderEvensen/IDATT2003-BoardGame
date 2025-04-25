@@ -11,7 +11,7 @@ package edu.ntnu.idi.idatt.boardgame.model;
 public class Player {
 
   private final int playerId;
-  private final String name;
+  private String name;
   private Tile currentTile;
   private transient int frozenTurns = 0;
   private transient int immunityTurns = 0;
@@ -43,6 +43,10 @@ public class Player {
    */
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
