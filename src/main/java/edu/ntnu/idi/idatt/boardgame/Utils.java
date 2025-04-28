@@ -21,11 +21,17 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Returns a string from array of bytes
-     */
-    public static String bytesToString(byte[] bytes) {
-        return new String(bytes);
+    // Java Doesnt support import aliasing so the two methods below look a bit uggly and unreadable
+
+    public static javafx.scene.paint.Color toJFXColor(
+            edu.ntnu.idi.idatt.boardgame.model.Color color) {
+        return javafx.scene.paint.Color.rgb(color.r, color.g, color.b);
+    }
+
+    public static edu.ntnu.idi.idatt.boardgame.model.Color toModelColor(
+            javafx.scene.paint.Color color) {
+        return new edu.ntnu.idi.idatt.boardgame.model.Color((int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
     }
 
 }
