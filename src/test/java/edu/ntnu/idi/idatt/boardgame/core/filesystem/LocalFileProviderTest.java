@@ -2,9 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.AfterEach;
@@ -32,10 +30,9 @@ class LocalFileProviderTest {
   void save() {
     // Arrange
     String content = "Hello, World!";
-    InputStream data = new ByteArrayInputStream(content.getBytes());
 
     // Act
-    fileProvider.save(testFilePath, data);
+    fileProvider.save(testFilePath, content.getBytes());
 
     // Assert
     Path path = Path.of(testFilePath);
@@ -82,15 +79,12 @@ class LocalFileProviderTest {
     Files.writeString(Path.of(testFilePath), content);
 
     // Act
-    InputStream result = fileProvider.get(testFilePath);
+    byte[] result = fileProvider.get(testFilePath);
 
     // Assert
     assertNotNull(result);
-    try {
-      String retrievedContent = new String(result.readAllBytes());
-      assertEquals(content, retrievedContent);
-    } catch (IOException e) {
-      fail("Failed to read retrieved file content");
-    }
+
+    String retrievedContent = new String(result);
+    assertEquals(content, retrievedContent);
   }
 }

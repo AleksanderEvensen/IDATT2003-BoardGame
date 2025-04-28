@@ -16,7 +16,6 @@ class TileTest {
 
   private Tile tile;
   private Tile nextTile;
-  private Tile lastTile;
   private Tile previousTile;
   private TileAction action;
 
@@ -26,7 +25,6 @@ class TileTest {
     };
     nextTile = new Tile.Builder(2).build();
     previousTile = new Tile.Builder(3).build();
-    lastTile = new Tile.Builder(0).build();
     tile = new Tile.Builder(1).build();
   }
 
@@ -40,7 +38,6 @@ class TileTest {
     assertTrue(simpleTile.getAction().isEmpty());
     assertTrue(simpleTile.getNextTile().isEmpty());
     assertTrue(simpleTile.getPreviousTile().isEmpty());
-    assertTrue(simpleTile.getLastTile().isEmpty());
   }
 
 
@@ -73,15 +70,6 @@ class TileTest {
     assertEquals(previousTile, result.get());
   }
 
-  @Test
-  void testGetLastTile() {
-    tile.setLastTile(lastTile);
-
-    Optional<Tile> result = tile.getLastTile();
-
-    assertTrue(result.isPresent());
-    assertEquals(lastTile, result.get());
-  }
 
   @Test
   void testGetAction() {
@@ -97,7 +85,6 @@ class TileTest {
   void testEmptyOptionalWhenReferencesAreNull() {
     assertTrue(tile.getNextTile().isEmpty());
     assertTrue(tile.getPreviousTile().isEmpty());
-    assertTrue(tile.getLastTile().isEmpty());
     assertTrue(tile.getAction().isEmpty());
   }
 
@@ -115,14 +102,12 @@ class TileTest {
     Tile testTile = new Tile.Builder(4)
         .nextTileId(boardTile1.getTileId())
         .previousTileId(boardTile2.getTileId())
-        .lastTileId(boardTile3.getTileId())
         .build();
 
     testTile.resolveReferences(board);
 
     assertEquals(boardTile1, testTile.getNextTile().get());
     assertEquals(boardTile2, testTile.getPreviousTile().get());
-    assertEquals(boardTile3, testTile.getLastTile().get());
   }
 
   @Test

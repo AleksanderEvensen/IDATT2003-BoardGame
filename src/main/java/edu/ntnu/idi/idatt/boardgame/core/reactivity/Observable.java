@@ -67,5 +67,4 @@ public abstract class Observable<T, K> {
   public Set<Observer<T, K>> getObservers() {
     return observers;
   }
-
 }

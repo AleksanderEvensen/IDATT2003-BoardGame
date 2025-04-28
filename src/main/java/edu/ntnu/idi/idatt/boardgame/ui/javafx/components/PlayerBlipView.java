@@ -1,14 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.player.JavaFXPlayer;
-import javafx.animation.Animation;
-import javafx.animation.TranslateTransition;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.util.Duration;
 
 /**
  * A visual representation of a player's position on the game board.
@@ -19,30 +15,26 @@ import javafx.util.Duration;
  */
 public class PlayerBlipView extends StackPane {
 
-    private final JavaFXPlayer player;
+    private final Player player;
     private final Circle background;
-    private final ImageView pawnImageView;
 
     /**
      * Creates a visual blip for the given player.
      *
      * @param player the JavaFX player to represent
      */
-    public PlayerBlipView(JavaFXPlayer player) {
+    public PlayerBlipView(Player player) {
         this.player = player;
 
         setPrefWidth(30);
         setPrefHeight(30);
 
         background = new Circle(15);
-        background.setFill(player.getColor());
+
+
+        background.setFill(Color.web(player.getColor().toHex()));
         background.setStroke(Color.BLACK);
         background.setStrokeWidth(1.5);
-
-        pawnImageView = new ImageView(player.getPawnImage());
-        pawnImageView.setFitHeight(20);
-        pawnImageView.setFitWidth(20);
-        pawnImageView.setPreserveRatio(true);
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(3.0);
@@ -62,7 +54,7 @@ public class PlayerBlipView extends StackPane {
         });
         javafx.scene.control.Tooltip tooltip = new javafx.scene.control.Tooltip(player.getName());
         javafx.scene.control.Tooltip.install(this, tooltip);
-        this.getChildren().addAll(background, pawnImageView);
+        this.getChildren().addAll(background);
     }
 
     /**
@@ -70,8 +62,7 @@ public class PlayerBlipView extends StackPane {
      * Call this if player's color or pawn image changes.
      */
     public void updateAppearance() {
-        background.setFill(player.getColor());
-        pawnImageView.setImage(player.getPawnImage());
+        background.setFill(Color.web(player.getColor().toHex()));
     }
 
     /**
@@ -79,7 +70,7 @@ public class PlayerBlipView extends StackPane {
      *
      * @return the player
      */
-    public JavaFXPlayer getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 }

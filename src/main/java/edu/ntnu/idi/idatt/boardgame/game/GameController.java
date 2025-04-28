@@ -108,24 +108,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   }
 
   /**
-   * Formats a list of players for logging purposes.
-   * 
-   * @param players the list of players
-   * @return a string representation of the players
-   */
-  private String formatPlayerList(List<Player> players) {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < players.size(); i++) {
-      Player player = players.get(i);
-      sb.append(player.getName()).append(" (ID: ").append(player.getPlayerId()).append(")");
-      if (i < players.size() - 1) {
-        sb.append(", ");
-      }
-    }
-    return sb.toString();
-  }
-
-  /**
    * Finds the tile with the highest ID, which is considered the last tile.
    */
   private void findLastTile() {

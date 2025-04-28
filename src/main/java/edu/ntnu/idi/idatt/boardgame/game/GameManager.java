@@ -1,11 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 
@@ -31,8 +29,8 @@ public class GameManager {
    */
   public GameManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    loadGame("games/ladder.json");
-    loadGame("games/bezzerwizzer.json");
+    loadGame("data/games/ladder.json");
+    loadGame("data/games/bezzerwizzer.json");
   }
 
   /**
@@ -45,8 +43,7 @@ public class GameManager {
    */
   public void loadGame(String path) {
     try {
-      InputStream inputStream = fileProvider.get(path);
-      String json = Utils.bytesToString(inputStream.readAllBytes());
+      String json = new String(fileProvider.get(path));
       Game game = GameFactory.createGame(json);
       games.put(game.getId(), game);
     } catch (Exception e) {

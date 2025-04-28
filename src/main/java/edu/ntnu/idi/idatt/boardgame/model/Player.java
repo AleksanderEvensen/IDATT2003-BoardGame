@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Represents a player in the board game.
  * <p>
@@ -10,8 +13,8 @@ package edu.ntnu.idi.idatt.boardgame.model;
  */
 public class Player {
 
-  private final int playerId;
-  private String name;
+  private @Getter @Setter String name;
+  private @Getter @Setter Color color;
   private Tile currentTile;
   private transient int frozenTurns = 0;
   private transient int immunityTurns = 0;
@@ -19,35 +22,14 @@ public class Player {
   /**
    * Constructs a player with the specified ID and name.
    *
-   * @param playerId the player's ID
-   * @param name     the player's name
+   * @param name the player's name
+   * @param color the player's color
    */
-  public Player(int playerId, String name) {
-    this.playerId = playerId;
+  public Player(String name, Color color) {
     this.name = name;
+    this.color = color;
   }
 
-  /**
-   * Returns the player's ID.
-   *
-   * @return the player ID
-   */
-  public int getPlayerId() {
-    return playerId;
-  }
-
-  /**
-   * Returns the player's name.
-   *
-   * @return the player's name
-   */
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   /**
    * Returns the current tile the player is on.
@@ -80,8 +62,8 @@ public class Player {
     if (forward && currentTile.getNextTile().isPresent()) {
       currentTile = currentTile.getNextTile().get();
       return true;
-    } else if (!forward && currentTile.getLastTile().isPresent()) {
-      currentTile = currentTile.getLastTile().get();
+    } else if (!forward && currentTile.getPreviousTile().isPresent()) {
+      currentTile = currentTile.getPreviousTile().get();
       return true;
     }
     return false;
@@ -90,8 +72,7 @@ public class Player {
   /**
    * Moves the player the given number of steps.
    * <p>
-   * If there are no more tiles to move forward, the player will try to move
-   * backward. If moving
+   * If there are no more tiles to move forward, the player will try to move backward. If moving
    * backward is not possible anymore, the rest of the steps will be returned.
    * </p>
    *
@@ -132,10 +113,9 @@ public class Player {
   }
 
   /**
-   * Moves the player to the specified tile and optionally performs the tile's
-   * action.
+   * Moves the player to the specified tile and optionally performs the tile's action.
    *
-   * @param tile                the tile to move to
+   * @param tile the tile to move to
    * @param shouldPerformAction true to perform the tile's action, false otherwise
    * @see edu.ntnu.idi.idatt.boardgame.model.Tile
    */
