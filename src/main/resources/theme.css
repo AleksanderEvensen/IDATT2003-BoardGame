@@ -1,48 +1,64 @@
-:root {
+.root {
+/* Catppuccin theme: Macchiato */
+-fx-color-rosewater: #f4dbd6;
+-fx-color-flamingo: #f0c6c6;
+-fx-color-pink: #f5bde6;
+-fx-color-mauve: #c6a0f6;
+-fx-color-red: #ed8796;
+-fx-color-maroon: #ee99a0;
+-fx-color-peach: #f5a97f;
+-fx-color-yellow: #eed49f;
+-fx-color-green: #a6da95;
+-fx-color-teal: #8bd5ca;
+-fx-color-sky: #91d7e3;
+-fx-color-sapphire: #7dc4e4;
+-fx-color-blue: #8aadf4;
+-fx-color-lavender: #b7bdf8;
+-fx-color-text: #cad3f5;
+-fx-color-subtext1: #b8c0e0;
+-fx-color-subtext0: #a5adcb;
+-fx-color-overlay2: #939ab7;
+-fx-color-overlay1: #8087a2;
+-fx-color-overlay0: #6e738d;
+-fx-color-surface2: #5b6078;
+-fx-color-surface1: #494d64;
+-fx-color-surface0: #363a4f;
+-fx-color-base: #24273a;
+-fx-color-mantle: #1e2030;
+-fx-color-crust: #181926;
+
+
+
+
+
     /* Catpuccin Mocha Theme */
     
-    -fx-background: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
-    -fx-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+    -fx-color-bg: -fx-color-base;
+    -fx-color-fg: -fx-color-text;
 
-    -fx-muted: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
-    -fx-muted-foreground: hsl(227 35.29411852359772% 80.0000011920929%); /* subtext1 */
+    -fx-color-muted: -fx-color-surface0;
+    -fx-color-muted-fg: -fx-color-subtext1;
 
-    -fx-popover: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
-    -fx-popover-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+    -fx-color-popover: -fx-color-base;
+    -fx-color-popover-fg: -fx-color-text;
 
-    -fx-card: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
-    -fx-card-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+    -fx-color-card: -fx-color-base;
+    -fx-color-card-fg: -fx-color-text;
 
-    -fx-border: hsl(234 13.20754736661911% 31.176471710205078%); /* surface1 */
-    -fx-input: hsl(234 13.20754736661911% 31.176471710205078%); /* surface1 */
+    -fx-color-border: -fx-color-surface1;
+    -fx-color-input: -fx-color-surface1;
 
-    -fx-primary: hsl(41 86.04651093482971% 83.13725590705872%); /* accent - Yellow */
-    -fx-primary-foreground: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
+    -fx-color-primary: -fx-color-blue; /* accent - Blue */
+    -fx-color-primary-fg: -fx-color-base;
 
-    -fx-secondary: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
-    -fx-secondary-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+    -fx-color-secondary: -fx-color-surface0;
+    -fx-color-secondary-fg: -fx-color-text;
 
-    -fx-accent: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
-    -fx-accent-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+    -fx-color-accent: -fx-color-surface0;
+    -fx-color-accent-fg: -fx-color-text;
 
-    -fx-destructive: hsl(343 81.25% 74.90196228027344%); /* red */
-    -fx-destructive-foreground: hsl(240 21.311475336551666% 11.96078434586525%); /* mantle */
+    -fx-color-destructive: -fx-color-red;
+    -fx-color-destructive-fg: -fx-color-mantle;
 
-    -fx-ring: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
-
-    -fx-color-rosewater: hsl(11deg, 59%, 67%);
-    -fx-color-flamingo: hsl(0deg, 60%, 67%);
-    -fx-color-pink: hsl(316deg, 73%, 69%);
-    -fx-color-mauve: hsl(266deg, 85%, 58%);
-    -fx-color-red: hsl(347deg, 87%, 44%);
-    -fx-color-maroon: hsl(355deg, 76%, 59%);
-    -fx-color-peach: hsl(22deg, 99%, 52%);
-    -fx-color-yellow: hsl(35deg, 77%, 49%);
-    -fx-color-green: hsl(109deg, 58%, 40%);
-    -fx-color-teal: hsl(183deg, 74%, 35%);
-    -fx-color-sky: hsl(197deg, 97%, 46%);
-    -fx-color-sapphire: hsl(189deg, 70%, 42%);
-    -fx-color-blue: hsl(220deg, 91%, 54%);
-    -fx-color-lavender: hsl(231deg, 97%, 72%);
-
+    -fx-color-ring: -fx-color-text;
 }

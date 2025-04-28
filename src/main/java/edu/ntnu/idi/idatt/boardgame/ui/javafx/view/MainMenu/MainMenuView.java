@@ -1,25 +1,39 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu;
 
+import java.util.Random;
 import java.util.logging.Logger;
-import org.kordamp.ikonli.boxicons.BoxiconsLogos;
 import org.kordamp.ikonli.boxicons.BoxiconsRegular;
 import org.kordamp.ikonli.javafx.FontIcon;
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -61,49 +75,200 @@ public class MainMenuView implements IView {
 
     @Override
     public Pane createRoot() {
-        // Create the root layout with a StackPane as main container for modals/dialogs
-        rootStack = new StackPane();
-        root = new BorderPane();
-        root.setPadding(new Insets(10));
+        // Main layout
+        VBox mainLayout = new VBox(20);
+        mainLayout.getStyleClass().add("view-root");
+        mainLayout.setPadding(new Insets(20));
+        mainLayout.setBackground(
+                new Background(new BackgroundFill(Color.web("#FFECB3"), null, null))); // From
+                                                                                       // amber-50
+                                                                                       // to
+                                                                                       // amber-100
+                                                                                       // (approx.)
 
-        // Create the title header
-        var titleLabel = new Label("Awesome Board Games");
-        titleLabel.setFont(Font.font("System", FontWeight.BOLD, 40));
-        BorderPane.setAlignment(titleLabel, Pos.CENTER);
-        root.setTop(titleLabel);
+        // Header
+        VBox header = new VBox(5);
+        header.setAlignment(Pos.CENTER);
+        Label titleLabel = new Label("Awesome Board Games");
+        titleLabel.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
+        Label subtitleLabel = new Label("Select players and a game to begin");
+        subtitleLabel.setTextFill(Color.web("#F57C00")); // amber-700 (approx.)
+        header.getChildren().addAll(titleLabel, subtitleLabel);
 
-        // Create players section on the left
-        var playersSection = createPlayersSection();
-        root.setLeft(playersSection);
+        // Content grid
+        GridPane contentGrid = new GridPane();
+        contentGrid.setHgap(20);
+        contentGrid.setAlignment(Pos.CENTER);
 
-        var rightSection = new VBox(20);
-        rightSection.setPrefWidth(300);
-        root.setRight(rightSection);
+        // Player Management Panel
+        VBox playerPanel = new VBox(10);
+        playerPanel.setStyle(
+                "-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 4); -fx-padding: 15;");
+        Label playerTitle = new Label("Players");
+        // playerTitle.setFont(Font.font("Arial", 20, javafx.scene.text.FontWeight.BOLD));
+        playerTitle.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
 
-        // Create games section on the right
-        var menuButtons = new VBox(20);
-        Application.getGameManager().getAvailableGameIds().forEach(gameId -> {
-            var gameButton = new Button(Application.getGameManager().getGame(gameId).getName());
-            gameButton.setPrefWidth(400);
-            gameButton.setPrefHeight(60);
-            gameButton.setOnAction(e -> this.controller.startGame(gameId));
-            menuButtons.getChildren().add(gameButton);
+        HBox addPlayerBox = new HBox(10);
+        var newPlayerNameInput = new TextField();
+        newPlayerNameInput.setPromptText("Enter player name");
+        newPlayerNameInput.setStyle("-fx-border-color: #FFD54F; -fx-focus-color: #FFB300;"); // border-amber-300,
+                                                                                             // focus-visible:ring-amber-500
+                                                                                             // (approx.)
+
+        Button addButton = new Button("Add");
+        addButton.setGraphic(new FontIcon(BoxiconsRegular.PLUS));
+        addButton.setStyle("-fx-background-color: #FFA000; -fx-text-fill: white;"); // bg-amber-600
+        addButton.setOnMouseEntered(event -> addButton
+                .setStyle("-fx-background-color: #FF8F00; -fx-text-fill: white;")); // hover:bg-amber-700
+        addButton.setOnMouseExited(event -> addButton
+                .setStyle("-fx-background-color: #FFA000; -fx-text-fill: white;"));
+        addButton.setOnAction(event -> {
+            if (newPlayerNameInput.getText().trim().isEmpty()) {
+                return; // Don't add player with empty name
+            }
+            controller.addPlayer(
+                    new Player(newPlayerNameInput.getText(), Utils.toModelColor(Color.LIGHTBLUE)));
+            newPlayerNameInput.clear();
+
         });
 
-        var exitButton = new Button("Exit to Desktop");
-        exitButton.setPrefWidth(400);
-        exitButton.setPrefHeight(60);
-        exitButton.setOnAction(e -> this.controller.exitToDesktop());
-        menuButtons.getChildren().add(exitButton);
+        addPlayerBox.getChildren().addAll(newPlayerNameInput, addButton);
 
-        menuButtons.setAlignment(Pos.CENTER);
+        var playerListView = new ListView<Player>(this.controller.getPlayers());
+        playerListView.setPrefHeight(200);
+        VBox.setVgrow(playerListView, Priority.ALWAYS);
 
-        root.setCenter(menuButtons);
+        Label noPlayersLabel = new Label("No players added yet");
+        noPlayersLabel
+                .setStyle("-fx-text-fill: #F57C00; -fx-font-style: italic; -fx-font-size: 12;"); // text-amber-600,
+                                                                                                 // text-sm,
+                                                                                                 // italic
 
-        // Add the main layout to the stack
-        rootStack.getChildren().add(root);
+        VBox playerListContainer = new VBox(5);
+        playerListContainer.getChildren().add(playerListView);
+        if (controller.getPlayers().isEmpty()) {
+            playerListContainer.getChildren().add(noPlayersLabel);
+        }
 
-        return rootStack;
+        playerListView.setCellFactory(param -> new ListCell<Player>() {
+            @Override
+            protected void updateItem(Player player, boolean empty) {
+                super.updateItem(player, empty);
+                if (empty || player == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    HBox row = new HBox(10);
+                    row.setAlignment(Pos.CENTER_LEFT);
+                    Label playerNameLabel = new Label(player.getName());
+
+                    Button removeButton = new Button();
+
+                    removeButton.setGraphic(new FontIcon(BoxiconsRegular.X));
+                    removeButton
+                            .setStyle("-fx-background-color: transparent; -fx-text-fill: #F57C00;"); // variant="ghost",
+                                                                                                     // text-amber-700
+                    removeButton.setOnMouseEntered(event -> removeButton
+                            .setStyle("-fx-background-color: #FFCDD2; -fx-text-fill: #E53935;")); // hover:bg-red-50,
+                                                                                                  // hover:text-red-600
+                    removeButton.setOnMouseExited(event -> removeButton.setStyle(
+                            "-fx-background-color: transparent; -fx-text-fill: #F57C00;"));
+                    removeButton.setOnAction(event -> {
+                        int index = getIndex();
+                        if (index >= 0 && index < controller.getPlayers().size()) {
+                            // removePlayer(index);
+                        }
+                    });
+                    Tooltip removeTooltip = new Tooltip("Remove " + player);
+                    removeButton.setTooltip(removeTooltip);
+
+                    row.getChildren().addAll(playerNameLabel, removeButton);
+                    HBox container = new HBox();
+                    container.setStyle(
+                            "-fx-background-color: #FFF8E1; -fx-background-radius: 5; -fx-padding: 5;"); // bg-amber-50,
+                                                                                                         // rounded-lg
+                    container.getChildren().add(row);
+                    HBox.setHgrow(playerNameLabel, Priority.ALWAYS);
+                    setGraphic(container);
+                }
+            }
+        });
+
+        Button exitButton = new Button("Exit to Desktop");
+        exitButton.setOnAction(e -> {
+            controller.exitToDesktop();
+        });
+
+        exitButton.setGraphic(new FontIcon(BoxiconsRegular.EXIT));
+        exitButton.setStyle(
+                "-fx-border-color: #FFD54F; -fx-text-fill: #E65100; -fx-background-color: transparent;"); // variant="outline",
+                                                                                                          // border-amber-300,
+                                                                                                          // text-amber-800
+        exitButton.setOnMouseEntered(event -> exitButton.setStyle(
+                "-fx-border-color: #FFD54F; -fx-text-fill: #F57C00; -fx-background-color: #FFF8E1;")); // hover:bg-amber-100,
+                                                                                                       // hover:text-amber-900
+        exitButton.setOnMouseExited(event -> exitButton.setStyle(
+                "-fx-border-color: #FFD54F; -fx-text-fill: #E65100; -fx-background-color: transparent;"));
+        exitButton.setMaxWidth(Double.MAX_VALUE);
+
+        playerPanel.getChildren().addAll(playerTitle, addPlayerBox, playerListContainer,
+                exitButton);
+        contentGrid.add(playerPanel, 0, 0);
+
+        // Game Selection Panel
+        VBox gamePanel = new VBox(10);
+        gamePanel.setStyle(
+                "-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 4); -fx-padding: 15;");
+        Label gameTitle = new Label("Select a Game");
+        gameTitle.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
+
+        FlowPane gameGrid = new FlowPane(10, 10);
+        gameGrid.setPrefWrapLength(600); // Approximate width for 2-3 columns
+
+        Application.getGameManager().getAvailableGameIds().forEach(gameId -> {
+            Game game = Application.getGameManager().getGame(gameId);
+
+            VBox gameCard = new VBox(5);
+            gameCard.setStyle(
+                    "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"); // border-amber-200
+            gameCard.setOnMouseEntered(event -> gameCard.setStyle(
+                    "-fx-border-color: #FFCA28; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
+            // hover:border-amber-400
+            gameCard.setOnMouseExited(event -> gameCard.setStyle(
+                    "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
+
+            StackPane imagePane = new StackPane();
+            ImageView gameImageView = new ImageView(new Image("images/ladder.png"));
+            gameImageView.setFitHeight(120); // Approximate height
+            gameImageView.setFitWidth(180); // Approximate width
+            imagePane.getChildren().add(gameImageView);
+            imagePane.setStyle("-fx-background-color: #EEE;"); // Placeholder background
+
+            Label gameNameLabel = new Label(game.getName());
+            gameNameLabel.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
+
+            VBox cardContent = new VBox(5);
+            cardContent.setPadding(new Insets(10));
+            cardContent.getChildren().add(gameNameLabel);
+
+            gameCard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                this.controller.startGame(gameId);
+            });
+
+            gameCard.getChildren().addAll(imagePane, cardContent);
+            gameGrid.getChildren().add(gameCard);
+        });
+
+        ScrollPane gameScrollPane = new ScrollPane(gameGrid);
+        gameScrollPane.setFitToWidth(true);
+        gameScrollPane.setPrefHeight(500);
+
+        gamePanel.getChildren().addAll(gameTitle, gameScrollPane);
+        contentGrid.add(gamePanel, 1, 0);
+
+        mainLayout.getChildren().addAll(header, contentGrid);
+
+        return mainLayout;
     }
 
     private VBox createPlayersSection() {
@@ -272,7 +437,6 @@ public class MainMenuView implements IView {
         addPlayerForm.getChildren().addAll(formTitle, nameLabel, nameField, colorLabel, colorPicker,
                 iconLabel, previewBox, new VBox(10), // Spacer
                 addButton, cancelButton);
-
         // Add both the overlay and form to the stack pane
         // Adding the overlay first ensures it appears behind the form
         rootStack.getChildren().addAll(overlay, addPlayerForm);

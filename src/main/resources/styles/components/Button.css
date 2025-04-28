@@ -1,0 +1,10 @@
+
+
+.custom-button {
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+
+    -fx-text-fill: -fx-color-primary-fg;
+    -fx-background-color: -fx-color-primary;
+    /* -fx-background-color: -fx-color-destructive; */
+}

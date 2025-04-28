@@ -1,4 +1,9 @@
 @import url("theme.css");
+@import url("styles/components/index.css");
+
+.view-root {
+    -fx-background: -fx-color-bg;
+}
 
 .tile {
     -fx-border-width: 2px;
