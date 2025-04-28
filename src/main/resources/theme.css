@@ -1,0 +1,48 @@
+:root {
+    /* Catpuccin Mocha Theme */
+    
+    -fx-background: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
+    -fx-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-muted: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
+    -fx-muted-foreground: hsl(227 35.29411852359772% 80.0000011920929%); /* subtext1 */
+
+    -fx-popover: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
+    -fx-popover-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-card: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
+    -fx-card-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-border: hsl(234 13.20754736661911% 31.176471710205078%); /* surface1 */
+    -fx-input: hsl(234 13.20754736661911% 31.176471710205078%); /* surface1 */
+
+    -fx-primary: hsl(41 86.04651093482971% 83.13725590705872%); /* accent - Yellow */
+    -fx-primary-foreground: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
+
+    -fx-secondary: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
+    -fx-secondary-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-accent: hsl(237 16.239316761493683% 22.94117659330368%); /* surface0 */
+    -fx-accent-foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-destructive: hsl(343 81.25% 74.90196228027344%); /* red */
+    -fx-destructive-foreground: hsl(240 21.311475336551666% 11.96078434586525%); /* mantle */
+
+    -fx-ring: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
+
+    -fx-color-rosewater: hsl(11deg, 59%, 67%);
+    -fx-color-flamingo: hsl(0deg, 60%, 67%);
+    -fx-color-pink: hsl(316deg, 73%, 69%);
+    -fx-color-mauve: hsl(266deg, 85%, 58%);
+    -fx-color-red: hsl(347deg, 87%, 44%);
+    -fx-color-maroon: hsl(355deg, 76%, 59%);
+    -fx-color-peach: hsl(22deg, 99%, 52%);
+    -fx-color-yellow: hsl(35deg, 77%, 49%);
+    -fx-color-green: hsl(109deg, 58%, 40%);
+    -fx-color-teal: hsl(183deg, 74%, 35%);
+    -fx-color-sky: hsl(197deg, 97%, 46%);
+    -fx-color-sapphire: hsl(189deg, 70%, 42%);
+    -fx-color-blue: hsl(220deg, 91%, 54%);
+    -fx-color-lavender: hsl(231deg, 97%, 72%);
+
+}
