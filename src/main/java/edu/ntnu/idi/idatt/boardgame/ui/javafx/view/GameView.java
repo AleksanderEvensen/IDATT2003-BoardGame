@@ -12,7 +12,6 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameBoardController;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class GameView implements IView {
     private Game game;
@@ -36,17 +35,15 @@ public class GameView implements IView {
         GameBoard gameBoard = new GameBoard.Builder(game).addTiles().resolveActionStyles()
                 .addPlayers(players).build();
 
-
-
         GameBoardController gameBoardController =
                 new GameBoardController(gameBoard, gameController);
 
         gameController.startGame(game, players);
 
-        VBox root = new VBox(10);
+        var root = new HBox(10);
         root.getChildren().add(gameBoard);
 
-        HBox controlPanel = new HBox(10);
+        var controlPanel = new HBox(10);
         Button rollButton = new Button("Roll Dice");
         rollButton.setOnAction(e -> {
             if (gameController.isGameStarted() && !gameController.isGameEnded()) {
@@ -58,5 +55,4 @@ public class GameView implements IView {
 
         return root;
     }
-
 }

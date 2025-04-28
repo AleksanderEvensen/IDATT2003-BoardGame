@@ -8,7 +8,8 @@ import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.router.Router;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameView;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenuView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -67,10 +68,10 @@ public class Application extends javafx.application.Application {
         primaryStage = stage;
         primaryScene = new Scene(new Pane(), 1200, 1000);
 
-        router.createRoute("/home", new MainMenuView());
+        router.createRoute("/home", new MainMenuView(new MainMenuController()));
         router.createRoute("/game/:gameId", new GameView());
 
-        router.navigate("/game/ladder");
+        router.navigate("/home");
 
         stage.setFullScreen(false);
         stage.setTitle("Board Game");
