@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
 import edu.ntnu.idi.idatt.boardgame.model.tiles.BoardRangeException;
+import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +12,9 @@ import java.util.Map;
  */
 public class Board implements HasTileReferenceResolver {
 
-    private final int rowCount;
-    private final int colCount;
-    private final Map<Integer, Tile> tiles = new HashMap<>();
+    private final @Getter int rowCount;
+    private final @Getter int colCount;
+    private final @Getter Map<Integer, Tile> tiles = new HashMap<>();
 
     /**
      * Creates a Board with a specified number of rows and columns.
@@ -49,30 +50,6 @@ public class Board implements HasTileReferenceResolver {
      */
     public Tile getTile(int tileId) {
         return tiles.get(tileId);
-    }
-
-    /**
-     * Returns all tiles stored on the board.
-     * @return a Map of tileId to Tile
-     */
-    public Map<Integer, Tile> getTiles() {
-        return tiles;
-    }
-
-    /**
-     * Returns the number of rows in the board.
-     * @return the row count
-     */
-    public int getRowCount() {
-        return rowCount;
-    }
-
-    /**
-     * Returns the number of columns in the board.
-     * @return the column count
-     */
-    public int getColCount() {
-        return colCount;
     }
 
     @Override

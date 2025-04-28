@@ -12,7 +12,6 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.TileStyleService;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.player.JavaFXPlayer;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -74,12 +73,7 @@ public class GameBoard extends GridPane {
    * @throws IllegalArgumentException if player is not a JavaFXPlayer
    */
   public void addPlayer(Player player) {
-    if (!(player instanceof JavaFXPlayer)) {
-      throw new IllegalArgumentException("Player must be a JavaFXPlayer");
-    }
-
-    JavaFXPlayer fxPlayer = (JavaFXPlayer) player;
-    PlayerBlipView blipView = fxPlayer.createBlipView();
+    PlayerBlipView blipView = new PlayerBlipView(player);
 
     playerBlips.put(player, blipView);
     overlayPane.getChildren().add(blipView);

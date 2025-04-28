@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.ntnu.idi.idatt.boardgame.game.adapters.GameAdapter;
 import edu.ntnu.idi.idatt.boardgame.game.adapters.TileActionAdapter;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 
 

@@ -1,0 +1,176 @@
+package edu.ntnu.idi.idatt.boardgame.game;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
+import edu.ntnu.idi.idatt.boardgame.model.Color;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
+import lombok.NonNull;
+
+/**
+ * Manages players for the game, including loading and saving player data.
+ */
+public class PlayerManager extends Observable<PlayerManager, List<Player>> {
+
+  private List<Player> players = new ArrayList<>();
+  private final LocalFileProvider fileProvider;
+  private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
+
+  /**
+   * Constructs a PlayerManager with the specified file provider.
+   *
+   * @param fileProvider the file provider for loading and saving player data
+   */
+  public PlayerManager(LocalFileProvider fileProvider) {
+    this.fileProvider = fileProvider;
+    loadPlayers("data/players.csv");
+  }
+
+  /**
+   * Loads JavaFX players from a file.
+   *
+   * @param path the path to the player data file
+   */
+  public void loadPlayers(String path) {
+    try {
+      var playersData = new String(fileProvider.get(path));
+
+      players.clear();
+      playersData.lines().forEach(line -> {
+        String[] data = line.split(";");
+        if (data.length != 2) {
+          logger.warning(String.format("Invalid player data: '%s'", line));
+          return;
+        }
+
+        String name = data[0];
+        Color color = Color.fromHex(data[1]);
+
+        players.add(new Player(name, color));
+      });
+
+      logger.info(String.format("Loaded %d players from '%s'", players.size(), path));
+    } catch (Exception e) {
+      logger.log(Level.SEVERE, "Failed to load players from path: " + path, e);
+    } finally {
+      notifyObservers(players);
+    }
+  }
+
+  /**
+   * Saves players to a file.
+   *
+   * @param path the path to save to
+   * @param players the players to save
+   */
+  public void savePlayers(String path, List<Player> players) {
+    StringBuilder sb = new StringBuilder();
+    for (Player player : players) {
+      sb.append(String.format("%s;%s\n", player.getName(), player.getColor().toHex()));
+    }
+
+    try {
+      fileProvider.save(path, sb.toString().getBytes());
+      logger.info(String.format("Saved %d players to '%s'", players.size(), path));
+    } catch (Exception e) {
+      logger.log(Level.SEVERE, "Failed to save players to path: " + path, e);
+    }
+  }
+
+  /**
+   * Gets the current list of players.
+   *
+   * @return the list of players
+   */
+  public List<Player> getPlayers() {
+    return new ArrayList<>(players);
+  }
+
+  /**
+   * Adds a new player.
+   *
+   * @param player the player to add
+   * @return true if the player was added, false otherwise
+   */
+  public boolean addPlayer(Player player) {
+    if (player == null) {
+      logger.warning("Attempted to add null player");
+      return false;
+    }
+
+    players.add(player);
+    notifyObservers(players);
+    logger.info("Added player: " + player.getName());
+    return true;
+  }
+
+  /**
+   * Removes a player by ID.
+   *
+   * @param playerId the ID of the player to remove
+   * @return true if the player was removed, false if not found
+   */
+  public boolean removePlayer(int playerId) {
+    if (playerId <= 0 || playerId > players.size()) {
+      logger.warning("Invalid player ID: " + playerId);
+      return false;
+    }
+    players.remove(playerId);
+    notifyObservers(players);
+    return false;
+  }
+
+  /**
+   * Updates player information.
+   *
+   * @param playerId the ID of the player to update
+   * @param updatedPlayer the player with updated information
+   * @return true if the player was updated, false if not found
+   */
+  public boolean updatePlayer(int playerId, @NonNull Player updatedPlayer) {
+    if (playerId <= 0 || playerId > players.size()) {
+      logger.warning("Invalid player ID: " + playerId);
+      return false;
+    }
+    players.set(playerId, updatedPlayer);
+    notifyObservers(players);
+    logger.info("Updated player information for: " + updatedPlayer.getName());
+    return true;
+  }
+
+  /**
+   * Removes a specific player.
+   *
+   * @param player the player to remove
+   * @return true if the player was removed, false if not found
+   */
+  public boolean removePlayer(@NonNull Player player) {
+    int index = players.indexOf(player);
+    if (index == -1) {
+      logger.warning("Player not found for removal: " + player.getName());
+      return false;
+    }
+    return this.removePlayer(index);
+  }
+
+  /**
+   * Updates player information by finding the player in the list
+   * 
+   * @param player the player to update
+   * @param newName the new name for the player
+   * @param newColor the new color for the player
+   * @return true if the player was updated, false if not found
+   */
+  public boolean updatePlayer(@NonNull Player player, String newName, Color newColor) {
+    int index = players.indexOf(player);
+    if (index == -1) {
+      logger.warning("Player not found for update: " + player.getName());
+      return false;
+    }
+    return this.updatePlayer(index, new Player(newName, newColor));
+  }
+}

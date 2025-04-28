@@ -14,23 +14,22 @@ class PlayerTest {
 
   @BeforeEach
   void setUp() {
-    player = new Player(1, "Player1");
+    player = new Player("Player1", Color.RED);
     startTile = new Tile.Builder(1).build();
     nextTile = new Tile.Builder(2).build();
     lastTile = new Tile.Builder(0).build();
     startTile.setNextTile(nextTile);
-    startTile.setLastTile(lastTile);
     player.placeOnTile(startTile);
-  }
-
-  @Test
-  void getPlayerId() {
-    assertEquals(1, player.getPlayerId());
   }
 
   @Test
   void getName() {
     assertEquals("Player1", player.getName());
+  }
+
+  @Test
+  void getColor() {
+    assertEquals(Color.RED, player.getColor());
   }
 
   @Test

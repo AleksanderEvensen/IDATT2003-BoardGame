@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.actions;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ class LadderActionTest {
         .position(2, 3)
         .build();
     ladderAction = new LadderAction(tile);
-    player = new Player(0, "Test");
+    player = new Player("Test", Color.RED);
   }
 
   @Test

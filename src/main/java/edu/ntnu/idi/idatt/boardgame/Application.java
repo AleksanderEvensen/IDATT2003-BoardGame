@@ -1,83 +1,103 @@
 package edu.ntnu.idi.idatt.boardgame;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.logging.Logger;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
-import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameBoardController;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.player.JavaFXPlayer;
+import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.router.Router;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuView;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public List<JavaFXPlayer> players = new ArrayList<>();
+
+    private static final Logger logger = Logger.getLogger(Application.class.getName());
+    private static final LocalFileProvider fileProvider = new LocalFileProvider();
+    private static final GameManager gameManager = new GameManager(fileProvider);
+    private static final PlayerManager playerManager = new PlayerManager(fileProvider);
+
+    private static Scene primaryScene;
+    private static Stage primaryStage;
+
     public int currentPlayerIndex = 0;
+
+    /**
+     * The router used for navigating between JavaFX views
+     */
+    public static final Router<IView> router = new Router<>(ctx -> {
+        try {
+            var lastCtx = Application.router.getCurrentContext();
+            if (lastCtx != null) {
+                IView lastView = lastCtx.getData();
+                lastView.unload();
+            }
+        } catch (Exception e) {
+            logger.info("Failed to unloading last view");
+            e.printStackTrace();
+        }
+
+        try {
+            IView view = ctx.getData();
+            view.load(ctx);
+            Parent viewRoot = view.createRoot();
+            Application.primaryScene.setRoot(viewRoot);
+        } catch (Exception e) {
+            logger.info("Failed to navigate to view: " + ctx.getUrl());
+            e.printStackTrace();
+        }
+    });
 
     /**
      * The main entry point for all JavaFX applications.
      *
-     * @param stage the primary stage for this application, onto which the
-     *              application scene can be set.
+     * @param stage the primary stage for this application, onto which the application scene can be
+     *        set.
      * @throws IOException if an input or output exception occurs.
      */
     @Override
     public void start(Stage stage) throws IOException {
+        primaryStage = stage;
+        primaryScene = new Scene(new Pane(), 1200, 1000);
 
-        LocalFileProvider fileProvider = new LocalFileProvider();
-        GameManager gameManager = new GameManager(fileProvider);
-        Game game = gameManager.getGame("ladder");
+        router.createRoute("/home", new MainMenuView(new MainMenuController()));
+        router.createRoute("/game/:gameId", new GameView());
 
-        GameController gameController = new GameController();
-        JavaFXPlayer player1 = new JavaFXPlayer(1, "Player 1", Color.RED, "default_pawn.png");
-        JavaFXPlayer player2 = new JavaFXPlayer(2, "Player 2", Color.BLUE, "crown_pawn.png");
-        List<Player> players = List.of(player1, player2);
+        router.navigate("/home");
 
-        GameBoard gameBoard = new GameBoard.Builder(game)
-                .addTiles()
-                .resolveActionStyles()
-                .addPlayers(players)
-                .build();
-
-
-
-        GameBoardController gameBoardController = new GameBoardController(gameBoard, gameController);
-
-        gameController.startGame(game, players);
-
-        VBox root = new VBox(10);
-        root.getChildren().add(gameBoard);
-
-        HBox controlPanel = new HBox(10);
-        Button rollButton = new Button("Roll Dice");
-        rollButton.setOnAction(e -> {
-            if (gameController.isGameStarted() && !gameController.isGameEnded()) {
-                gameController.rollDiceAndMoveCurrentPlayer();
-            }
-        });
-        controlPanel.getChildren().add(rollButton);
-        root.getChildren().add(controlPanel);
-
-        Scene scene = new Scene(root, 1200, 1000);
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
         stage.setTitle("Board Game");
-        stage.setScene(scene);
+        stage.setScene(primaryScene);
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static GameManager getGameManager() {
+        return gameManager;
+    }
+
+    public static PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
+    public static void closeApplication() {
+        if (primaryStage != null) {
+            primaryStage.close();
+        }
+    }
+
+    public static Scene getScene() {
+        return primaryScene;
     }
 }

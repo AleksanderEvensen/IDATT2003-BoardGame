@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A class representing a tile on the playing board, with an optional grid
@@ -18,16 +20,14 @@ import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
  */
 public class Tile implements Serializable, HasTileReferenceResolver {
 
-    private final int tileId;
-    private int row;
-    private int col;
+    private final @Getter int tileId;
+    private @Getter @Setter int row;
+    private @Getter @Setter int col;
     private TileAction action;
     private int previousTileId;
     private int nextTileId;
-    private int lastTileId;
-    private transient Tile previousTile;
-    private transient Tile nextTile;
-    private transient Tile lastTile;
+    private transient @Setter Tile previousTile;
+    private transient @Setter Tile nextTile;
 
     /**
      * Private constructor used by the Builder.
@@ -40,54 +40,8 @@ public class Tile implements Serializable, HasTileReferenceResolver {
         this.col = builder.col;
         this.action = builder.action;
         this.nextTileId = builder.nextTileId;
-        this.lastTileId = builder.lastTileId;
         this.previousTileId = builder.previousTileId;
 
-    }
-
-    /**
-     * Returns the tile's ID.
-     *
-     * @return the tile ID
-     */
-    public int getTileId() {
-        return tileId;
-    }
-
-    /**
-     * Returns the row position of this tile.
-     *
-     * @return the row
-     */
-    public int getRow() {
-        return row;
-    }
-
-    /**
-     * Returns the column position of this tile.
-     *
-     * @return the column
-     */
-    public int getCol() {
-        return col;
-    }
-
-    /**
-     * Sets the row of this tile.
-     *
-     * @param row the new row value
-     */
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    /**
-     * Sets the column of this tile.
-     *
-     * @param col the new column value
-     */
-    public void setCol(int col) {
-        this.col = col;
     }
 
     /**
@@ -97,15 +51,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
      */
     public Optional<Tile> getNextTile() {
         return Optional.ofNullable(nextTile);
-    }
-
-    /**
-     * Returns the last tile if present.
-     *
-     * @return an Optional containing the last tile if not null
-     */
-    public Optional<Tile> getLastTile() {
-        return Optional.ofNullable(lastTile);
     }
 
     /**
@@ -128,37 +73,10 @@ public class Tile implements Serializable, HasTileReferenceResolver {
     }
 
     /**
-     * Sets the next tile reference.
-     *
-     * @param nextTile the next tile
-     */
-    public void setNextTile(Tile nextTile) {
-        this.nextTile = nextTile;
-    }
-
-    /**
-     * Sets the last tile reference.
-     *
-     * @param lastTile the last tile
-     */
-    public void setLastTile(Tile lastTile) {
-        this.lastTile = lastTile;
-    }
-
-    /**
-     * Sets the previous tile reference.
-     *
-     * @param previousTile the previous tile
-     */
-    public void setPreviousTile(Tile previousTile) {
-        this.previousTile = previousTile;
-    }
-
-    /**
      * Sets the action.
      *
      * @param action the tile action
-     * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
+     * @see TileAction
      */
     public void setAction(TileAction action) {
         this.action = action;
@@ -168,7 +86,7 @@ public class Tile implements Serializable, HasTileReferenceResolver {
      * Resolves references to other tiles on the board.
      *
      * @param board the board containing the tiles
-     * @see edu.ntnu.idi.idatt.boardgame.model.Board
+     * @see Board
      */
     @Override
     public void resolveReferences(Board board) {
@@ -177,9 +95,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
         }
         if (previousTileId != 0) {
             previousTile = board.getTile(previousTileId);
-        }
-        if (lastTileId != 0) {
-            lastTile = board.getTile(lastTileId);
         }
         if (action instanceof HasTileReferenceResolver) {
             ((HasTileReferenceResolver) action).resolveReferences(board);
@@ -196,7 +111,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
         private TileAction action = null;
         private int previousTileId;
         private int nextTileId;
-        private int lastTileId;
 
         /**
          * Constructor with required tileId.
@@ -250,17 +164,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
          */
         public Builder previousTileId(int previousTileId) {
             this.previousTileId = previousTileId;
-            return this;
-        }
-
-        /**
-         * Sets the last tile id.
-         *
-         * @param lastTileId the last tile
-         * @return this builder for method chaining
-         */
-        public Builder lastTileId(int lastTileId) {
-            this.lastTileId = lastTileId;
             return this;
         }
 
