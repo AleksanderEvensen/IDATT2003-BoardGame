@@ -3,7 +3,7 @@
   "name": "Ladder Game",
   "description": "A simple board game with ladders and snakes",
   "minPlayers": 2,
-  "maxPlayers": 2,
+  "maxPlayers": 4,
   "numberOfDice": 1,
   "imagePath": "/images/ladder.png",
   "board": {
