@@ -2,8 +2,11 @@ package edu.ntnu.idi.idatt.boardgame;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import edu.ntnu.idi.idatt.boardgame.model.Color;
+import javafx.scene.Node;
 
 public class Utils {
 
@@ -34,4 +37,25 @@ public class Utils {
                 (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
     }
 
+    /**
+     * Ensures that a node has only one of the given classes, and removes all other classes.
+     * 
+     * @param node the node to modify
+     * @param toEnable the class to enable (prefferably a class in the classSet)
+     * @param classSet the set of classes to remove
+     */
+    public static void ensureOneOfClasses(Node node, String toEnable, Set<String> classSet) {
+        Set<String> filteredClasses = node.getStyleClass().stream()
+                .filter(c -> !classSet.contains(c)).collect(Collectors.toSet());
+
+        if (toEnable != null) {
+            filteredClasses.add(toEnable);
+        }
+        node.getStyleClass().setAll(filteredClasses);
+    }
+
+    public static Color getRandomColor() {
+        Random rand = new Random();
+        return new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+    }
 }

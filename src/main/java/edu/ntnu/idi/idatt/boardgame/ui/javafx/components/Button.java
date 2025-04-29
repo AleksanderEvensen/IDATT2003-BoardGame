@@ -1,14 +1,45 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.kordamp.ikonli.Ikon;
+import org.kordamp.ikonli.javafx.FontIcon;
+import edu.ntnu.idi.idatt.boardgame.Utils;
+
 public class Button extends javafx.scene.control.Button {
 
+    public enum ButtonVariant {
+        PRIMARY, SECONDARY, DESTRUCTIVE, OUTLINE, SUCCESS;
+
+        static Set<String> AllClasses = Arrays.stream(ButtonVariant.values())
+                .map(ButtonVariant::getCssClass).collect(Collectors.toSet());
+
+        public String getCssClass() {
+            return String.format("Button-variant-%s", name().toLowerCase());
+        }
+    }
 
     public Button(String text) {
         super(text);
-        this.getStyleClass().add("custom-button");
+        getStyleClass().addAll("Button", ButtonVariant.PRIMARY.getCssClass());
+    }
+
+    public Button(String text, Ikon icon) {
+        this(text);
+        this.setGraphic(new FontIcon(icon));
+    }
+
+    public Button(Ikon icon) {
+        this(null, icon);
     }
 
     public Button() {
         this("");
+    }
+
+    public Button withVariant(ButtonVariant variant) {
+        Utils.ensureOneOfClasses(this, variant.getCssClass(), ButtonVariant.AllClasses);
+        return this;
     }
 }
