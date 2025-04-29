@@ -1,4 +1,14 @@
 @import url("theme.css");
+/* Important to keep components before utils */
+@import url("styles/components/index.css");
+
+@import url("styles/utils.css");
+
+@import url("styles/views/MainMenu.css");
+
+.view-root {
+    -fx-background: -fx-color-bg;
+}
 
 .tile {
     -fx-border-width: 2px;

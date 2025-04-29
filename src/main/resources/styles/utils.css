@@ -1,0 +1,42 @@
+.text-muted {
+    -fx-text-fill: -fx-color-muted-fg;
+}
+
+.rounded-xs {
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+}
+.rounded-sm {
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.rounded-md {
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+.rounded-normal {
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.rounded-lg {
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.rounded-xl {
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+.font-weight-light {
+    -fx-font-weight: 200;
+}
+
+.font-weight-normal {} /* Just use default */
+
+.font-weifht-semibold {
+    -fx-font-weight: 600;
+}
+
+.font-weight-bold {
+    -fx-font-weight: 800;
+}
