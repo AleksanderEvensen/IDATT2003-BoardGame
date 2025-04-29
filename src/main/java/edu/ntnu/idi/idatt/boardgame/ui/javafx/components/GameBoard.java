@@ -15,6 +15,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import lombok.Getter;
 
 /**
  * A component representing the game board.
@@ -22,9 +23,15 @@ import javafx.scene.layout.Pane;
 public class GameBoard extends GridPane {
   private static final Logger logger = Logger.getLogger(GameBoard.class.getName());
   private final Map<Integer, TileComponent> tileComponents;
+
+  @Getter
   private final Pane overlayPane;
-  private final Map<Player, PlayerBlipView> playerBlips;
+
+  @Getter
   private final AnimationQueue animationQueue;
+
+  private final Map<Player, PlayerBlipView> playerBlips;
+
 
   private int maxCol = 0;
   private int maxRow = 0;
@@ -60,13 +67,6 @@ public class GameBoard extends GridPane {
   }
 
   /**
-   * Returns the overlay pane (for drawing ladders, lines, etc.).
-   */
-  public Pane getOverlayPane() {
-    return overlayPane;
-  }
-
-  /**
    * Add a player to the board.
    *
    * @param player the player to add
@@ -76,7 +76,8 @@ public class GameBoard extends GridPane {
     PlayerBlipView blipView = new PlayerBlipView(player);
 
     playerBlips.put(player, blipView);
-    overlayPane.getChildren().add(blipView);
+
+    overlayPane.getChildren().add(0, blipView);
     javafx.application.Platform.runLater(() -> {
       javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.millis(50));
       pause.setOnFinished(e -> {
@@ -84,6 +85,8 @@ public class GameBoard extends GridPane {
         if (currentTile != null) {
           positionPlayerBlipOnTile(player, blipView, currentTile);
         }
+        /// place the blip on top of the overlay
+        blipView.setViewOrder(-1);
       });
       pause.play();
     });
@@ -137,9 +140,8 @@ public class GameBoard extends GridPane {
    * @param player         the player to animate
    * @param fromTile       the tile to animate from
    * @param toTile         the tile to animate to
-   * @param durationMillis the duration of the animation in milliseconds
    */
-  public void animatePlayerMovement(Player player, Tile fromTile, Tile toTile, int durationMillis) {
+  public void animatePlayerMovement(Player player, Tile fromTile, Tile toTile) {
     PlayerBlipView blipView = playerBlips.get(player);
     if (blipView == null) {
       logger.warning("Attempted to animate movement of unregistered player: " + player.getName());
@@ -153,7 +155,7 @@ public class GameBoard extends GridPane {
     }
 
     var animation = PlayerMovementAnimator.createPathAnimation(
-        this, player, fromTile, toTile, durationMillis);
+        this, player, fromTile, toTile);
 
     String description = "Player " + player.getName() + " moving from tile " +
         (fromTile != null ? fromTile.getTileId() : "null") +
@@ -170,16 +172,15 @@ public class GameBoard extends GridPane {
    * @param player         the player to animate
    * @param fromTile       the ladder start tile
    * @param toTile         the ladder end tile
-   * @param durationMillis the duration of the animation in milliseconds
    */
-  public void animateLadderMovement(Player player, Tile fromTile, Tile toTile, int durationMillis) {
+  public void animateLadderMovement(Player player, Tile fromTile, Tile toTile) {
     if (fromTile == null || toTile == null) {
-      animatePlayerMovement(player, fromTile, toTile, durationMillis);
+      animatePlayerMovement(player, fromTile, toTile);
       return;
     }
 
     var animation = PlayerMovementAnimator.createLadderAnimation(
-        this, player, fromTile, toTile, durationMillis);
+        this, player, fromTile, toTile);
 
     String description = "Player " + player.getName() + " ladder from tile " +
         fromTile.getTileId() + " to tile " + toTile.getTileId();
@@ -187,15 +188,6 @@ public class GameBoard extends GridPane {
     animationQueue.queue(animation, description, 500);
 
     logger.fine("Queued ladder animation: " + description);
-  }
-
-  /**
-   * Gets the AnimationQueue used by this GameBoard.
-   *
-   * @return the animation queue
-   */
-  public AnimationQueue getAnimationQueue() {
-    return animationQueue;
   }
 
   /**

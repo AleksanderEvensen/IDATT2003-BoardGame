@@ -19,6 +19,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import lombok.Getter;
 
 /**
  * Controller for managing game state, player turns, and game actions.
@@ -45,10 +46,16 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  */
 public class GameController extends Observable<GameController, GameEvent> {
 
+
+  @Getter
   private Game game;
   private List<Player> players;
   private int currentPlayerIndex;
+
+  @Getter
   private boolean gameStarted;
+
+  @Getter
   private boolean gameEnded;
   private Tile lastTile;
   private List<Integer> lastDiceRolls;
@@ -128,10 +135,9 @@ public class GameController extends Observable<GameController, GameEvent> {
   /**
    * Rolls the dice for the current player and moves them.
    *
-   * @return the total value rolled on all dice
    * @throws IllegalStateException if the game hasn't started or has ended
    */
-  public int rollDiceAndMoveCurrentPlayer() {
+  public void rollDiceAndMoveCurrentPlayer() {
     if (!gameStarted || gameEnded) {
       throw new IllegalStateException("Game is not in progress");
     }
@@ -142,7 +148,7 @@ public class GameController extends Observable<GameController, GameEvent> {
       currentPlayer.setFrozenTurns(currentPlayer.getFrozenTurns() - 1);
       notifyObservers(new PlayerSkippedTurnEvent(currentPlayer, "Player is frozen"));
       advanceToNextPlayer();
-      return 0;
+      return;
     }
 
     List<Integer> diceRolls = rollDice();
@@ -170,7 +176,6 @@ public class GameController extends Observable<GameController, GameEvent> {
       advanceToNextPlayer();
     }
 
-    return diceValue;
   }
 
   /**
@@ -291,15 +296,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   }
 
   /**
-   * Gets the current game.
-   *
-   * @return the current game
-   */
-  public Game getGame() {
-    return game;
-  }
-
-  /**
    * Gets the list of players.
    *
    * @return an unmodifiable list of players
@@ -308,21 +304,4 @@ public class GameController extends Observable<GameController, GameEvent> {
     return List.copyOf(players);
   }
 
-  /**
-   * Checks if the game has started.
-   *
-   * @return true if the game has started
-   */
-  public boolean isGameStarted() {
-    return gameStarted;
-  }
-
-  /**
-   * Checks if the game has ended.
-   *
-   * @return true if the game has ended
-   */
-  public boolean isGameEnded() {
-    return gameEnded;
-  }
 }
