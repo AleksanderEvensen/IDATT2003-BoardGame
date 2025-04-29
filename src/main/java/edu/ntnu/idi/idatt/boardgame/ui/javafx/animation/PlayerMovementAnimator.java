@@ -77,7 +77,7 @@ public class PlayerMovementAnimator {
       }
     }
 
-    final Point2D finalDestination = pathPoints.get(pathPoints.size() - 1);
+    final Point2D finalDestination = pathPoints.getLast();
     Path path = createPath(pathPoints, blipView);
 
     PathTransition pathTransition = new PathTransition();
@@ -177,8 +177,8 @@ public class PlayerMovementAnimator {
     }
 
     // Try to find forward path
-    boolean foundPath = IntStream.iterate(0, i -> !path.get(path.size() - 1).equals(endTile), i -> i + 1)
-        .mapToObj(i -> path.get(path.size() - 1).getNextTile())
+    boolean foundPath = IntStream.iterate(0, i -> !path.getLast().equals(endTile), i -> i + 1)
+        .mapToObj(i -> path.getLast().getNextTile())
         .filter(Optional::isPresent)
         .map(Optional::get)
         .peek(path::add)
@@ -189,15 +189,15 @@ public class PlayerMovementAnimator {
       path.clear();
       path.add(startTile);
 
-      IntStream.iterate(0, i -> !path.get(path.size() - 1).equals(endTile), i -> i + 1)
-          .mapToObj(i -> path.get(path.size() - 1).getPreviousTile())
+      IntStream.iterate(0, i -> !path.getLast().equals(endTile), i -> i + 1)
+          .mapToObj(i -> path.getLast().getPreviousTile())
           .filter(Optional::isPresent)
           .map(Optional::get)
           .peek(path::add);
     }
 
     // If no path found, use start->end directly
-    if (!path.get(path.size() - 1).equals(endTile)) {
+    if (!path.getLast().equals(endTile)) {
       path.clear();
       path.add(startTile);
       path.add(endTile);
@@ -227,8 +227,8 @@ public class PlayerMovementAnimator {
 
     if (!points.isEmpty()) {
       path.getElements().add(new MoveTo(
-          points.get(0).getX() - blipView.getLayoutX(),
-          points.get(0).getY() - blipView.getLayoutY()
+          points.getFirst().getX() - blipView.getLayoutX(),
+          points.getFirst().getY() - blipView.getLayoutY()
       ));
 
       IntStream.range(1, points.size())
