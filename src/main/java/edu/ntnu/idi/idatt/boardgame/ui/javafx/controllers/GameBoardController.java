@@ -108,8 +108,7 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
     TileAction action = event.getTileAction();
     Player player = event.getPlayer();
 
-    if (action instanceof LadderAction) {
-      LadderAction ladderAction = (LadderAction) action;
+    if (action instanceof LadderAction ladderAction) {
       Tile startTile = event.getTile();
       Tile destinationTile = ladderAction.getDestinationTile();
 

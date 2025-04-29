@@ -77,7 +77,7 @@ public class GameBoard extends GridPane {
 
     playerBlips.put(player, blipView);
 
-    overlayPane.getChildren().add(0, blipView);
+    overlayPane.getChildren().add(blipView);
     javafx.application.Platform.runLater(() -> {
       javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.millis(50));
       pause.setOnFinished(e -> {
