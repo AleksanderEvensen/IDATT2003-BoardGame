@@ -1,45 +1,37 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu;
 
-import java.util.Random;
 import java.util.logging.Logger;
 import org.kordamp.ikonli.boxicons.BoxiconsRegular;
-import org.kordamp.ikonli.javafx.FontIcon;
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button.ButtonVariant;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Card;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
  * The main menu view of the application. This view displays available games and player management.
@@ -48,8 +40,6 @@ public class MainMenuView implements IView {
 
     private static final Logger logger = Logger.getLogger(MainMenuView.class.getName());
 
-    private BorderPane root;
-    private StackPane rootStack;
     private MainMenuController controller;
 
 
@@ -76,155 +66,117 @@ public class MainMenuView implements IView {
     @Override
     public Pane createRoot() {
         // Main layout
-        VBox mainLayout = new VBox(20);
-        mainLayout.getStyleClass().add("view-root");
-        mainLayout.setPadding(new Insets(20));
-        mainLayout.setBackground(
-                new Background(new BackgroundFill(Color.web("#FFECB3"), null, null))); // From
-                                                                                       // amber-50
-                                                                                       // to
-                                                                                       // amber-100
-                                                                                       // (approx.)
+        VBox root = new VBox(20);
+        root.getStyleClass().add("view-root");
+        root.setPadding(new Insets(20));
 
         // Header
-        VBox header = new VBox(5);
-        header.setAlignment(Pos.CENTER);
-        Label titleLabel = new Label("Awesome Board Games");
-        titleLabel.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
-        Label subtitleLabel = new Label("Select players and a game to begin");
-        subtitleLabel.setTextFill(Color.web("#F57C00")); // amber-700 (approx.)
-        header.getChildren().addAll(titleLabel, subtitleLabel);
+        Header titleHeader = new Header("Awesome Board Games");
+        titleHeader.withType(HeaderType.H1).withFontWeight(Weight.BOLD);
+
+        Header subHeader = new Header("Add players and select a game to play!");
+        subHeader.withType(HeaderType.H5).withFontWeight(Weight.SEMIBOLD);
+        subHeader.getStyleClass().add("text-muted");
+
+        VBox headerContainer = new VBox(5, titleHeader, subHeader);
+        headerContainer.setAlignment(Pos.CENTER);
 
         // Content grid
-        GridPane contentGrid = new GridPane();
-        contentGrid.setHgap(20);
-        contentGrid.setAlignment(Pos.CENTER);
+        HBox contentContainer = new HBox(20);
+        contentContainer.setAlignment(Pos.CENTER);
 
-        // Player Management Panel
-        VBox playerPanel = new VBox(10);
-        playerPanel.setStyle(
-                "-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 4); -fx-padding: 15;");
-        Label playerTitle = new Label("Players");
-        // playerTitle.setFont(Font.font("Arial", 20, javafx.scene.text.FontWeight.BOLD));
-        playerTitle.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
+        Card playersCard = new Card();
+        playersCard.setPrefWidth(300);
 
-        HBox addPlayerBox = new HBox(10);
-        var newPlayerNameInput = new TextField();
-        newPlayerNameInput.setPromptText("Enter player name");
-        newPlayerNameInput.setStyle("-fx-border-color: #FFD54F; -fx-focus-color: #FFB300;"); // border-amber-300,
-                                                                                             // focus-visible:ring-amber-500
-                                                                                             // (approx.)
+        playersCard.setPadding(new Insets(15));
 
-        Button addButton = new Button("Add");
-        addButton.setGraphic(new FontIcon(BoxiconsRegular.PLUS));
-        addButton.setStyle("-fx-background-color: #FFA000; -fx-text-fill: white;"); // bg-amber-600
-        addButton.setOnMouseEntered(event -> addButton
-                .setStyle("-fx-background-color: #FF8F00; -fx-text-fill: white;")); // hover:bg-amber-700
-        addButton.setOnMouseExited(event -> addButton
-                .setStyle("-fx-background-color: #FFA000; -fx-text-fill: white;"));
-        addButton.setOnAction(event -> {
-            if (newPlayerNameInput.getText().trim().isEmpty()) {
-                return; // Don't add player with empty name
+        Header playersHeader = new Header("Players:");
+        playersHeader.withType(HeaderType.H4).withFontWeight(Weight.SEMIBOLD);
+        playersCard.setTop(playersHeader);
+
+        // Controls
+        VBox playersControls = new VBox(10);
+        playersControls.setFillWidth(true);
+        playersControls.setPadding(new Insets(10, 0, 10, 0));
+
+        // New Player Controls
+        HBox playerNameControl = new HBox(10);
+        TextField playerNameField = new TextField();
+        playerNameField.setPromptText("Enter player name");
+        HBox.setHgrow(playerNameField, Priority.ALWAYS);
+
+        Button addPlayerButton =
+                new Button("Add Player", BoxiconsRegular.PLUS).withVariant(ButtonVariant.SUCCESS);
+        addPlayerButton.setOnAction(e -> {
+            if (playerNameField.getText().trim().isBlank()) {
+                return;
             }
-            controller.addPlayer(
-                    new Player(newPlayerNameInput.getText(), Utils.toModelColor(Color.LIGHTBLUE)));
-            newPlayerNameInput.clear();
-
+            var newPlayer = new Player(playerNameField.getText().trim(), Utils.getRandomColor());
+            this.controller.addPlayer(newPlayer);
+            playerNameField.clear();
         });
 
-        addPlayerBox.getChildren().addAll(newPlayerNameInput, addButton);
+        playerNameControl.getChildren().addAll(playerNameField, addPlayerButton);
 
-        var playerListView = new ListView<Player>(this.controller.getPlayers());
-        playerListView.setPrefHeight(200);
-        VBox.setVgrow(playerListView, Priority.ALWAYS);
+        // Save players button
+        Button savePlayersButton = new Button("Save Players", BoxiconsRegular.SAVE);
+        savePlayersButton.setOnAction(e -> this.controller.savePlayersToFile());
+        savePlayersButton.setMaxWidth(Double.MAX_VALUE);
 
-        Label noPlayersLabel = new Label("No players added yet");
-        noPlayersLabel
-                .setStyle("-fx-text-fill: #F57C00; -fx-font-style: italic; -fx-font-size: 12;"); // text-amber-600,
-                                                                                                 // text-sm,
-                                                                                                 // italic
+        // Players list
+        VBox playersList = new VBox(10);
+        playersList.setFillWidth(true);
 
-        VBox playerListContainer = new VBox(5);
-        playerListContainer.getChildren().add(playerListView);
-        if (controller.getPlayers().isEmpty()) {
-            playerListContainer.getChildren().add(noPlayersLabel);
+        // Create entries and add change listener
+        if (this.playerSectionListener != null) {
+            this.controller.getPlayers().removeListener(this.playerSectionListener);
         }
+        this.playerSectionListener = e -> {
+            createPlayerEntries(playersList, this.controller.getPlayers());
+        };
+        this.controller.getPlayers().addListener(playerSectionListener);
+        createPlayerEntries(playersList, this.controller.getPlayers());
 
-        playerListView.setCellFactory(param -> new ListCell<Player>() {
-            @Override
-            protected void updateItem(Player player, boolean empty) {
-                super.updateItem(player, empty);
-                if (empty || player == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox row = new HBox(10);
-                    row.setAlignment(Pos.CENTER_LEFT);
-                    Label playerNameLabel = new Label(player.getName());
+        // Make the player list scrollable
+        ScrollPane playersScrollPane = new ScrollPane(playersList);
+        playersScrollPane.getStyleClass().clear(); // no style classes
+        playersScrollPane.setFitToWidth(true);
+        playersScrollPane.setFitToHeight(true);
+        playersScrollPane.setPannable(true);
 
-                    Button removeButton = new Button();
+        // Add controls to the card
+        playersControls.getChildren().addAll(playerNameControl, savePlayersButton,
+                playersScrollPane);
+        playersCard.setCenter(playersControls);
 
-                    removeButton.setGraphic(new FontIcon(BoxiconsRegular.X));
-                    removeButton
-                            .setStyle("-fx-background-color: transparent; -fx-text-fill: #F57C00;"); // variant="ghost",
-                                                                                                     // text-amber-700
-                    removeButton.setOnMouseEntered(event -> removeButton
-                            .setStyle("-fx-background-color: #FFCDD2; -fx-text-fill: #E53935;")); // hover:bg-red-50,
-                                                                                                  // hover:text-red-600
-                    removeButton.setOnMouseExited(event -> removeButton.setStyle(
-                            "-fx-background-color: transparent; -fx-text-fill: #F57C00;"));
-                    removeButton.setOnAction(event -> {
-                        int index = getIndex();
-                        if (index >= 0 && index < controller.getPlayers().size()) {
-                            // removePlayer(index);
-                        }
-                    });
-                    Tooltip removeTooltip = new Tooltip("Remove " + player);
-                    removeButton.setTooltip(removeTooltip);
 
-                    row.getChildren().addAll(playerNameLabel, removeButton);
-                    HBox container = new HBox();
-                    container.setStyle(
-                            "-fx-background-color: #FFF8E1; -fx-background-radius: 5; -fx-padding: 5;"); // bg-amber-50,
-                                                                                                         // rounded-lg
-                    container.getChildren().add(row);
-                    HBox.setHgrow(playerNameLabel, Priority.ALWAYS);
-                    setGraphic(container);
-                }
-            }
-        });
-
-        Button exitButton = new Button("Exit to Desktop");
+        // Exit Button
+        Button exitButton = new Button("Exit to Desktop", BoxiconsRegular.EXIT);
+        exitButton.withVariant(ButtonVariant.SECONDARY);
+        exitButton.setMaxWidth(Double.MAX_VALUE);
+        exitButton.setStyle("-fx-font-size: 16px;");
         exitButton.setOnAction(e -> {
             controller.exitToDesktop();
         });
+        playersCard.setBottom(exitButton);
 
-        exitButton.setGraphic(new FontIcon(BoxiconsRegular.EXIT));
-        exitButton.setStyle(
-                "-fx-border-color: #FFD54F; -fx-text-fill: #E65100; -fx-background-color: transparent;"); // variant="outline",
-                                                                                                          // border-amber-300,
-                                                                                                          // text-amber-800
-        exitButton.setOnMouseEntered(event -> exitButton.setStyle(
-                "-fx-border-color: #FFD54F; -fx-text-fill: #F57C00; -fx-background-color: #FFF8E1;")); // hover:bg-amber-100,
-                                                                                                       // hover:text-amber-900
-        exitButton.setOnMouseExited(event -> exitButton.setStyle(
-                "-fx-border-color: #FFD54F; -fx-text-fill: #E65100; -fx-background-color: transparent;"));
-        exitButton.setMaxWidth(Double.MAX_VALUE);
+        // Game Section Card
+        Card gamesCard = new Card();
+        gamesCard.setMaxWidth(Double.MAX_VALUE);
+        gamesCard.setPadding(new Insets(15));
 
-        playerPanel.getChildren().addAll(playerTitle, addPlayerBox, playerListContainer,
-                exitButton);
-        contentGrid.add(playerPanel, 0, 0);
+        // Games header
+        Header gamesHeader = new Header("Games:");
+        gamesHeader.withType(HeaderType.H4).withFontWeight(Weight.SEMIBOLD);
+        gamesCard.setTop(gamesHeader);
 
-        // Game Selection Panel
-        VBox gamePanel = new VBox(10);
-        gamePanel.setStyle(
-                "-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 4); -fx-padding: 15;");
-        Label gameTitle = new Label("Select a Game");
-        gameTitle.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
 
+        // Games list
         FlowPane gameGrid = new FlowPane(10, 10);
-        gameGrid.setPrefWrapLength(600); // Approximate width for 2-3 columns
+        gameGrid.setPadding(new Insets(10, 0, 0, 0));
+        gameGrid.setPrefWrapLength(600);
 
+        // TODO: Use game card component
         Application.getGameManager().getAvailableGameIds().forEach(gameId -> {
             Game game = Application.getGameManager().getGame(gameId);
 
@@ -260,59 +212,17 @@ public class MainMenuView implements IView {
         });
 
         ScrollPane gameScrollPane = new ScrollPane(gameGrid);
+        gameScrollPane.getStyleClass().clear();
         gameScrollPane.setFitToWidth(true);
         gameScrollPane.setPrefHeight(500);
 
-        gamePanel.getChildren().addAll(gameTitle, gameScrollPane);
-        contentGrid.add(gamePanel, 1, 0);
+        gamesCard.setCenter(gameScrollPane);
 
-        mainLayout.getChildren().addAll(header, contentGrid);
+        contentContainer.getChildren().addAll(playersCard, gamesCard);
 
-        return mainLayout;
-    }
+        root.getChildren().addAll(headerContainer, contentContainer);
 
-    private VBox createPlayersSection() {
-        VBox playersSection = new VBox(20);
-        playersSection.setPadding(new Insets(10));
-        playersSection.setPrefWidth(400);
-
-        Label playersLabel = new Label("Players");
-        playersLabel.setFont(Font.font("System", FontWeight.BOLD, 24));
-
-
-        // Create player entries in a scrollable container
-        VBox playerEntries = new VBox(10);
-        ScrollPane scrollPane = new ScrollPane(playerEntries);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(300);
-        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
-
-        if (this.playerSectionListener != null) {
-            this.controller.getPlayers().removeListener(this.playerSectionListener);
-        }
-
-        this.playerSectionListener = e -> {
-            createPlayerEntries(playerEntries, this.controller.getPlayers());
-        };
-        this.controller.getPlayers().addListener(playerSectionListener);
-
-        createPlayerEntries(playerEntries, this.controller.getPlayers());
-
-        // Create "Add New Player" button and section
-        Button addPlayerButton = new Button("Add New Player");
-        addPlayerButton.setPrefWidth(380);
-        addPlayerButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        addPlayerButton.setOnAction(e -> showAddPlayerPane(playerEntries));
-
-        // Create Save Players button
-        Button savePlayersButton = new Button("Save Players");
-        savePlayersButton.setPrefWidth(380);
-        savePlayersButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
-        savePlayersButton.setOnAction(e -> this.controller.savePlayersToFile());
-
-        playersSection.getChildren().addAll(playersLabel, scrollPane, addPlayerButton,
-                savePlayersButton);
-        return playersSection;
+        return root;
     }
 
     private void createPlayerEntries(VBox container, ObservableList<Player> players) {
@@ -320,35 +230,51 @@ public class MainMenuView implements IView {
 
         players.forEach(player -> {
             HBox playerEntry = new HBox(10);
+            Card playerCard = new Card(playerEntry).withRounded(Size.SM);
+
+            playerCard.setPadding(new Insets(10));
 
             playerEntry.setAlignment(Pos.CENTER_LEFT);
-            playerEntry.setPadding(new Insets(5));
-            playerEntry.setStyle("-fx-background-color: #333333; -fx-background-radius: 5;");
 
-            // Player name field
+            Button saveButton =
+                    new Button(BoxiconsRegular.CHECK).withVariant(ButtonVariant.SUCCESS);
+            saveButton.setDisable(true);
+            // TODO: Replace with a better Input field
             TextField playerNameField = new TextField(player.getName());
-            playerNameField.setPrefWidth(120);
-            playerNameField.setStyle("-fx-background-color: #555555; -fx-text-fill: white;");
-
             ColorPicker colorPicker = new ColorPicker(Utils.toJFXColor(player.getColor()));
-            // Remove player button
-            Button saveButton = new Button();
-            var saveIcon = new FontIcon(BoxiconsRegular.SAVE);
-            saveIcon.setFill(Color.WHITE);
-            saveButton.setGraphic(saveIcon);
-            saveButton.setStyle(
-                    "-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-background-radius: 15; -fx-min-width: 30px; -fx-min-height: 30px;");
+            colorPicker.getStyleClass().add("button");
+            Button removeButton =
+                    new Button(BoxiconsRegular.TRASH).withVariant(ButtonVariant.DESTRUCTIVE);
+
+
+            playerNameField.setMaxWidth(Double.MAX_VALUE);
+            playerNameField.setStyle("-fx-background-color: #555555; -fx-text-fill: white;");
+            var validateUserInput = new Object() {
+                public void handle() {
+                    var color = Utils.toModelColor(colorPicker.getValue());
+
+                    if ((playerNameField.getText().isBlank()
+                            || playerNameField.getText().equals(player.getName()))
+                            && color.equals(player.getColor())) {
+                        saveButton.setDisable(true);
+                    } else {
+                        saveButton.setDisable(false);
+                    }
+                }
+            };
+
+            playerNameField.setOnKeyTyped(e -> validateUserInput.handle());
+            colorPicker.setOnAction(e -> {
+                validateUserInput.handle();
+            });
+
+
             saveButton.setOnAction(e -> {
                 this.controller.updatePlayer(player, playerNameField.getText(),
                         Utils.toModelColor(colorPicker.getValue()));
             });
+
             // Remove player button
-            Button removeButton = new Button();
-            var removeIcon = new FontIcon(BoxiconsRegular.TRASH);
-            removeIcon.setFill(Color.WHITE);
-            removeButton.setGraphic(removeIcon);
-            removeButton.setStyle(
-                    "-fx-background-color: #e74c3c; -fx-fill: white; -fx-background-radius: 15; -fx-min-width: 30px; -fx-min-height: 30px;");
             removeButton.setOnAction(e -> {
                 this.controller.removePlayer(player);
             });
@@ -356,89 +282,8 @@ public class MainMenuView implements IView {
             // Add all components to the player entry
             playerEntry.getChildren().addAll(playerNameField, colorPicker, saveButton,
                     removeButton);
-            container.getChildren().add(playerEntry);
+            container.getChildren().add(playerCard);
         });
     }
 
-
-    private void showAddPlayerPane(VBox playerEntries) {
-        // Create a semi-transparent dark overlay
-        Rectangle overlay = new Rectangle();
-        overlay.setWidth(2000); // Make it large enough to cover the entire view
-        overlay.setHeight(2000);
-        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
-
-        // Create a form to add a new player
-        VBox addPlayerForm = new VBox(10);
-        addPlayerForm.setPadding(new Insets(20));
-        addPlayerForm.setMaxWidth(400);
-        addPlayerForm.setMaxHeight(500);
-        addPlayerForm.setStyle(
-                "-fx-background-color: #333333; -fx-border-color: #666666; -fx-border-width: 2px; -fx-background-radius: 5;");
-
-        // Center the form in the stack pane
-        StackPane.setAlignment(addPlayerForm, Pos.CENTER);
-
-        Label formTitle = new Label("Add New Player");
-        formTitle.setFont(Font.font("System", FontWeight.BOLD, 16));
-        formTitle.setStyle("-fx-text-fill: white;");
-
-        TextField nameField = new TextField();
-        nameField.setPromptText("Player Name");
-        nameField.setPrefWidth(360);
-        nameField.setStyle("-fx-background-color: #555555; -fx-text-fill: white;");
-
-        Label nameLabel = new Label("Player Name:");
-        nameLabel.setStyle("-fx-text-fill: white;");
-
-        // Color selection
-        Label colorLabel = new Label("Player Color:");
-        colorLabel.setStyle("-fx-text-fill: white;");
-
-        ColorPicker colorPicker = new ColorPicker(javafx.scene.paint.Color.LIGHTBLUE);
-        colorPicker.setPrefWidth(360);
-
-        // Icon selection
-        Label iconLabel = new Label("Player Icon:");
-        iconLabel.setStyle("-fx-text-fill: white;");
-
-        Label previewLabel = new Label("Preview:");
-        previewLabel.setStyle("-fx-text-fill: white;");
-
-        HBox previewBox = new HBox(10);
-        previewBox.setAlignment(Pos.CENTER);
-        previewBox.getChildren().addAll(previewLabel);
-
-        // Add player button
-        Button addButton = new Button("Add Player");
-        addButton.setPrefWidth(360);
-        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        addButton.setOnAction(e -> {
-            if (nameField.getText().trim().isEmpty()) {
-                return; // Don't add player with empty name
-            }
-
-            var newPlayer =
-                    new Player(nameField.getText(), Utils.toModelColor(colorPicker.getValue()));
-            this.controller.addPlayer(newPlayer);
-
-            // Remove both the form and overlay
-            rootStack.getChildren().removeAll(overlay, addPlayerForm);
-        });
-
-        // Cancel button
-        Button cancelButton = new Button("Cancel");
-        cancelButton.setPrefWidth(360);
-        cancelButton.setStyle("-fx-background-color: #FF5555; -fx-text-fill: white;");
-        cancelButton.setOnAction(e -> {
-            rootStack.getChildren().removeAll(overlay, addPlayerForm);
-        });
-
-        addPlayerForm.getChildren().addAll(formTitle, nameLabel, nameField, colorLabel, colorPicker,
-                iconLabel, previewBox, new VBox(10), // Spacer
-                addButton, cancelButton);
-        // Add both the overlay and form to the stack pane
-        // Adding the overlay first ensures it appears behind the form
-        rootStack.getChildren().addAll(overlay, addPlayerForm);
-    }
 }

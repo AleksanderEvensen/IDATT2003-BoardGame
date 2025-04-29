@@ -115,7 +115,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
    * @return true if the player was removed, false if not found
    */
   public boolean removePlayer(int playerId) {
-    if (playerId <= 0 || playerId > players.size()) {
+    if (playerId < 0 || playerId >= players.size()) {
       logger.warning("Invalid player ID: " + playerId);
       return false;
     }
@@ -132,7 +132,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
    * @return true if the player was updated, false if not found
    */
   public boolean updatePlayer(int playerId, @NonNull Player updatedPlayer) {
-    if (playerId <= 0 || playerId > players.size()) {
+    if (playerId < 0 || playerId >= players.size()) {
       logger.warning("Invalid player ID: " + playerId);
       return false;
     }
@@ -171,6 +171,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
       logger.warning("Player not found for update: " + player.getName());
       return false;
     }
+    logger.info("Player index: " + index);
     return this.updatePlayer(index, new Player(newName, newColor));
   }
 }
