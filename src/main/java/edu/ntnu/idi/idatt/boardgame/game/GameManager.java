@@ -1,11 +1,14 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
+import java.util.stream.Collectors;
 
 /**
  * Manages the loading and retrieval of games.
@@ -22,6 +25,8 @@ public class GameManager {
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(GameManager.class.getName());
 
+  private static final String DEFAULT_GAME_PATH = "data/games";
+
   /**
    * Constructs a GameManager with the specified file provider.
    *
@@ -29,8 +34,7 @@ public class GameManager {
    */
   public GameManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    loadGame("data/games/ladder.json");
-    loadGame("data/games/bezzerwizzer.json");
+    loadGamesFromDefaultPath();
   }
 
   /**
@@ -69,5 +73,24 @@ public class GameManager {
    */
   public Set<String> getAvailableGameIds() {
     return games.keySet();
+  }
+
+
+  /**
+   * Loads games from the default path.
+   * <p>
+   * This method loads all game files from the default path and adds them to the
+   * games map.
+   * </p>
+   */
+  private void loadGamesFromDefaultPath() {
+    List<String> directoryFiles = fileProvider.listFiles(DEFAULT_GAME_PATH).stream().filter(
+        fileName -> fileName.endsWith(".json")).toList();
+
+    for (String fileName : directoryFiles) {
+      String filePath = DEFAULT_GAME_PATH + "/" + fileName;
+      loadGame(filePath);
+    }
+
   }
 }

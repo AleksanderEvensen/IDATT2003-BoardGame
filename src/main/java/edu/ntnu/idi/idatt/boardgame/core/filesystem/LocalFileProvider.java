@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -32,7 +33,7 @@ public class LocalFileProvider implements FileProvider {
    * </p>
    *
    * @param path The file path or identifier where data should be saved.
-   * @param data The InputStream representing the file/data to be saved.
+   * @param bytes The byte array representing the file/data to be saved.
    * @throws FileSaveException if an error occurs while saving the file.
    * @see edu.ntnu.idi.idatt.boardgame.core.filesystem.FileSaveException
    */
@@ -109,5 +110,20 @@ public class LocalFileProvider implements FileProvider {
       logger.warning("Failed to read file from path: " + path);
       throw new FileReadException("Failed to read file at path: " + path);
     }
+  }
+
+  /**
+   * Lists all files in the specified directory.
+   *
+   * @param path The directory path to list files from.
+   * @return An array of file names in the specified directory.
+   */
+  @Override
+  public List<String> listFiles(String path) {
+    File directory = new File(path);
+    if (!directory.isDirectory()) {
+      throw new IllegalArgumentException("Path is not a directory: " + path);
+    }
+    return List.of(directory.list());
   }
 }
