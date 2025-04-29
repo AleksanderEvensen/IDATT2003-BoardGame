@@ -1,5 +1,3 @@
-
-
 const themes = [ 'latte', 'frappe', 'macchiato', 'mocha' ] as const;
 type Theme = typeof themes[number];
 
@@ -12,13 +10,12 @@ type ThemeData = Record<Theme, {
     }
 }>
 
-
 async function main(theme: Theme) {
     const themesData: ThemeData = await (await fetch("https://raw.githubusercontent.com/catppuccin/palette/refs/heads/main/palette.json")).json();
     
-    console.log(`/* Catppuccin theme: ${themesData[theme].name} */`);
+    console.log(`    /* Catppuccin theme: ${themesData[theme].name} */`);
     Object.entries(themesData[theme].colors).forEach(([key, { hex }]) => {
-        console.log(`-fx-color-${key}: ${hex};`);
+        console.log(`    -fx-color-${key}: ${hex};`);
     })
 }
 
