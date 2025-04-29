@@ -1,10 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.style;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
+import javafx.scene.control.Tooltip;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
-
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
@@ -24,21 +22,21 @@ public class JavaFxImmunityStyleApplier implements TileStyleApplier {
 
     @Override
     public void applyStyle(Tile tile, TileAction action, Object parent) {
-        if (!(parent instanceof Pane) || !(action instanceof ImmunityAction)) {
+        if (!(parent instanceof Pane pane) || !(action instanceof ImmunityAction)) {
             return;
         }
 
-        Pane pane = (Pane) parent;
-
-        List<TileComponent> tileComponents = pane.getChildren().filtered(node -> node instanceof TileComponent)
+      List<TileComponent> tileComponents = pane.getChildren().filtered(node -> node instanceof TileComponent)
                 .stream()
                 .map(node -> (TileComponent) node)
-                .collect(Collectors.toList());
+                .toList();
 
         TileComponent actionTile = tileComponents.stream()
                 .filter(tileComponent -> tileComponent.getTileId() == tile.getTileId())
                 .findFirst()
                 .orElse(null);
+
+        Tooltip.install(actionTile, new Tooltip("This tile grants immunity to the player."));
 
         if (actionTile == null) {
             return;
