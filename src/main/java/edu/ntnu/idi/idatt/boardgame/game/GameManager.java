@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -8,7 +7,6 @@ import java.util.logging.Logger;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
-import java.util.stream.Collectors;
 
 /**
  * Manages the loading and retrieval of games.

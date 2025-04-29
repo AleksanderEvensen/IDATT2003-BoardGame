@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  * @since v1.0.0
  */
 public class LocalFileProvider implements FileProvider {
+
   Logger logger = Logger.getLogger(LocalFileProvider.class.getName());
 
   /**
@@ -32,7 +33,7 @@ public class LocalFileProvider implements FileProvider {
    * Creates directories if they do not exist and replaces existing files.
    * </p>
    *
-   * @param path The file path or identifier where data should be saved.
+   * @param path  The file path or identifier where data should be saved.
    * @param bytes The byte array representing the file/data to be saved.
    * @throws FileSaveException if an error occurs while saving the file.
    * @see edu.ntnu.idi.idatt.boardgame.core.filesystem.FileSaveException
@@ -121,9 +122,21 @@ public class LocalFileProvider implements FileProvider {
   @Override
   public List<String> listFiles(String path) {
     File directory = new File(path);
+
+    // TODO: custom exception?
     if (!directory.isDirectory()) {
       throw new IllegalArgumentException("Path is not a directory: " + path);
     }
-    return List.of(directory.list());
+
+    // TODO: custom exception?
+    if (!directory.exists()) {
+      throw new IllegalArgumentException("Directory does not exist: " + path);
+    }
+
+    String[] files = directory.list();
+    if (files == null) {
+      return List.of();
+    }
+    return List.of(files);
   }
 }
