@@ -39,15 +39,11 @@ public class GameBoard extends GridPane {
   /**
    * Create a new GameBoard.
    */
-  GameBoard() {
+  public GameBoard(AnimationQueue animationQueue) {
     this.tileComponents = new HashMap<>();
     this.overlayPane = new Pane();
     this.playerBlips = new ConcurrentHashMap<>();
-    this.animationQueue = new AnimationQueue();
-
-
-    overlayPane.setPickOnBounds(false);
-    overlayPane.setManaged(false);
+    this.animationQueue = animationQueue;
   }
 
   /**
@@ -226,9 +222,9 @@ public class GameBoard extends GridPane {
     private final GameBoard gameBoard;
     private final Game game;
 
-    public Builder(Game game) {
+    public Builder(Game game, AnimationQueue animationQueue) {
       this.game = game;
-      gameBoard = new GameBoard();
+      gameBoard = new GameBoard(animationQueue);
     }
 
     public Builder addTiles() {

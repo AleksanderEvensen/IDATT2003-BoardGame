@@ -4,7 +4,7 @@
   "description": "Bezzerwizzer is a trivia board game where players answer questions from various categories to progress on the board.",
   "minPlayers": 2,
   "maxPlayers": 4,
-  "numberOfDice": 1,
+  "numberOfDice": 2,
   "imagePath": "/images/ladder.png",
   "board": {
     "rowCount": 11,
@@ -49,7 +49,7 @@
       "36": { "tileId": 36, "row": 6, "col": 0, "nextTileId": 37, "previousTileId": 35, "name": "Chance 3" },
       "37": { "tileId": 37, "row": 7, "col": 0, "nextTileId": 38, "previousTileId": 36, "name": "Park Place" },
       "38": { "tileId": 38, "row": 8, "col": 0, "nextTileId": 39, "previousTileId": 37, "name": "Luxury Tax" },
-      "39": { "tileId": 39, "row": 9, "col": 0, "nextTileId": 0, "previousTileId": 38, "name": "Boardwalk" }
+      "39": { "tileId": 39, "row": 9, "col": 0, "previousTileId": 38, "name": "Boardwalk" }
     }
   }
 }

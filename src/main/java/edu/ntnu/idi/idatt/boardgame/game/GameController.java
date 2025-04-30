@@ -61,6 +61,9 @@ public class GameController extends Observable<GameController, GameEvent> {
   private List<Integer> lastDiceRolls;
   private final Logger logger = Logger.getLogger(GameController.class.getName());
 
+  @Getter
+  private Integer roundCount = 0;
+
   /**
    * Creates a new GameController instance.
    */
@@ -100,6 +103,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.currentPlayerIndex = 0;
     this.gameStarted = true;
     this.gameEnded = false;
+    this.roundCount = 1;
 
     findLastTile();
     Tile startTile = game.getBoard().getTile(0);
@@ -278,6 +282,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private void advanceToNextPlayer() {
     currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     Player nextPlayer = players.get(currentPlayerIndex);
+    roundCount = roundCount + 1;
     notifyObservers(new PlayerTurnChangedEvent(nextPlayer));
   }
 
