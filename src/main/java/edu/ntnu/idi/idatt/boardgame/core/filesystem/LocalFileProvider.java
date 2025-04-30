@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
  * @since v1.0.0
  */
 public class LocalFileProvider implements FileProvider {
+
   Logger logger = Logger.getLogger(LocalFileProvider.class.getName());
 
   /**
@@ -31,8 +33,8 @@ public class LocalFileProvider implements FileProvider {
    * Creates directories if they do not exist and replaces existing files.
    * </p>
    *
-   * @param path The file path or identifier where data should be saved.
-   * @param data The InputStream representing the file/data to be saved.
+   * @param path  The file path or identifier where data should be saved.
+   * @param bytes The byte array representing the file/data to be saved.
    * @throws FileSaveException if an error occurs while saving the file.
    * @see edu.ntnu.idi.idatt.boardgame.core.filesystem.FileSaveException
    */
@@ -109,5 +111,32 @@ public class LocalFileProvider implements FileProvider {
       logger.warning("Failed to read file from path: " + path);
       throw new FileReadException("Failed to read file at path: " + path);
     }
+  }
+
+  /**
+   * Lists all files in the specified directory.
+   *
+   * @param path The directory path to list files from.
+   * @return An array of file names in the specified directory.
+   */
+  @Override
+  public List<String> listFiles(String path) {
+    File directory = new File(path);
+
+    // TODO: custom exception?
+    if (!directory.exists()) {
+      throw new IllegalArgumentException("Directory does not exist: " + path);
+    }
+
+    // TODO: custom exception?
+    if (!directory.isDirectory()) {
+      throw new IllegalArgumentException("Path is not a directory: " + path);
+    }
+
+    String[] files = directory.list();
+    if (files == null) {
+      return List.of();
+    }
+    return List.of(files);
   }
 }

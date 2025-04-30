@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
+import java.util.List;
+
 /**
  * Interface for providing file storage and retrieval functionality.
  */
@@ -39,4 +41,11 @@ public interface FileProvider {
    * @return The byte array representing the file/data.
    */
   byte[] get(String path);
+
+  /**
+   * Lists all files in the specified directory.
+   *
+   * @param path The directory path to list files from.
+   */
+  List<String> listFiles(String path);
 }
