@@ -124,13 +124,13 @@ public class LocalFileProvider implements FileProvider {
     File directory = new File(path);
 
     // TODO: custom exception?
-    if (!directory.isDirectory()) {
-      throw new IllegalArgumentException("Path is not a directory: " + path);
+    if (!directory.exists()) {
+      throw new IllegalArgumentException("Directory does not exist: " + path);
     }
 
     // TODO: custom exception?
-    if (!directory.exists()) {
-      throw new IllegalArgumentException("Directory does not exist: " + path);
+    if (!directory.isDirectory()) {
+      throw new IllegalArgumentException("Path is not a directory: " + path);
     }
 
     String[] files = directory.list();
