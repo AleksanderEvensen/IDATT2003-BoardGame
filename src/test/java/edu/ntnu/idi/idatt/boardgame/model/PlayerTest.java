@@ -19,6 +19,7 @@ class PlayerTest {
     nextTile = new Tile.Builder(2).build();
     lastTile = new Tile.Builder(0).build();
     startTile.setNextTile(nextTile);
+    nextTile.setPreviousTile(startTile);
     player.placeOnTile(startTile);
   }
 
@@ -53,16 +54,17 @@ class PlayerTest {
 
   @Test
   void moveOneTileBackward() {
+    player.placeOnTile(nextTile);
     boolean moved = player.moveOneTile(false);
     assertTrue(moved);
-    assertEquals(lastTile, player.getCurrentTile());
+    assertEquals(startTile, player.getCurrentTile());
   }
 
   @Test
   void move() {
     int stepsMoved = player.move(2);
-    assertEquals(1, stepsMoved);
-    assertEquals(nextTile, player.getCurrentTile());
+    assertEquals(2, stepsMoved);
+    assertEquals(startTile, player.getCurrentTile());
   }
 
   @Test
