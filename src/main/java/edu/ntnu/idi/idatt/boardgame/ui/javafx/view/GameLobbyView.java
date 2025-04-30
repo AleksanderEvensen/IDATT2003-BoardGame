@@ -188,7 +188,6 @@ public class GameLobbyView implements IView {
 
     rollButton = new Button("Roll Dice");
     rollButton.setOnAction(e -> {
-        DieComponentAnimator.animateRoll(diceComponents.getFirst(), 1);
         if (gameController.isGameStarted() && !gameController.isGameEnded()) {
             gameController.rollDiceAndMoveCurrentPlayer();
         }
