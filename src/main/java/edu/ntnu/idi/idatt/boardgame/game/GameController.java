@@ -282,7 +282,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private void advanceToNextPlayer() {
     int nextPlayerIndex = (currentPlayerIndex + 1) % players.size();
     // If its the same player or a index lower than the current
-    if (nextPlayerIndex == currentPlayerIndex || nextPlayerIndex < currentPlayer) {
+    if (nextPlayerIndex <= currentPlayerIndex) {
       // THen increment the round
       roundCount++;
     }
