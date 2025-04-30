@@ -17,7 +17,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.PlayerBlipView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameBoardController;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameLobbyController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -56,7 +56,7 @@ public class GameLobbyView implements IView {
   @Getter
   private GameBoard gameBoard;
 
-  private GameBoardController gameBoardController;
+  private GameLobbyController gameLobbyController;
 
   @Override
   public void load(NavigationContext<?> ctx) {
@@ -68,7 +68,7 @@ public class GameLobbyView implements IView {
 
   @Override
   public void unload() {
-    gameBoardController = null;
+    gameLobbyController = null;
     gameController = null;
     game = null;
     players = null;
@@ -80,7 +80,7 @@ public class GameLobbyView implements IView {
     root.getStyleClass().add("view-root");
     root.setPadding(new Insets(20));
 
-    gameBoardController = new GameBoardController(this, gameController);
+    gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
 
     GameBoard gameBoard = createGameBoard();
@@ -134,7 +134,7 @@ public class GameLobbyView implements IView {
 
     Button backToMenuButton = new Button("Back to Menu");
     backToMenuButton.setOnAction(e -> {
-      gameBoardController.exitGame();
+      gameLobbyController.exitGame();
 
     });
     Region spacer = new Region();

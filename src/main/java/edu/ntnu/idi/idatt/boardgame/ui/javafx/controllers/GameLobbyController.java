@@ -25,27 +25,27 @@ import java.util.logging.Logger;
  * player movement animations.
  * </p>
  */
-public class GameBoardController implements Observer<GameController, GameEvent> {
+public class GameLobbyController implements Observer<GameController, GameEvent> {
 
-  private static final Logger logger = Logger.getLogger(GameBoardController.class.getName());
+  private static final Logger logger = Logger.getLogger(GameLobbyController.class.getName());
 
   private final GameLobbyView gameLobbyView;
   private final GameController gameController;
 
 
   /**
-   * Creates a new GameBoardController.
+   * Creates a new GameLobbyController.
    *
    * @param gameLobbyView       the game view
    * @param gameController the game controller
    */
-  public GameBoardController(GameLobbyView gameLobbyView, GameController gameController) {
+  public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
     this.gameLobbyView = gameLobbyView;
     this.gameController = gameController;
 
     gameController.addListener(this);
 
-    logger.info("GameBoardController initialized");
+    logger.info("GameLobbyController initialized");
   }
 
   /**
