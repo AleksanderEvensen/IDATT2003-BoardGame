@@ -280,9 +280,14 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Advances to the next player in turn order.
    */
   private void advanceToNextPlayer() {
-    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+    int nextPlayerIndex = (currentPlayer + 1) % players.size();
+    // If its the same player or a index lower than the current
+    if (nextPlayerIndex == currentPlayerIndex || nextPlayerIndex < currentPlayer) {
+      // THen increment the round
+      roundCount++;
+    }
+    currentPlayerIndex = nextPlayerIndex;
     Player nextPlayer = players.get(currentPlayerIndex);
-    roundCount = roundCount + 1;
     notifyObservers(new PlayerTurnChangedEvent(nextPlayer));
   }
 
