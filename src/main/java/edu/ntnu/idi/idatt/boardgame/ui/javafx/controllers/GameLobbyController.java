@@ -1,9 +1,11 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers;
 
+import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
+import edu.ntnu.idi.idatt.boardgame.game.events.DiceRolledEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEndedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameStartedEvent;
@@ -12,7 +14,7 @@ import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,26 +25,27 @@ import java.util.logging.Logger;
  * player movement animations.
  * </p>
  */
-public class GameBoardController implements Observer<GameController, GameEvent> {
+public class GameLobbyController implements Observer<GameController, GameEvent> {
 
-  private static final Logger logger = Logger.getLogger(GameBoardController.class.getName());
+  private static final Logger logger = Logger.getLogger(GameLobbyController.class.getName());
 
-  private final GameBoard gameBoard;
+  private final GameLobbyView gameLobbyView;
   private final GameController gameController;
 
+
   /**
-   * Creates a new GameBoardController.
+   * Creates a new GameLobbyController.
    *
-   * @param gameBoard      the game board UI component
+   * @param gameLobbyView       the game view
    * @param gameController the game controller
    */
-  public GameBoardController(GameBoard gameBoard, GameController gameController) {
-    this.gameBoard = gameBoard;
+  public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
+    this.gameLobbyView = gameLobbyView;
     this.gameController = gameController;
 
     gameController.addListener(this);
 
-    logger.info("GameBoardController initialized");
+    logger.info("GameLobbyController initialized");
   }
 
   /**
@@ -56,12 +59,23 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
 
     switch (event) {
       case GameStartedEvent gameStartedEvent -> handleGameStarted(gameStartedEvent);
+      case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
-      case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(playerTurnChangedEvent);
+      case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
     }
+  }
+
+  /**
+   * Exits the game and stops all animations.
+   */
+  public void exitGame() {
+    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
+    gameLobbyView.getGameBoard().setVisible(false);
+    gameLobbyView.getGameBoard().setDisable(true);
+    Application.router.navigate("/home");
   }
 
   /**
@@ -71,8 +85,11 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
    */
   private void handleGameStarted(GameStartedEvent event) {
     logger.info("Game started with " + event.getPlayers().size() + " players");
-    gameBoard.getAnimationQueue().stopAndClear();
+    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
+    gameLobbyView.updateCurrentPlayerLabel(gameController.getCurrentPlayer());
+    gameLobbyView.updateCurrentRound(gameController.getRoundCount());
   }
+
 
   /**
    * Handles player turn change events.
@@ -81,6 +98,8 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
    */
   private void handlePlayerTurnChangeEvent(PlayerTurnChangedEvent event) {
     logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
+    gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
+    gameLobbyView.updateCurrentRound(gameController.getRoundCount());
   }
 
   /**
@@ -93,11 +112,21 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
         (event.getFromTile() != null ? event.getFromTile().getTileId() : "null") +
         " to tile " + event.getToTile().getTileId());
 
-    gameBoard.animatePlayerMovement(
+    gameLobbyView.getGameBoard().animatePlayerMovement(
         event.getPlayer(),
         event.getFromTile(),
         event.getToTile());
+    gameLobbyView.setRollDiceButtonDisabled(false);
+
+
   }
+
+  private void handleDiceRolled(DiceRolledEvent event) {
+    gameLobbyView.setRollDiceButtonDisabled(true);
+    gameLobbyView.animateDice(event.getIndividualRolls());
+    gameLobbyView.updateLastRollLabel(event.getTotalValue());
+  }
+
 
   /**
    * Handles tile action events.
@@ -112,12 +141,10 @@ public class GameBoardController implements Observer<GameController, GameEvent> 
       Tile startTile = event.getTile();
       Tile destinationTile = ladderAction.getDestinationTile();
 
-      System.out.println(
-          "Ladder action from " + startTile.getTileId() + " to " + destinationTile.getTileId());
 
       if (startTile != destinationTile) {
         logger.info("Triggering ladder animation");
-        gameBoard.animateLadderMovement(
+        gameLobbyView.getGameBoard().animateLadderMovement(
             player,
             startTile,
             destinationTile

@@ -18,7 +18,7 @@ import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.router.Router;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuController;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu.MainMenuView;
 import javafx.application.Platform;
@@ -40,7 +40,6 @@ public class Application extends javafx.application.Application {
     private static Scene primaryScene;
     private static Stage primaryStage;
 
-    public int currentPlayerIndex = 0;
 
     /**
      * The router used for navigating between JavaFX views
@@ -81,7 +80,7 @@ public class Application extends javafx.application.Application {
         primaryScene = new Scene(new Pane(), 1200, 1000);
 
         router.createRoute("/home", new MainMenuView(new MainMenuController()));
-        router.createRoute("/game/:gameId", new GameView());
+        router.createRoute("/game/:gameId", new GameLobbyView());
 
         router.navigate("/home");
 

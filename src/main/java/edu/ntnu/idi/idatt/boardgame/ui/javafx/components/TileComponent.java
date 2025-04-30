@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 import static edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts.DEFAULT_FONT;
 
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts;
+import javafx.geometry.Insets;
 import org.kordamp.ikonli.Ikon;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -70,13 +71,22 @@ public class TileComponent extends StackPane {
     this.backgroundColor = StyleConsts.TILE_DEFAULT_BACKGROUND_COLOR;
     this.highlightColor = StyleConsts.TILE_DEFAULT_HIGHLIGHT_COLOR;
 
-    background = new Rectangle(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
+    setMinHeight(StyleConsts.TILE_DEFAULT_HEIGHT);
+    setMinWidth(StyleConsts.TILE_DEFAULT_WIDTH);
+
+
+    background = new Rectangle(
+        StyleConsts.TILE_DEFAULT_WIDTH,
+        StyleConsts.TILE_DEFAULT_HEIGHT
+   );
     background.setFill(backgroundColor);
     background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
 
     idLabel = new Label(String.valueOf(tileId));
     idLabel.setFont(DEFAULT_FONT);
-    idLabel.setTextFill(Color.BLACK);
+    idLabel.setStyle("-fx-text-fill: black;"
+        + "-fx-font-weight: bold;");
+    idLabel.setPadding(new Insets(5));
     StackPane.setAlignment(idLabel, Pos.TOP_RIGHT);
 
     if (iconCode != null) {
@@ -85,10 +95,11 @@ public class TileComponent extends StackPane {
 
     getChildren().addAll(background, idLabel);
     setAlignment(Pos.CENTER);
-    setPrefSize(StyleConsts.TILE_DEFAULT_WIDTH, StyleConsts.TILE_DEFAULT_HEIGHT);
 
     setupMouseHandlers();
   }
+
+
 
   /**
    * Internal method to handle mouse events like hover and click.
