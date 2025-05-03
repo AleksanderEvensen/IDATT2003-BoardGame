@@ -76,7 +76,6 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Creates a new GameController instance.
    */
   public GameController(Game game, QuizManager quizManager) {
-  public GameController() {
     super();
     this.game = game;
     this.players = new ArrayList<>();
@@ -285,13 +284,14 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     boolean isCorrect = currentQuestion.getCorrectAnswer().equals(answer);
     Player currentPlayer = getCurrentPlayer();
+    currentQuestion = null;
 
     if (isCorrect) {
       checkGameEndAndAdvanceToNextPlayer(currentPlayer);
     } else {
+
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
-    currentQuestion = null;
     checkpointTile = null;
   }
 
