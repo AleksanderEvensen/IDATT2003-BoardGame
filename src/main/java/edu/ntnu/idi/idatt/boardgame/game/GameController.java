@@ -286,12 +286,10 @@ public class GameController extends Observable<GameController, GameEvent> {
     Player currentPlayer = getCurrentPlayer();
     currentQuestion = null;
 
-    if (isCorrect) {
-      checkGameEndAndAdvanceToNextPlayer(currentPlayer);
-    } else {
-
+    if (!isCorrect) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
+    checkGameEndAndAdvanceToNextPlayer(currentPlayer);
     checkpointTile = null;
   }
 
