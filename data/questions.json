@@ -1,0 +1,4403 @@
+
+[
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Madrid",
+      "2": "Paris",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Berlin",
+      "2": "Ottawa",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Ottawa",
+      "2": "New Delhi",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Madrid",
+      "2": "Brasília",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Ottawa",
+      "2": "Berlin",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "Canberra",
+      "2": "Ottawa",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Brasília",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Madrid",
+      "2": "Rome",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "New Delhi",
+      "2": "Paris",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Brasília",
+      "2": "Canberra",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Oceania",
+      "2": "South America",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "South America",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Oceania",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Asia",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Oceania",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "H2O",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "H2O",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "7",
+      "1": "10",
+      "2": "9",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Cytoplasm",
+      "1": "Ribosome",
+      "2": "Mitochondria",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "1945",
+      "2": "44 BC",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Brazil",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Germany",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Spain",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "France",
+      "2": "Spain",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Italy",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "10",
+      "1": "12",
+      "2": "9",
+      "3": "11"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "Wes Anderson",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Steven Spielberg",
+      "2": "James Cameron",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "James Cameron",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "Christopher Nolan",
+      "2": "Wes Anderson",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Pablo Picasso",
+      "2": "Vincent van Gogh",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Edvard Munch",
+      "2": "Leonardo da Vinci",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Leonardo da Vinci",
+      "2": "Salvador Dalí",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Salvador Dalí",
+      "2": "Edvard Munch",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Vincent van Gogh",
+      "2": "Edvard Munch",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "6",
+      "1": "8",
+      "2": "7",
+      "3": "5"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Spanish",
+      "2": "Hindi",
+      "3": "Mandarin Chinese"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Cairo",
+      "2": "Paris",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Moscow",
+      "2": "New Delhi",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Madrid",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Madrid",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Canberra",
+      "2": "Ottawa",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Ottawa",
+      "2": "Rome",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Brasília",
+      "2": "Ottawa",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Cairo",
+      "2": "New Delhi",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Moscow",
+      "2": "Ottawa",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Cairo",
+      "2": "Canberra",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Asia",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "South America",
+      "2": "Europe",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "Oceania",
+      "2": "Europe",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Africa",
+      "2": "South America",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Asia",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "C6H12O6",
+      "2": "H2O",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "CO2",
+      "2": "NaCl",
+      "3": "C6H12O6"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "NaCl",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "O2",
+      "2": "H2O",
+      "3": "C6H12O6"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "9",
+      "1": "7",
+      "2": "10",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Ribosome",
+      "1": "Mitochondria",
+      "2": "Cytoplasm",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "44 BC",
+      "2": "1945",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1969",
+      "2": "1945",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1969",
+      "2": "1945",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Germany",
+      "2": "Brazil",
+      "3": "France"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Brazil",
+      "2": "Italy",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Spain",
+      "2": "Italy",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Italy",
+      "2": "Brazil",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Germany",
+      "2": "Spain",
+      "3": "France"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "12",
+      "1": "11",
+      "2": "10",
+      "3": "9"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Steven Spielberg",
+      "2": "Wes Anderson",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Wes Anderson",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Steven Spielberg",
+      "2": "Quentin Tarantino",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Steven Spielberg",
+      "2": "Christopher Nolan",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Vincent van Gogh",
+      "2": "Edvard Munch",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Salvador Dalí",
+      "2": "Vincent van Gogh",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Edvard Munch",
+      "2": "Leonardo da Vinci",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Salvador Dalí",
+      "2": "Pablo Picasso",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Leonardo da Vinci",
+      "2": "Salvador Dalí",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "8",
+      "1": "7",
+      "2": "5",
+      "3": "6"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Hindi",
+      "1": "English",
+      "2": "Mandarin Chinese",
+      "3": "Spanish"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Paris",
+      "2": "Cairo",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Ottawa",
+      "2": "Madrid",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Paris",
+      "2": "Madrid",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Madrid",
+      "2": "New Delhi",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Ottawa",
+      "2": "Cairo",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Cairo",
+      "2": "Canberra",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Berlin",
+      "2": "Ottawa",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "New Delhi",
+      "2": "Canberra",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Madrid",
+      "2": "Moscow",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Cairo",
+      "2": "Berlin",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "South America",
+      "2": "Europe",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Europe",
+      "2": "Oceania",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Oceania",
+      "2": "South America",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Europe",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Asia",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "CO2",
+      "2": "H2O",
+      "3": "C6H12O6"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "C6H12O6",
+      "2": "O2",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "C6H12O6",
+      "2": "H2O",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "H2O",
+      "2": "C6H12O6",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "7",
+      "1": "8",
+      "2": "9",
+      "3": "10"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Ribosome",
+      "1": "Mitochondria",
+      "2": "Cytoplasm",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1969",
+      "2": "1776",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1945",
+      "2": "1989",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1969",
+      "2": "1776",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "1945",
+      "2": "44 BC",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1776",
+      "2": "44 BC",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Brazil",
+      "2": "Italy",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Spain",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Italy",
+      "2": "Germany",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Germany",
+      "2": "Spain",
+      "3": "France"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Spain",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "12",
+      "1": "11",
+      "2": "10",
+      "3": "9"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Steven Spielberg",
+      "2": "Quentin Tarantino",
+      "3": "Christopher Nolan"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "James Cameron",
+      "2": "Wes Anderson",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "James Cameron",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Quentin Tarantino",
+      "2": "Christopher Nolan",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Vincent van Gogh",
+      "2": "Pablo Picasso",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Edvard Munch",
+      "2": "Salvador Dalí",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Leonardo da Vinci",
+      "2": "Vincent van Gogh",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Edvard Munch",
+      "2": "Vincent van Gogh",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Pablo Picasso",
+      "2": "Salvador Dalí",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "8",
+      "1": "7",
+      "2": "6",
+      "3": "5"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Hindi",
+      "2": "Mandarin Chinese",
+      "3": "Spanish"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Berlin",
+      "2": "Ottawa",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "New Delhi",
+      "2": "Ottawa",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Cairo",
+      "2": "Canberra",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Moscow",
+      "2": "Madrid",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Ottawa",
+      "2": "Brasília",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Ottawa",
+      "2": "Berlin",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Brasília",
+      "2": "New Delhi",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Ottawa",
+      "2": "Cairo",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Berlin",
+      "2": "Moscow",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "New Delhi",
+      "2": "Ottawa",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "South America",
+      "2": "Oceania",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Oceania",
+      "2": "Africa",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Oceania",
+      "1": "Asia",
+      "2": "Europe",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Asia",
+      "2": "Europe",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "C6H12O6",
+      "2": "H2O",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "O2",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "C6H12O6",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "8",
+      "1": "9",
+      "2": "10",
+      "3": "7"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Mitochondria",
+      "1": "Cytoplasm",
+      "2": "Ribosome",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1989",
+      "2": "1945",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1989",
+      "2": "1969",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1945",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1969",
+      "2": "1989",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1969",
+      "2": "1989",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Italy",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Spain",
+      "2": "Germany",
+      "3": "France"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Italy",
+      "2": "Germany",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "Brazil",
+      "2": "Spain",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Germany",
+      "2": "Spain",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "9",
+      "1": "11",
+      "2": "12",
+      "3": "10"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Quentin Tarantino",
+      "2": "Steven Spielberg",
+      "3": "Christopher Nolan"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Christopher Nolan",
+      "2": "James Cameron",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "Wes Anderson",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "James Cameron",
+      "2": "Wes Anderson",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Leonardo da Vinci",
+      "2": "Vincent van Gogh",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Leonardo da Vinci",
+      "2": "Edvard Munch",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Salvador Dalí",
+      "2": "Leonardo da Vinci",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Salvador Dalí",
+      "2": "Leonardo da Vinci",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Leonardo da Vinci",
+      "2": "Edvard Munch",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "5",
+      "1": "7",
+      "2": "6",
+      "3": "8"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Mandarin Chinese",
+      "1": "English",
+      "2": "Spanish",
+      "3": "Hindi"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Madrid",
+      "2": "Canberra",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "New Delhi",
+      "2": "Moscow",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Brasília",
+      "2": "Rome",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Madrid",
+      "2": "Ottawa",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Ottawa",
+      "2": "Canberra",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Brasília",
+      "2": "New Delhi",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Madrid",
+      "2": "Canberra",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Madrid",
+      "2": "Ottawa",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Cairo",
+      "1": "Ottawa",
+      "2": "Paris",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Cairo",
+      "2": "Madrid",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Oceania",
+      "2": "South America",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Asia",
+      "2": "Oceania",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "South America",
+      "2": "Africa",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Asia",
+      "2": "Europe",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "South America",
+      "2": "Africa",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "C6H12O6",
+      "2": "O2",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "NaCl",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "H2O",
+      "2": "C6H12O6",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "CO2",
+      "2": "O2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "7",
+      "1": "8",
+      "2": "9",
+      "3": "10"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Mitochondria",
+      "1": "Ribosome",
+      "2": "Nucleus",
+      "3": "Cytoplasm"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1945",
+      "2": "1969",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1776",
+      "2": "44 BC",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1776",
+      "2": "44 BC",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1945",
+      "2": "1776",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "France",
+      "2": "Brazil",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Spain",
+      "2": "Germany",
+      "3": "France"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Germany",
+      "2": "Brazil",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "Spain",
+      "2": "Italy",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Italy",
+      "2": "France",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "9",
+      "1": "12",
+      "2": "10",
+      "3": "11"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Christopher Nolan",
+      "2": "Steven Spielberg",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Christopher Nolan",
+      "2": "Quentin Tarantino",
+      "3": "James Cameron"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Christopher Nolan",
+      "2": "Quentin Tarantino",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Steven Spielberg",
+      "2": "Wes Anderson",
+      "3": "Christopher Nolan"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Vincent van Gogh",
+      "2": "Pablo Picasso",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Edvard Munch",
+      "2": "Leonardo da Vinci",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Edvard Munch",
+      "2": "Leonardo da Vinci",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Salvador Dalí",
+      "2": "Pablo Picasso",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Salvador Dalí",
+      "2": "Edvard Munch",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "5",
+      "1": "8",
+      "2": "7",
+      "3": "6"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Hindi",
+      "1": "English",
+      "2": "Mandarin Chinese",
+      "3": "Spanish"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Cairo",
+      "2": "Ottawa",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "Canberra",
+      "2": "Berlin",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "New Delhi",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Madrid",
+      "2": "Berlin",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Canberra",
+      "2": "Rome",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "New Delhi",
+      "2": "Ottawa",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Cairo",
+      "1": "Moscow",
+      "2": "Brasília",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "New Delhi",
+      "2": "Paris",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Berlin",
+      "2": "Moscow",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Cairo",
+      "1": "New Delhi",
+      "2": "Madrid",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Africa",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Oceania",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Asia",
+      "2": "Europe",
+      "3": "Africa"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "Oceania",
+      "2": "Europe",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Oceania",
+      "1": "South America",
+      "2": "Europe",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "NaCl",
+      "2": "C6H12O6",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "NaCl",
+      "2": "C6H12O6",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "O2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "NaCl",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "10",
+      "1": "9",
+      "2": "7",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Mitochondria",
+      "1": "Ribosome",
+      "2": "Nucleus",
+      "3": "Cytoplasm"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1776",
+      "2": "44 BC",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1969",
+      "2": "1776",
+      "3": "1945"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1989",
+      "2": "44 BC",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Spain",
+      "2": "Brazil",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "France",
+      "2": "Germany",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Brazil",
+      "2": "Germany",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Spain",
+      "2": "Italy",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Germany",
+      "2": "Brazil",
+      "3": "France"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "9",
+      "1": "12",
+      "2": "11",
+      "3": "10"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "Christopher Nolan",
+      "2": "Quentin Tarantino",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Wes Anderson",
+      "2": "Quentin Tarantino",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "James Cameron",
+      "2": "Quentin Tarantino",
+      "3": "Christopher Nolan"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "Steven Spielberg",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "Steven Spielberg",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Vincent van Gogh",
+      "2": "Leonardo da Vinci",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Salvador Dalí",
+      "2": "Pablo Picasso",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Pablo Picasso",
+      "2": "Edvard Munch",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Pablo Picasso",
+      "1": "Leonardo da Vinci",
+      "2": "Salvador Dalí",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Edvard Munch",
+      "2": "Pablo Picasso",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "5",
+      "1": "6",
+      "2": "7",
+      "3": "8"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Mandarin Chinese",
+      "2": "Hindi",
+      "3": "Spanish"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Cairo",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Cairo",
+      "2": "Ottawa",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Cairo",
+      "2": "New Delhi",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "New Delhi",
+      "2": "Madrid",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "Paris",
+      "2": "Ottawa",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Ottawa",
+      "2": "Paris",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Brasília",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Rome",
+      "2": "New Delhi",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Berlin",
+      "2": "Moscow",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Berlin",
+      "2": "Cairo",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "South America",
+      "2": "Africa",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "South America",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Oceania",
+      "1": "South America",
+      "2": "Asia",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Oceania",
+      "2": "Asia",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Oceania",
+      "2": "Asia",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "NaCl",
+      "2": "H2O",
+      "3": "C6H12O6"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "NaCl",
+      "2": "O2",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "NaCl",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "H2O",
+      "2": "O2",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "8",
+      "1": "7",
+      "2": "10",
+      "3": "9"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Ribosome",
+      "1": "Nucleus",
+      "2": "Cytoplasm",
+      "3": "Mitochondria"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1945",
+      "2": "44 BC",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1969",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1969",
+      "2": "44 BC",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1969",
+      "2": "44 BC",
+      "3": "1945"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "1969",
+      "2": "44 BC",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "France",
+      "2": "Brazil",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Brazil",
+      "2": "Spain",
+      "3": "France"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "Spain",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Germany",
+      "2": "Brazil",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Italy",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "12",
+      "1": "11",
+      "2": "10",
+      "3": "9"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Steven Spielberg",
+      "2": "James Cameron",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Christopher Nolan",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "Wes Anderson",
+      "2": "James Cameron",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Steven Spielberg",
+      "2": "James Cameron",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Quentin Tarantino",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Edvard Munch",
+      "2": "Vincent van Gogh",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Leonardo da Vinci",
+      "2": "Vincent van Gogh",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Salvador Dalí",
+      "2": "Leonardo da Vinci",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Leonardo da Vinci",
+      "2": "Salvador Dalí",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Edvard Munch",
+      "2": "Pablo Picasso",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "8",
+      "1": "7",
+      "2": "5",
+      "3": "6"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Mandarin Chinese",
+      "2": "Spanish",
+      "3": "Hindi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Paris",
+      "2": "Rome",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Cairo",
+      "2": "Ottawa",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Rome",
+      "2": "Brasília",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Madrid",
+      "2": "Paris",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Cairo",
+      "1": "Rome",
+      "2": "Ottawa",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Moscow",
+      "2": "Paris",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "New Delhi",
+      "2": "Ottawa",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Rome",
+      "2": "Ottawa",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Moscow",
+      "2": "Paris",
+      "3": "Berlin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Madrid",
+      "2": "Rome",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Europe",
+      "2": "Africa",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Asia",
+      "2": "Oceania",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "Oceania",
+      "2": "Europe",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Asia",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Oceania",
+      "1": "Africa",
+      "2": "South America",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "H2O",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "C6H12O6",
+      "2": "O2",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "C6H12O6",
+      "2": "O2",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "H2O",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "CO2",
+      "2": "C6H12O6",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "9",
+      "1": "7",
+      "2": "10",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Mitochondria",
+      "1": "Cytoplasm",
+      "2": "Ribosome",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1776",
+      "2": "1969",
+      "3": "1945"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1969",
+      "2": "1989",
+      "3": "1945"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1969",
+      "2": "44 BC",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1969",
+      "2": "1989",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1969",
+      "2": "1945",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Germany",
+      "2": "Brazil",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "France",
+      "2": "Brazil",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "Italy",
+      "2": "Spain",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Germany",
+      "2": "Italy",
+      "3": "Spain"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "France",
+      "2": "Italy",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "9",
+      "1": "11",
+      "2": "10",
+      "3": "12"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Wes Anderson",
+      "2": "James Cameron",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "James Cameron",
+      "2": "Quentin Tarantino",
+      "3": "Christopher Nolan"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "James Cameron",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "James Cameron",
+      "2": "Christopher Nolan",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Christopher Nolan",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Vincent van Gogh",
+      "2": "Leonardo da Vinci",
+      "3": "Edvard Munch"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Pablo Picasso",
+      "2": "Edvard Munch",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Pablo Picasso",
+      "2": "Vincent van Gogh",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Pablo Picasso",
+      "2": "Vincent van Gogh",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Pablo Picasso",
+      "2": "Edvard Munch",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "6",
+      "1": "5",
+      "2": "8",
+      "3": "7"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Spanish",
+      "2": "Hindi",
+      "3": "Mandarin Chinese"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Ottawa",
+      "1": "Brasília",
+      "2": "Moscow",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Madrid",
+      "2": "Berlin",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Berlin",
+      "2": "Moscow",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "New Delhi",
+      "2": "Madrid",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Canberra",
+      "2": "Rome",
+      "3": "Ottawa"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Paris",
+      "2": "New Delhi",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Ottawa",
+      "2": "Brasília",
+      "3": "Madrid"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "New Delhi",
+      "2": "Rome",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Berlin",
+      "2": "Cairo",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "New Delhi",
+      "1": "Cairo",
+      "2": "Canberra",
+      "3": "Paris"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Africa",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Oceania",
+      "2": "Europe",
+      "3": "South America"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Asia",
+      "1": "Africa",
+      "2": "South America",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Europe",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Europe",
+      "2": "Oceania",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "O2",
+      "2": "C6H12O6",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "CO2",
+      "1": "O2",
+      "2": "H2O",
+      "3": "C6H12O6"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "NaCl",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "H2O",
+      "1": "NaCl",
+      "2": "C6H12O6",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "NaCl",
+      "1": "O2",
+      "2": "C6H12O6",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "10",
+      "1": "7",
+      "2": "9",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nucleus",
+      "1": "Ribosome",
+      "2": "Cytoplasm",
+      "3": "Mitochondria"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "44 BC",
+      "2": "1945",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1776",
+      "1": "1969",
+      "2": "1945",
+      "3": "1989"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "44 BC",
+      "1": "1776",
+      "2": "1989",
+      "3": "1969"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1969",
+      "2": "1776",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "1776",
+      "2": "1945",
+      "3": "44 BC"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Germany",
+      "1": "Brazil",
+      "2": "Spain",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "France",
+      "1": "Italy",
+      "2": "Brazil",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Brazil",
+      "2": "Italy",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "France",
+      "2": "Italy",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Brazil",
+      "2": "Germany",
+      "3": "France"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "10",
+      "1": "12",
+      "2": "9",
+      "3": "11"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "Christopher Nolan",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Quentin Tarantino",
+      "2": "Christopher Nolan",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "James Cameron",
+      "2": "Christopher Nolan",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "James Cameron",
+      "2": "Quentin Tarantino",
+      "3": "Wes Anderson"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Wes Anderson",
+      "1": "James Cameron",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Leonardo da Vinci",
+      "2": "Vincent van Gogh",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Leonardo da Vinci",
+      "2": "Pablo Picasso",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 1
+  }
+]

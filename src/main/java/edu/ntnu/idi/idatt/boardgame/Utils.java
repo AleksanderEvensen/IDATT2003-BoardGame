@@ -24,6 +24,17 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Generates a random number between the given min and max values.
+     * @param min The minimum value (inclusive).
+     * @param max The maximum value (inclusive).
+     * @return A random integer between min and max.
+     */
+    public static Integer getRandomNumber(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt(max - min + 1) + min;
+    }
+
     // Java Doesnt support import aliasing so the two methods below look a bit uggly and unreadable
 
     public static javafx.scene.paint.Color toJFXColor(
