@@ -1,0 +1,37 @@
+package edu.ntnu.idi.idatt.boardgame.actions.quiz;
+
+import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
+import java.util.logging.Logger;
+import lombok.Getter;
+
+
+/**
+ * Represents an action where a player gets a quiz question.
+ * <p>
+ * This action is triggered when a player lands on a tile with a quiz.
+ * </p>
+ *
+ * @see edu.ntnu.idi.idatt.boardgame.model.Tile
+ * @see edu.ntnu.idi.idatt.boardgame.model.Player
+ * @since v1.0.0
+ */
+public class QuizTileAction implements TileAction {
+
+  private static Logger logger = Logger.getLogger(QuizTileAction.class.getName());
+  @Getter
+  private QuestionCategory category;
+
+  /**
+   * Performs the action on the specified player.
+   *
+   * @param player the player on whom the action is performed
+   * @throws IllegalArgumentException if the player is null
+   * @see Player
+   */
+  @Override
+  public void perform(Player player) {
+
+  }
+}

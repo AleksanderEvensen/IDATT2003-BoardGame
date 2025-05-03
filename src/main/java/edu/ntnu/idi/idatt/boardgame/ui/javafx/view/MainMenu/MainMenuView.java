@@ -221,7 +221,6 @@ public class MainMenuView implements IView {
         contentContainer.getChildren().addAll(playersCard, gamesCard);
 
         root.getChildren().addAll(headerContainer, contentContainer);
-
         return root;
     }
 

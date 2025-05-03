@@ -1,6 +1,12 @@
 package edu.ntnu.idi.idatt.boardgame.game.adapters;
 
-import com.google.gson.*;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import java.lang.reflect.Type;
@@ -19,9 +25,9 @@ public class GameAdapter implements JsonSerializer<Game>, JsonDeserializer<Game>
   /**
    * Serializes a Game object to its JSON representation.
    *
-   * @param src the Game object to serialize
+   * @param src       the Game object to serialize
    * @param typeOfSrc the type of the source object
-   * @param context the context for serialization
+   * @param context   the context for serialization
    * @return the JSON representation of the Game object
    */
   @Override
@@ -35,14 +41,13 @@ public class GameAdapter implements JsonSerializer<Game>, JsonDeserializer<Game>
     obj.addProperty("maxPlayers", src.getMaxPlayers());
     obj.addProperty("numberOfDice", src.getNumberOfDice());
 
-
     return obj;
   }
 
   /**
    * Deserializes a JSON representation to a Game object.
    *
-   * @param json the JSON element to deserialize
+   * @param json    the JSON element to deserialize
    * @param typeOfT the type of the target object
    * @param context the context for deserialization
    * @return the deserialized Game object

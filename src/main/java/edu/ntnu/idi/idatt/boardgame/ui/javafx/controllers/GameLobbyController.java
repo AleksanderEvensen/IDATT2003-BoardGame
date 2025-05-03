@@ -11,6 +11,7 @@ import edu.ntnu.idi.idatt.boardgame.game.events.GameEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameStartedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerMovedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
+import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -63,6 +64,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
       case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(playerTurnChangedEvent);
+      case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
     }
@@ -100,6 +102,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
     gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
     gameLobbyView.updateCurrentRound(gameController.getRoundCount());
+    gameLobbyView.setRollDiceButtonDisabled(false);
   }
 
   /**
@@ -155,6 +158,17 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     } else {
       logger.info("Non-ladder tile action: " + action.getClass().getSimpleName());
     }
+  }
+
+  /**
+   * Handles question asked events.
+   *
+   * @param event the question asked event
+   */
+  private void handleQuestionAsked(QuestionAskedEvent event) {
+    logger.info("Question asked: " + event.getQuestion());
+    gameLobbyView.showQuestion(event.getQuestion());
+    gameLobbyView.setRollDiceButtonDisabled(true);
   }
 
   /**

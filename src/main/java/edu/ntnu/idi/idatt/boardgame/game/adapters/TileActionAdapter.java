@@ -1,18 +1,17 @@
 package edu.ntnu.idi.idatt.boardgame.game.adapters;
 
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
 
 /**
  * Adapter for TileAction, registering all subclasses of TileAction.
  * <p>
- * This adapter uses RuntimeTypeAdapterFactory to handle the serialization and
- * deserialization
- * of TileAction and its subclasses.
+ * This adapter uses RuntimeTypeAdapterFactory to handle the serialization and deserialization of
+ * TileAction and its subclasses.
  * </p>
  *
  * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
@@ -33,11 +32,8 @@ public final class TileActionAdapter {
         .of(TileAction.class, "type")
         .registerSubtype(LadderAction.class, "LADDER")
         .registerSubtype(FreezeAction.class, "FREEZE")
+        .registerSubtype(QuizTileAction.class, "QUIZ")
         .registerSubtype(ImmunityAction.class, "IMMUNITY");
-
-  }
-
-  private TileActionAdapter() {
 
   }
 }

@@ -22,7 +22,11 @@
         "row": 9,
         "col": 1,
         "nextTileId": 2,
-        "previousTileId": 0
+        "previousTileId": 0,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
       },
       "2": {
         "tileId": 2,

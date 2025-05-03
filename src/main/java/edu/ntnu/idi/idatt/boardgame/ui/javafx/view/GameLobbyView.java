@@ -4,6 +4,7 @@ import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
@@ -15,6 +16,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.PlayerBlipView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameLobbyController;
@@ -32,10 +34,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 
 public class GameLobbyView implements IView {
+
+  @Getter
+  private StackPane root;
 
   private Game game;
   private GameController gameController;
@@ -63,7 +69,8 @@ public class GameLobbyView implements IView {
     String gameId = ctx.getParamOrThrow("gameId");
     this.game = Application.getGameManager().getGame(gameId);
     this.players = Application.getPlayerManager().getPlayers();
-    this.gameController = new GameController(game);
+    this.gameController = new GameController(game, Application.getQuizManager());
+
   }
 
   @Override
@@ -76,9 +83,8 @@ public class GameLobbyView implements IView {
 
   @Override
   public Parent createRoot() {
-    BorderPane root = new BorderPane();
-    root.getStyleClass().add("view-root");
-    root.setPadding(new Insets(20));
+    BorderPane content = new BorderPane();
+    content.setPadding(new Insets(20));
 
     gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
@@ -87,19 +93,19 @@ public class GameLobbyView implements IView {
     GameBoard gameBoard = createGameBoard();
     gameBoard.setPadding(new Insets(0, 10, 0, 10));
     gameBoard.setAlignment(Pos.TOP_CENTER);
-    root.setCenter(gameBoard);
+    content.setCenter(gameBoard);
 
     VBox playersCard = createLeftSection();
     playersCard.setPrefWidth(300);
-    root.setLeft(playersCard);
+    content.setLeft(playersCard);
 
     VBox controlPanel = createControlPanel();
-    root.setRight(controlPanel);
+    content.setRight(controlPanel);
 
     gameController.startGame(players);
 
-
-
+    this.root = new StackPane(content);
+    this.root.getStyleClass().add("view-root");
     return root;
   }
 
@@ -321,5 +327,18 @@ public class GameLobbyView implements IView {
       });
     }));
     animationQueue.queue(animation, "Updating last roll label");
+  }
+
+  public void showQuestion(Question question){
+    Timeline animation = new Timeline();
+    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
+      Platform.runLater(() -> {
+        QuestionDialog dialog = new QuestionDialog(root, question, (answer) -> {
+          gameController.answerQuestion(question.getAnswers().get(answer));
+        });
+        dialog.show();
+      });
+    }));
+    animationQueue.queue(animation, "Showing question dialog");
   }
 }
