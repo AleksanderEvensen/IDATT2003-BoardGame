@@ -14,6 +14,9 @@ public class LadderComponent extends Pane {
   private final Color railColor = Color.BLACK;
   private final Color rungColor = Color.BURLYWOOD;
 
+  private double startX, startY, endX, endY;
+  private final int rungs;
+
   /**
    * Creates a ladder between two points with specified number of rungs.
    *
@@ -24,6 +27,45 @@ public class LadderComponent extends Pane {
    * @param rungs  The number of rungs on the ladder
    */
   public LadderComponent(double startX, double startY, double endX, double endY, int rungs) {
+    this.startX = startX;
+    this.startY = startY;
+    this.endX = endX;
+    this.endY = endY;
+    this.rungs = rungs;
+
+    drawLadder();
+    this.setPickOnBounds(false);
+    this.setMouseTransparent(true);
+  }
+
+  /**
+   * Updates the ladder's coordinates and redraws it.
+   *
+   * @param startX The new x-coordinate of the start point
+   * @param startY The new y-coordinate of the start point
+   * @param endX   The new x-coordinate of the end point
+   * @param endY   The new y-coordinate of the end point
+   */
+  public void updateCoordinates(double startX, double startY, double endX, double endY) {
+    this.startX = startX;
+    this.startY = startY;
+    this.endX = endX;
+    this.endY = endY;
+    redraw();
+  }
+
+  /**
+   * Redraws the ladder based on the current dimensions.
+   */
+  private void redraw() {
+    this.getChildren().clear();
+    drawLadder();
+  }
+
+  /**
+   * Draws the ladder using the current parameters.
+   */
+  private void drawLadder() {
     double dx = endX - startX;
     double dy = endY - startY;
     double length = Math.sqrt(dx * dx + dy * dy);
@@ -66,9 +108,6 @@ public class LadderComponent extends Pane {
       rung.setStroke(rungColor);
       this.getChildren().add(rung);
     }
-
-    this.setPickOnBounds(false);
-    this.setMouseTransparent(true);
   }
 
   /**
