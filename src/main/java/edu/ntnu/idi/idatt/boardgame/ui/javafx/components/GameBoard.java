@@ -68,12 +68,12 @@ public class GameBoard extends GridPane {
     add(tileComponent, tile.getCol(), tile.getRow());
     tileComponents.put(tile.getTileId(), tileComponent);
 
-      if (tile.getCol() > maxCol) {
-          maxCol = tile.getCol();
-      }
-      if (tile.getRow() > maxRow) {
-          maxRow = tile.getRow();
-      }
+    if (tile.getCol() > maxCol) {
+      maxCol = tile.getCol();
+    }
+    if (tile.getRow() > maxRow) {
+      maxRow = tile.getRow();
+    }
   }
 
   /**
