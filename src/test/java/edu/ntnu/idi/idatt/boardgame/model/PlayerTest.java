@@ -17,9 +17,8 @@ class PlayerTest {
     player = new Player("Player1", Color.RED);
     startTile = new Tile.Builder(1).build();
     nextTile = new Tile.Builder(2).build();
-    lastTile = new Tile.Builder(3).build(); // Changed ID from 0 to 3
+    lastTile = new Tile.Builder(3).build();
 
-    // Connect tiles in sequence: startTile -> nextTile -> lastTile
     startTile.setNextTile(nextTile);
     nextTile.setPreviousTile(startTile);
     nextTile.setNextTile(lastTile);
