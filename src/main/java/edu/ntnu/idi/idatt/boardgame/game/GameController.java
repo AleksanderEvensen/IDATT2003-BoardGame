@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
 import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
@@ -37,8 +38,8 @@ import lombok.Getter;
  * </ul>
  * </p>
  * <p>
- * The controller extends the Observable class to allow UI components
- * to observe and react to game events without tight coupling.
+ * The controller extends the Observable class to allow UI components to observe and react to game
+ * events without tight coupling.
  * </p>
  * 
  * @see edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable
@@ -91,8 +92,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param players the list of players
    * @throws IllegalArgumentException if the game or players list is null
-   * @throws IllegalStateException    if the number of players doesn't match game
-   *                                  requirements
+   * @throws IllegalStateException if the number of players doesn't match game requirements
    */
   public void startGame(List<Player> players) {
     if (game == null) {
@@ -102,8 +102,8 @@ public class GameController extends Observable<GameController, GameEvent> {
       throw new IllegalArgumentException("Players list cannot be null");
     }
     if (players.size() < game.getMinPlayers() || players.size() > game.getMaxPlayers()) {
-      throw new IllegalStateException("Invalid number of players. Required: "
-          + game.getMinPlayers() + "-" + game.getMaxPlayers() + ", got: " + players.size());
+      throw new IllegalStateException("Invalid number of players. Required: " + game.getMinPlayers()
+          + "-" + game.getMaxPlayers() + ", got: " + players.size());
     }
 
     this.players = new ArrayList<>(players);
@@ -173,19 +173,28 @@ public class GameController extends Observable<GameController, GameEvent> {
     int actualStepsMoved = currentPlayer.move(diceValue);
     Tile endTile = currentPlayer.getCurrentTile();
 
-    notifyObservers(new PlayerMovedEvent(currentPlayer, startTile, endTile, diceValue, actualStepsMoved));
+    notifyObservers(
+        new PlayerMovedEvent(currentPlayer, startTile, endTile, diceValue, actualStepsMoved));
 
     if (endTile.getAction().isPresent()) {
       TileAction tileAction = endTile.getAction().get();
-      if (tileAction instanceof QuizTileAction) {
-        initiateQuizQuestion((QuizTileAction) tileAction, startTile);
-        return;
+      switch (tileAction) {
+        case GoalTileAction goalTileAction -> {
+          gameEnded = true;
+          notifyObservers(new GameEndedEvent(game, currentPlayer));
+        }
+        case QuizTileAction quizTileAction -> {
+          initiateQuizQuestion(quizTileAction, endTile);
+        }
+        default -> {
+          tileAction.perform(currentPlayer);
+          notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+        }
       }
-      tileAction.perform(currentPlayer);
-      notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
     }
-    checkGameEndAndAdvanceToNextPlayer(currentPlayer);
-
+    if (!gameEnded) {
+      advanceToNextPlayer();
+    }
   }
 
   /**
@@ -211,9 +220,9 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Moves a specified player by a given number of steps.
    *
    * @param player the player to move
-   * @param steps  the number of steps to move
+   * @param steps the number of steps to move
    * @return the number of steps the player actually moved
-   * @throws IllegalStateException    if the game hasn't started
+   * @throws IllegalStateException if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    */
   public int movePlayer(Player player, int steps) {
@@ -230,14 +239,6 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     notifyObservers(new PlayerMovedEvent(player, startTile, endTile, steps, actualStepsMoved));
 
-    if (endTile.getAction().isPresent()) {
-      TileAction tileAction = endTile.getAction().get();
-      tileAction.perform(player);
-      notifyObservers(new TileActionEvent(player, endTile, tileAction));
-    }
-
-    checkGameEnd(player);
-
     return actualStepsMoved;
   }
 
@@ -246,7 +247,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param player the player to place
    * @param tileId the ID of the tile to place the player on
-   * @throws IllegalStateException    if the game hasn't started
+   * @throws IllegalStateException if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    * @throws IllegalArgumentException if the tile doesn't exist
    */
@@ -289,7 +290,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     if (!isCorrect) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
-    checkGameEndAndAdvanceToNextPlayer(currentPlayer);
     checkpointTile = null;
   }
 
@@ -313,33 +313,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.checkpointTile = checkpointTile;
     notifyObservers(new QuestionAskedEvent(question, getCurrentPlayer()));
 
-  }
-
-  /**
-   * Checks if the game has ended for the specified player and advances to the next player if not.
-   *
-   * @param player the player to check
-   */
-  private void checkGameEndAndAdvanceToNextPlayer(Player player) {
-    checkGameEnd(player);
-    if (!gameEnded) {
-      advanceToNextPlayer();
-    }
-  }
-
-  /**
-   * Checks if the game has ended (a player has reached the last tile).
-   *
-   * @param player the player to check
-   */
-  private void checkGameEnd(Player player) {
-    if (isQuestionBeingAsked()) {
-      throw new IllegalStateException("Cannot check game end while a question is being asked");
-    }
-    if (lastTile != null && player.getCurrentTile() == lastTile) {
-      gameEnded = true;
-      notifyObservers(new GameEndedEvent(game, player));
-    }
   }
 
   /**
@@ -388,5 +361,4 @@ public class GameController extends Observable<GameController, GameEvent> {
   public List<Player> getPlayers() {
     return List.copyOf(players);
   }
-
 }

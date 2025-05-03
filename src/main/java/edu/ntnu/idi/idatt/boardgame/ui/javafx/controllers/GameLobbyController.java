@@ -179,5 +179,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handleGameEnded(GameEndedEvent event) {
     logger.info("Game ended. Winner: " + event.getWinner().getName());
     gameLobbyView.setRollDiceButtonDisabled(true);
+    gameLobbyView.showWinnerPopup(event.getWinner());
   }
 }

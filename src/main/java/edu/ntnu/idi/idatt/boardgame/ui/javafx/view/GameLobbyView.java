@@ -341,4 +341,51 @@ public class GameLobbyView implements IView {
     }));
     animationQueue.queue(animation, "Showing question dialog");
   }
+
+  public void showWinnerPopup(Player winner) {
+    Timeline animation = new Timeline();
+    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
+      Platform.runLater(() -> {
+        // Create a semi-transparent overlay to dim the background
+        StackPane overlay = new StackPane();
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
+        overlay.setPrefSize(root.getWidth(), root.getHeight());
+
+        // Create the winner card
+        Card winnerCard = new Card();
+        winnerCard.setPrefWidth(400);
+        winnerCard.setPrefHeight(300);
+        winnerCard.setPadding(new Insets(20));
+        winnerCard.setMaxWidth(Region.USE_PREF_SIZE);
+        winnerCard.setMaxHeight(Region.USE_PREF_SIZE);
+
+        // Set up the content for the card
+        VBox content = new VBox(20);
+        content.setAlignment(Pos.CENTER);
+
+        Header header = new Header("Game Over");
+        header.withType(HeaderType.H2).withFontWeight(Weight.BOLD);
+
+        Label winnerLabel = new Label(winner.getName() + " has won the game!");
+        winnerLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
+
+        Button returnButton = new Button("Return to Main Menu");
+        returnButton.setOnAction(evt -> {
+          gameLobbyController.exitGame();
+        });
+
+        content.getChildren().addAll(header, winnerLabel, returnButton);
+        winnerCard.setCenter(content);
+
+        // Center the card in the overlay
+        StackPane.setAlignment(winnerCard, Pos.CENTER);
+        overlay.getChildren().add(winnerCard);
+
+        // Add the overlay to the root
+        root.getChildren().add(overlay);
+      });
+    }));
+
+    animationQueue.queue(animation, "Showing winner popup");
+  }
 }
