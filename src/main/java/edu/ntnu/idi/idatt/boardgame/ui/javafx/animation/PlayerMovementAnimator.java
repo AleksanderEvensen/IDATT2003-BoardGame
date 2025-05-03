@@ -54,7 +54,6 @@ public class PlayerMovementAnimator {
       return new Timeline();
     }
 
-
     List<Point2D> pathPoints = new ArrayList<>();
     Point2D startPoint = getTileCenter(gameBoard, startTile);
     if (startPoint == null) {
@@ -175,7 +174,7 @@ public class PlayerMovementAnimator {
     path.add(startTile);
 
     if (startTile.equals(endTile)) {
-        return path;
+      return path;
     }
 
     Tile currentTile = startTile;
@@ -183,34 +182,34 @@ public class PlayerMovementAnimator {
 
     // Attempt to find a path in both forward and backward directions
     while (!pathFound) {
-        Optional<Tile> nextTile = currentTile.getNextTile();
-        Optional<Tile> previousTile = currentTile.getPreviousTile();
+      Optional<Tile> nextTile = currentTile.getNextTile();
+      Optional<Tile> previousTile = currentTile.getPreviousTile();
 
-        if (nextTile.isPresent() && !path.contains(nextTile.get())) {
-            currentTile = nextTile.get();
-            path.add(currentTile);
-            if (currentTile.equals(endTile)) {
-                pathFound = true;
-            }
-        } else if (previousTile.isPresent() && !path.contains(previousTile.get())) {
-            currentTile = previousTile.get();
-            path.add(currentTile);
-            if (currentTile.equals(endTile)) {
-                pathFound = true;
-            }
-        } else {
-            break;
+      if (nextTile.isPresent() && !path.contains(nextTile.get())) {
+        currentTile = nextTile.get();
+        path.add(currentTile);
+        if (currentTile.equals(endTile)) {
+          pathFound = true;
         }
+      } else if (previousTile.isPresent() && !path.contains(previousTile.get())) {
+        currentTile = previousTile.get();
+        path.add(currentTile);
+        if (currentTile.equals(endTile)) {
+          pathFound = true;
+        }
+      } else {
+        break;
+      }
     }
 
     if (!pathFound) {
-        path.clear();
-        path.add(startTile);
-        path.add(endTile);
+      path.clear();
+      path.add(startTile);
+      path.add(endTile);
     }
 
     return path;
-}
+  }
 
   public static Point2D getTileCenter(GameBoard gameBoard, Tile tile) {
     var tileComponent = gameBoard.getTileComponent(tile.getTileId());
@@ -234,14 +233,12 @@ public class PlayerMovementAnimator {
     if (!points.isEmpty()) {
       path.getElements().add(new MoveTo(
           points.getFirst().getX() - blipView.getLayoutX(),
-          points.getFirst().getY() - blipView.getLayoutY()
-      ));
+          points.getFirst().getY() - blipView.getLayoutY()));
 
       IntStream.range(1, points.size())
           .mapToObj(i -> new LineTo(
               points.get(i).getX() - blipView.getLayoutX(),
-              points.get(i).getY() - blipView.getLayoutY()
-          ))
+              points.get(i).getY() - blipView.getLayoutY()))
           .forEach(path.getElements()::add);
     }
 

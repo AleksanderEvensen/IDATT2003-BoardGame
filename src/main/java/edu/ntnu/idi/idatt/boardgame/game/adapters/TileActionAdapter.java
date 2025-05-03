@@ -19,10 +19,6 @@ import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
  */
 public final class TileActionAdapter {
 
-  private TileActionAdapter() {
-
-  }
-
   /**
    * Returns a RuntimeTypeAdapterFactory for TileAction.
    * <p>
