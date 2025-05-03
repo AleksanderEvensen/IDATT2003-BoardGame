@@ -4,9 +4,6 @@ import static edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts.DEFAULT_F
 
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.StyleConsts;
 import javafx.geometry.Insets;
-import org.kordamp.ikonli.Ikon;
-import org.kordamp.ikonli.javafx.FontIcon;
-
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -15,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import org.kordamp.ikonli.Ikon;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * A customizable tile component for JavaFX-based board games.
@@ -31,23 +30,15 @@ import javafx.scene.text.Font;
 public class TileComponent extends StackPane {
 
 
-  /** Functional interface for handling tile click events. */
-  @FunctionalInterface
-  public interface TileClickHandler {
-    void onTileClicked(TileComponent tile);
-  }
-
-
+  private final Rectangle background;
+  private final Label idLabel;
   private int tileId;
   private boolean isHighlighted;
   private boolean isSelectable;
   private Color backgroundColor;
   private Color highlightColor;
-  private final Rectangle background;
-  private final Label idLabel;
   private FontIcon icon;
   private TileClickHandler clickHandler;
-
   /**
    * Constructs a tile component with a specified ID.
    *
@@ -61,8 +52,7 @@ public class TileComponent extends StackPane {
    * Constructs a tile component with a specified ID and optional icon.
    *
    * @param tileId   The integer ID of the tile.
-   * @param iconCode The Ikon code for the icon (e.g., from FontAwesome, Material,
-   *                 etc.).
+   * @param iconCode The Ikon code for the icon (e.g., from FontAwesome, Material, etc.).
    */
   public TileComponent(int tileId, Ikon iconCode) {
     this.tileId = tileId;
@@ -74,11 +64,8 @@ public class TileComponent extends StackPane {
     setMinHeight(StyleConsts.TILE_DEFAULT_HEIGHT);
     setMinWidth(StyleConsts.TILE_DEFAULT_WIDTH);
 
-
-    background = new Rectangle(
-        StyleConsts.TILE_DEFAULT_WIDTH,
-        StyleConsts.TILE_DEFAULT_HEIGHT
-   );
+    background = new Rectangle(StyleConsts.TILE_DEFAULT_WIDTH,
+        StyleConsts.TILE_DEFAULT_HEIGHT);
     background.setFill(backgroundColor);
     background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
 
@@ -98,8 +85,6 @@ public class TileComponent extends StackPane {
 
     setupMouseHandlers();
   }
-
-
 
   /**
    * Internal method to handle mouse events like hover and click.
@@ -180,23 +165,6 @@ public class TileComponent extends StackPane {
   }
 
   /**
-   * Toggles the highlight on or off for the tile.
-   *
-   * @param highlight true to highlight; false to remove highlight.
-   */
-  public void setHighlighted(boolean highlight) {
-    this.isHighlighted = highlight;
-    if (highlight) {
-      background.setFill(highlightColor);
-      background.setStroke(Color.BLACK);
-      background.setStrokeWidth(1.0);
-    } else {
-      background.setFill(backgroundColor);
-      background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
-    }
-  }
-
-  /**
    * Changes the border stroke color of the tile.
    *
    * @param strokeColor New stroke color.
@@ -246,16 +214,6 @@ public class TileComponent extends StackPane {
   }
 
   /**
-   * Updates the ID on the tile (also updates the label text).
-   *
-   * @param newId The new ID to set.
-   */
-  public void setTileId(int newId) {
-    this.tileId = newId;
-    idLabel.setText(String.valueOf(newId));
-  }
-
-  /**
    * Changes the font used for the ID label.
    *
    * @param font The new font to apply.
@@ -271,16 +229,6 @@ public class TileComponent extends StackPane {
    */
   public void setIdTextColor(Color color) {
     this.idLabel.setTextFill(color);
-  }
-
-  /**
-   * Sets whether the tile can be clicked or not.
-   *
-   * @param selectable true if clickable; false otherwise.
-   */
-  public void setSelectable(boolean selectable) {
-    this.isSelectable = selectable;
-    setOpacity(selectable ? 1.0 : 0.6);
   }
 
   /**
@@ -300,6 +248,16 @@ public class TileComponent extends StackPane {
   }
 
   /**
+   * Updates the ID on the tile (also updates the label text).
+   *
+   * @param newId The new ID to set.
+   */
+  public void setTileId(int newId) {
+    this.tileId = newId;
+    idLabel.setText(String.valueOf(newId));
+  }
+
+  /**
    * @return true if the tile is highlighted
    */
   public boolean isHighlighted() {
@@ -307,9 +265,45 @@ public class TileComponent extends StackPane {
   }
 
   /**
+   * Toggles the highlight on or off for the tile.
+   *
+   * @param highlight true to highlight; false to remove highlight.
+   */
+  public void setHighlighted(boolean highlight) {
+    this.isHighlighted = highlight;
+    if (highlight) {
+      background.setFill(highlightColor);
+      background.setStroke(Color.BLACK);
+      background.setStrokeWidth(1.0);
+    } else {
+      background.setFill(backgroundColor);
+      background.setStroke(StyleConsts.TILE_DEFAULT_BORDER_COLOR);
+    }
+  }
+
+  /**
    * @return true if the tile can be selected (clicked).
    */
   public boolean isSelectable() {
     return isSelectable;
+  }
+
+  /**
+   * Sets whether the tile can be clicked or not.
+   *
+   * @param selectable true if clickable; false otherwise.
+   */
+  public void setSelectable(boolean selectable) {
+    this.isSelectable = selectable;
+    setOpacity(selectable ? 1.0 : 0.6);
+  }
+
+  /**
+   * Functional interface for handling tile click events.
+   */
+  @FunctionalInterface
+  public interface TileClickHandler {
+
+    void onTileClicked(TileComponent tile);
   }
 }

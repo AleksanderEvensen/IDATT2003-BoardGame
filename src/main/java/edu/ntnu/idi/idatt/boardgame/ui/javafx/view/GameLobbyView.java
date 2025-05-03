@@ -69,7 +69,8 @@ public class GameLobbyView implements IView {
     String gameId = ctx.getParamOrThrow("gameId");
     this.game = Application.getGameManager().getGame(gameId);
     this.players = Application.getPlayerManager().getPlayers();
-    this.gameController = new GameController(Application.getQuizManager());
+    this.gameController = new GameController(game, Application.getQuizManager());
+
   }
 
   @Override
@@ -88,6 +89,7 @@ public class GameLobbyView implements IView {
     gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
 
+
     GameBoard gameBoard = createGameBoard();
     gameBoard.setPadding(new Insets(0, 10, 0, 10));
     gameBoard.setAlignment(Pos.TOP_CENTER);
@@ -100,7 +102,7 @@ public class GameLobbyView implements IView {
     VBox controlPanel = createControlPanel();
     content.setRight(controlPanel);
 
-    gameController.startGame(game, players);
+    gameController.startGame(players);
 
     this.root = new StackPane(content);
     this.root.getStyleClass().add("view-root");
@@ -108,7 +110,7 @@ public class GameLobbyView implements IView {
   }
 
   private GameBoard createGameBoard() {
-    GameBoard gameBoard = new GameBoard.Builder(game, animationQueue)
+    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue)
         .addTiles()
         .resolveActionStyles()
         .addPlayers(players)
