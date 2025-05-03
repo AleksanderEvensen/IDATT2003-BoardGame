@@ -17,9 +17,14 @@ class PlayerTest {
     player = new Player("Player1", Color.RED);
     startTile = new Tile.Builder(1).build();
     nextTile = new Tile.Builder(2).build();
-    lastTile = new Tile.Builder(0).build();
+    lastTile = new Tile.Builder(3).build(); // Changed ID from 0 to 3
+
+    // Connect tiles in sequence: startTile -> nextTile -> lastTile
     startTile.setNextTile(nextTile);
     nextTile.setPreviousTile(startTile);
+    nextTile.setNextTile(lastTile);
+    lastTile.setPreviousTile(nextTile);
+
     player.placeOnTile(startTile);
   }
 
@@ -40,7 +45,7 @@ class PlayerTest {
 
   @Test
   void placeOnTile() {
-    Tile newTile = new Tile.Builder(3).build();
+    Tile newTile = new Tile.Builder(4).build();
     player.placeOnTile(newTile);
     assertEquals(newTile, player.getCurrentTile());
   }
@@ -64,19 +69,19 @@ class PlayerTest {
   void move() {
     int stepsMoved = player.move(2);
     assertEquals(2, stepsMoved);
-    assertEquals(startTile, player.getCurrentTile());
+    assertEquals(lastTile, player.getCurrentTile());
   }
 
   @Test
   void moveToTile() {
-    Tile newTile = new Tile.Builder(3).build();
+    Tile newTile = new Tile.Builder(5).build();
     player.moveToTile(newTile);
     assertEquals(newTile, player.getCurrentTile());
   }
 
   @Test
   void moveToTileWithAction() {
-    Tile newTile = new Tile.Builder(3).build();
+    Tile newTile = new Tile.Builder(6).build();
     player.moveToTile(newTile, false);
     assertEquals(newTile, player.getCurrentTile());
   }
