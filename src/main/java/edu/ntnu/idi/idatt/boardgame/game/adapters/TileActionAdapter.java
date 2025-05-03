@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.game.adapters;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
@@ -33,6 +34,7 @@ public final class TileActionAdapter {
         .registerSubtype(LadderAction.class, "LADDER")
         .registerSubtype(FreezeAction.class, "FREEZE")
         .registerSubtype(QuizTileAction.class, "QUIZ")
+        .registerSubtype(GoalTileAction.class, "GOAL")
         .registerSubtype(ImmunityAction.class, "IMMUNITY");
 
   }

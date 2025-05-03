@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.style;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
@@ -23,6 +24,7 @@ public class JavaFxTileStyleApplierFactory implements TileStyleApplierFactory {
   private final JavaFxFreezeStyleApplier freezeStyleApplier = new JavaFxFreezeStyleApplier();
   private final JavaFxImmunityStyleApplier immunityStyleApplier = new JavaFxImmunityStyleApplier();
   private final JavaFxQuizStyleApplier quizStyleApplier = new JavaFxQuizStyleApplier();
+  private final JavaFxGoalStyleApplier goalStyleApplier = new JavaFxGoalStyleApplier();
 
   private JavaFxTileStyleApplierFactory() {
   }
@@ -50,6 +52,9 @@ public class JavaFxTileStyleApplierFactory implements TileStyleApplierFactory {
       }
       case QuizTileAction quizTileAction -> {
         return quizStyleApplier;
+      }
+      case GoalTileAction goalTileAction -> {
+        return goalStyleApplier;
       }
       default -> {
         return null;
