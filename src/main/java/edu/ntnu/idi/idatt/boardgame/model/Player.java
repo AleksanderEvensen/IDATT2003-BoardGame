@@ -72,8 +72,7 @@ public class Player {
   /**
    * Moves the player the given number of steps.
    * <p>
-   * If there are no more tiles to move forward, the player will try to move backward. If moving
-   * backward is not possible anymore, the rest of the steps will be returned.
+   * If there are no more tiles to move forward, the player will stop moving.
    * </p>
    *
    * @param steps the number of steps to move
@@ -81,26 +80,16 @@ public class Player {
    * @see edu.ntnu.idi.idatt.boardgame.model.Tile
    */
   public int move(int steps) {
-    boolean shouldMoveForward = true;
-    int tilesMoved = steps;
-
-    for (int i = 0; i < steps; i++) {
-      boolean didMove = this.moveOneTile(shouldMoveForward);
-
-      if (didMove) {
-        continue;
-      }
-
-      shouldMoveForward = false;
-      didMove = this.moveOneTile(false);
-      if (!didMove) {
-        tilesMoved = i;
-        break;
-      }
+    int tilesMoved = 0;
+    if (steps < 0) {
+      throw new IllegalArgumentException("Steps cannot be negative");
     }
 
+    while (tilesMoved < steps && this.moveOneTile(true)) {
+        tilesMoved++;
+    }
     return tilesMoved;
-  }
+}
 
   /**
    * Moves the player to the specified tile.

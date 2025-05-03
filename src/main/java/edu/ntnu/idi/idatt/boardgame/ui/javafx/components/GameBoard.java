@@ -1,17 +1,20 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
-
+import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.TileStyleService;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.LadderUtils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -21,6 +24,7 @@ import lombok.Getter;
  * A component representing the game board.
  */
 public class GameBoard extends GridPane {
+
   private static final Logger logger = Logger.getLogger(GameBoard.class.getName());
   private final Map<Integer, TileComponent> tileComponents;
 
@@ -31,57 +35,65 @@ public class GameBoard extends GridPane {
   private final AnimationQueue animationQueue;
 
   private final Map<Player, PlayerBlipView> playerBlips;
-
+  private final GameController gameController;
+  private final Map<TileComponent, LadderComponent> ladderComponents;
 
   private int maxCol = 0;
   private int maxRow = 0;
 
   /**
-   * Create a new GameBoard.
+   * Creates a new GameBoard.
+   *
+   * @param gameController The game controller managing the game logic.
+   * @param animationQueue The animation queue for handling animations.
    */
-  public GameBoard(AnimationQueue animationQueue) {
+  public GameBoard(GameController gameController, AnimationQueue animationQueue) {
     this.tileComponents = new HashMap<>();
     this.overlayPane = new Pane();
     this.playerBlips = new ConcurrentHashMap<>();
     this.animationQueue = animationQueue;
+    this.gameController = gameController;
+    this.ladderComponents = new ConcurrentHashMap<>();
+
+    setupResizingListener();
   }
 
   /**
-   * Add a tile to the board.
+   * Adds a tile to the board.
    *
-   * @param tile the tile to add
+   * @param tile The tile to add.
    */
   public void add(Tile tile) {
     TileComponent tileComponent = new TileComponent(tile.getTileId());
     add(tileComponent, tile.getCol(), tile.getRow());
     tileComponents.put(tile.getTileId(), tileComponent);
 
-    if (tile.getCol() > maxCol)
+    if (tile.getCol() > maxCol) {
       maxCol = tile.getCol();
-    if (tile.getRow() > maxRow)
+    }
+    if (tile.getRow() > maxRow) {
       maxRow = tile.getRow();
+    }
   }
 
   /**
-   * Add a player to the board.
+   * Adds a player to the board.
    *
-   * @param player the player to add
-   * @throws IllegalArgumentException if player is not a JavaFXPlayer
+   * @param player The player to add.
+   * @throws IllegalArgumentException If the player is not a JavaFXPlayer.
    */
   public void addPlayer(Player player) {
     PlayerBlipView blipView = new PlayerBlipView(player);
-
     playerBlips.put(player, blipView);
-
     overlayPane.getChildren().add(blipView);
-    javafx.application.Platform.runLater(() -> {
-      javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.millis(50));
+    Platform.runLater(() -> {
+      javafx.animation.PauseTransition pause =
+          new javafx.animation.PauseTransition(javafx.util.Duration.millis(50));
       pause.setOnFinished(e -> {
         Tile currentTile = player.getCurrentTile();
         if (currentTile != null) {
           positionPlayerBlipOnTile(player, blipView, currentTile);
         }
-        /// place the blip on top of the overlay
         blipView.setViewOrder(-1);
       });
       pause.play();
@@ -90,14 +102,12 @@ public class GameBoard extends GridPane {
     logger.fine("Added player " + player.getName() + " to the board");
   }
 
-
   /**
-   * Helper method that positions a player blip on a specific tile.
-   * This handles the actual positioning calculation and setting.
+   * Positions a player blip on a specific tile.
    *
-   * @param player   the player
-   * @param blipView the player's blip view
-   * @param tile     the tile to position on
+   * @param player   The player to position.
+   * @param blipView The player's blip view.
+   * @param tile     The tile to position the player on.
    */
   private void positionPlayerBlipOnTile(Player player, PlayerBlipView blipView, Tile tile) {
     TileComponent tileComponent = tileComponents.get(tile.getTileId());
@@ -133,9 +143,9 @@ public class GameBoard extends GridPane {
   /**
    * Animates a player's movement from one tile to another.
    *
-   * @param player         the player to animate
-   * @param fromTile       the tile to animate from
-   * @param toTile         the tile to animate to
+   * @param player   The player to animate.
+   * @param fromTile The tile to animate from.
+   * @param toTile   The tile to animate to.
    */
   public void animatePlayerMovement(Player player, Tile fromTile, Tile toTile) {
     PlayerBlipView blipView = playerBlips.get(player);
@@ -158,16 +168,15 @@ public class GameBoard extends GridPane {
         " to tile " + toTile.getTileId();
 
     animationQueue.queue(animation, description, 500);
-
     logger.fine("Queued animation: " + description);
   }
 
   /**
    * Animates a player using a ladder from one tile to another.
    *
-   * @param player         the player to animate
-   * @param fromTile       the ladder start tile
-   * @param toTile         the ladder end tile
+   * @param player   The player to animate.
+   * @param fromTile The ladder start tile.
+   * @param toTile   The ladder end tile.
    */
   public void animateLadderMovement(Player player, Tile fromTile, Tile toTile) {
     if (fromTile == null || toTile == null) {
@@ -189,8 +198,8 @@ public class GameBoard extends GridPane {
   /**
    * Gets a TileComponent by its tile ID.
    *
-   * @param tileId the tile ID
-   * @return the tile component, or null if not found
+   * @param tileId The tile ID.
+   * @return The TileComponent, or null if not found.
    */
   public TileComponent getTileComponent(int tileId) {
     return tileComponents.get(tileId);
@@ -199,15 +208,98 @@ public class GameBoard extends GridPane {
   /**
    * Gets a player's blip view.
    *
-   * @param player the player
-   * @return the player's blip view, or null if not found
+   * @param player The player.
+   * @return The player's blip view, or null if not found.
    */
   public PlayerBlipView getPlayerBlipView(Player player) {
     return playerBlips.get(player);
   }
 
   /**
-   * Span the overlay pane to cover the entire grid, and bring it to front.
+   * Adds a ladder component to the board.
+   *
+   * @param tileComponent   The tile component associated with the ladder.
+   * @param ladderComponent The ladder component to add.
+   */
+  public void addLadderComponent(TileComponent tileComponent, LadderComponent ladderComponent) {
+    if (ladderComponents.containsKey(tileComponent)) {
+      logger.warning("Ladder component already exists for tile: " + tileComponent.getTileId());
+      return;
+    }
+    ladderComponents.put(tileComponent, ladderComponent);
+    overlayPane.getChildren().add(ladderComponent);
+  }
+
+  /**
+   * Sets up listeners to fix the position of ladder components and player blips when the window is
+   * resized.
+   */
+  private void setupResizingListener() {
+    this.boundsInParentProperty().addListener((obs, oldBounds, newBounds) -> {
+      redrawLadderComponents();
+      recenterPlayerBlips();
+    });
+
+    tileComponents.values().forEach(tileComponent -> {
+      tileComponent.boundsInParentProperty().addListener((obs, oldBounds, newBounds) -> {
+        redrawLadderComponents();
+        recenterPlayerBlips();
+      });
+    });
+
+    this.sceneProperty().addListener((obs, oldScene, newScene) -> {
+      if (newScene != null) {
+        newScene.widthProperty().addListener((o, oldWidth, newWidth) -> redrawLadderComponents());
+        newScene.heightProperty()
+            .addListener((o, oldHeight, newHeight) -> redrawLadderComponents());
+      }
+    });
+  }
+
+  /**
+   * Redraws all ladder components on the board.
+   */
+  private void redrawLadderComponents() {
+
+    /// applyCss() and layout() is suggested by ChatGPT to ensure the layout is updated before calculating coordinates
+    this.applyCss();
+    this.layout();
+
+    ladderComponents.forEach((tileComponent, ladderComponent) -> {
+      Tile tile = gameController.getGame().getBoard().getTile(tileComponent.getTileId());
+      if (tile != null && tile.getAction().isPresent() && tile.getAction()
+          .get() instanceof LadderAction ladderAction) {
+
+        TileComponent destinationTileComponent =
+            tileComponents.get(ladderAction.getDestinationTile().getTileId());
+
+        List<Double> startCoords = LadderUtils.calculateTileCenter(this, tileComponent);
+        List<Double> endCoords = LadderUtils.calculateTileCenter(this, destinationTileComponent);
+
+        ladderComponent.updateCoordinates(
+            startCoords.get(0),
+            startCoords.get(1),
+            endCoords.get(0),
+            endCoords.get(1)
+        );
+      }
+    });
+  }
+
+  /**
+   * Recenters all player blips on their respective tiles when the window is resized.
+   */
+  public void recenterPlayerBlips() {
+    playerBlips.forEach((player, blipView) -> {
+      Tile currentTile = player.getCurrentTile();
+      if (currentTile != null) {
+        positionPlayerBlipOnTile(player, blipView, currentTile);
+      }
+    });
+  }
+
+  /**
+   * Spans the overlay pane to cover the entire grid and brings it to the front.
    */
   private void spanOverlay() {
     getChildren().remove(overlayPane);
@@ -219,14 +311,26 @@ public class GameBoard extends GridPane {
    * A builder to create and configure a GameBoard.
    */
   public static class Builder {
+
     private final GameBoard gameBoard;
     private final Game game;
 
-    public Builder(Game game, AnimationQueue animationQueue) {
-      this.game = game;
-      gameBoard = new GameBoard(animationQueue);
+    /**
+     * Creates a new Builder for the GameBoard.
+     *
+     * @param gameController The game controller managing the game logic.
+     * @param animationQueue The animation queue for handling animations.
+     */
+    public Builder(GameController gameController, AnimationQueue animationQueue) {
+      this.game = gameController.getGame();
+      gameBoard = new GameBoard(gameController, animationQueue);
     }
 
+    /**
+     * Adds all tiles from the game board to the GameBoard.
+     *
+     * @return This builder for chaining.
+     */
     public Builder addTiles() {
       game.getBoard().getTiles().forEach((id, tile) -> {
         gameBoard.add(tile);
@@ -237,7 +341,7 @@ public class GameBoard extends GridPane {
     /**
      * Resolves and applies styles for all tiles with actions.
      *
-     * @return this builder for chaining
+     * @return This builder for chaining.
      */
     public Builder resolveActionStyles() {
       game.getBoard().getTiles().forEach((id, tile) -> {
@@ -247,10 +351,10 @@ public class GameBoard extends GridPane {
     }
 
     /**
-     * Adds players to the board.
+     * Adds players to the GameBoard.
      *
-     * @param players the players to add
-     * @return this builder for chaining
+     * @param players The players to add.
+     * @return This builder for chaining.
      */
     public Builder addPlayers(List<Player> players) {
       players.forEach(gameBoard::addPlayer);
@@ -258,9 +362,9 @@ public class GameBoard extends GridPane {
     }
 
     /**
-     * Finalize the board: make sure the overlay spans everything.
+     * Finalizes the GameBoard by ensuring the overlay spans everything.
      *
-     * @return the fully built GameBoard
+     * @return The fully built GameBoard.
      */
     public GameBoard build() {
       gameBoard.spanOverlay();

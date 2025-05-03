@@ -8,8 +8,8 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.LadderComponent;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.ui.style.LadderTileStyle;
 import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier;
+import java.util.List;
 import javafx.application.Platform;
-import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 
 /**
@@ -21,9 +21,6 @@ import javafx.scene.paint.Color;
  */
 public class JavaFxLadderStyleApplier implements TileStyleApplier {
 
-  private static final int DEFAULT_RUNGS_PER_100_PIXELS = 3;
-  private static final double MIN_RUNGS = 2;
-  private static final double MAX_RUNGS = 10;
 
   @Override
   public void applyStyle(Tile tile, TileAction action, Object parent) {
@@ -49,24 +46,22 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
       gameBoard.applyCss();
       gameBoard.layout();
 
-      Bounds startBounds = startTile.localToScene(startTile.getBoundsInLocal());
-      Bounds overlayBounds = gameBoard.getOverlayPane().sceneToLocal(startBounds);
-      double startX = overlayBounds.getMinX() + overlayBounds.getWidth() / 2;
-      double startY = overlayBounds.getMinY() + overlayBounds.getHeight() / 2;
+      List<Double> startCoords = LadderUtils.calculateTileCenter(gameBoard, startTile);
+      List<Double> endCoords = LadderUtils.calculateTileCenter(gameBoard, destinationTile);
 
-      Bounds endBounds = destinationTile.localToScene(destinationTile.getBoundsInLocal());
-      Bounds endOverlayBounds = gameBoard.getOverlayPane().sceneToLocal(endBounds);
-      double endX = endOverlayBounds.getMinX() + endOverlayBounds.getWidth() / 2;
-      double endY = endOverlayBounds.getMinY() + endOverlayBounds.getHeight() / 2;
+      Double startX = startCoords.getFirst();
+      Double startY = startCoords.get(1);
+      Double endX = endCoords.get(0);
+      Double endY = endCoords.get(1);
 
       double distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-      int rungs = calculateRungCount(distance);
+      int rungs = LadderUtils.calculateRungCount(distance);
 
       LadderComponent ladderComponent = new LadderComponent(startX, startY, endX, endY, rungs);
-
-      gameBoard.getOverlayPane().getChildren().add(ladderComponent);
+      gameBoard.addLadderComponent(startTile, ladderComponent);
     });
   }
+
 
   /**
    * Finds a TileComponent by its ID in the GameBoard.
@@ -102,14 +97,5 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
     }
   }
 
-  /**
-   * Calculates an appropriate number of rungs based on ladder length.
-   *
-   * @param distance The distance between the start and end points
-   * @return The number of rungs to draw
-   */
-  private int calculateRungCount(double distance) {
-    int calculatedRungs = (int) (distance * DEFAULT_RUNGS_PER_100_PIXELS / 100);
-    return (int) Math.max(MIN_RUNGS, Math.min(calculatedRungs, MAX_RUNGS));
-  }
+
 }

@@ -67,9 +67,9 @@ public class GameController extends Observable<GameController, GameEvent> {
   /**
    * Creates a new GameController instance.
    */
-  public GameController() {
+  public GameController(Game game) {
     super();
-    this.game = null;
+    this.game = game;
     this.players = new ArrayList<>();
     this.currentPlayerIndex = 0;
     this.gameStarted = false;
@@ -80,13 +80,12 @@ public class GameController extends Observable<GameController, GameEvent> {
   /**
    * Starts the game with the specified game and players.
    *
-   * @param game    the game to start
    * @param players the list of players
    * @throws IllegalArgumentException if the game or players list is null
    * @throws IllegalStateException    if the number of players doesn't match game
    *                                  requirements
    */
-  public void startGame(Game game, List<Player> players) {
+  public void startGame(List<Player> players) {
     if (game == null) {
       throw new IllegalArgumentException("Game cannot be null");
     }
@@ -98,7 +97,6 @@ public class GameController extends Observable<GameController, GameEvent> {
           + game.getMinPlayers() + "-" + game.getMaxPlayers() + ", got: " + players.size());
     }
 
-    this.game = game;
     this.players = new ArrayList<>(players);
     this.currentPlayerIndex = 0;
     this.gameStarted = true;
