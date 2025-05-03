@@ -54,6 +54,7 @@ public class PlayerMovementAnimator {
       return new Timeline();
     }
 
+
     List<Point2D> pathPoints = new ArrayList<>();
     Point2D startPoint = getTileCenter(gameBoard, startTile);
     if (startPoint == null) {
@@ -63,6 +64,7 @@ public class PlayerMovementAnimator {
     pathPoints.add(startPoint);
 
     List<Tile> tilePath = calculateTilePath(startTile, endTile);
+
     for (int i = 1; i < tilePath.size(); i++) {
       Point2D point = getTileCenter(gameBoard, tilePath.get(i));
       if (point != null) {
@@ -78,6 +80,7 @@ public class PlayerMovementAnimator {
     }
 
     final Point2D finalDestination = pathPoints.getLast();
+
     Path path = createPath(pathPoints, blipView);
 
     PathTransition pathTransition = new PathTransition();
@@ -97,7 +100,6 @@ public class PlayerMovementAnimator {
       blipView.setLayoutX(finalX);
       blipView.setLayoutY(finalY);
     }));
-
     return new SequentialTransition(pathTransition, positionFixer);
   }
 
@@ -173,38 +175,42 @@ public class PlayerMovementAnimator {
     path.add(startTile);
 
     if (startTile.equals(endTile)) {
-      return path;
+        return path;
     }
 
-    // Try to find forward path
-    boolean foundPath = IntStream.iterate(0, i -> !path.getLast().equals(endTile), i -> i + 1)
-        .mapToObj(i -> path.getLast().getNextTile())
-        .filter(Optional::isPresent)
-        .map(Optional::get)
-        .peek(path::add)
-        .anyMatch(tile -> tile.equals(endTile));
+    Tile currentTile = startTile;
+    boolean pathFound = false;
 
-    // If forward path failed, try backward path
-    if (!foundPath) {
-      path.clear();
-      path.add(startTile);
+    // Attempt to find a path in both forward and backward directions
+    while (!pathFound) {
+        Optional<Tile> nextTile = currentTile.getNextTile();
+        Optional<Tile> previousTile = currentTile.getPreviousTile();
 
-      IntStream.iterate(0, i -> !path.getLast().equals(endTile), i -> i + 1)
-          .mapToObj(i -> path.getLast().getPreviousTile())
-          .filter(Optional::isPresent)
-          .map(Optional::get)
-          .peek(path::add);
+        if (nextTile.isPresent() && !path.contains(nextTile.get())) {
+            currentTile = nextTile.get();
+            path.add(currentTile);
+            if (currentTile.equals(endTile)) {
+                pathFound = true;
+            }
+        } else if (previousTile.isPresent() && !path.contains(previousTile.get())) {
+            currentTile = previousTile.get();
+            path.add(currentTile);
+            if (currentTile.equals(endTile)) {
+                pathFound = true;
+            }
+        } else {
+            break;
+        }
     }
 
-    // If no path found, use start->end directly
-    if (!path.getLast().equals(endTile)) {
-      path.clear();
-      path.add(startTile);
-      path.add(endTile);
+    if (!pathFound) {
+        path.clear();
+        path.add(startTile);
+        path.add(endTile);
     }
 
     return path;
-  }
+}
 
   public static Point2D getTileCenter(GameBoard gameBoard, Tile tile) {
     var tileComponent = gameBoard.getTileComponent(tile.getTileId());

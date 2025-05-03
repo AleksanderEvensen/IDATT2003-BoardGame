@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.game.QuizManager;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -36,6 +37,7 @@ public class Application extends javafx.application.Application {
     private static final LocalFileProvider fileProvider = new LocalFileProvider();
     private static final GameManager gameManager = new GameManager(fileProvider);
     private static final PlayerManager playerManager = new PlayerManager(fileProvider);
+    private static final QuizManager quizManager = new QuizManager(fileProvider);
 
     private static Scene primaryScene;
     private static Stage primaryStage;
@@ -167,6 +169,11 @@ public class Application extends javafx.application.Application {
     public static PlayerManager getPlayerManager() {
         return playerManager;
     }
+
+    public static QuizManager getQuizManager() { return quizManager; }
+
+
+
 
     public static void closeApplication() {
         if (primaryStage != null) {

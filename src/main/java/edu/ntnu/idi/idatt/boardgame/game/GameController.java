@@ -1,7 +1,11 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
+import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -51,6 +55,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private Game game;
   private List<Player> players;
   private int currentPlayerIndex;
+  private QuizManager quizManager;
 
   @Getter
   private boolean gameStarted;
@@ -61,13 +66,16 @@ public class GameController extends Observable<GameController, GameEvent> {
   private List<Integer> lastDiceRolls;
   private final Logger logger = Logger.getLogger(GameController.class.getName());
 
+  private Question currentQuestion;
+  private Tile checkpointTile;
+
   @Getter
   private Integer roundCount = 0;
 
   /**
    * Creates a new GameController instance.
    */
-  public GameController() {
+  public GameController(QuizManager quizManager) {
     super();
     this.game = null;
     this.players = new ArrayList<>();
@@ -75,6 +83,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.gameStarted = false;
     this.gameEnded = false;
     this.lastDiceRolls = new ArrayList<>();
+    this.quizManager = quizManager;
   }
 
   /**
@@ -170,15 +179,14 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     if (endTile.getAction().isPresent()) {
       TileAction tileAction = endTile.getAction().get();
+      if (tileAction instanceof QuizTileAction) {
+        initiateQuizQuestion((QuizTileAction) tileAction, startTile);
+        return;
+      }
       tileAction.perform(currentPlayer);
       notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
     }
-
-    checkGameEnd(currentPlayer);
-
-    if (!gameEnded) {
-      advanceToNextPlayer();
-    }
+    checkGameEndAndAdvanceToNextPlayer(currentPlayer);
 
   }
 
@@ -261,7 +269,65 @@ public class GameController extends Observable<GameController, GameEvent> {
     player.placeOnTile(tile);
 
     notifyObservers(new PlayerMovedEvent(player, oldTile, tile, 0, 0));
+  }
+
+  /**
+   * answers the current quiz question.
+   *
+   * @param answer the answer to the question
+   */
+  public void answerQuestion(String answer) {
+    if (!gameStarted) {
+      throw new IllegalStateException("Game is not started");
+    }
+    if (currentQuestion == null) {
+      throw new IllegalStateException("No question is being asked");
+    }
+
+    boolean isCorrect = currentQuestion.getCorrectAnswer().equals(answer);
+    Player currentPlayer = getCurrentPlayer();
+
+    if (isCorrect) {
+      checkGameEndAndAdvanceToNextPlayer(currentPlayer);
+    } else {
+      placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
+    }
+    currentQuestion = null;
+    checkpointTile = null;
+  }
+
+  /**
+   * Initiates a quiz question for the current player.
+   *
+   * @param tileAction the tile action that triggered the quiz
+   */
+  private void initiateQuizQuestion(QuizTileAction tileAction, Tile checkpointTile) {
+    QuestionCategory category = tileAction.getCategory();
+    Question question;
+    if (category == QuestionCategory.RANDOM) {
+      question = quizManager.getRandomQuestion();
+    } else {
+      question = quizManager.getRandomQuestionFromCategory(category);
+    }
+    if (question == null) {
+      throw new IllegalStateException("No questions available in the selected category");
+    }
+    this.currentQuestion = question;
+    this.checkpointTile = checkpointTile;
+    notifyObservers(new QuestionAskedEvent(question, getCurrentPlayer()));
+
+  }
+
+  /**
+   * Checks if the game has ended for the specified player and advances to the next player if not.
+   *
+   * @param player the player to check
+   */
+  private void checkGameEndAndAdvanceToNextPlayer(Player player) {
     checkGameEnd(player);
+    if (!gameEnded) {
+      advanceToNextPlayer();
+    }
   }
 
   /**
@@ -270,6 +336,9 @@ public class GameController extends Observable<GameController, GameEvent> {
    * @param player the player to check
    */
   private void checkGameEnd(Player player) {
+    if (isQuestionBeingAsked()) {
+      throw new IllegalStateException("Cannot check game end while a question is being asked");
+    }
     if (lastTile != null && player.getCurrentTile() == lastTile) {
       gameEnded = true;
       notifyObservers(new GameEndedEvent(game, player));
@@ -289,6 +358,15 @@ public class GameController extends Observable<GameController, GameEvent> {
     currentPlayerIndex = nextPlayerIndex;
     Player nextPlayer = players.get(currentPlayerIndex);
     notifyObservers(new PlayerTurnChangedEvent(nextPlayer));
+  }
+
+  /**
+   * Checks if a question is currently being asked.
+   *
+   * @return true if a question is being asked, false otherwise
+   */
+  public boolean isQuestionBeingAsked() {
+    return currentQuestion != null;
   }
 
   /**
