@@ -102,6 +102,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
     gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
     gameLobbyView.updateCurrentRound(gameController.getRoundCount());
+    gameLobbyView.setRollDiceButtonDisabled(false);
   }
 
   /**
