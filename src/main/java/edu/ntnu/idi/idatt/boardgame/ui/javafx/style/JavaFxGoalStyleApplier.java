@@ -34,7 +34,7 @@ public class JavaFxGoalStyleApplier implements TileStyleApplier {
     }
 
     Tooltip.install(actionTile,
-        new Tooltip("When a player comes to this til it will trigger the win condition"));
+        new Tooltip("When a player comes to this tile it will trigger the win condition"));
 
     actionTile.setIcon(BoxiconsSolid.FLAG_CHECKERED, 0, Color.BLACK);
     actionTile.setBackgroundColor(Color.valueOf("#EEF20A"));
