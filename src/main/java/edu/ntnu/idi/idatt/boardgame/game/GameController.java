@@ -184,7 +184,8 @@ public class GameController extends Observable<GameController, GameEvent> {
           notifyObservers(new GameEndedEvent(game, currentPlayer));
         }
         case QuizTileAction quizTileAction -> {
-          initiateQuizQuestion(quizTileAction, endTile);
+          initiateQuizQuestion(quizTileAction, startTile);
+          return;
         }
         default -> {
           tileAction.perform(currentPlayer);
@@ -291,6 +292,9 @@ public class GameController extends Observable<GameController, GameEvent> {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
     checkpointTile = null;
+    if (!gameEnded) {
+      advanceToNextPlayer();
+    }
   }
 
   /**
