@@ -443,10 +443,20 @@
         "tileId": 39,
         "row": 9,
         "col": 0,
+        "nextTileId": 40,
         "previousTileId": 38,
         "action": {
           "type": "QUIZ",
           "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "40": {
+        "tileId": 40,
+        "row": 10,
+        "col": 0,
+        "previousTileId": 39,
+        "action": {
+          "type": "GOAL"
         }
       }
     }
