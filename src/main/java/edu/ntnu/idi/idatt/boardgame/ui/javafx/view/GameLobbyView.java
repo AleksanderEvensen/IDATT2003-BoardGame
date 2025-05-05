@@ -20,23 +20,31 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameLobbyController;
+import edu.ntnu.idi.idatt.boardgame.ui.style.FreezeStyle;
+import edu.ntnu.idi.idatt.boardgame.ui.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import lombok.Getter;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class GameLobbyView implements IView {
 
@@ -45,7 +53,6 @@ public class GameLobbyView implements IView {
 
   private Game game;
   private GameController gameController;
-  private List<Player> players;
   private List<DieComponent> diceComponents;
 
   /// labels
@@ -64,13 +71,16 @@ public class GameLobbyView implements IView {
 
   private GameLobbyController gameLobbyController;
 
+  @Getter
+  private ObservableList<Player> observablePlayerList;
+
   @Override
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
     this.game = Application.getGameManager().getGame(gameId);
-    this.players = Application.getPlayerManager().getPlayers();
     this.gameController = new GameController(game, Application.getQuizManager());
-
+    gameController.startGame(Application.getPlayerManager().getPlayers());
+    observablePlayerList = FXCollections.observableArrayList(gameController.getPlayers());
   }
 
   @Override
@@ -78,7 +88,7 @@ public class GameLobbyView implements IView {
     gameLobbyController = null;
     gameController = null;
     game = null;
-    players = null;
+    observablePlayerList = null;
   }
 
   @Override
@@ -101,19 +111,14 @@ public class GameLobbyView implements IView {
     VBox controlPanel = createControlPanel();
     content.setRight(controlPanel);
 
-    gameController.startGame(players);
-
     this.root = new StackPane(content);
     this.root.getStyleClass().add("view-root");
     return root;
   }
 
   private GameBoard createGameBoard() {
-    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue)
-        .addTiles()
-        .resolveActionStyles()
-        .addPlayers(players)
-        .build();
+    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue).addTiles()
+        .resolveActionStyles().addPlayers(gameController.getPlayers()).build();
 
     this.gameBoard = gameBoard;
     return gameBoard;
@@ -122,9 +127,32 @@ public class GameLobbyView implements IView {
   private VBox createLeftSection() {
 
     VBox leftSection = new VBox(10);
-
-    VBox playersList = new VBox(10);
-    playersList.setPadding(new Insets(10));
+    ListView<Player> playersList = new ListView<>(observablePlayerList);
+    playersList.setPadding(new Insets(10, 0, 0, 0));
+    playersList.setCellFactory(list -> {
+      var cell = new ListCell<Player>() {
+        @Override
+        protected void updateItem(Player player, boolean empty) {
+          super.updateItem(player, empty);
+          setText(null);
+          if (empty || player == null) {
+            setGraphic(null);
+          } else {
+            Timeline animation = new Timeline();
+            animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
+              Platform.runLater(() -> {
+                setGraphic(createPlayerListEntry(player));
+              });
+            }));
+            animationQueue.queue(animation, "Updating player list entry");
+          }
+        }
+      };
+      cell.setPadding(new Insets(0, 0, 10, 0));
+      cell.getStyleClass().clear();
+      return cell;
+    });
+    playersList.getStyleClass().clear();
 
     Card playersCard = new Card();
 
@@ -135,7 +163,6 @@ public class GameLobbyView implements IView {
     playersHeader.withType(Header.HeaderType.H4).withFontWeight(Weight.SEMIBOLD);
     playersCard.setTop(playersHeader);
 
-    createPlayerList(playersList);
     playersCard.setCenter(playersList);
 
     Button backToMenuButton = new Button("Back to Menu");
@@ -253,29 +280,46 @@ public class GameLobbyView implements IView {
     return controlPanel;
   }
 
-  private void createPlayerList(VBox playerListContainer) {
-    playerListContainer.getChildren().clear();
-    players.forEach(player -> {
-      HBox playerEntry = new HBox(10);
-      playerEntry.setAlignment(Pos.CENTER_LEFT);
-      playerEntry.setMaxWidth(Double.MAX_VALUE);
-      HBox.setHgrow(playerEntry, Priority.ALWAYS);
+  private Card createPlayerListEntry(Player player) {
+    HBox playerEntry = new HBox(10);
+    playerEntry.setAlignment(Pos.CENTER_LEFT);
+    playerEntry.setMaxWidth(Double.MAX_VALUE);
+    HBox.setHgrow(playerEntry, Priority.ALWAYS);
 
-      Card playerCard = new Card(playerEntry).withRounded(Size.SM);
-      playerCard.setPadding(new Insets(10));
+    Card playerCard = new Card(playerEntry).withRounded(Size.SM);
+    playerCard.setPadding(new Insets(10));
 
-      Label playerNameLabel = new Label(player.getName());
-      playerNameLabel.setMaxWidth(Double.MAX_VALUE);
-      playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Label playerNameLabel = new Label(player.getName());
+    playerNameLabel.setMaxWidth(Double.MAX_VALUE);
+    playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-      Region spacer = new Region();
-      HBox.setHgrow(spacer, Priority.ALWAYS);
+    if (gameController.getCurrentPlayer() == player) {
+      playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+    }
 
-      PlayerBlipView playerBlip = new PlayerBlipView(player);
+    Region spacer = new Region();
+    HBox.setHgrow(spacer, Priority.ALWAYS);
 
-      playerEntry.getChildren().addAll(playerNameLabel, spacer, playerBlip);
-      playerListContainer.getChildren().add(playerCard);
-    });
+    PlayerBlipView playerBlip = new PlayerBlipView(player);
+
+    playerEntry.getChildren().addAll(playerNameLabel, spacer);
+
+    if (player.isImmune()) {
+      FontIcon immunityIcon = new FontIcon("fas-shield-alt");
+      immunityIcon.setIconSize(20);
+      immunityIcon.setIconColor(Paint.valueOf(ImmunityStyle.BACKGROUND_COLOR));
+      playerEntry.getChildren().add(immunityIcon);
+    }
+
+    if (player.isFrozen()) {
+      FontIcon frozenIcon = new FontIcon("fas-snowflake");
+      frozenIcon.setIconSize(20);
+      frozenIcon.setIconColor(Paint.valueOf(FreezeStyle.BACKGROUND_COLOR));
+      playerEntry.getChildren().add(frozenIcon);
+    }
+
+    playerEntry.getChildren().add(playerBlip);
+    return playerCard;
   }
 
 
