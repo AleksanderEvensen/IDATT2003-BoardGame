@@ -25,9 +25,8 @@ import javafx.util.Duration;
 /**
  * Creates smooth animations for player movement on the game board.
  * <p>
- * This class provides methods to animate player blips moving along paths,
- * following tile connections, and special animations for game events like
- * ladders.
+ * This class provides methods to animate player blips moving along paths, following tile
+ * connections, and special animations for game events like ladders.
  * </p>
  */
 public class PlayerMovementAnimator {
@@ -37,8 +36,8 @@ public class PlayerMovementAnimator {
   private static final double LADDER_DURATION_MODIFIER = 1.5;
   private static final int DIRECT_ANIMATION_DURATION = 300;
 
-  public static Animation createPathAnimation(GameBoard gameBoard, Player player,
-      Tile startTile, Tile endTile) {
+  public static Animation createPathAnimation(GameBoard gameBoard, Player player, Tile startTile,
+      Tile endTile) {
     PlayerBlipView blipView = gameBoard.getPlayerBlipView(player);
     if (blipView == null) {
       logger.warning("No blip view found for player: " + player.getName());
@@ -85,9 +84,9 @@ public class PlayerMovementAnimator {
     PathTransition pathTransition = new PathTransition();
     pathTransition.setPath(path);
     pathTransition.setNode(blipView);
-    pathTransition.setDuration(pathPoints.size() > 1
-        ? Duration.millis(DEFAULT_ANIMATION_DURATION * pathPoints.size())
-        : Duration.millis(DIRECT_ANIMATION_DURATION));
+    pathTransition.setDuration(
+        pathPoints.size() > 1 ? Duration.millis(DEFAULT_ANIMATION_DURATION * pathPoints.size())
+            : Duration.millis(DIRECT_ANIMATION_DURATION));
     pathTransition.setCycleCount(1);
     pathTransition.setAutoReverse(false);
 
@@ -102,8 +101,8 @@ public class PlayerMovementAnimator {
     return new SequentialTransition(pathTransition, positionFixer);
   }
 
-  public static Animation createLadderAnimation(GameBoard gameBoard, Player player,
-      Tile fromTile, Tile toTile) {
+  public static Animation createLadderAnimation(GameBoard gameBoard, Player player, Tile fromTile,
+      Tile toTile) {
     PlayerBlipView blipView = gameBoard.getPlayerBlipView(player);
     if (blipView == null) {
       logger.warning("No blip view found for player: " + player.getName());
@@ -140,8 +139,7 @@ public class PlayerMovementAnimator {
       double sineCurve = Math.sin(t * Math.PI) * arcHeight;
       double y = startY + (endY - startY) * t + sineCurve;
 
-      KeyFrame keyFrame = new KeyFrame(
-          Duration.millis(adjustedDuration * t),
+      KeyFrame keyFrame = new KeyFrame(Duration.millis(adjustedDuration * t),
           new javafx.animation.KeyValue(blipView.layoutXProperty(), x),
           new javafx.animation.KeyValue(blipView.layoutYProperty(), y));
       ladderAnimation.getKeyFrames().add(keyFrame);
@@ -180,19 +178,14 @@ public class PlayerMovementAnimator {
     Tile currentTile = startTile;
     boolean pathFound = false;
 
-    // Attempt to find a path in both forward and backward directions
-    while (!pathFound) {
-      Optional<Tile> nextTile = currentTile.getNextTile();
-      Optional<Tile> previousTile = currentTile.getPreviousTile();
+    // Determine the search direction based on tile IDs
+    boolean searchForward = endTile.getTileId() > startTile.getTileId();
 
+    while (!pathFound) {
+      Optional<Tile> nextTile =
+          searchForward ? currentTile.getNextTile() : currentTile.getPreviousTile();
       if (nextTile.isPresent() && !path.contains(nextTile.get())) {
         currentTile = nextTile.get();
-        path.add(currentTile);
-        if (currentTile.equals(endTile)) {
-          pathFound = true;
-        }
-      } else if (previousTile.isPresent() && !path.contains(previousTile.get())) {
-        currentTile = previousTile.get();
         path.add(currentTile);
         if (currentTile.equals(endTile)) {
           pathFound = true;
@@ -222,8 +215,7 @@ public class PlayerMovementAnimator {
     var overlayPane = gameBoard.getOverlayPane();
     Bounds overlayBounds = overlayPane.sceneToLocal(tileBounds);
 
-    return new Point2D(
-        overlayBounds.getMinX() + overlayBounds.getWidth() / 2,
+    return new Point2D(overlayBounds.getMinX() + overlayBounds.getWidth() / 2,
         overlayBounds.getMinY() + overlayBounds.getHeight() / 2);
   }
 
@@ -231,15 +223,12 @@ public class PlayerMovementAnimator {
     Path path = new Path();
 
     if (!points.isEmpty()) {
-      path.getElements().add(new MoveTo(
-          points.getFirst().getX() - blipView.getLayoutX(),
+      path.getElements().add(new MoveTo(points.getFirst().getX() - blipView.getLayoutX(),
           points.getFirst().getY() - blipView.getLayoutY()));
 
-      IntStream.range(1, points.size())
-          .mapToObj(i -> new LineTo(
-              points.get(i).getX() - blipView.getLayoutX(),
-              points.get(i).getY() - blipView.getLayoutY()))
-          .forEach(path.getElements()::add);
+      IntStream.range(1, points.size()).mapToObj(
+          i -> new LineTo(points.get(i).getX() - blipView.getLayoutX(),
+              points.get(i).getY() - blipView.getLayoutY())).forEach(path.getElements()::add);
     }
 
     return path;

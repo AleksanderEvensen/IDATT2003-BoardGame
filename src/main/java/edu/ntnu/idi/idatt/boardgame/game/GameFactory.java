@@ -40,7 +40,6 @@ public class GameFactory {
 
   /**
    * Create a game from a board.
-   *
    */
   private static Gson getGson() {
     return new GsonBuilder()
