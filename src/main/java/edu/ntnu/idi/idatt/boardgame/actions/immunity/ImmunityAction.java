@@ -13,12 +13,13 @@ public class ImmunityAction implements TileAction {
    * @see edu.ntnu.idi.idatt.boardgame.model.Player
    */
   @Override
-  public void perform(Player player) {
+  public boolean perform(Player player) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null");
     }
 
     player.setImmunityTurns(player.getImmunityTurns() + 1);
+    return true;
   }
 
 }

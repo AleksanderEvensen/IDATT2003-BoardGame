@@ -27,11 +27,12 @@ public class QuizTileAction implements TileAction {
    * Performs the action on the specified player.
    *
    * @param player the player on whom the action is performed
+   * @return true if the action was performed successfully, false otherwise
    * @throws IllegalArgumentException if the player is null
    * @see Player
    */
   @Override
-  public void perform(Player player) {
-
+  public boolean perform(Player player) {
+    return true;
   }
 }

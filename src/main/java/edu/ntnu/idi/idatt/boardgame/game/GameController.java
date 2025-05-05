@@ -57,6 +57,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private List<Player> players;
   private int currentPlayerIndex;
   private final QuizManager quizManager;
+
   @Getter
   private boolean gameStarted;
   @Getter
@@ -180,8 +181,10 @@ public class GameController extends Observable<GameController, GameEvent> {
           return;
         }
         default -> {
-          tileAction.perform(currentPlayer);
-          notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+          boolean triggered = tileAction.perform(currentPlayer);
+          if (triggered) {
+            notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+          }
         }
       }
     }
@@ -280,7 +283,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     Player currentPlayer = getCurrentPlayer();
     currentQuestion = null;
 
-    if (!isCorrect) {
+    if (!isCorrect && !currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
     checkpointTile = null;
