@@ -37,7 +37,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   /**
    * Creates a new GameLobbyController.
    *
-   * @param gameLobbyView       the game view
+   * @param gameLobbyView  the game view
    * @param gameController the game controller
    */
   public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
@@ -63,7 +63,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
-      case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(playerTurnChangedEvent);
+      case PlayerTurnChangedEvent playerTurnChangedEvent ->
+          handlePlayerTurnChangeEvent(playerTurnChangedEvent);
       case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
@@ -103,6 +104,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
     gameLobbyView.updateCurrentRound(gameController.getRoundCount());
     gameLobbyView.setRollDiceButtonDisabled(false);
+    gameLobbyView.getObservablePlayerList().setAll(gameController.getPlayers());
   }
 
   /**
@@ -143,7 +145,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     if (action instanceof LadderAction ladderAction) {
       Tile startTile = event.getTile();
       Tile destinationTile = ladderAction.getDestinationTile();
-
 
       if (startTile != destinationTile) {
         logger.info("Triggering ladder animation");
