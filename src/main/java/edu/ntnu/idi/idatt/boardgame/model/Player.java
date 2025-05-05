@@ -13,8 +13,10 @@ import lombok.Setter;
  */
 public class Player {
 
-  private @Getter @Setter String name;
-  private @Getter @Setter Color color;
+  private @Getter
+  @Setter String name;
+  private @Getter
+  @Setter Color color;
   private Tile currentTile;
   private transient int frozenTurns = 0;
   private transient int immunityTurns = 0;
@@ -22,7 +24,7 @@ public class Player {
   /**
    * Constructs a player with the specified ID and name.
    *
-   * @param name the player's name
+   * @param name  the player's name
    * @param color the player's color
    */
   public Player(String name, Color color) {
@@ -86,10 +88,10 @@ public class Player {
     }
 
     while (tilesMoved < steps && this.moveOneTile(true)) {
-        tilesMoved++;
+      tilesMoved++;
     }
     return tilesMoved;
-}
+  }
 
   /**
    * Moves the player to the specified tile.
@@ -104,7 +106,7 @@ public class Player {
   /**
    * Moves the player to the specified tile and optionally performs the tile's action.
    *
-   * @param tile the tile to move to
+   * @param tile                the tile to move to
    * @param shouldPerformAction true to perform the tile's action, false otherwise
    * @see edu.ntnu.idi.idatt.boardgame.model.Tile
    */
@@ -171,5 +173,16 @@ public class Player {
    */
   public boolean isImmune() {
     return immunityTurns > 0;
+  }
+
+  @Override
+  public String toString() {
+    return "Player{" +
+        "name='" + name + '\'' +
+        ", color=" + color +
+        ", currentTile=" + currentTile +
+        ", frozenTurns=" + frozenTurns +
+        ", immunityTurns=" + immunityTurns +
+        '}';
   }
 }

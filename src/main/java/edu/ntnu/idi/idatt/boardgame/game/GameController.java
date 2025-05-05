@@ -56,7 +56,8 @@ public class GameController extends Observable<GameController, GameEvent> {
   private Game game;
   private List<Player> players;
   private int currentPlayerIndex;
-  private QuizManager quizManager;
+  private final QuizManager quizManager;
+
   @Getter
   private boolean gameStarted;
   @Getter
@@ -102,11 +103,14 @@ public class GameController extends Observable<GameController, GameEvent> {
           + "-" + game.getMaxPlayers() + ", got: " + players.size());
     }
 
-    this.players = new ArrayList<>(players);
     this.currentPlayerIndex = 0;
     this.gameStarted = true;
     this.gameEnded = false;
     this.roundCount = 1;
+
+    /// this will prevent updating the global player list
+    /// and makes sure the player state is internal within the game
+    addPlayers(players);
 
     findLastTile();
     Tile startTile = game.getBoard().getTile(0);
@@ -114,11 +118,11 @@ public class GameController extends Observable<GameController, GameEvent> {
       throw new IllegalStateException("Game board doesn't have a start tile (ID: 0)");
     }
 
-    for (Player player : players) {
+    for (Player player : this.players) {
       player.placeOnTile(startTile);
     }
 
-    notifyObservers(new GameStartedEvent(game, players));
+    notifyObservers(new GameStartedEvent(game, this.players));
   }
 
   /**
@@ -151,13 +155,6 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     Player currentPlayer = getCurrentPlayer();
 
-    if (currentPlayer.isFrozen()) {
-      currentPlayer.setFrozenTurns(currentPlayer.getFrozenTurns() - 1);
-      notifyObservers(new PlayerSkippedTurnEvent(currentPlayer, "Player is frozen"));
-      advanceToNextPlayer();
-      return;
-    }
-
     List<Integer> diceRolls = rollDice();
     int diceValue = diceRolls.stream().mapToInt(Integer::intValue).sum();
     this.lastDiceRolls = diceRolls;
@@ -180,7 +177,8 @@ public class GameController extends Observable<GameController, GameEvent> {
           notifyObservers(new GameEndedEvent(game, currentPlayer));
         }
         case QuizTileAction quizTileAction -> {
-          initiateQuizQuestion(quizTileAction, endTile);
+          initiateQuizQuestion(quizTileAction, startTile);
+          return;
         }
         default -> {
           boolean triggered = tileAction.perform(currentPlayer);
@@ -289,6 +287,9 @@ public class GameController extends Observable<GameController, GameEvent> {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
     checkpointTile = null;
+    if (!gameEnded) {
+      advanceToNextPlayer();
+    }
   }
 
   /**
@@ -313,6 +314,14 @@ public class GameController extends Observable<GameController, GameEvent> {
 
   }
 
+  private void addPlayers(List<Player> players) {
+    // create new player instances to avoid modifiying the original list
+    for (Player player : players) {
+      Player newPlayer = new Player(player.getName(), player.getColor());
+      this.players.add(newPlayer);
+    }
+  }
+
   /**
    * Advances to the next player in turn order.
    */
@@ -326,6 +335,14 @@ public class GameController extends Observable<GameController, GameEvent> {
     currentPlayerIndex = nextPlayerIndex;
     Player nextPlayer = players.get(currentPlayerIndex);
     notifyObservers(new PlayerTurnChangedEvent(nextPlayer));
+
+    Player currentPlayer = getCurrentPlayer();
+
+    if (currentPlayer.isFrozen()) {
+      currentPlayer.setFrozenTurns(currentPlayer.getFrozenTurns() - 1);
+      notifyObservers(new PlayerSkippedTurnEvent(currentPlayer, "Player is frozen"));
+      advanceToNextPlayer();
+    }
   }
 
   /**

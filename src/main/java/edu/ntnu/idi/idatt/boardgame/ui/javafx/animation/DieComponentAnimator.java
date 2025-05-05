@@ -1,8 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.animation;
 
-import java.util.stream.IntStream;
-
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
+import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
