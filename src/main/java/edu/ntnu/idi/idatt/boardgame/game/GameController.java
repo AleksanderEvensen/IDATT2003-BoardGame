@@ -88,7 +88,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param players the list of players
    * @throws IllegalArgumentException if the game or players list is null
-   * @throws IllegalStateException if the number of players doesn't match game requirements
+   * @throws IllegalStateException    if the number of players doesn't match game requirements
    */
   public void startGame(List<Player> players) {
     if (game == null) {
@@ -213,9 +213,9 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Moves a specified player by a given number of steps.
    *
    * @param player the player to move
-   * @param steps the number of steps to move
+   * @param steps  the number of steps to move
    * @return the number of steps the player actually moved
-   * @throws IllegalStateException if the game hasn't started
+   * @throws IllegalStateException    if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    */
   public int movePlayer(Player player, int steps) {
@@ -240,7 +240,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param player the player to place
    * @param tileId the ID of the tile to place the player on
-   * @throws IllegalStateException if the game hasn't started
+   * @throws IllegalStateException    if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    * @throws IllegalArgumentException if the tile doesn't exist
    */
