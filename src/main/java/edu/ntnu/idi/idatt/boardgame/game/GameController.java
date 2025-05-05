@@ -1,17 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
+import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
-import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
-import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.game.events.DiceRolledEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEndedEvent;
@@ -20,10 +12,17 @@ import edu.ntnu.idi.idatt.boardgame.game.events.GameStartedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerMovedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerSkippedTurnEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
+import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
+import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.Getter;
 
 /**
@@ -41,7 +40,7 @@ import lombok.Getter;
  * The controller extends the Observable class to allow UI components to observe and react to game
  * events without tight coupling.
  * </p>
- * 
+ *
  * @see edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable
  * @see edu.ntnu.idi.idatt.boardgame.game.events.GameEvent
  * @see edu.ntnu.idi.idatt.boardgame.model.Game
@@ -52,21 +51,18 @@ import lombok.Getter;
 public class GameController extends Observable<GameController, GameEvent> {
 
 
+  private final Logger logger = Logger.getLogger(GameController.class.getName());
   @Getter
   private Game game;
   private List<Player> players;
   private int currentPlayerIndex;
   private QuizManager quizManager;
-
   @Getter
   private boolean gameStarted;
-
   @Getter
   private boolean gameEnded;
   private Tile lastTile;
   private List<Integer> lastDiceRolls;
-  private final Logger logger = Logger.getLogger(GameController.class.getName());
-
   private Question currentQuestion;
   private Tile checkpointTile;
 
@@ -92,7 +88,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param players the list of players
    * @throws IllegalArgumentException if the game or players list is null
-   * @throws IllegalStateException if the number of players doesn't match game requirements
+   * @throws IllegalStateException    if the number of players doesn't match game requirements
    */
   public void startGame(List<Player> players) {
     if (game == null) {
@@ -187,8 +183,10 @@ public class GameController extends Observable<GameController, GameEvent> {
           initiateQuizQuestion(quizTileAction, endTile);
         }
         default -> {
-          tileAction.perform(currentPlayer);
-          notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+          boolean triggered = tileAction.perform(currentPlayer);
+          if (triggered) {
+            notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+          }
         }
       }
     }
@@ -220,9 +218,9 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Moves a specified player by a given number of steps.
    *
    * @param player the player to move
-   * @param steps the number of steps to move
+   * @param steps  the number of steps to move
    * @return the number of steps the player actually moved
-   * @throws IllegalStateException if the game hasn't started
+   * @throws IllegalStateException    if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    */
   public int movePlayer(Player player, int steps) {
@@ -247,7 +245,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param player the player to place
    * @param tileId the ID of the tile to place the player on
-   * @throws IllegalStateException if the game hasn't started
+   * @throws IllegalStateException    if the game hasn't started
    * @throws IllegalArgumentException if the player is not in the game
    * @throws IllegalArgumentException if the tile doesn't exist
    */
@@ -287,7 +285,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     Player currentPlayer = getCurrentPlayer();
     currentQuestion = null;
 
-    if (!isCorrect) {
+    if (!isCorrect && currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
     checkpointTile = null;
