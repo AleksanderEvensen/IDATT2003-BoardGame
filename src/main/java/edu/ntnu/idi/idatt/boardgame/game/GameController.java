@@ -283,7 +283,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     Player currentPlayer = getCurrentPlayer();
     currentQuestion = null;
 
-    if (!isCorrect && currentPlayer.isImmune()) {
+    if (!isCorrect && !currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
     checkpointTile = null;
