@@ -26,10 +26,13 @@ import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -89,7 +92,6 @@ public class GameLobbyView implements IView {
     gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
 
-
     GameBoard gameBoard = createGameBoard();
     gameBoard.setPadding(new Insets(0, 10, 0, 10));
     gameBoard.setAlignment(Pos.TOP_CENTER);
@@ -110,11 +112,8 @@ public class GameLobbyView implements IView {
   }
 
   private GameBoard createGameBoard() {
-    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue)
-        .addTiles()
-        .resolveActionStyles()
-        .addPlayers(players)
-        .build();
+    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue).addTiles()
+        .resolveActionStyles().addPlayers(players).build();
 
     this.gameBoard = gameBoard;
     return gameBoard;
@@ -124,8 +123,26 @@ public class GameLobbyView implements IView {
 
     VBox leftSection = new VBox(10);
 
-    VBox playersList = new VBox(10);
-    playersList.setPadding(new Insets(10));
+    ListView<Player> playersList = new ListView<>(FXCollections.observableArrayList(players));
+    playersList.setPadding(new Insets(10, 0, 0, 0));
+    playersList.setCellFactory(list -> {
+      var cell = new ListCell<Player>() {
+        @Override
+        protected void updateItem(Player player, boolean empty) {
+          super.updateItem(player, empty);
+          setText(null);
+          if (empty || player == null) {
+            setGraphic(null);
+          } else {
+            setGraphic(createPlayerListEntry(player));
+          }
+        }
+      };
+      cell.setPadding(new Insets(0, 0, 10, 0));
+      cell.getStyleClass().clear();
+      return cell;
+    });
+    playersList.getStyleClass().clear();
 
     Card playersCard = new Card();
 
@@ -136,7 +153,6 @@ public class GameLobbyView implements IView {
     playersHeader.withType(Header.HeaderType.H4).withFontWeight(Weight.SEMIBOLD);
     playersCard.setTop(playersHeader);
 
-    createPlayerList(playersList);
     playersCard.setCenter(playersList);
 
     Button backToMenuButton = new Button("Back to Menu");
@@ -170,14 +186,13 @@ public class GameLobbyView implements IView {
 
     diceComponents = new ArrayList<>();
     IntStream.range(0, game.getNumberOfDice()).forEach(i -> {
-        DieComponent dieComponent = new DieComponent();
-        dieComponent.setValue(1);
-        diceComponents.add(dieComponent);
+      DieComponent dieComponent = new DieComponent();
+      dieComponent.setValue(1);
+      diceComponents.add(dieComponent);
     });
 
     diceContainer.getChildren().addAll(diceComponents);
     diceControlPanel.getChildren().add(diceContainer);
-
 
     /// last roll
     HBox lastRollContainer = new HBox(10);
@@ -195,9 +210,9 @@ public class GameLobbyView implements IView {
 
     rollButton = new Button("Roll Dice");
     rollButton.setOnAction(e -> {
-        if (gameController.isGameStarted() && !gameController.isGameEnded()) {
-            gameController.rollDiceAndMoveCurrentPlayer();
-        }
+      if (gameController.isGameStarted() && !gameController.isGameEnded()) {
+        gameController.rollDiceAndMoveCurrentPlayer();
+      }
     });
 
     diceControlPanel.getChildren().add(rollButton);
@@ -253,35 +268,32 @@ public class GameLobbyView implements IView {
     controlPanel.getChildren().add(gameInfoCard);
 
     return controlPanel;
-}
+  }
 
-  private void createPlayerList(VBox playerListContainer) {
-    playerListContainer.getChildren().clear();
-    players.forEach(player -> {
-      HBox playerEntry = new HBox(10);
-      playerEntry.setAlignment(Pos.CENTER_LEFT);
-      playerEntry.setMaxWidth(Double.MAX_VALUE);
-      HBox.setHgrow(playerEntry, Priority.ALWAYS);
+  private Card createPlayerListEntry(Player player) {
+    HBox playerEntry = new HBox(10);
+    playerEntry.setAlignment(Pos.CENTER_LEFT);
+    playerEntry.setMaxWidth(Double.MAX_VALUE);
+    HBox.setHgrow(playerEntry, Priority.ALWAYS);
 
-      Card playerCard = new Card(playerEntry).withRounded(Size.SM);
-      playerCard.setPadding(new Insets(10));
+    Card playerCard = new Card(playerEntry).withRounded(Size.SM);
+    playerCard.setPadding(new Insets(10));
 
-      Label playerNameLabel = new Label(player.getName());
-      playerNameLabel.setMaxWidth(Double.MAX_VALUE);
-      playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Label playerNameLabel = new Label(player.getName());
+    playerNameLabel.setMaxWidth(Double.MAX_VALUE);
+    playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-      Region spacer = new Region();
-      HBox.setHgrow(spacer, Priority.ALWAYS);
+    Region spacer = new Region();
+    HBox.setHgrow(spacer, Priority.ALWAYS);
 
-      PlayerBlipView playerBlip = new PlayerBlipView(player);
+    PlayerBlipView playerBlip = new PlayerBlipView(player);
 
-      playerEntry.getChildren().addAll(playerNameLabel, spacer, playerBlip);
-      playerListContainer.getChildren().add(playerCard);
-    });
+    playerEntry.getChildren().addAll(playerNameLabel, spacer, playerBlip);
+    return playerCard;
   }
 
 
-  public void animateDice(List<Integer> values){
+  public void animateDice(List<Integer> values) {
     IntStream.range(0, values.size()).forEach(i -> {
       DieComponent die = diceComponents.get(i);
       animationQueue.queue(DieComponentAnimator.animateRoll(die, values.get(i)), "Rolling die");
@@ -310,13 +322,13 @@ public class GameLobbyView implements IView {
   }
 
   public void setRollDiceButtonDisabled(boolean disabled) {
-   Timeline animation = new Timeline();
+    Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-        Platform.runLater(() -> {
-          rollButton.setDisable(disabled);
-        });
-      }));
-      animationQueue.queue(animation, "Toggling roll dice button deactivation");
+      Platform.runLater(() -> {
+        rollButton.setDisable(disabled);
+      });
+    }));
+    animationQueue.queue(animation, "Toggling roll dice button deactivation");
   }
 
   public void updateLastRollLabel(int value) {
@@ -329,7 +341,7 @@ public class GameLobbyView implements IView {
     animationQueue.queue(animation, "Updating last roll label");
   }
 
-  public void showQuestion(Question question){
+  public void showQuestion(Question question) {
     Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
       Platform.runLater(() -> {
