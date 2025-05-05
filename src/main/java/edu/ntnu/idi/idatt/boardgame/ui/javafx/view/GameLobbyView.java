@@ -28,8 +28,6 @@ import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -71,16 +69,12 @@ public class GameLobbyView implements IView {
 
   private GameLobbyController gameLobbyController;
 
-  @Getter
-  private ObservableList<Player> observablePlayerList;
-
   @Override
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
     this.game = Application.getGameManager().getGame(gameId);
     this.gameController = new GameController(game, Application.getQuizManager());
     gameController.startGame(Application.getPlayerManager().getPlayers());
-    observablePlayerList = FXCollections.observableArrayList(gameController.getPlayers());
   }
 
   @Override
@@ -88,7 +82,6 @@ public class GameLobbyView implements IView {
     gameLobbyController = null;
     gameController = null;
     game = null;
-    observablePlayerList = null;
   }
 
   @Override
@@ -127,7 +120,7 @@ public class GameLobbyView implements IView {
   private VBox createLeftSection() {
 
     VBox leftSection = new VBox(10);
-    ListView<Player> playersList = new ListView<>(observablePlayerList);
+    ListView<Player> playersList = new ListView<>(this.gameLobbyController.getPlayers());
     playersList.setPadding(new Insets(10, 0, 0, 0));
     playersList.setCellFactory(list -> {
       var cell = new ListCell<Player>() {

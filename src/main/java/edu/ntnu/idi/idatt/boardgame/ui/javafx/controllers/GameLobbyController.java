@@ -18,6 +18,9 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import lombok.Getter;
 
 /**
  * Controller that connects the GameController with the GameBoard UI component.
@@ -33,6 +36,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private final GameLobbyView gameLobbyView;
   private final GameController gameController;
 
+  @Getter
+  private ObservableList<Player> players;
+
 
   /**
    * Creates a new GameLobbyController.
@@ -43,6 +49,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
     this.gameLobbyView = gameLobbyView;
     this.gameController = gameController;
+
+    this.players = FXCollections.observableArrayList(gameController.getPlayers());
 
     gameController.addListener(this);
 
@@ -63,8 +71,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
-      case PlayerTurnChangedEvent playerTurnChangedEvent ->
-          handlePlayerTurnChangeEvent(playerTurnChangedEvent);
+      case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(
+          playerTurnChangedEvent);
       case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
@@ -104,7 +112,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
     gameLobbyView.updateCurrentRound(gameController.getRoundCount());
     gameLobbyView.setRollDiceButtonDisabled(false);
-    gameLobbyView.getObservablePlayerList().setAll(gameController.getPlayers());
+    this.players.setAll(gameController.getPlayers());
   }
 
   /**
@@ -113,13 +121,11 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the player moved event
    */
   private void handlePlayerMoved(PlayerMovedEvent event) {
-    logger.info("Player " + event.getPlayer().getName() + " moved from tile " +
-        (event.getFromTile() != null ? event.getFromTile().getTileId() : "null") +
-        " to tile " + event.getToTile().getTileId());
+    logger.info("Player " + event.getPlayer().getName() + " moved from tile "
+        + (event.getFromTile() != null ? event.getFromTile().getTileId() : "null") + " to tile "
+        + event.getToTile().getTileId());
 
-    gameLobbyView.getGameBoard().animatePlayerMovement(
-        event.getPlayer(),
-        event.getFromTile(),
+    gameLobbyView.getGameBoard().animatePlayerMovement(event.getPlayer(), event.getFromTile(),
         event.getToTile());
     gameLobbyView.setRollDiceButtonDisabled(false);
 
@@ -148,11 +154,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
       if (startTile != destinationTile) {
         logger.info("Triggering ladder animation");
-        gameLobbyView.getGameBoard().animateLadderMovement(
-            player,
-            startTile,
-            destinationTile
-        );
+        gameLobbyView.getGameBoard().animateLadderMovement(player, startTile, destinationTile);
       } else {
         logger.warning("Invalid tiles for ladder animation");
       }
