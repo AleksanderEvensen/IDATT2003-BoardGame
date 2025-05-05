@@ -1,14 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.NonNull;
 
 /**
@@ -16,9 +15,9 @@ import lombok.NonNull;
  */
 public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
-  private List<Player> players = new ArrayList<>();
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
+  private List<Player> players = new ArrayList<>();
 
   /**
    * Constructs a PlayerManager with the specified file provider.
@@ -64,7 +63,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
   /**
    * Saves players to a file.
    *
-   * @param path the path to save to
+   * @param path    the path to save to
    * @param players the players to save
    */
   public void savePlayers(String path, List<Player> players) {
@@ -127,7 +126,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
   /**
    * Updates player information.
    *
-   * @param playerId the ID of the player to update
+   * @param playerId      the ID of the player to update
    * @param updatedPlayer the player with updated information
    * @return true if the player was updated, false if not found
    */
@@ -159,9 +158,9 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
   /**
    * Updates player information by finding the player in the list
-   * 
-   * @param player the player to update
-   * @param newName the new name for the player
+   *
+   * @param player   the player to update
+   * @param newName  the new name for the player
    * @param newColor the new color for the player
    * @return true if the player was updated, false if not found
    */

@@ -89,7 +89,6 @@ public class GameLobbyView implements IView {
     gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
 
-
     GameBoard gameBoard = createGameBoard();
     gameBoard.setPadding(new Insets(0, 10, 0, 10));
     gameBoard.setAlignment(Pos.TOP_CENTER);
@@ -170,14 +169,13 @@ public class GameLobbyView implements IView {
 
     diceComponents = new ArrayList<>();
     IntStream.range(0, game.getNumberOfDice()).forEach(i -> {
-        DieComponent dieComponent = new DieComponent();
-        dieComponent.setValue(1);
-        diceComponents.add(dieComponent);
+      DieComponent dieComponent = new DieComponent();
+      dieComponent.setValue(1);
+      diceComponents.add(dieComponent);
     });
 
     diceContainer.getChildren().addAll(diceComponents);
     diceControlPanel.getChildren().add(diceContainer);
-
 
     /// last roll
     HBox lastRollContainer = new HBox(10);
@@ -195,9 +193,9 @@ public class GameLobbyView implements IView {
 
     rollButton = new Button("Roll Dice");
     rollButton.setOnAction(e -> {
-        if (gameController.isGameStarted() && !gameController.isGameEnded()) {
-            gameController.rollDiceAndMoveCurrentPlayer();
-        }
+      if (gameController.isGameStarted() && !gameController.isGameEnded()) {
+        gameController.rollDiceAndMoveCurrentPlayer();
+      }
     });
 
     diceControlPanel.getChildren().add(rollButton);
@@ -253,7 +251,7 @@ public class GameLobbyView implements IView {
     controlPanel.getChildren().add(gameInfoCard);
 
     return controlPanel;
-}
+  }
 
   private void createPlayerList(VBox playerListContainer) {
     playerListContainer.getChildren().clear();
@@ -281,7 +279,7 @@ public class GameLobbyView implements IView {
   }
 
 
-  public void animateDice(List<Integer> values){
+  public void animateDice(List<Integer> values) {
     IntStream.range(0, values.size()).forEach(i -> {
       DieComponent die = diceComponents.get(i);
       animationQueue.queue(DieComponentAnimator.animateRoll(die, values.get(i)), "Rolling die");
@@ -310,13 +308,13 @@ public class GameLobbyView implements IView {
   }
 
   public void setRollDiceButtonDisabled(boolean disabled) {
-   Timeline animation = new Timeline();
+    Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-        Platform.runLater(() -> {
-          rollButton.setDisable(disabled);
-        });
-      }));
-      animationQueue.queue(animation, "Toggling roll dice button deactivation");
+      Platform.runLater(() -> {
+        rollButton.setDisable(disabled);
+      });
+    }));
+    animationQueue.queue(animation, "Toggling roll dice button deactivation");
   }
 
   public void updateLastRollLabel(int value) {
@@ -329,7 +327,7 @@ public class GameLobbyView implements IView {
     animationQueue.queue(animation, "Updating last roll label");
   }
 
-  public void showQuestion(Question question){
+  public void showQuestion(Question question) {
     Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
       Platform.runLater(() -> {
