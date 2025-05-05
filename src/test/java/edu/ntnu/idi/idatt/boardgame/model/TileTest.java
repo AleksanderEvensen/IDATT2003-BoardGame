@@ -1,13 +1,12 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for the Tile class.
@@ -22,6 +21,7 @@ class TileTest {
   @BeforeEach
   void setUp() {
     action = player -> {
+      return true;
     };
     nextTile = new Tile.Builder(2).build();
     previousTile = new Tile.Builder(3).build();
