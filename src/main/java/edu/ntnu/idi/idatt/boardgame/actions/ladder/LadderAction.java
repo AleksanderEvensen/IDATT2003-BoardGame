@@ -67,14 +67,13 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
   }
 
   /**
-   * Performs the ladder action, moving the player to the destination tile. if the player is immune,
+   * Performs the ladder action, moving the player to the destination tile. If the player is immune,
    * the player will not move when the destination tile is lower than the current tile.
    *
    * @param player the player to move
    * @throws IllegalArgumentException if the player is null
    * @see edu.ntnu.idi.idatt.boardgame.model.Player
-   * <p>
-   * returns true if the action was performed successfully, false otherwise
+   * @return true if the action was performed successfully, false otherwise
    */
   @Override
   public boolean perform(Player player) {
