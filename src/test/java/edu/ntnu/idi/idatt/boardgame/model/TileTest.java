@@ -20,9 +20,7 @@ class TileTest {
 
   @BeforeEach
   void setUp() {
-    action = player -> {
-      return true;
-    };
+    action = player -> true;
     nextTile = new Tile.Builder(2).build();
     previousTile = new Tile.Builder(3).build();
     tile = new Tile.Builder(1).build();
