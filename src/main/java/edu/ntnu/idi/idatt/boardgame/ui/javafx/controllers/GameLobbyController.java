@@ -113,7 +113,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * Exits the game and stops all animations.
    */
   public void exitGame() {
-    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
+    animationQueue.stopAndClear();
     gameLobbyView.getGameBoard().setVisible(false);
     gameLobbyView.getGameBoard().setDisable(true);
     Application.router.navigate("/home");
@@ -126,7 +126,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handleGameStarted(GameStartedEvent event) {
     logger.info("Game started with " + event.getPlayers().size() + " players");
-    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
+    animationQueue.stopAndClear();
     gameLobbyView.getCurrentPlayerProperty().setValue(gameController.getCurrentPlayer());
     gameLobbyView.getCurrentRoundProperty().setValue(gameController.getRoundCount());
   }
@@ -226,7 +226,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * Creates the game board.
    */
   public GameBoard createGameBoard() {
-    return new GameBoard.Builder(gameController, animationQueue).addTiles().resolveActionStyles()
+    return new GameBoard.Builder(gameController).addTiles().resolveActionStyles()
         .addPlayers(gameController.getPlayers()).build();
   }
 

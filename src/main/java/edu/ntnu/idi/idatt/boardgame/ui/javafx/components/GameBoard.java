@@ -6,7 +6,6 @@ import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.TileStyleService;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.LadderUtils;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +29,6 @@ public class GameBoard extends GridPane {
   @Getter
   private final Pane overlayPane;
 
-  @Getter
-  private final AnimationQueue animationQueue;
 
   private final Map<Player, PlayerBlipView> playerBlips;
   private final GameController gameController;
@@ -44,13 +41,11 @@ public class GameBoard extends GridPane {
    * Creates a new GameBoard.
    *
    * @param gameController The game controller managing the game logic.
-   * @param animationQueue The animation queue for handling animations.
    */
-  public GameBoard(GameController gameController, AnimationQueue animationQueue) {
+  public GameBoard(GameController gameController) {
     this.tileComponents = new HashMap<>();
     this.overlayPane = new Pane();
     this.playerBlips = new ConcurrentHashMap<>();
-    this.animationQueue = animationQueue;
     this.gameController = gameController;
     this.ladderComponents = new ConcurrentHashMap<>();
 
@@ -258,11 +253,10 @@ public class GameBoard extends GridPane {
      * Creates a new Builder for the GameBoard.
      *
      * @param gameController The game controller managing the game logic.
-     * @param animationQueue The animation queue for handling animations.
      */
-    public Builder(GameController gameController, AnimationQueue animationQueue) {
+    public Builder(GameController gameController) {
       this.game = gameController.getGame();
-      gameBoard = new GameBoard(gameController, animationQueue);
+      gameBoard = new GameBoard(gameController);
     }
 
     /**
