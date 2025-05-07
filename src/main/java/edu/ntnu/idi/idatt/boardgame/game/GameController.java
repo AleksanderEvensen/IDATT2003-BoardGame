@@ -216,6 +216,7 @@ public class GameController extends Observable<GameController, GameEvent> {
     return actualStepsMoved;
   }
 
+
   /**
    * Places a player on a specific tile.
    *
@@ -265,13 +266,14 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     if (!isCorrect && !currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
-      return false;
     }
+
     checkpointTile = null;
     if (!gameEnded) {
       advanceToNextPlayer();
     }
-    return true;
+
+    return isCorrect;
   }
 
   /**
