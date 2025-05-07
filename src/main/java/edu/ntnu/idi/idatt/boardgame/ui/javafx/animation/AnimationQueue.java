@@ -1,10 +1,12 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.animation;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
+import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.util.Duration;
 
@@ -14,6 +16,9 @@ import javafx.util.Duration;
  * This class handles playing animations in sequence, avoiding overlapping animations that can cause
  * visual glitches.
  * </p>
+ *
+ * @version v1.0.0
+ * @since v3.0.0
  */
 public class AnimationQueue {
 
@@ -29,7 +34,7 @@ public class AnimationQueue {
    * @param animations the animations to combine
    * @return a SequentialTransition containing all animations
    */
-  public static Animation combineAnimations(Animation... animations) {
+  public static Animation combineAnimations(List<Animation> animations) {
     SequentialTransition sequentialTransition = new SequentialTransition();
 
     for (Animation animation : animations) {
@@ -42,15 +47,32 @@ public class AnimationQueue {
   }
 
   /**
+   * combines multiple animations into a single parallel animation.
+   *
+   * @param animations the animations to combine return a ParallelTransition containing all
+   *                   animations
+   * @return a ParallelTransition containing all animations
+   */
+  public static Animation combineAnimationsParallel(List<Animation> animations) {
+    ParallelTransition parallelTransition = new ParallelTransition();
+
+    for (Animation animation : animations) {
+      if (animation != null) {
+        parallelTransition.getChildren().add(animation);
+      }
+    }
+
+    return parallelTransition;
+  }
+
+  /**
    * Creates a pause animation of the specified duration.
    *
    * @param milliseconds the duration in milliseconds
    * @return a pause animation
    */
   public static Animation createPause(int milliseconds) {
-    javafx.animation.PauseTransition pause =
-        new javafx.animation.PauseTransition(Duration.millis(milliseconds));
-    return pause;
+    return new javafx.animation.PauseTransition(Duration.millis(milliseconds));
   }
 
   /**

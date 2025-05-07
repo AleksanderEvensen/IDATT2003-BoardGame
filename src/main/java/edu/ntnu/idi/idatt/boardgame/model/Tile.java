@@ -14,12 +14,18 @@ import lombok.Setter;
  * tiles.
  * </p>
  *
+ * @version v1.0.2
  * @see edu.ntnu.idi.idatt.boardgame.actions.TileAction
+ * @since v1.0.0
  */
 public class Tile implements Serializable, HasTileReferenceResolver {
 
   private final @Getter int tileId;
+
+  /// The ID of the tile that comes before this one defaults to -1, indicating no previous tile
   private final int previousTileId;
+
+  /// The ID of the tile that comes after this one defaults to -1, indicating no next tile
   private final int nextTileId;
   private @Getter
   @Setter int row;
@@ -110,8 +116,8 @@ public class Tile implements Serializable, HasTileReferenceResolver {
     private int row = 0;
     private int col = 0;
     private TileAction action = null;
-    private int previousTileId;
-    private int nextTileId;
+    private int previousTileId = 0;
+    private int nextTileId = 0;
 
     /**
      * Constructor with required tileId.

@@ -14,7 +14,6 @@ import edu.ntnu.idi.idatt.boardgame.game.events.PlayerSkippedTurnEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -52,17 +51,15 @@ public class GameController extends Observable<GameController, GameEvent> {
 
 
   private final Logger logger = Logger.getLogger(GameController.class.getName());
-  @Getter
-  private Game game;
-  private List<Player> players;
-  private int currentPlayerIndex;
   private final QuizManager quizManager;
-
+  @Getter
+  private final Game game;
+  private final List<Player> players;
+  private int currentPlayerIndex;
   @Getter
   private boolean gameStarted;
   @Getter
   private boolean gameEnded;
-  private Tile lastTile;
   private List<Integer> lastDiceRolls;
   private Question currentQuestion;
   private Tile checkpointTile;
@@ -99,8 +96,9 @@ public class GameController extends Observable<GameController, GameEvent> {
       throw new IllegalArgumentException("Players list cannot be null");
     }
     if (players.size() < game.getMinPlayers() || players.size() > game.getMaxPlayers()) {
-      throw new IllegalStateException("Invalid number of players. Required: " + game.getMinPlayers()
-          + "-" + game.getMaxPlayers() + ", got: " + players.size());
+      throw new IllegalStateException(
+          "Invalid number of players. Required: " + game.getMinPlayers() + "-"
+              + game.getMaxPlayers() + ", got: " + players.size());
     }
 
     this.currentPlayerIndex = 0;
@@ -111,8 +109,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     /// this will prevent updating the global player list
     /// and makes sure the player state is internal within the game
     addPlayers(players);
-
-    findLastTile();
     Tile startTile = game.getBoard().getTile(0);
     if (startTile == null) {
       throw new IllegalStateException("Game board doesn't have a start tile (ID: 0)");
@@ -123,24 +119,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     }
 
     notifyObservers(new GameStartedEvent(game, this.players));
-  }
-
-  /**
-   * Finds the tile with the highest ID, which is considered the last tile.
-   */
-  private void findLastTile() {
-    Board board = game.getBoard();
-    int highestId = -1;
-    Tile highestTile = null;
-
-    for (Integer tileId : board.getTiles().keySet()) {
-      if (tileId > highestId) {
-        highestId = tileId;
-        highestTile = board.getTile(tileId);
-      }
-    }
-
-    this.lastTile = highestTile;
   }
 
   /**
@@ -270,8 +248,10 @@ public class GameController extends Observable<GameController, GameEvent> {
    * answers the current quiz question.
    *
    * @param answer the answer to the question
+   *               <p>
+   *               returns true if the answer is correct, false otherwise
    */
-  public void answerQuestion(String answer) {
+  public boolean answerQuestion(String answer) {
     if (!gameStarted) {
       throw new IllegalStateException("Game is not started");
     }
@@ -285,11 +265,13 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     if (!isCorrect && !currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
+      return false;
     }
     checkpointTile = null;
     if (!gameEnded) {
       advanceToNextPlayer();
     }
+    return true;
   }
 
   /**

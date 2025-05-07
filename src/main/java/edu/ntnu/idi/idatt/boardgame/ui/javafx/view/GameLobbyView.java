@@ -9,6 +9,7 @@ import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.DieComponentAnimator;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.GameSoundEffects;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Card;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
@@ -25,6 +26,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -317,10 +319,16 @@ public class GameLobbyView implements IView {
 
 
   public void animateDice(List<Integer> values) {
+    List<Animation> diceAnimations = new ArrayList<>();
     IntStream.range(0, values.size()).forEach(i -> {
       DieComponent die = diceComponents.get(i);
-      animationQueue.queue(DieComponentAnimator.animateRoll(die, values.get(i)), "Rolling die");
+      diceAnimations.add(DieComponentAnimator.animateRoll(die, values.get(i)));
     });
+    animationQueue.queue(
+        AnimationQueue.combineAnimationsParallel(diceAnimations),
+        "Rolling dice",
+        0);
+
   }
 
   public void updateCurrentPlayerLabel(Player player) {
@@ -368,8 +376,14 @@ public class GameLobbyView implements IView {
     Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
       Platform.runLater(() -> {
+        Application.getAudioManager().playAudio(GameSoundEffects.QUESTION.getName());
         QuestionDialog dialog = new QuestionDialog(root, question, (answer) -> {
-          gameController.answerQuestion(question.getAnswers().get(answer));
+          boolean isCorrect = gameController.answerQuestion(question.getAnswers().get(answer));
+          if (isCorrect) {
+            Application.getAudioManager().playAudio(GameSoundEffects.CORRECT_ANSWER.getName());
+          } else {
+            Application.getAudioManager().playAudio(GameSoundEffects.INCORRECT_ANSWER.getName());
+          }
         });
         dialog.show();
       });
@@ -381,6 +395,7 @@ public class GameLobbyView implements IView {
     Timeline animation = new Timeline();
     animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
       Platform.runLater(() -> {
+        Application.getAudioManager().playAudio("victory");
         // Create a semi-transparent overlay to dim the background
         StackPane overlay = new StackPane();
         overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");

@@ -1,0 +1,739 @@
+{
+  "id": "ladder_hardcore",
+  "name": "Ladder Game Hard‑Core Clean",
+  "description": "A hardcore ladder games with power-ups and traps",
+  "minPlayers": 2,
+  "maxPlayers": 4,
+  "numberOfDice": 1,
+  "imagePath": "/images/ladder_hardcore_clean.png",
+  "board": {
+    "rowCount": 10,
+    "colCount": 9,
+    "tiles": {
+      "0": {
+        "tileId": 0,
+        "row": 9,
+        "col": 0,
+        "nextTileId": 1,
+        "previousTileId": null
+      },
+      "1": {
+        "tileId": 1,
+        "row": 9,
+        "col": 1,
+        "nextTileId": 2,
+        "previousTileId": 0
+      },
+      "2": {
+        "tileId": 2,
+        "row": 9,
+        "col": 2,
+        "nextTileId": 3,
+        "previousTileId": 1,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 38
+        }
+      },
+      "3": {
+        "tileId": 3,
+        "row": 9,
+        "col": 3,
+        "nextTileId": 4,
+        "previousTileId": 2
+      },
+      "4": {
+        "tileId": 4,
+        "row": 9,
+        "col": 4,
+        "nextTileId": 5,
+        "previousTileId": 3,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "5": {
+        "tileId": 5,
+        "row": 9,
+        "col": 5,
+        "nextTileId": 6,
+        "previousTileId": 4
+      },
+      "6": {
+        "tileId": 6,
+        "row": 9,
+        "col": 6,
+        "nextTileId": 7,
+        "previousTileId": 5,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 55
+        }
+      },
+      "7": {
+        "tileId": 7,
+        "row": 9,
+        "col": 7,
+        "nextTileId": 8,
+        "previousTileId": 6
+      },
+      "8": {
+        "tileId": 8,
+        "row": 9,
+        "col": 8,
+        "nextTileId": 9,
+        "previousTileId": 7,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 45
+        }
+      },
+      "9": {
+        "tileId": 9,
+        "row": 8,
+        "col": 8,
+        "nextTileId": 10,
+        "previousTileId": 8,
+        "action": {
+          "type": "IMMUNITY"
+        }
+      },
+      "10": {
+        "tileId": 10,
+        "row": 8,
+        "col": 7,
+        "nextTileId": 11,
+        "previousTileId": 9
+      },
+      "11": {
+        "tileId": 11,
+        "row": 8,
+        "col": 6,
+        "nextTileId": 12,
+        "previousTileId": 10
+      },
+      "12": {
+        "tileId": 12,
+        "row": 8,
+        "col": 5,
+        "nextTileId": 13,
+        "previousTileId": 11
+      },
+      "13": {
+        "tileId": 13,
+        "row": 8,
+        "col": 4,
+        "nextTileId": 14,
+        "previousTileId": 12
+      },
+      "14": {
+        "tileId": 14,
+        "row": 8,
+        "col": 3,
+        "nextTileId": 15,
+        "previousTileId": 13
+      },
+      "15": {
+        "tileId": 15,
+        "row": 8,
+        "col": 2,
+        "nextTileId": 16,
+        "previousTileId": 14,
+        "action": {
+          "type": "IMMUNITY"
+        }
+      },
+      "16": {
+        "tileId": 16,
+        "row": 8,
+        "col": 1,
+        "nextTileId": 17,
+        "previousTileId": 15
+      },
+      "17": {
+        "tileId": 17,
+        "row": 8,
+        "col": 0,
+        "nextTileId": 18,
+        "previousTileId": 16
+      },
+      "18": {
+        "tileId": 18,
+        "row": 7,
+        "col": 0,
+        "nextTileId": 19,
+        "previousTileId": 17,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 53
+        }
+      },
+      "19": {
+        "tileId": 19,
+        "row": 7,
+        "col": 1,
+        "nextTileId": 20,
+        "previousTileId": 18
+      },
+      "20": {
+        "tileId": 20,
+        "row": 7,
+        "col": 2,
+        "nextTileId": 21,
+        "previousTileId": 19,
+        "action": {
+          "type": "FREEZE"
+        }
+      },
+      "21": {
+        "tileId": 21,
+        "row": 7,
+        "col": 3,
+        "nextTileId": 22,
+        "previousTileId": 20
+      },
+      "22": {
+        "tileId": 22,
+        "row": 7,
+        "col": 4,
+        "nextTileId": 23,
+        "previousTileId": 21
+      },
+      "23": {
+        "tileId": 23,
+        "row": 7,
+        "col": 5,
+        "nextTileId": 24,
+        "previousTileId": 22,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "24": {
+        "tileId": 24,
+        "row": 7,
+        "col": 6,
+        "nextTileId": 25,
+        "previousTileId": 23
+      },
+      "25": {
+        "tileId": 25,
+        "row": 7,
+        "col": 7,
+        "nextTileId": 26,
+        "previousTileId": 24
+      },
+      "26": {
+        "tileId": 26,
+        "row": 7,
+        "col": 8,
+        "nextTileId": 27,
+        "previousTileId": 25
+      },
+      "27": {
+        "tileId": 27,
+        "row": 6,
+        "col": 8,
+        "nextTileId": 28,
+        "previousTileId": 26
+      },
+      "28": {
+        "tileId": 28,
+        "row": 6,
+        "col": 7,
+        "nextTileId": 29,
+        "previousTileId": 27
+      },
+      "29": {
+        "tileId": 29,
+        "row": 6,
+        "col": 6,
+        "nextTileId": 30,
+        "previousTileId": 28
+      },
+      "30": {
+        "tileId": 30,
+        "row": 6,
+        "col": 5,
+        "nextTileId": 31,
+        "previousTileId": 29
+      },
+      "31": {
+        "tileId": 31,
+        "row": 6,
+        "col": 4,
+        "nextTileId": 32,
+        "previousTileId": 30,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "32": {
+        "tileId": 32,
+        "row": 6,
+        "col": 3,
+        "nextTileId": 33,
+        "previousTileId": 31
+      },
+      "33": {
+        "tileId": 33,
+        "row": 6,
+        "col": 2,
+        "nextTileId": 34,
+        "previousTileId": 32
+      },
+      "34": {
+        "tileId": 34,
+        "row": 6,
+        "col": 1,
+        "nextTileId": 35,
+        "previousTileId": 33
+      },
+      "35": {
+        "tileId": 35,
+        "row": 6,
+        "col": 0,
+        "nextTileId": 36,
+        "previousTileId": 34,
+        "action": {
+          "type": "FREEZE"
+        }
+      },
+      "36": {
+        "tileId": 36,
+        "row": 5,
+        "col": 0,
+        "nextTileId": 37,
+        "previousTileId": 35
+      },
+      "37": {
+        "tileId": 37,
+        "row": 5,
+        "col": 1,
+        "nextTileId": 38,
+        "previousTileId": 36
+      },
+      "38": {
+        "tileId": 38,
+        "row": 5,
+        "col": 2,
+        "nextTileId": 39,
+        "previousTileId": 37
+      },
+      "39": {
+        "tileId": 39,
+        "row": 5,
+        "col": 3,
+        "nextTileId": 40,
+        "previousTileId": 38
+      },
+      "40": {
+        "tileId": 40,
+        "row": 5,
+        "col": 4,
+        "nextTileId": 41,
+        "previousTileId": 39,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 76
+        }
+      },
+      "41": {
+        "tileId": 41,
+        "row": 5,
+        "col": 5,
+        "nextTileId": 42,
+        "previousTileId": 40
+      },
+      "42": {
+        "tileId": 42,
+        "row": 5,
+        "col": 6,
+        "nextTileId": 43,
+        "previousTileId": 41
+      },
+      "43": {
+        "tileId": 43,
+        "row": 5,
+        "col": 7,
+        "nextTileId": 44,
+        "previousTileId": 42,
+        "action": {
+          "type": "IMMUNITY"
+        }
+      },
+      "44": {
+        "tileId": 44,
+        "row": 5,
+        "col": 8,
+        "nextTileId": 45,
+        "previousTileId": 43
+      },
+      "45": {
+        "tileId": 45,
+        "row": 4,
+        "col": 8,
+        "nextTileId": 46,
+        "previousTileId": 44
+      },
+      "46": {
+        "tileId": 46,
+        "row": 4,
+        "col": 7,
+        "nextTileId": 47,
+        "previousTileId": 45,
+        "action": {
+          "type": "FREEZE"
+        }
+      },
+      "47": {
+        "tileId": 47,
+        "row": 4,
+        "col": 6,
+        "nextTileId": 48,
+        "previousTileId": 46
+      },
+      "48": {
+        "tileId": 48,
+        "row": 4,
+        "col": 5,
+        "nextTileId": 49,
+        "previousTileId": 47
+      },
+      "49": {
+        "tileId": 49,
+        "row": 4,
+        "col": 4,
+        "nextTileId": 50,
+        "previousTileId": 48
+      },
+      "50": {
+        "tileId": 50,
+        "row": 4,
+        "col": 3,
+        "nextTileId": 51,
+        "previousTileId": 49,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "51": {
+        "tileId": 51,
+        "row": 4,
+        "col": 2,
+        "nextTileId": 52,
+        "previousTileId": 50
+      },
+      "52": {
+        "tileId": 52,
+        "row": 4,
+        "col": 1,
+        "nextTileId": 53,
+        "previousTileId": 51
+      },
+      "53": {
+        "tileId": 53,
+        "row": 4,
+        "col": 0,
+        "nextTileId": 54,
+        "previousTileId": 52
+      },
+      "54": {
+        "tileId": 54,
+        "row": 3,
+        "col": 0,
+        "nextTileId": 55,
+        "previousTileId": 53
+      },
+      "55": {
+        "tileId": 55,
+        "row": 3,
+        "col": 1,
+        "nextTileId": 56,
+        "previousTileId": 54
+      },
+      "56": {
+        "tileId": 56,
+        "row": 3,
+        "col": 2,
+        "nextTileId": 57,
+        "previousTileId": 55
+      },
+      "57": {
+        "tileId": 57,
+        "row": 3,
+        "col": 3,
+        "nextTileId": 58,
+        "previousTileId": 56
+      },
+      "58": {
+        "tileId": 58,
+        "row": 3,
+        "col": 4,
+        "nextTileId": 59,
+        "previousTileId": 57
+      },
+      "59": {
+        "tileId": 59,
+        "row": 3,
+        "col": 5,
+        "nextTileId": 60,
+        "previousTileId": 58,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 30
+        }
+      },
+      "60": {
+        "tileId": 60,
+        "row": 3,
+        "col": 6,
+        "nextTileId": 61,
+        "previousTileId": 59
+      },
+      "61": {
+        "tileId": 61,
+        "row": 3,
+        "col": 7,
+        "nextTileId": 62,
+        "previousTileId": 60
+      },
+      "62": {
+        "tileId": 62,
+        "row": 3,
+        "col": 8,
+        "nextTileId": 63,
+        "previousTileId": 61,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 29
+        }
+      },
+      "63": {
+        "tileId": 63,
+        "row": 2,
+        "col": 8,
+        "nextTileId": 64,
+        "previousTileId": 62
+      },
+      "64": {
+        "tileId": 64,
+        "row": 2,
+        "col": 7,
+        "nextTileId": 65,
+        "previousTileId": 63
+      },
+      "65": {
+        "tileId": 65,
+        "row": 2,
+        "col": 6,
+        "nextTileId": 66,
+        "previousTileId": 64,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 24
+        }
+      },
+      "66": {
+        "tileId": 66,
+        "row": 2,
+        "col": 5,
+        "nextTileId": 67,
+        "previousTileId": 65
+      },
+      "67": {
+        "tileId": 67,
+        "row": 2,
+        "col": 4,
+        "nextTileId": 68,
+        "previousTileId": 66,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "68": {
+        "tileId": 68,
+        "row": 2,
+        "col": 3,
+        "nextTileId": 69,
+        "previousTileId": 67
+      },
+      "69": {
+        "tileId": 69,
+        "row": 2,
+        "col": 2,
+        "nextTileId": 70,
+        "previousTileId": 68,
+        "action": {
+          "type": "FREEZE"
+        }
+      },
+      "70": {
+        "tileId": 70,
+        "row": 2,
+        "col": 1,
+        "nextTileId": 71,
+        "previousTileId": 69
+      },
+      "71": {
+        "tileId": 71,
+        "row": 2,
+        "col": 0,
+        "nextTileId": 72,
+        "previousTileId": 70
+      },
+      "72": {
+        "tileId": 72,
+        "row": 1,
+        "col": 0,
+        "nextTileId": 73,
+        "previousTileId": 71
+      },
+      "73": {
+        "tileId": 73,
+        "row": 1,
+        "col": 1,
+        "nextTileId": 74,
+        "previousTileId": 72,
+        "action": {
+          "type": "IMMUNITY"
+        }
+      },
+      "74": {
+        "tileId": 74,
+        "row": 1,
+        "col": 2,
+        "nextTileId": 75,
+        "previousTileId": 73
+      },
+      "75": {
+        "tileId": 75,
+        "row": 1,
+        "col": 3,
+        "nextTileId": 76,
+        "previousTileId": 74
+      },
+      "76": {
+        "tileId": 76,
+        "row": 1,
+        "col": 4,
+        "nextTileId": 77,
+        "previousTileId": 75
+      },
+      "77": {
+        "tileId": 77,
+        "row": 1,
+        "col": 5,
+        "nextTileId": 78,
+        "previousTileId": 76
+      },
+      "78": {
+        "tileId": 78,
+        "row": 1,
+        "col": 6,
+        "nextTileId": 79,
+        "previousTileId": 77
+      },
+      "79": {
+        "tileId": 79,
+        "row": 1,
+        "col": 7,
+        "nextTileId": 80,
+        "previousTileId": 78,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 61
+        }
+      },
+      "80": {
+        "tileId": 80,
+        "row": 1,
+        "col": 8,
+        "nextTileId": 81,
+        "previousTileId": 79,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "81": {
+        "tileId": 81,
+        "row": 0,
+        "col": 8,
+        "nextTileId": 82,
+        "previousTileId": 80
+      },
+      "82": {
+        "tileId": 82,
+        "row": 0,
+        "col": 7,
+        "nextTileId": 83,
+        "previousTileId": 81
+      },
+      "83": {
+        "tileId": 83,
+        "row": 0,
+        "col": 6,
+        "nextTileId": 84,
+        "previousTileId": 82,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 33
+        }
+      },
+      "84": {
+        "tileId": 84,
+        "row": 0,
+        "col": 5,
+        "nextTileId": 85,
+        "previousTileId": 83
+      },
+      "85": {
+        "tileId": 85,
+        "row": 0,
+        "col": 4,
+        "nextTileId": 86,
+        "previousTileId": 84
+      },
+      "86": {
+        "tileId": 86,
+        "row": 0,
+        "col": 3,
+        "nextTileId": 87,
+        "previousTileId": 85,
+        "action": {
+          "type": "LADDER",
+          "destinationTileId": 57
+        }
+      },
+      "87": {
+        "tileId": 87,
+        "row": 0,
+        "col": 2,
+        "nextTileId": 88,
+        "previousTileId": 86
+      },
+      "88": {
+        "tileId": 88,
+        "row": 0,
+        "col": 1,
+        "nextTileId": 89,
+        "previousTileId": 87
+      },
+      "89": {
+        "tileId": 89,
+        "row": 0,
+        "col": 0,
+        "previousTileId": 88,
+        "action": {
+          "type": "GOAL"
+        }
+      }
+    }
+  }
+}

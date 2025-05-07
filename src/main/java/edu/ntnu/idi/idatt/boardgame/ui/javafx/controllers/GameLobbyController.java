@@ -2,6 +2,8 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
@@ -15,6 +17,7 @@ import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.GameSoundEffects;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +40,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private final GameController gameController;
 
   @Getter
-  private ObservableList<Player> players;
+  private final ObservableList<Player> players;
 
 
   /**
@@ -71,8 +74,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
-      case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(
-          playerTurnChangedEvent);
+      case PlayerTurnChangedEvent playerTurnChangedEvent ->
+          handlePlayerTurnChangeEvent(playerTurnChangedEvent);
       case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
@@ -121,12 +124,13 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the player moved event
    */
   private void handlePlayerMoved(PlayerMovedEvent event) {
-    logger.info("Player " + event.getPlayer().getName() + " moved from tile "
-        + (event.getFromTile() != null ? event.getFromTile().getTileId() : "null") + " to tile "
-        + event.getToTile().getTileId());
+    logger.info(
+        "Player " + event.getPlayer().getName() + " moved from tile " + (event.getFromTile() != null
+            ? event.getFromTile().getTileId() : "null") + " to tile " + event.getToTile()
+            .getTileId());
 
-    gameLobbyView.getGameBoard().animatePlayerMovement(event.getPlayer(), event.getFromTile(),
-        event.getToTile());
+    gameLobbyView.getGameBoard()
+        .animatePlayerMovement(event.getPlayer(), event.getFromTile(), event.getToTile());
     gameLobbyView.setRollDiceButtonDisabled(false);
 
 
@@ -158,8 +162,14 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       } else {
         logger.warning("Invalid tiles for ladder animation");
       }
-    } else {
-      logger.info("Non-ladder tile action: " + action.getClass().getSimpleName());
+    }
+
+    if (action instanceof FreezeAction) {
+      Application.getAudioManager().playAudio(GameSoundEffects.FREEZE.getName());
+    }
+
+    if (action instanceof ImmunityAction) {
+      Application.getAudioManager().playAudio(GameSoundEffects.IMMUNITY.getName());
     }
   }
 
