@@ -238,7 +238,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handleQuestionAsked(QuestionAskedEvent event) {
     logger.info("Question asked: " + event.getQuestion());
     QueueableAction action = QueueableAction.builder().action(() -> {
-      Application.getAudioManager().playAudio(GameSoundEffects.QUESTION.getName());
       QuestionDialog dialog =
           new QuestionDialog(gameLobbyView.getRoot(), event.getQuestion(), (answer) -> {
             boolean isCorrect =

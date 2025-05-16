@@ -8,9 +8,7 @@ import lombok.Getter;
  */
 @Getter
 public enum GameSoundEffects {
-  CLICK("click"),
   VICTORY("victory"),
-  QUESTION("question"),
   CORRECT_ANSWER("correct_answer"),
   INCORRECT_ANSWER("incorrect_answer"),
   FREEZE("freeze"),

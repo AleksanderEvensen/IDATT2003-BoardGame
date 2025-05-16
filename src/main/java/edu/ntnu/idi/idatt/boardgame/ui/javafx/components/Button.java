@@ -1,8 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.GameSoundEffects;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,9 +22,6 @@ public class Button extends javafx.scene.control.Button {
 
   public Button(String text) {
     super(text);
-    setOnMouseClicked(event -> {
-      Application.getAudioManager().playAudio(GameSoundEffects.CLICK.getName());
-    });
     getStyleClass().addAll("Button", ButtonVariant.PRIMARY.getCssClass());
   }
 

@@ -23,15 +23,12 @@ public class AudioManager {
 
   public AudioManager(FileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    preloadAudio(GameSoundEffects.CLICK.getName(), "data/audio/click.mp3");
     preloadAudio(GameSoundEffects.VICTORY.getName(), "data/audio/victory.mp3");
-    preloadAudio(GameSoundEffects.QUESTION.getName(), "data/audio/question.m4a");
-    preloadAudio(GameSoundEffects.CORRECT_ANSWER.getName(), "data/audio/answer.m4a");
     preloadAudio(GameSoundEffects.INCORRECT_ANSWER.getName(), "data/audio/wrong-answer.m4a");
     preloadAudio(GameSoundEffects.FREEZE.getName(), "data/audio/freeze.m4a");
     preloadAudio(GameSoundEffects.IMMUNITY.getName(), "data/audio/immunity.mp3");
-    preloadAudio(GameSoundEffects.LADDER_CLIMB.getName(), "data/audio/ladder_up.mp3");
-    preloadAudio(GameSoundEffects.LADDER_FALL.getName(), "data/audio/ladder_down.mp3");
+    preloadAudio(GameSoundEffects.LADDER_CLIMB.getName(), "data/audio/ladder_up.wav");
+    preloadAudio(GameSoundEffects.LADDER_FALL.getName(), "data/audio/ladder_down.wav");
   }
 
   /**
