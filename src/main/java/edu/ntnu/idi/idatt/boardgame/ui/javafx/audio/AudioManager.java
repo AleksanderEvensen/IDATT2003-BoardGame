@@ -18,17 +18,17 @@ import javafx.scene.media.AudioClip;
 public class AudioManager {
 
   private final FileProvider fileProvider;
-  private final Map<String, AudioClip> audioClips = new HashMap<>();
+  private final Map<GameSoundEffects, AudioClip> audioClips = new HashMap<>();
 
 
   public AudioManager(FileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    preloadAudio(GameSoundEffects.VICTORY.getName(), "data/audio/victory.mp3");
-    preloadAudio(GameSoundEffects.INCORRECT_ANSWER.getName(), "data/audio/wrong-answer.m4a");
-    preloadAudio(GameSoundEffects.FREEZE.getName(), "data/audio/freeze.m4a");
-    preloadAudio(GameSoundEffects.IMMUNITY.getName(), "data/audio/immunity.mp3");
-    preloadAudio(GameSoundEffects.LADDER_CLIMB.getName(), "data/audio/ladder_up.wav");
-    preloadAudio(GameSoundEffects.LADDER_FALL.getName(), "data/audio/ladder_down.wav");
+    preloadAudio(GameSoundEffects.VICTORY, "data/audio/victory.mp3");
+    preloadAudio(GameSoundEffects.INCORRECT_ANSWER, "data/audio/wrong-answer.m4a");
+    preloadAudio(GameSoundEffects.FREEZE, "data/audio/freeze.m4a");
+    preloadAudio(GameSoundEffects.IMMUNITY, "data/audio/immunity.mp3");
+    preloadAudio(GameSoundEffects.LADDER_CLIMB, "data/audio/ladder_up.wav");
+    preloadAudio(GameSoundEffects.LADDER_FALL, "data/audio/ladder_down.wav");
   }
 
   /**
@@ -41,7 +41,7 @@ public class AudioManager {
    * @param audioFilePath the file path of the audio clip
    * @return the preloaded audio clip
    */
-  public AudioClip preloadAudio(String name, String audioFilePath) {
+  public AudioClip preloadAudio(GameSoundEffects name, String audioFilePath) {
     if (audioClips.containsKey(name)) {
       return audioClips.get(name);
     }
@@ -63,7 +63,7 @@ public class AudioManager {
    *
    * @param name the name of the audio clip to play
    */
-  public void playAudio(String name) {
+  public void playAudio(GameSoundEffects name) {
     AudioClip audioClip = audioClips.get(name);
     if (audioClip != null) {
       audioClip.play();
@@ -80,7 +80,7 @@ public class AudioManager {
    *
    * @param name the name of the audio clip to stop
    */
-  public void stopAudio(String name) {
+  public void stopAudio(GameSoundEffects name) {
     AudioClip audioClip = audioClips.get(name);
     if (audioClip != null) {
       audioClip.stop();
@@ -96,7 +96,7 @@ public class AudioManager {
    * @param name the name of the audio clip to retrieve
    * @return the audio clip, or null if not found
    */
-  public AudioClip getAudioClip(String name) {
+  public AudioClip getAudioClip(GameSoundEffects name) {
     return audioClips.get(name);
   }
 

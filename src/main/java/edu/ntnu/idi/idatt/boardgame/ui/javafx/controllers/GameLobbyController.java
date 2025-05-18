@@ -33,8 +33,6 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
@@ -67,7 +65,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private final ObservableList<Player> players;
 
   private final AnimationQueue animationQueue;
-
 
   /**
    * Creates a new GameLobbyController.
@@ -131,7 +128,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     gameLobbyView.getCurrentRoundProperty().setValue(gameController.getRoundCount());
   }
 
-
   /**
    * Handles player turn change events.
    *
@@ -157,7 +153,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handlePlayerMoved(PlayerMovedEvent event) {
     logger.info(
         "Player " + event.getPlayer().getName() + " moved from tile " + (event.getFromTile() != null
-            ? event.getFromTile().getTileId() : "null") + " to tile " + event.getToTile()
+            ? event.getFromTile().getTileId()
+            : "null") + " to tile " + event.getToTile()
             .getTileId());
     animatePlayerMovement(event.getPlayer(), event.getFromTile(), event.getToTile());
     QueueableAction action = QueueableAction.builder().action(() -> {
@@ -168,11 +165,11 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
   private void handleDiceRolled(DiceRolledEvent event) {
     gameLobbyView.getRollButtonDisabledProperty().setValue(true);
-    List<Animation> diceAnimations = new ArrayList<>();
-    IntStream.range(0, event.getIndividualRolls().size()).forEach(i -> {
-      DieComponent die = gameLobbyView.getDiceComponents().get(i);
-      diceAnimations.add(DieComponentAnimator.animateRoll(die, event.getIndividualRolls().get(i)));
-    });
+    Animation[] diceAnimations = IntStream.range(0, event.getIndividualRolls().size()).boxed()
+        .map(diceId -> {
+          DieComponent die = gameLobbyView.getDiceComponents().get(diceId);
+          return DieComponentAnimator.animateRoll(die, event.getIndividualRolls().get(diceId));
+        }).toArray(Animation[]::new);
 
     animationQueue.queue(AnimationQueue.combineAnimationsParallel(diceAnimations), "Rolling dice",
         0);
@@ -183,7 +180,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     animationQueue.queue(action.timeline(), "Updating last roll", 0);
   }
-
 
   /**
    * Handles tile action events.
@@ -208,7 +204,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     if (action instanceof FreezeAction) {
       QueueableAction freezeAudioAction = QueueableAction.builder().action(() -> {
-        Application.getAudioManager().playAudio(GameSoundEffects.FREEZE.getName());
+        Application.getAudioManager().playAudio(GameSoundEffects.FREEZE);
       }).build();
       animationQueue.queue(freezeAudioAction.timeline(), "Freeze action", 0);
 
@@ -216,7 +212,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     if (action instanceof ImmunityAction) {
       QueueableAction immunityAudioAction = QueueableAction.builder().action(() -> {
-        Application.getAudioManager().playAudio(GameSoundEffects.IMMUNITY.getName());
+        Application.getAudioManager().playAudio(GameSoundEffects.IMMUNITY);
       }).build();
       animationQueue.queue(immunityAudioAction.timeline(), "Immunity action", 0);
     }
@@ -238,14 +234,14 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handleQuestionAsked(QuestionAskedEvent event) {
     logger.info("Question asked: " + event.getQuestion());
     QueueableAction action = QueueableAction.builder().action(() -> {
-      QuestionDialog dialog =
-          new QuestionDialog(gameLobbyView.getRoot(), event.getQuestion(), (answer) -> {
-            boolean isCorrect =
-                gameController.answerQuestion(event.getQuestion().getAnswers().get(answer));
+      QuestionDialog dialog = new QuestionDialog(gameLobbyView.getRoot(), event.getQuestion(),
+          (answer) -> {
+            boolean isCorrect = gameController.answerQuestion(
+                event.getQuestion().getAnswers().get(answer));
             if (isCorrect) {
-              Application.getAudioManager().playAudio(GameSoundEffects.CORRECT_ANSWER.getName());
+              Application.getAudioManager().playAudio(GameSoundEffects.CORRECT_ANSWER);
             } else {
-              Application.getAudioManager().playAudio(GameSoundEffects.INCORRECT_ANSWER.getName());
+              Application.getAudioManager().playAudio(GameSoundEffects.INCORRECT_ANSWER);
             }
           });
       dialog.show();
@@ -268,19 +264,20 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       return;
     }
 
-    TileComponent toTileComponent =
-        gameLobbyView.getGameBoard().getTileComponent(toTile.getTileId());
+    TileComponent toTileComponent = gameLobbyView.getGameBoard()
+        .getTileComponent(toTile.getTileId());
     if (toTileComponent == null) {
       logger.warning("No tile component found for destination tile ID: " + toTile.getTileId());
       return;
     }
 
-    var animation =
-        PlayerMovementAnimator.createPathAnimation(gameLobbyView.getGameBoard(), player, fromTile,
-            toTile);
+    var animation = PlayerMovementAnimator.createPathAnimation(gameLobbyView.getGameBoard(), player,
+        fromTile,
+        toTile);
 
     String description = "Player " + player.getName() + " moving from tile " + (fromTile != null
-        ? fromTile.getTileId() : "null") + " to tile " + toTile.getTileId();
+        ? fromTile.getTileId()
+        : "null") + " to tile " + toTile.getTileId();
 
     animationQueue.queue(animation, description, 500);
     logger.fine("Queued animation: " + description);
@@ -299,17 +296,17 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       return;
     }
 
-    var animation =
-        PlayerMovementAnimator.createLadderAnimation(gameLobbyView.getGameBoard(), player, fromTile,
-            toTile);
+    var animation = PlayerMovementAnimator.createLadderAnimation(gameLobbyView.getGameBoard(),
+        player, fromTile,
+        toTile);
 
     boolean isPositiveLadder = toTile.getTileId() > fromTile.getTileId();
 
     QueueableAction audioEffectAction = QueueableAction.builder().action(() -> {
       if (isPositiveLadder) {
-        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_CLIMB.getName());
+        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_CLIMB);
       } else {
-        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_FALL.getName());
+        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_FALL);
       }
     }).build();
 
@@ -318,7 +315,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
             + toTile.getTileId();
 
     animationQueue.queue(
-        AnimationQueue.combineAnimationsParallel(List.of(animation, audioEffectAction.timeline())),
+        AnimationQueue.combineAnimationsParallel(animation, audioEffectAction.timeline()),
         description, 500);
 
     logger.fine("Queued ladder animation: " + description);
@@ -334,7 +331,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     gameLobbyView.getRollButtonDisabledProperty().setValue(true);
     QueueableAction action = QueueableAction.builder().action(() -> {
 
-      Application.getAudioManager().playAudio("victory");
+      Application.getAudioManager().playAudio(GameSoundEffects.VICTORY);
 
       StackPane overlay = new StackPane();
       overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");

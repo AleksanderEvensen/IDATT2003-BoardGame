@@ -36,7 +36,8 @@ import lombok.Getter;
  * </ul>
  * </p>
  * <p>
- * The controller extends the Observable class to allow UI components to observe and react to game
+ * The controller extends the Observable class to allow UI components to observe
+ * and react to game
  * events without tight coupling.
  * </p>
  *
@@ -48,7 +49,6 @@ import lombok.Getter;
  * @since v2.0.0
  */
 public class GameController extends Observable<GameController, GameEvent> {
-
 
   private final Logger logger = Logger.getLogger(GameController.class.getName());
   private final QuizManager quizManager;
@@ -216,7 +216,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     return actualStepsMoved;
   }
 
-
   /**
    * Places a player on a specific tile.
    *
@@ -249,8 +248,6 @@ public class GameController extends Observable<GameController, GameEvent> {
    * answers the current quiz question.
    *
    * @param answer the answer to the question
-   *               <p>
-   *               returns true if the answer is correct, false otherwise
    */
   public boolean answerQuestion(String answer) {
     if (!gameStarted) {

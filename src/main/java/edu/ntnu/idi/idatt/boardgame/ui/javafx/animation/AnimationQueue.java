@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.animation;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
@@ -34,7 +33,7 @@ public class AnimationQueue {
    * @param animations the animations to combine
    * @return a SequentialTransition containing all animations
    */
-  public static Animation combineAnimations(List<Animation> animations) {
+  public static Animation combineAnimations(Animation... animations) {
     SequentialTransition sequentialTransition = new SequentialTransition();
 
     for (Animation animation : animations) {
@@ -53,7 +52,7 @@ public class AnimationQueue {
    *                   animations
    * @return a ParallelTransition containing all animations
    */
-  public static Animation combineAnimationsParallel(List<Animation> animations) {
+  public static Animation combineAnimationsParallel(Animation... animations) {
     ParallelTransition parallelTransition = new ParallelTransition();
 
     for (Animation animation : animations) {
