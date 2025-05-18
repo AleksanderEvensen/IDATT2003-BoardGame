@@ -5,7 +5,7 @@
   "minPlayers": 2,
   "maxPlayers": 4,
   "numberOfDice": 1,
-  "imagePath": "/images/ladder.png",
+  "imagePath": "data/images/ladder.png",
   "board": {
     "rowCount": 10,
     "colCount": 9,
