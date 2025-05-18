@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.Setter;
  *
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  */
+@EqualsAndHashCode
 public class Player {
 
   private @Getter

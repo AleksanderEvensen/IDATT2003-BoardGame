@@ -105,13 +105,9 @@ public class GameLobbyView implements IView {
     this.root = new StackPane(content);
     this.root.getStyleClass().add("view-root");
 
-    initializeProperties();
+    currentPlayerProperty.set(gameController.getCurrentPlayer());
 
     return root;
-  }
-
-  private void initializeProperties() {
-    currentPlayerProperty.set(gameController.getCurrentPlayer());
   }
 
   private VBox createLeftSection() {
@@ -292,7 +288,7 @@ public class GameLobbyView implements IView {
     playerNameLabel.setMaxWidth(Double.MAX_VALUE);
     playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-    if (currentPlayerProperty.get() == player) {
+    if (currentPlayerProperty.get().equals(player)) {
       playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
     }
 

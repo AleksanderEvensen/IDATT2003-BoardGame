@@ -116,8 +116,8 @@ public class Tile implements Serializable, HasTileReferenceResolver {
     private int row = 0;
     private int col = 0;
     private TileAction action = null;
-    private int previousTileId = 0;
-    private int nextTileId = 0;
+    private int previousTileId = -1;
+    private int nextTileId = -1;
 
     /**
      * Constructor with required tileId.
