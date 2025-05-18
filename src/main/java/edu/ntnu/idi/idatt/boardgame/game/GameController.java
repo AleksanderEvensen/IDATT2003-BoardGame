@@ -65,7 +65,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private Tile checkpointTile;
 
   @Getter
-  private Integer roundCount = 0;
+  private int roundCount = 0;
 
   /**
    * Creates a new GameController instance.
@@ -148,20 +148,20 @@ public class GameController extends Observable<GameController, GameEvent> {
         new PlayerMovedEvent(currentPlayer, startTile, endTile, diceValue, actualStepsMoved));
 
     if (endTile.getAction().isPresent()) {
-      TileAction tileAction = endTile.getAction().get();
-      switch (tileAction) {
-        case GoalTileAction goalTileAction -> {
+      TileAction action = endTile.getAction().get();
+      switch (action) {
+        case GoalTileAction goalAction -> {
           gameEnded = true;
           notifyObservers(new GameEndedEvent(game, currentPlayer));
         }
-        case QuizTileAction quizTileAction -> {
-          initiateQuizQuestion(quizTileAction, startTile);
+        case QuizTileAction quizAction -> {
+          initiateQuizQuestion(quizAction, startTile);
           return;
         }
         default -> {
-          boolean triggered = tileAction.perform(currentPlayer);
+          boolean triggered = action.perform(currentPlayer);
           if (triggered) {
-            notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+            notifyObservers(new TileActionEvent(currentPlayer, endTile, action));
           }
         }
       }
