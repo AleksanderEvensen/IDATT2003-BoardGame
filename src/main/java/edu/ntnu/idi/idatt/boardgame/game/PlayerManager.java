@@ -17,7 +17,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
-  private List<Player> players = new ArrayList<>();
+  private final List<Player> players = new ArrayList<>();
 
   /**
    * Constructs a PlayerManager with the specified file provider.

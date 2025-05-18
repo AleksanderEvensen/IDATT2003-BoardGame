@@ -98,7 +98,8 @@ public class GameCard extends VBox {
   private void updateStyle() {
     if (isSelected) {
       this.setBorder(
-          new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(6), new BorderWidths(2))));
+          new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, new CornerRadii(6),
+              new BorderWidths(2))));
     } else {
       this.setBorder(null);
     }

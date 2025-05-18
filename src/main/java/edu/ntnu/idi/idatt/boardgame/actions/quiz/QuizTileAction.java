@@ -19,7 +19,7 @@ import lombok.Getter;
  */
 public class QuizTileAction implements TileAction {
 
-  private static Logger logger = Logger.getLogger(QuizTileAction.class.getName());
+  private static final Logger logger = Logger.getLogger(QuizTileAction.class.getName());
   @Getter
   private QuestionCategory category;
 

@@ -17,7 +17,7 @@ public class LadderUtils {
   /**
    * Calculates the center coordinates of a tile in the overlay pane.
    *
-   * @param gameBoard   The game board containing the overlay pane
+   * @param gameBoard     The game board containing the overlay pane
    * @param tileComponent The tile component to calculate coordinates for
    * @return A double array containing the x and y coordinates [x, y]
    */

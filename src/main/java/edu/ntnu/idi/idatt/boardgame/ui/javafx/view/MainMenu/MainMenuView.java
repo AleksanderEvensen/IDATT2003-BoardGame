@@ -42,7 +42,7 @@ public class MainMenuView implements IView {
 
   private static final Logger logger = Logger.getLogger(MainMenuView.class.getName());
 
-  private MainMenuController controller;
+  private final MainMenuController controller;
 
 
   private ListChangeListener<Player> playerSectionListener;
@@ -263,13 +263,9 @@ public class MainMenuView implements IView {
       public void handle() {
         var color = Utils.toModelColor(colorPicker.getValue());
 
-        if ((playerNameField.getText().isBlank()
+        saveButton.setDisable((playerNameField.getText().isBlank()
             || playerNameField.getText().equals(player.getName()))
-            && color.equals(player.getColor())) {
-          saveButton.setDisable(true);
-        } else {
-          saveButton.setDisable(false);
-        }
+            && color.equals(player.getColor()));
       }
     };
 

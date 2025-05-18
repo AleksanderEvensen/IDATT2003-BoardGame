@@ -15,12 +15,12 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 /**
  * Applies styles to quiz tiles in a JavaFX application.
  * <p>
- * This class implements the TileStyleApplier interface and provides methods to apply styles to
- * quiz tiles based on their category.
+ * This class implements the TileStyleApplier interface and provides methods to apply styles to quiz
+ * tiles based on their category.
  * </p>
  *
- * @since v1.0.0
  * @version 1.0.0
+ * @since v1.0.0
  */
 public class JavaFxQuizStyleApplier implements TileStyleApplier {
 

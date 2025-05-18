@@ -13,11 +13,11 @@ import edu.ntnu.idi.idatt.boardgame.model.Board;
  */
 public interface HasTileReferenceResolver {
 
-    /**
-     * Resolves references to other tiles on the board.
-     *
-     * @param board the board containing the tiles
-     * @see edu.ntnu.idi.idatt.boardgame.model.Board
-     */
-    void resolveReferences(Board board);
+  /**
+   * Resolves references to other tiles on the board.
+   *
+   * @param board the board containing the tiles
+   * @see edu.ntnu.idi.idatt.boardgame.model.Board
+   */
+  void resolveReferences(Board board);
 }

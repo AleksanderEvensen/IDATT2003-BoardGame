@@ -1,21 +1,20 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.style;
 
-import java.util.List;
-import org.kordamp.ikonli.boxicons.BoxiconsSolid;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
 import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier;
+import java.util.List;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import org.kordamp.ikonli.boxicons.BoxiconsSolid;
 
 public class JavaFxGoalStyleApplier implements TileStyleApplier {
 
   @Override
   public void applyStyle(Tile tile, TileAction action, Object parent) {
-
 
     if (!(parent instanceof Pane pane) || !(action instanceof GoalTileAction)) {
       return;

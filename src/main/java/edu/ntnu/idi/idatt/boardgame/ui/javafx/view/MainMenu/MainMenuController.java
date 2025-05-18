@@ -25,7 +25,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
   private final Logger logger = Logger.getLogger(MainMenuController.class.getName());
 
 
-  private @Getter ObservableList<Player> players;
+  private final @Getter ObservableList<Player> players;
 
 
   /**

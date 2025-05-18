@@ -12,9 +12,9 @@ public class Color {
   /**
    * Constructs a color with the specified RGB values.
    *
-   * @param red the red component (0-255)
+   * @param red   the red component (0-255)
    * @param green the green component (0-255)
-   * @param blue the blue component (0-255)
+   * @param blue  the blue component (0-255)
    * @throws IllegalArgumentException if the RGB values are not in the range 0-255
    */
   public Color(int red, int green, int blue) {
@@ -73,11 +73,12 @@ public class Color {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (!(obj instanceof Color))
+    }
+    if (!(obj instanceof Color color)) {
       return false;
-    Color color = (Color) obj;
+    }
     return r == color.r && g == color.g && b == color.b;
   }
 }

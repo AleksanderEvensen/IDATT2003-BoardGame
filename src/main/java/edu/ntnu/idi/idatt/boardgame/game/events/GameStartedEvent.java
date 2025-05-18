@@ -1,25 +1,23 @@
 package edu.ntnu.idi.idatt.boardgame.game.events;
 
-import java.util.List;
-
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import java.util.List;
 
 /**
  * Event fired when a game is started with players.
  * <p>
- * This event provides information about the game that was started and the
- * players
- * participating. UI components can observe this event to initialize the game
- * view.
+ * This event provides information about the game that was started and the players participating. UI
+ * components can observe this event to initialize the game view.
  * </p>
- * 
+ *
  * @see edu.ntnu.idi.idatt.boardgame.game.GameController
  * @see edu.ntnu.idi.idatt.boardgame.model.Game
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0
  */
 public class GameStartedEvent implements GameEvent {
+
   private final Game game;
   private final List<Player> players;
 

@@ -16,5 +16,4 @@ public class StyleConsts {
   public static final Font DEFAULT_FONT = Font.font("Arial", 12);
 
 
-
 }

@@ -23,7 +23,8 @@ public class QuestionAskedEvent implements GameEvent {
   private final Player player;
 
   /**
-   * Constructs a QuestionAskedEvent with the specified question, answers, and correct answer index.
+   * Constructs a QuestionAskedEvent with the specified question, answers, and correct answer
+   * index.
    *
    * @param question the quiz question
    */

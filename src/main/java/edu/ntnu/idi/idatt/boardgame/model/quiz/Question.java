@@ -24,7 +24,7 @@ public class Question {
   private final int correctAnswerIndex;
 
   @Getter
-  private String question;
+  private final String question;
 
   @Getter
   private final QuestionCategory category;

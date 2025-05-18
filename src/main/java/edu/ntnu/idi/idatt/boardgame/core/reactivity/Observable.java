@@ -1,4 +1,5 @@
 package edu.ntnu.idi.idatt.boardgame.core.reactivity;
+
 import java.util.HashSet;
 import java.util.Set;
 

@@ -39,6 +39,7 @@ public class TileComponent extends StackPane {
   private Color highlightColor;
   private FontIcon icon;
   private TileClickHandler clickHandler;
+
   /**
    * Constructs a tile component with a specified ID.
    *

@@ -11,5 +11,5 @@ public enum GameSoundEffects {
   FREEZE,
   IMMUNITY,
   LADDER_CLIMB,
-  LADDER_FALL;
+  LADDER_FALL
 }

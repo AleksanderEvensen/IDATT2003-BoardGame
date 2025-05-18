@@ -7,10 +7,10 @@
 @import url("styles/views/MainMenu.css");
 
 .view-root {
-    -fx-background: -fx-color-bg;
+  -fx-background: -fx-color-bg;
 }
 
 .tile {
-    -fx-border-width: 2px;
-    -fx-border-color: black;
+  -fx-border-width: 2px;
+  -fx-border-color: black;
 }

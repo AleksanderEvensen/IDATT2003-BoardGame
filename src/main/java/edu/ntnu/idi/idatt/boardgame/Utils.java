@@ -1,18 +1,18 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.model.Color;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import edu.ntnu.idi.idatt.boardgame.model.Color;
 import javafx.scene.Node;
 
 public class Utils {
 
   /**
    * Simulates throwing a given amount of six-sided dice.
-   * 
+   *
    * @param amount The amount of dice to throw.
    * @return A list of integers representing the dice rolls.
    */
@@ -27,7 +27,7 @@ public class Utils {
 
   /**
    * Generates a random number between the given min and max values.
-   * 
+   *
    * @param min The minimum value (inclusive).
    * @param max The maximum value (inclusive).
    * @return A random integer between min and max.
@@ -52,9 +52,8 @@ public class Utils {
   }
 
   /**
-   * Ensures that a node has only one of the given classes, and removes all other
-   * classes.
-   * 
+   * Ensures that a node has only one of the given classes, and removes all other classes.
+   *
    * @param node     the node to modify
    * @param toEnable the class to enable (prefferably a class in the classSet)
    * @param classSet the set of classes to remove
