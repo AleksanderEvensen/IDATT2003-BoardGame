@@ -51,6 +51,8 @@ public class MainMenuView implements IView {
     this.controller = controller;
   }
 
+  public Image GAME_FALLBACK_IMAGE = new Image("images/not_found.png");
+
   @Override
   public void load() {
     this.controller.initialize();
@@ -199,7 +201,7 @@ public class MainMenuView implements IView {
           "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
 
       StackPane imagePane = new StackPane();
-      ImageView gameImageView = new ImageView("images/not_found.png");
+      ImageView gameImageView = new ImageView(GAME_FALLBACK_IMAGE);
       game.getImagePath().ifPresent(path -> {
         var file = new File(path);
         if (file.exists()) {
