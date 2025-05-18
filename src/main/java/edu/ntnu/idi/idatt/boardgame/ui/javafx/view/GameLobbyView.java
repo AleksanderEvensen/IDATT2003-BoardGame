@@ -4,11 +4,9 @@ import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.DieComponentAnimator;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Card;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
@@ -16,7 +14,6 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.PlayerBlipView;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.GameLobbyController;
@@ -25,9 +22,12 @@ import edu.ntnu.idi.idatt.boardgame.ui.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -46,42 +46,44 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class GameLobbyView implements IView {
 
+  // JavaFX properties
+  @Getter
+  private final ObjectProperty<Player> currentPlayerProperty = new SimpleObjectProperty<>();
+  @Getter
+  private final IntegerProperty currentRoundProperty = new SimpleIntegerProperty(1);
+  @Getter
+  private final IntegerProperty lastRollProperty = new SimpleIntegerProperty(0);
+  @Getter
+  private final BooleanProperty rollButtonDisabledProperty = new SimpleBooleanProperty(false);
   @Getter
   private StackPane root;
-
-  private Game game;
   private GameController gameController;
+  @Getter
   private List<DieComponent> diceComponents;
-
-  /// labels
-  private Label currentPlayerLabel;
-  private Label currentRound;
-  private Label lastRollLabel;
-
-  /// button
   @Getter
   private Button rollButton;
-
   @Getter
   private AnimationQueue animationQueue;
   @Getter
   private GameBoard gameBoard;
-
   private GameLobbyController gameLobbyController;
 
   @Override
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
-    this.game = Application.getGameManager().getGame(gameId);
+    Game game = Application.getGameManager().getGame(gameId);
     this.gameController = new GameController(game, Application.getQuizManager());
     gameController.startGame(Application.getPlayerManager().getPlayers());
+    gameLobbyController = new GameLobbyController(this, gameController);
+    animationQueue = new AnimationQueue();
+    gameBoard = gameLobbyController.createGameBoard();
   }
 
   @Override
   public void unload() {
     gameLobbyController = null;
     gameController = null;
-    game = null;
+    gameBoard = null;
   }
 
   @Override
@@ -89,10 +91,6 @@ public class GameLobbyView implements IView {
     BorderPane content = new BorderPane();
     content.setPadding(new Insets(20));
 
-    gameLobbyController = new GameLobbyController(this, gameController);
-    animationQueue = new AnimationQueue();
-
-    GameBoard gameBoard = createGameBoard();
     gameBoard.setPadding(new Insets(0, 10, 0, 10));
     gameBoard.setAlignment(Pos.TOP_CENTER);
     content.setCenter(gameBoard);
@@ -106,49 +104,18 @@ public class GameLobbyView implements IView {
 
     this.root = new StackPane(content);
     this.root.getStyleClass().add("view-root");
+
+    currentPlayerProperty.set(gameController.getCurrentPlayer());
+
     return root;
   }
 
-  private GameBoard createGameBoard() {
-    GameBoard gameBoard = new GameBoard.Builder(gameController, animationQueue).addTiles()
-        .resolveActionStyles().addPlayers(gameController.getPlayers()).build();
-
-    this.gameBoard = gameBoard;
-    return gameBoard;
-  }
-
   private VBox createLeftSection() {
-
     VBox leftSection = new VBox(10);
-    ListView<Player> playersList = new ListView<>(this.gameLobbyController.getPlayers());
-    playersList.setPadding(new Insets(10, 0, 0, 0));
-    playersList.setCellFactory(list -> {
-      var cell = new ListCell<Player>() {
-        @Override
-        protected void updateItem(Player player, boolean empty) {
-          super.updateItem(player, empty);
-          setText(null);
-          if (empty || player == null) {
-            setGraphic(null);
-          } else {
-            Timeline animation = new Timeline();
-            animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-              Platform.runLater(() -> {
-                setGraphic(createPlayerListEntry(player));
-              });
-            }));
-            animationQueue.queue(animation, "Updating player list entry");
-          }
-        }
-      };
-      cell.setPadding(new Insets(0, 0, 10, 0));
-      cell.getStyleClass().clear();
-      return cell;
-    });
+    ListView<Player> playersList = getPlayerListView();
     playersList.getStyleClass().clear();
 
     Card playersCard = new Card();
-
     playersCard.setPrefWidth(300);
     playersCard.setPadding(new Insets(15));
 
@@ -161,8 +128,8 @@ public class GameLobbyView implements IView {
     Button backToMenuButton = new Button("Back to Menu");
     backToMenuButton.setOnAction(e -> {
       gameLobbyController.exitGame();
-
     });
+
     Region spacer = new Region();
     VBox.setVgrow(spacer, Priority.ALWAYS);
 
@@ -171,9 +138,35 @@ public class GameLobbyView implements IView {
     return leftSection;
   }
 
-  private VBox createControlPanel() {
+  private ListView<Player> getPlayerListView() {
+    ListView<Player> playersList = new ListView<>(gameLobbyController.getPlayers());
+    playersList.setPadding(new Insets(10, 0, 0, 0));
+    playersList.setCellFactory(list -> {
+      var cell = new ListCell<Player>() {
+        @Override
+        protected void updateItem(Player player, boolean empty) {
+          super.updateItem(player, empty);
+          setText(null);
+          if (empty || player == null) {
+            setGraphic(null);
+          } else {
+            setGraphic(createPlayerListEntry(player));
+          }
+        }
+      };
+      cell.setPadding(new Insets(0, 0, 10, 0));
+      cell.getStyleClass().clear();
 
-    /// Dice Control
+      currentPlayerProperty.addListener((obs, oldPlayer, newPlayer) -> {
+        cell.updateItem(cell.getItem(), cell.isEmpty());
+      });
+
+      return cell;
+    });
+    return playersList;
+  }
+
+  private VBox createControlPanel() {
     VBox controlPanel = new VBox(10);
     controlPanel.setPrefSize(300, 0);
 
@@ -188,7 +181,7 @@ public class GameLobbyView implements IView {
     diceContainer.setAlignment(Pos.CENTER);
 
     diceComponents = new ArrayList<>();
-    IntStream.range(0, game.getNumberOfDice()).forEach(i -> {
+    IntStream.range(0, gameController.getGame().getNumberOfDice()).forEach(i -> {
       DieComponent dieComponent = new DieComponent();
       dieComponent.setValue(1);
       diceComponents.add(dieComponent);
@@ -197,7 +190,6 @@ public class GameLobbyView implements IView {
     diceContainer.getChildren().addAll(diceComponents);
     diceControlPanel.getChildren().add(diceContainer);
 
-    /// last roll
     HBox lastRollContainer = new HBox(10);
     lastRollContainer.setAlignment(Pos.CENTER_LEFT);
 
@@ -205,8 +197,10 @@ public class GameLobbyView implements IView {
     lastRollPlaceholder.setStyle("-fx-font-weight: bold;");
     HBox.setHgrow(lastRollPlaceholder, Priority.ALWAYS);
 
-    lastRollLabel = new Label();
+    Label lastRollLabel = new Label();
     lastRollLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+
+    lastRollLabel.textProperty().bind(lastRollProperty.asString());
 
     lastRollContainer.getChildren().addAll(lastRollPlaceholder, lastRollLabel);
     diceControlPanel.getChildren().add(lastRollContainer);
@@ -218,6 +212,8 @@ public class GameLobbyView implements IView {
       }
     });
 
+    rollButton.disableProperty().bind(rollButtonDisabledProperty);
+
     diceControlPanel.getChildren().add(rollButton);
 
     Card diceCard = new Card();
@@ -227,9 +223,9 @@ public class GameLobbyView implements IView {
 
     controlPanel.getChildren().add(diceCard);
 
-    /// Current Game Info
     Header gameInfoHeader = new Header("Game Info");
     gameInfoHeader.withType(HeaderType.H4).withFontWeight(Weight.SEMIBOLD);
+
     VBox gameInfoPanel = new VBox(10);
     Card gameInfoCard = new Card();
     gameInfoCard.setPadding(new Insets(15));
@@ -240,7 +236,6 @@ public class GameLobbyView implements IView {
     gameInfoContainer.setPadding(new Insets(10));
     gameInfoCard.setCenter(gameInfoContainer);
 
-    /// Current Player Label
     HBox currentPlayerContainer = new HBox(10);
     currentPlayerContainer.setAlignment(Pos.CENTER_LEFT);
 
@@ -248,12 +243,17 @@ public class GameLobbyView implements IView {
     currentPlayerPlaceholder.setStyle("-fx-font-weight: bold;");
     HBox.setHgrow(currentPlayerPlaceholder, Priority.ALWAYS);
 
-    currentPlayerLabel = new Label();
+    Label currentPlayerLabel = new Label();
     currentPlayerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+
+    currentPlayerProperty.addListener((obs, oldPlayer, newPlayer) -> {
+      if (newPlayer != null) {
+        currentPlayerLabel.setText(newPlayer.getName());
+      }
+    });
 
     currentPlayerContainer.getChildren().addAll(currentPlayerPlaceholder, currentPlayerLabel);
 
-    /// Current Round Label
     HBox currentRoundContainer = new HBox(10);
     currentRoundContainer.setAlignment(Pos.CENTER_LEFT);
 
@@ -261,10 +261,12 @@ public class GameLobbyView implements IView {
     currentRoundPlaceholder.setStyle("-fx-font-weight: bold;");
     HBox.setHgrow(currentRoundPlaceholder, Priority.ALWAYS);
 
-    currentRound = new Label("1");
-    currentRound.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Label currentRoundLabel = new Label();
+    currentRoundLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-    currentRoundContainer.getChildren().addAll(currentRoundPlaceholder, currentRound);
+    currentRoundLabel.textProperty().bind(currentRoundProperty.asString());
+
+    currentRoundContainer.getChildren().addAll(currentRoundPlaceholder, currentRoundLabel);
 
     gameInfoContainer.getChildren().addAll(currentPlayerContainer, currentRoundContainer);
 
@@ -286,7 +288,7 @@ public class GameLobbyView implements IView {
     playerNameLabel.setMaxWidth(Double.MAX_VALUE);
     playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-    if (gameController.getCurrentPlayer() == player) {
+    if (currentPlayerProperty.get().equals(player)) {
       playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
     }
 
@@ -315,112 +317,4 @@ public class GameLobbyView implements IView {
     return playerCard;
   }
 
-
-  public void animateDice(List<Integer> values) {
-    IntStream.range(0, values.size()).forEach(i -> {
-      DieComponent die = diceComponents.get(i);
-      animationQueue.queue(DieComponentAnimator.animateRoll(die, values.get(i)), "Rolling die");
-    });
-  }
-
-  public void updateCurrentPlayerLabel(Player player) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        currentPlayerLabel.setText(String.format("%s", player.getName()));
-      });
-    }));
-
-    animationQueue.queue(animation, "Updating current player label");
-  }
-
-  public void updateCurrentRound(int round) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        currentRound.setText(String.format("%d", round));
-      });
-    }));
-    animationQueue.queue(animation, "Updating current round label");
-  }
-
-  public void setRollDiceButtonDisabled(boolean disabled) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        rollButton.setDisable(disabled);
-      });
-    }));
-    animationQueue.queue(animation, "Toggling roll dice button deactivation");
-  }
-
-  public void updateLastRollLabel(int value) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        lastRollLabel.setText(String.format("%d", value));
-      });
-    }));
-    animationQueue.queue(animation, "Updating last roll label");
-  }
-
-  public void showQuestion(Question question) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        QuestionDialog dialog = new QuestionDialog(root, question, (answer) -> {
-          gameController.answerQuestion(question.getAnswers().get(answer));
-        });
-        dialog.show();
-      });
-    }));
-    animationQueue.queue(animation, "Showing question dialog");
-  }
-
-  public void showWinnerPopup(Player winner) {
-    Timeline animation = new Timeline();
-    animation.getKeyFrames().add(new KeyFrame(javafx.util.Duration.millis(1), e -> {
-      Platform.runLater(() -> {
-        // Create a semi-transparent overlay to dim the background
-        StackPane overlay = new StackPane();
-        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
-        overlay.setPrefSize(root.getWidth(), root.getHeight());
-
-        // Create the winner card
-        Card winnerCard = new Card();
-        winnerCard.setPrefWidth(400);
-        winnerCard.setPrefHeight(300);
-        winnerCard.setPadding(new Insets(20));
-        winnerCard.setMaxWidth(Region.USE_PREF_SIZE);
-        winnerCard.setMaxHeight(Region.USE_PREF_SIZE);
-
-        // Set up the content for the card
-        VBox content = new VBox(20);
-        content.setAlignment(Pos.CENTER);
-
-        Header header = new Header("Game Over");
-        header.withType(HeaderType.H2).withFontWeight(Weight.BOLD);
-
-        Label winnerLabel = new Label(winner.getName() + " has won the game!");
-        winnerLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
-
-        Button returnButton = new Button("Return to Main Menu");
-        returnButton.setOnAction(evt -> {
-          gameLobbyController.exitGame();
-        });
-
-        content.getChildren().addAll(header, winnerLabel, returnButton);
-        winnerCard.setCenter(content);
-
-        // Center the card in the overlay
-        StackPane.setAlignment(winnerCard, Pos.CENTER);
-        overlay.getChildren().add(winnerCard);
-
-        // Add the overlay to the root
-        root.getChildren().add(overlay);
-      });
-    }));
-
-    animationQueue.queue(animation, "Showing winner popup");
-  }
 }

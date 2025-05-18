@@ -2,6 +2,8 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
@@ -15,11 +17,34 @@ import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.DieComponentAnimator;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.QueueableAction;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.GameSoundEffects;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Card;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.DieComponent;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.GameBoard;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.PlayerBlipView;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.QuestionDialog;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.TileComponent;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
+import javafx.animation.Animation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 
 /**
@@ -37,8 +62,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private final GameController gameController;
 
   @Getter
-  private ObservableList<Player> players;
+  private final ObservableList<Player> players;
 
+  private final AnimationQueue animationQueue;
 
   /**
    * Creates a new GameLobbyController.
@@ -49,6 +75,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
     this.gameLobbyView = gameLobbyView;
     this.gameController = gameController;
+    this.animationQueue = new AnimationQueue();
 
     this.players = FXCollections.observableArrayList(gameController.getPlayers());
 
@@ -71,8 +98,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);
       case PlayerMovedEvent playerMovedEvent -> handlePlayerMoved(playerMovedEvent);
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
-      case PlayerTurnChangedEvent playerTurnChangedEvent -> handlePlayerTurnChangeEvent(
-          playerTurnChangedEvent);
+      case PlayerTurnChangedEvent playerTurnChangedEvent ->
+          handlePlayerTurnChangeEvent(playerTurnChangedEvent);
       case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
@@ -83,7 +110,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * Exits the game and stops all animations.
    */
   public void exitGame() {
-    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
+    animationQueue.stopAndClear();
     gameLobbyView.getGameBoard().setVisible(false);
     gameLobbyView.getGameBoard().setDisable(true);
     Application.router.navigate("/home");
@@ -96,11 +123,10 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handleGameStarted(GameStartedEvent event) {
     logger.info("Game started with " + event.getPlayers().size() + " players");
-    gameLobbyView.getGameBoard().getAnimationQueue().stopAndClear();
-    gameLobbyView.updateCurrentPlayerLabel(gameController.getCurrentPlayer());
-    gameLobbyView.updateCurrentRound(gameController.getRoundCount());
+    animationQueue.stopAndClear();
+    gameLobbyView.getCurrentPlayerProperty().set(gameController.getCurrentPlayer());
+    gameLobbyView.getCurrentRoundProperty().set(gameController.getRoundCount());
   }
-
 
   /**
    * Handles player turn change events.
@@ -108,11 +134,15 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the player turn change event
    */
   private void handlePlayerTurnChangeEvent(PlayerTurnChangedEvent event) {
-    logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
-    gameLobbyView.updateCurrentPlayerLabel(event.getCurrentPlayer());
-    gameLobbyView.updateCurrentRound(gameController.getRoundCount());
-    gameLobbyView.setRollDiceButtonDisabled(false);
-    this.players.setAll(gameController.getPlayers());
+    QueueableAction action = QueueableAction.builder().action(() -> {
+      logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
+      gameLobbyView.getCurrentPlayerProperty().set(event.getCurrentPlayer());
+      gameLobbyView.getCurrentRoundProperty().set(gameController.getRoundCount());
+      gameLobbyView.getRollButtonDisabledProperty().set(false);
+      this.players.setAll(gameController.getPlayers());
+    }).build();
+
+    animationQueue.queue(action.timeline(), "Player turn changed", 0);
   }
 
   /**
@@ -121,23 +151,35 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the player moved event
    */
   private void handlePlayerMoved(PlayerMovedEvent event) {
-    logger.info("Player " + event.getPlayer().getName() + " moved from tile "
-        + (event.getFromTile() != null ? event.getFromTile().getTileId() : "null") + " to tile "
-        + event.getToTile().getTileId());
-
-    gameLobbyView.getGameBoard().animatePlayerMovement(event.getPlayer(), event.getFromTile(),
-        event.getToTile());
-    gameLobbyView.setRollDiceButtonDisabled(false);
-
-
+    logger.info(
+        "Player " + event.getPlayer().getName() + " moved from tile " + (event.getFromTile() != null
+            ? event.getFromTile().getTileId()
+            : "null") + " to tile " + event.getToTile()
+            .getTileId());
+    animatePlayerMovement(event.getPlayer(), event.getFromTile(), event.getToTile());
+    QueueableAction action = QueueableAction.builder().action(() -> {
+      gameLobbyView.getRollButtonDisabledProperty().set(false);
+    }).build();
+    animationQueue.queue(action.timeline(), "Enabling roll button", 0);
   }
 
   private void handleDiceRolled(DiceRolledEvent event) {
-    gameLobbyView.setRollDiceButtonDisabled(true);
-    gameLobbyView.animateDice(event.getIndividualRolls());
-    gameLobbyView.updateLastRollLabel(event.getTotalValue());
-  }
+    gameLobbyView.getRollButtonDisabledProperty().set(true);
+    Animation[] diceAnimations = IntStream.range(0, event.getIndividualRolls().size()).boxed()
+        .map(diceId -> {
+          DieComponent die = gameLobbyView.getDiceComponents().get(diceId);
+          return DieComponentAnimator.animateRoll(die, event.getIndividualRolls().get(diceId));
+        }).toArray(Animation[]::new);
 
+    animationQueue.queue(AnimationQueue.combineAnimationsParallel(diceAnimations), "Rolling dice",
+        0);
+
+    QueueableAction action = QueueableAction.builder().action(() -> {
+      gameLobbyView.getLastRollProperty().set(event.getTotalValue());
+    }).build();
+
+    animationQueue.queue(action.timeline(), "Updating last roll", 0);
+  }
 
   /**
    * Handles tile action events.
@@ -154,13 +196,34 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
       if (startTile != destinationTile) {
         logger.info("Triggering ladder animation");
-        gameLobbyView.getGameBoard().animateLadderMovement(player, startTile, destinationTile);
+        animateLadderMovement(player, startTile, destinationTile);
       } else {
         logger.warning("Invalid tiles for ladder animation");
       }
-    } else {
-      logger.info("Non-ladder tile action: " + action.getClass().getSimpleName());
     }
+
+    if (action instanceof FreezeAction) {
+      QueueableAction freezeAudioAction = QueueableAction.builder().action(() -> {
+        Application.getAudioManager().playAudio(GameSoundEffects.FREEZE);
+      }).build();
+      animationQueue.queue(freezeAudioAction.timeline(), "Freeze action", 0);
+
+    }
+
+    if (action instanceof ImmunityAction) {
+      QueueableAction immunityAudioAction = QueueableAction.builder().action(() -> {
+        Application.getAudioManager().playAudio(GameSoundEffects.IMMUNITY);
+      }).build();
+      animationQueue.queue(immunityAudioAction.timeline(), "Immunity action", 0);
+    }
+  }
+
+  /**
+   * Creates the game board.
+   */
+  public GameBoard createGameBoard() {
+    return new GameBoard.Builder(gameController).addTiles().resolveActionStyles()
+        .addPlayers(gameController.getPlayers()).build();
   }
 
   /**
@@ -170,8 +233,92 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handleQuestionAsked(QuestionAskedEvent event) {
     logger.info("Question asked: " + event.getQuestion());
-    gameLobbyView.showQuestion(event.getQuestion());
-    gameLobbyView.setRollDiceButtonDisabled(true);
+    QueueableAction action = QueueableAction.builder().action(() -> {
+      QuestionDialog dialog = new QuestionDialog(gameLobbyView.getRoot(), event.getQuestion(),
+          (answer) -> {
+            boolean isCorrect = gameController.answerQuestion(
+                event.getQuestion().getAnswers().get(answer));
+            if (isCorrect) {
+              Application.getAudioManager().playAudio(GameSoundEffects.CORRECT_ANSWER);
+            } else {
+              Application.getAudioManager().playAudio(GameSoundEffects.INCORRECT_ANSWER);
+            }
+          });
+      dialog.show();
+    }).build();
+    animationQueue.queue(action.timeline(), "Question asked", 0);
+    gameLobbyView.getRollButtonDisabledProperty().set(true);
+  }
+
+  /**
+   * Animates a player's movement from one tile to another.
+   *
+   * @param player   The player to animate.
+   * @param fromTile The tile to animate from.
+   * @param toTile   The tile to animate to.
+   */
+  public void animatePlayerMovement(Player player, Tile fromTile, Tile toTile) {
+    PlayerBlipView blipView = gameLobbyView.getGameBoard().getPlayerBlipView(player);
+    if (blipView == null) {
+      logger.warning("Attempted to animate movement of unregistered player: " + player.getName());
+      return;
+    }
+
+    TileComponent toTileComponent = gameLobbyView.getGameBoard()
+        .getTileComponent(toTile.getTileId());
+    if (toTileComponent == null) {
+      logger.warning("No tile component found for destination tile ID: " + toTile.getTileId());
+      return;
+    }
+
+    var animation = PlayerMovementAnimator.createPathAnimation(gameLobbyView.getGameBoard(), player,
+        fromTile,
+        toTile);
+
+    String description = "Player " + player.getName() + " moving from tile " + (fromTile != null
+        ? fromTile.getTileId()
+        : "null") + " to tile " + toTile.getTileId();
+
+    animationQueue.queue(animation, description, 500);
+    logger.fine("Queued animation: " + description);
+  }
+
+  /**
+   * Animates a player using a ladder from one tile to another.
+   *
+   * @param player   The player to animate.
+   * @param fromTile The ladder start tile.
+   * @param toTile   The ladder end tile.
+   */
+  public void animateLadderMovement(Player player, Tile fromTile, Tile toTile) {
+    if (fromTile == null || toTile == null) {
+      animatePlayerMovement(player, fromTile, toTile);
+      return;
+    }
+
+    var animation = PlayerMovementAnimator.createLadderAnimation(gameLobbyView.getGameBoard(),
+        player, fromTile,
+        toTile);
+
+    boolean isPositiveLadder = toTile.getTileId() > fromTile.getTileId();
+
+    QueueableAction audioEffectAction = QueueableAction.builder().action(() -> {
+      if (isPositiveLadder) {
+        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_CLIMB);
+      } else {
+        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_FALL);
+      }
+    }).build();
+
+    String description =
+        "Player " + player.getName() + " ladder from tile " + fromTile.getTileId() + " to tile "
+            + toTile.getTileId();
+
+    animationQueue.queue(
+        AnimationQueue.combineAnimationsParallel(animation, audioEffectAction.timeline()),
+        description, 500);
+
+    logger.fine("Queued ladder animation: " + description);
   }
 
   /**
@@ -181,7 +328,44 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handleGameEnded(GameEndedEvent event) {
     logger.info("Game ended. Winner: " + event.getWinner().getName());
-    gameLobbyView.setRollDiceButtonDisabled(true);
-    gameLobbyView.showWinnerPopup(event.getWinner());
+    gameLobbyView.getRollButtonDisabledProperty().set(true);
+    QueueableAction action = QueueableAction.builder().action(() -> {
+
+      Application.getAudioManager().playAudio(GameSoundEffects.VICTORY);
+
+      StackPane overlay = new StackPane();
+      overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
+      overlay.setPrefSize(gameLobbyView.getRoot().getWidth(), gameLobbyView.getRoot().getHeight());
+
+      Card winnerCard = new Card();
+      winnerCard.setPrefWidth(400);
+      winnerCard.setPrefHeight(300);
+      winnerCard.setPadding(new Insets(20));
+      winnerCard.setMaxWidth(Region.USE_PREF_SIZE);
+      winnerCard.setMaxHeight(Region.USE_PREF_SIZE);
+
+      VBox content = new VBox(20);
+      content.setAlignment(Pos.CENTER);
+
+      Header header = new Header("Game Over");
+      header.withType(HeaderType.H2).withFontWeight(Weight.BOLD);
+
+      Label winnerLabel = new Label(event.getWinner().getName() + " has won the game!");
+      winnerLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
+
+      Button returnButton = new Button("Return to Main Menu");
+      returnButton.setOnAction(evt -> {
+        exitGame();
+      });
+
+      content.getChildren().addAll(header, winnerLabel, returnButton);
+      winnerCard.setCenter(content);
+
+      StackPane.setAlignment(winnerCard, Pos.CENTER);
+      overlay.getChildren().add(winnerCard);
+
+      gameLobbyView.getRoot().getChildren().add(overlay);
+    }).build();
+    animationQueue.queue(action.timeline(), "Game ended", 0);
   }
 }

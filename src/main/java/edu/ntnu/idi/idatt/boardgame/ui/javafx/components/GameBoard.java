@@ -6,8 +6,6 @@ import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.ui.TileStyleService;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.style.LadderUtils;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +29,6 @@ public class GameBoard extends GridPane {
   @Getter
   private final Pane overlayPane;
 
-  @Getter
-  private final AnimationQueue animationQueue;
 
   private final Map<Player, PlayerBlipView> playerBlips;
   private final GameController gameController;
@@ -45,13 +41,11 @@ public class GameBoard extends GridPane {
    * Creates a new GameBoard.
    *
    * @param gameController The game controller managing the game logic.
-   * @param animationQueue The animation queue for handling animations.
    */
-  public GameBoard(GameController gameController, AnimationQueue animationQueue) {
+  public GameBoard(GameController gameController) {
     this.tileComponents = new HashMap<>();
     this.overlayPane = new Pane();
     this.playerBlips = new ConcurrentHashMap<>();
-    this.animationQueue = animationQueue;
     this.gameController = gameController;
     this.ladderComponents = new ConcurrentHashMap<>();
 
@@ -116,9 +110,8 @@ public class GameBoard extends GridPane {
       return;
     }
 
-    if (tileComponent.getScene() == null ||
-        tileComponent.getBoundsInLocal().getWidth() <= 0 ||
-        tileComponent.getBoundsInLocal().getHeight() <= 0) {
+    if (tileComponent.getScene() == null || tileComponent.getBoundsInLocal().getWidth() <= 0
+        || tileComponent.getBoundsInLocal().getHeight() <= 0) {
 
       logger.warning("Tile component not properly laid out for tile ID: " + tile.getTileId());
       return;
@@ -136,63 +129,8 @@ public class GameBoard extends GridPane {
     blipView.setTranslateX(0);
     blipView.setTranslateY(0);
 
-    logger.fine("Positioned player " + player.getName() + " on tile " + tile.getTileId() +
-        " at X=" + blipView.getLayoutX() + ", Y=" + blipView.getLayoutY());
-  }
-
-  /**
-   * Animates a player's movement from one tile to another.
-   *
-   * @param player   The player to animate.
-   * @param fromTile The tile to animate from.
-   * @param toTile   The tile to animate to.
-   */
-  public void animatePlayerMovement(Player player, Tile fromTile, Tile toTile) {
-    PlayerBlipView blipView = playerBlips.get(player);
-    if (blipView == null) {
-      logger.warning("Attempted to animate movement of unregistered player: " + player.getName());
-      return;
-    }
-
-    TileComponent toTileComponent = tileComponents.get(toTile.getTileId());
-    if (toTileComponent == null) {
-      logger.warning("No tile component found for destination tile ID: " + toTile.getTileId());
-      return;
-    }
-
-    var animation = PlayerMovementAnimator.createPathAnimation(
-        this, player, fromTile, toTile);
-
-    String description = "Player " + player.getName() + " moving from tile " +
-        (fromTile != null ? fromTile.getTileId() : "null") +
-        " to tile " + toTile.getTileId();
-
-    animationQueue.queue(animation, description, 500);
-    logger.fine("Queued animation: " + description);
-  }
-
-  /**
-   * Animates a player using a ladder from one tile to another.
-   *
-   * @param player   The player to animate.
-   * @param fromTile The ladder start tile.
-   * @param toTile   The ladder end tile.
-   */
-  public void animateLadderMovement(Player player, Tile fromTile, Tile toTile) {
-    if (fromTile == null || toTile == null) {
-      animatePlayerMovement(player, fromTile, toTile);
-      return;
-    }
-
-    var animation = PlayerMovementAnimator.createLadderAnimation(
-        this, player, fromTile, toTile);
-
-    String description = "Player " + player.getName() + " ladder from tile " +
-        fromTile.getTileId() + " to tile " + toTile.getTileId();
-
-    animationQueue.queue(animation, description, 500);
-
-    logger.fine("Queued ladder animation: " + description);
+    logger.fine("Positioned player " + player.getName() + " on tile " + tile.getTileId() + " at X="
+        + blipView.getLayoutX() + ", Y=" + blipView.getLayoutY());
   }
 
   /**
@@ -276,12 +214,8 @@ public class GameBoard extends GridPane {
         List<Double> startCoords = LadderUtils.calculateTileCenter(this, tileComponent);
         List<Double> endCoords = LadderUtils.calculateTileCenter(this, destinationTileComponent);
 
-        ladderComponent.updateCoordinates(
-            startCoords.get(0),
-            startCoords.get(1),
-            endCoords.get(0),
-            endCoords.get(1)
-        );
+        ladderComponent.updateCoordinates(startCoords.get(0), startCoords.get(1), endCoords.get(0),
+            endCoords.get(1));
       }
     });
   }
@@ -319,11 +253,10 @@ public class GameBoard extends GridPane {
      * Creates a new Builder for the GameBoard.
      *
      * @param gameController The game controller managing the game logic.
-     * @param animationQueue The animation queue for handling animations.
      */
-    public Builder(GameController gameController, AnimationQueue animationQueue) {
+    public Builder(GameController gameController) {
       this.game = gameController.getGame();
-      gameBoard = new GameBoard(gameController, animationQueue);
+      gameBoard = new GameBoard(gameController);
     }
 
     /**

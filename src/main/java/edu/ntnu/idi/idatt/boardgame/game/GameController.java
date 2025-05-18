@@ -14,7 +14,6 @@ import edu.ntnu.idi.idatt.boardgame.game.events.PlayerSkippedTurnEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -37,7 +36,8 @@ import lombok.Getter;
  * </ul>
  * </p>
  * <p>
- * The controller extends the Observable class to allow UI components to observe and react to game
+ * The controller extends the Observable class to allow UI components to observe
+ * and react to game
  * events without tight coupling.
  * </p>
  *
@@ -50,25 +50,22 @@ import lombok.Getter;
  */
 public class GameController extends Observable<GameController, GameEvent> {
 
-
   private final Logger logger = Logger.getLogger(GameController.class.getName());
-  @Getter
-  private Game game;
-  private List<Player> players;
-  private int currentPlayerIndex;
   private final QuizManager quizManager;
-
+  @Getter
+  private final Game game;
+  private final List<Player> players;
+  private int currentPlayerIndex;
   @Getter
   private boolean gameStarted;
   @Getter
   private boolean gameEnded;
-  private Tile lastTile;
   private List<Integer> lastDiceRolls;
   private Question currentQuestion;
   private Tile checkpointTile;
 
   @Getter
-  private Integer roundCount = 0;
+  private int roundCount = 0;
 
   /**
    * Creates a new GameController instance.
@@ -99,8 +96,9 @@ public class GameController extends Observable<GameController, GameEvent> {
       throw new IllegalArgumentException("Players list cannot be null");
     }
     if (players.size() < game.getMinPlayers() || players.size() > game.getMaxPlayers()) {
-      throw new IllegalStateException("Invalid number of players. Required: " + game.getMinPlayers()
-          + "-" + game.getMaxPlayers() + ", got: " + players.size());
+      throw new IllegalStateException(
+          "Invalid number of players. Required: " + game.getMinPlayers() + "-"
+              + game.getMaxPlayers() + ", got: " + players.size());
     }
 
     this.currentPlayerIndex = 0;
@@ -111,8 +109,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     /// this will prevent updating the global player list
     /// and makes sure the player state is internal within the game
     addPlayers(players);
-
-    findLastTile();
     Tile startTile = game.getBoard().getTile(0);
     if (startTile == null) {
       throw new IllegalStateException("Game board doesn't have a start tile (ID: 0)");
@@ -123,24 +119,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     }
 
     notifyObservers(new GameStartedEvent(game, this.players));
-  }
-
-  /**
-   * Finds the tile with the highest ID, which is considered the last tile.
-   */
-  private void findLastTile() {
-    Board board = game.getBoard();
-    int highestId = -1;
-    Tile highestTile = null;
-
-    for (Integer tileId : board.getTiles().keySet()) {
-      if (tileId > highestId) {
-        highestId = tileId;
-        highestTile = board.getTile(tileId);
-      }
-    }
-
-    this.lastTile = highestTile;
   }
 
   /**
@@ -170,20 +148,20 @@ public class GameController extends Observable<GameController, GameEvent> {
         new PlayerMovedEvent(currentPlayer, startTile, endTile, diceValue, actualStepsMoved));
 
     if (endTile.getAction().isPresent()) {
-      TileAction tileAction = endTile.getAction().get();
-      switch (tileAction) {
-        case GoalTileAction goalTileAction -> {
+      TileAction action = endTile.getAction().get();
+      switch (action) {
+        case GoalTileAction goalAction -> {
           gameEnded = true;
           notifyObservers(new GameEndedEvent(game, currentPlayer));
         }
-        case QuizTileAction quizTileAction -> {
-          initiateQuizQuestion(quizTileAction, startTile);
+        case QuizTileAction quizAction -> {
+          initiateQuizQuestion(quizAction, startTile);
           return;
         }
         default -> {
-          boolean triggered = tileAction.perform(currentPlayer);
+          boolean triggered = action.perform(currentPlayer);
           if (triggered) {
-            notifyObservers(new TileActionEvent(currentPlayer, endTile, tileAction));
+            notifyObservers(new TileActionEvent(currentPlayer, endTile, action));
           }
         }
       }
@@ -271,7 +249,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    *
    * @param answer the answer to the question
    */
-  public void answerQuestion(String answer) {
+  public boolean answerQuestion(String answer) {
     if (!gameStarted) {
       throw new IllegalStateException("Game is not started");
     }
@@ -286,10 +264,13 @@ public class GameController extends Observable<GameController, GameEvent> {
     if (!isCorrect && !currentPlayer.isImmune()) {
       placePlayerOnTile(currentPlayer, checkpointTile.getTileId());
     }
+
     checkpointTile = null;
     if (!gameEnded) {
       advanceToNextPlayer();
     }
+
+    return isCorrect;
   }
 
   /**

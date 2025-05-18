@@ -8,14 +8,13 @@ import lombok.Getter;
 /**
  * Represents a quiz question with its category, possible answers, and the correct answer index.
  * <p>
- * This class encapsulates the details of a quiz question, including its text, category,
- * possible answers, and the index of the correct answer.
+ * This class encapsulates the details of a quiz question, including its text, category, possible
+ * answers, and the index of the correct answer.
  * </p>
  *
- * @since v1.0.0
  * @version 1.0.0
- *
  * @see QuestionCategory
+ * @since v3.0.0
  */
 public class Question {
 
