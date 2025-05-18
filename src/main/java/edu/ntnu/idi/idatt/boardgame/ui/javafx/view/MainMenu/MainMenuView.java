@@ -12,6 +12,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
+import java.io.File;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
@@ -198,7 +199,13 @@ public class MainMenuView implements IView {
           "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
 
       StackPane imagePane = new StackPane();
-      ImageView gameImageView = new ImageView(new Image("images/ladder.png"));
+      ImageView gameImageView = new ImageView("images/not_found.png");
+      game.getImagePath().ifPresent(path -> {
+        var file = new File(path);
+        if (file.exists()) {
+          gameImageView.setImage(new Image(file.toURI().toString()));
+        }
+      });
       gameImageView.setFitHeight(120); // Approximate height
       gameImageView.setFitWidth(180); // Approximate width
       imagePane.getChildren().add(gameImageView);
