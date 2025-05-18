@@ -24,6 +24,7 @@ public class AudioManager {
   public AudioManager(FileProvider fileProvider) {
     this.fileProvider = fileProvider;
     preloadAudio(GameSoundEffects.VICTORY, "data/audio/victory.mp3");
+    preloadAudio(GameSoundEffects.CORRECT_ANSWER, "data/audio/correct-answer.mp3");
     preloadAudio(GameSoundEffects.INCORRECT_ANSWER, "data/audio/wrong-answer.m4a");
     preloadAudio(GameSoundEffects.FREEZE, "data/audio/freeze.m4a");
     preloadAudio(GameSoundEffects.IMMUNITY, "data/audio/immunity.mp3");
