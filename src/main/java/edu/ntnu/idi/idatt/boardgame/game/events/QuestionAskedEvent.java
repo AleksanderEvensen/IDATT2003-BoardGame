@@ -2,7 +2,6 @@ package edu.ntnu.idi.idatt.boardgame.game.events;
 
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
-import lombok.Getter;
 
 /**
  * Represents an event that occurs when a question is asked in the game.

@@ -32,5 +32,5 @@ public enum QuestionCategory {
   QuestionCategory(String displayName) {
     this.displayName = displayName;
   }
-  
+
 }

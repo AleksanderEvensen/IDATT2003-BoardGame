@@ -7,7 +7,6 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.logging.Logger;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Represents an action where a player moves to a destination tile via a ladder.
