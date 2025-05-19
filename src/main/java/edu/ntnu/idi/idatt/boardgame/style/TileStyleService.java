@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.style;
 
 import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.javafx.style.JavaFxTileStyleApplierFactory;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
 /**
  * Service class to provide easy access to the tile styling system. This class abstracts away the

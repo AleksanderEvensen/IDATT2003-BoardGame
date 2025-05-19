@@ -2,18 +2,18 @@ package edu.ntnu.idi.idatt.boardgame.javafx.view;
 
 import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.javafx.components.GameCard;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Button;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Button.ButtonVariant;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Card;
+import edu.ntnu.idi.idatt.boardgame.javafx.components.GameCard;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
@@ -30,7 +30,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.boxicons.BoxiconsRegular;
-import org.kordamp.ikonli.boxicons.BoxiconsSolid;
 
 /**
  * The main menu view of the application. This view displays available games and player management.

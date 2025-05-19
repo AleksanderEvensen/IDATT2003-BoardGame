@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
+import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
