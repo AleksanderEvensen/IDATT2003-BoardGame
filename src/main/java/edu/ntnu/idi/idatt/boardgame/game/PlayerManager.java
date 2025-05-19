@@ -66,9 +66,9 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
    * @param path    the path to save to
    * @param players the players to save
    */
-  public void savePlayers(String path, List<Player> players) {
+  public void savePlayers(String path) {
     StringBuilder sb = new StringBuilder();
-    for (Player player : players) {
+    for (Player player : this.players) {
       sb.append(String.format("%s;%s\n", player.getName(), player.getColor().toHex()));
     }
 
@@ -172,5 +172,19 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     }
     logger.info("Player index: " + index);
     return this.updatePlayer(index, new Player(newName, newColor));
+  }
+
+  private static PlayerManager instance;
+
+  /**
+   * Creates and/or gets the singleton instance of {@link PlayerManager}.
+   *
+   * @return the singleton instance of {@link PlayerManager}
+   */
+  public static PlayerManager getInstance() {
+    if (instance == null) {
+      instance = new PlayerManager(new LocalFileProvider());
+    }
+    return instance;
   }
 }

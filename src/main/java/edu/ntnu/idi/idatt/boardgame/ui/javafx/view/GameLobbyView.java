@@ -1,7 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.view;
 
-import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.game.GameController;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.game.QuizManager;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
@@ -71,9 +73,9 @@ public class GameLobbyView implements IView {
   @Override
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
-    Game game = Application.getGameManager().getGame(gameId);
-    this.gameController = new GameController(game, Application.getQuizManager());
-    gameController.startGame(Application.getPlayerManager().getPlayers());
+    Game game = GameManager.getInstance().getGame(gameId);
+    this.gameController = new GameController(game, QuizManager.getInstance());
+    gameController.startGame(PlayerManager.getInstance().getPlayers());
     gameLobbyController = new GameLobbyController(this, gameController);
     animationQueue = new AnimationQueue();
     gameBoard = gameLobbyController.createGameBoard();

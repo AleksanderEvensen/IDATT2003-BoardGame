@@ -88,6 +88,19 @@ public class GameManager {
       String filePath = DEFAULT_GAME_PATH + "/" + fileName;
       loadGame(filePath);
     }
+  }
 
+  private static GameManager instance;
+
+  /**
+   * Creates and/or gets the singleton instance of {@link GameManager}.
+   *
+   * @return the singleton instance of {@link GameManager}
+   */
+  public static GameManager getInstance() {
+    if (instance == null) {
+      instance = new GameManager(new LocalFileProvider());
+    }
+    return instance;
   }
 }

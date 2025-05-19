@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
 import java.util.HashSet;
@@ -102,4 +103,17 @@ public class QuizManager {
     }
   }
 
+  private static QuizManager instance;
+
+  /**
+   * Creates and/or gets the singleton instance of {@link QuizManager}.
+   *
+   * @return the singleton instance of {@link QuizManager}
+   */
+  public static QuizManager getInstance() {
+    if (instance == null) {
+      instance = new QuizManager(new LocalFileProvider());
+    }
+    return instance;
+  }
 }

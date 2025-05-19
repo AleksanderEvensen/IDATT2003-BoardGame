@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.audio;
 
-import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,12 +16,9 @@ import javafx.scene.media.AudioClip;
  */
 public class AudioManager {
 
-  private final FileProvider fileProvider;
-  private final Map<GameSoundEffects, AudioClip> audioClips = new HashMap<>();
+  private static final Map<GameSoundEffects, AudioClip> audioClips = new HashMap<>();
 
-
-  public AudioManager(FileProvider fileProvider) {
-    this.fileProvider = fileProvider;
+  static {
     preloadAudio(GameSoundEffects.VICTORY, "data/audio/victory.mp3");
     preloadAudio(GameSoundEffects.CORRECT_ANSWER, "data/audio/correct-answer.mp3");
     preloadAudio(GameSoundEffects.INCORRECT_ANSWER, "data/audio/wrong-answer.m4a");
@@ -42,15 +38,14 @@ public class AudioManager {
    * @param audioFilePath the file path of the audio clip
    * @return the preloaded audio clip
    */
-  public AudioClip preloadAudio(GameSoundEffects name, String audioFilePath) {
+  private static AudioClip preloadAudio(GameSoundEffects name, String audioFilePath) {
     if (audioClips.containsKey(name)) {
       return audioClips.get(name);
     }
-
-    if (!fileProvider.exists(audioFilePath)) {
+    File audioFile = new File(audioFilePath);
+    if (!audioFile.exists()) {
       throw new IllegalArgumentException("Audio file not found: " + audioFilePath);
     }
-    File audioFile = new File(audioFilePath);
     AudioClip audioClip = new AudioClip(audioFile.toURI().toString());
     audioClips.put(name, audioClip);
     return audioClip;
@@ -64,7 +59,7 @@ public class AudioManager {
    *
    * @param name the name of the audio clip to play
    */
-  public void playAudio(GameSoundEffects name) {
+  public static void playAudio(GameSoundEffects name) {
     AudioClip audioClip = audioClips.get(name);
     if (audioClip != null) {
       audioClip.play();
@@ -81,7 +76,7 @@ public class AudioManager {
    *
    * @param name the name of the audio clip to stop
    */
-  public void stopAudio(GameSoundEffects name) {
+  public static void stopAudio(GameSoundEffects name) {
     AudioClip audioClip = audioClips.get(name);
     if (audioClip != null) {
       audioClip.stop();
@@ -97,9 +92,7 @@ public class AudioManager {
    * @param name the name of the audio clip to retrieve
    * @return the audio clip, or null if not found
    */
-  public AudioClip getAudioClip(GameSoundEffects name) {
+  public static AudioClip getAudioClip(GameSoundEffects name) {
     return audioClips.get(name);
   }
-
-
 }
