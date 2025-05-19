@@ -59,7 +59,7 @@ public class Application extends javafx.application.Application {
   @Override
   public void start(Stage stage) throws IOException {
     primaryStage = stage;
-    primaryScene = new Scene(new Pane(), 1200, 1000);
+    primaryScene = new Scene(new Pane(), 1920, 1080);
 
     router.createRoute("/home", new MainMenuView(new MainMenuController()));
     router.createRoute("/game/:gameId", new GameLobbyView());
@@ -68,7 +68,7 @@ public class Application extends javafx.application.Application {
 
     refreshCss();
     primaryScene.getStylesheets().add("main.css");
-    stage.setFullScreen(false);
+    stage.setFullScreen(true);
     stage.setTitle("Board Game");
     stage.setScene(primaryScene);
     stage.show();
