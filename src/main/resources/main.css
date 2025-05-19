@@ -1,4 +1,3 @@
-@import url("theme.css");
 /* Important to keep components before utils */
 @import url("styles/components/index.css");
 

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * The main application class.
@@ -21,6 +22,8 @@ public class Application extends javafx.application.Application {
 
   private static Scene primaryScene;
   private static Stage primaryStage;
+  @Getter
+  private static boolean isDarkTheme = true;
 
 
   /**
@@ -87,9 +90,24 @@ public class Application extends javafx.application.Application {
   public static void refreshCss() {
     if (primaryScene != null) {
       primaryScene.getStylesheets().clear();
+      if (isDarkTheme) {
+        primaryScene.getStylesheets().add("theme.css");
+      } else {
+        primaryScene.getStylesheets().add("theme-light.css");
+      }
       primaryScene.getStylesheets().add("main.css");
       logger.info("CSS reloaded");
     }
+  }
+
+  /**
+   * Sets and refreshes the theme setting.
+   *
+   * @param isDarkTheme true for dark theme, false for light theme.
+   */
+  public static void setDarkTheme(boolean isDarkTheme) {
+    Application.isDarkTheme = isDarkTheme;
+    refreshCss();
   }
 
   public static Scene getScene() {

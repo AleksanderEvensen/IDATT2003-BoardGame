@@ -30,6 +30,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.boxicons.BoxiconsRegular;
+import org.kordamp.ikonli.boxicons.BoxiconsSolid;
 
 /**
  * The main menu view of the application. This view displays available games and player management.
@@ -157,6 +158,7 @@ public class MainMenuView implements IView {
     playersControls.getChildren().addAll(playerNameControl, savePlayersButton, playersScrollPane);
     playersCard.setCenter(playersControls);
 
+    VBox bottomControls = new VBox(5);
     // Exit Button
     Button exitButton = new Button("Exit to Desktop", BoxiconsRegular.EXIT);
     exitButton.withVariant(ButtonVariant.SECONDARY);
@@ -165,7 +167,18 @@ public class MainMenuView implements IView {
     exitButton.setOnAction(e -> {
       controller.exitToDesktop();
     });
-    playersCard.setBottom(exitButton);
+
+    Button toggleThemeButton = new Button("Toggle Dark/Light Theme", BoxiconsRegular.TONE);
+    toggleThemeButton.withVariant(ButtonVariant.SECONDARY);
+    toggleThemeButton.setMaxWidth(Double.MAX_VALUE);
+    toggleThemeButton.setStyle("-fx-font-size: 16px;");
+    toggleThemeButton.setOnAction(e -> {
+      controller.toggleTheme();
+    });
+
+    bottomControls.getChildren().addAll(exitButton, toggleThemeButton);
+
+    playersCard.setBottom(bottomControls);
 
     // Game Section Card
     Card gamesCard = new Card();

@@ -120,6 +120,13 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
     PlayerManager.getInstance().savePlayers("data/players.csv");
   }
 
+  /**
+   * Toggles the application theme between light and dark mode.
+   */
+  public void toggleTheme() {
+    Application.setDarkTheme(!Application.isDarkTheme());
+  }
+
   // Observers
   @Override
   public void update(List<Player> value) {
