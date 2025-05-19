@@ -133,4 +133,40 @@ class PlayerTest {
     assertEquals("Immunity turns cannot be negative", exception.getMessage());
   }
 
+
+  @Test
+  void constructor_shouldThrowExceptionWhenNameIsNull() {
+    // Act & Assert
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> new Player(null, Color.RED));
+    assertEquals("Name cannot be null or empty and must be less than 20 characters",
+        exception.getMessage());
+  }
+
+  @Test
+  void constructor_shouldThrowExceptionWhenNameIsEmpty() {
+    // Act & Assert
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> new Player("", Color.RED));
+    assertEquals("Name cannot be null or empty and must be less than 20 characters",
+        exception.getMessage());
+  }
+
+  @Test
+  void constructor_shouldThrowExceptionWhenNameExceedsMaxLength() {
+    // Act & Assert
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        () -> new Player("ThisNameIsWayTooLongToBeValid", Color.RED));
+    assertEquals("Name cannot be null or empty and must be less than 20 characters",
+        exception.getMessage());
+  }
+
+  @Test
+  void constructor_shouldThrowExceptionWhenColorIsNull() {
+    // Act & Assert
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> new Player("Player1", null));
+    assertEquals("Color cannot be null", exception.getMessage());
+  }
+
 }

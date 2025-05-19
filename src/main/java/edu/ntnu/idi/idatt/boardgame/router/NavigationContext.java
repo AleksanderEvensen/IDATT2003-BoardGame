@@ -5,6 +5,14 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import lombok.Getter;
 
+/**
+ * A class that represents the context of navigation. It contains information about the template
+ * URL, the URL that was navigated to, the parameters of the URL, and any associated data.
+ *
+ * @param <T> the type of data associated with the navigation context
+ * @version v1.0.0
+ * @since v3.0.0
+ */
 public class NavigationContext<T> {
 
   @Getter

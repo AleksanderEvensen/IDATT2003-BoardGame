@@ -4,11 +4,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Project Information -->
   <groupId>edu.ntnu.idi.idatt</groupId>
   <artifactId>BoardGame</artifactId>
   <version>2.0</version>
   <name>BoardGame</name>
 
+  <!-- Properties -->
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
     <maven.compiler.source>21</maven.compiler.source>
@@ -18,6 +20,8 @@
     <javafx.version>23.0.1</javafx.version>
     <javafx.main>edu.ntnu.idi.idatt.boardgame.Application</javafx.main>
   </properties>
+
+  <!-- Repositories -->
   <repositories>
     <repository>
       <id>central</id>
@@ -28,21 +32,35 @@
       <url>https://artifactory.cronapp.io/public-release/</url>
     </repository>
   </repositories>
-  <dependencies>
 
+  <!-- Dependencies -->
+  <dependencies>
+    <!-- Testing Dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.14.2</version>
+      <scope>test</scope>
+    </dependency>
 
+    <!-- JavaFX Dependencies -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>${javafx.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
@@ -58,6 +76,8 @@
       <artifactId>javafx-base</artifactId>
       <version>${javafx.version}</version>
     </dependency>
+
+    <!-- Icon Libraries -->
     <dependency>
       <groupId>org.kordamp.ikonli</groupId>
       <artifactId>ikonli-javafx</artifactId>
@@ -74,6 +94,13 @@
       <version>12.3.1</version>
     </dependency>
     <dependency>
+      <groupId>org.kordamp.ikonli</groupId>
+      <artifactId>ikonli-boxicons-pack</artifactId>
+      <version>12.4.0</version>
+    </dependency>
+
+    <!-- JSON Parsing -->
+    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.9.0</version>
@@ -83,30 +110,20 @@
       <artifactId>gson-extras</artifactId>
       <version>2.8.5</version>
     </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>5.14.2</version>
-      <scope>test</scope>
-    </dependency>
 
+    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.38</version>
       <scope>provided</scope>
     </dependency>
-
-    <dependency>
-      <groupId>org.kordamp.ikonli</groupId>
-      <artifactId>ikonli-boxicons-pack</artifactId>
-      <version>12.4.0</version>
-    </dependency>
-
   </dependencies>
 
+  <!-- Build Plugins -->
   <build>
     <plugins>
+      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -121,14 +138,14 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+
+      <!-- JavaFX Plugin -->
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.6</version>
         <executions>
           <execution>
-            <!-- Default configuration for running -->
-            <!-- Usage: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
               <mainClass>${javafx.main}</mainClass>
@@ -137,12 +154,14 @@
         </executions>
       </plugin>
 
+      <!-- Testing Plugins -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.2</version>
       </plugin>
 
+      <!-- Code Coverage Plugin -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -164,6 +183,7 @@
         </executions>
       </plugin>
 
+      <!-- Javadoc Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
