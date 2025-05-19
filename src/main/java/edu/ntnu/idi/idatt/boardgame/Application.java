@@ -1,10 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame;
 
 import edu.ntnu.idi.idatt.boardgame.router.Router;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.GameLobbyView;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.MainMenuController;
-import edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenuView;
+import edu.ntnu.idi.idatt.boardgame.javafx.IView;
+import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
+import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.scene.Parent;
