@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -143,6 +142,9 @@ public class Player {
    * @param frozenTurns the number of turns the player is frozen
    */
   public void setFrozenTurns(int frozenTurns) {
+    if (frozenTurns < 0) {
+      throw new IllegalArgumentException("Frozen turns cannot be negative");
+    }
     this.frozenTurns = frozenTurns;
   }
 

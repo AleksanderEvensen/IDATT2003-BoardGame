@@ -1,6 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -84,4 +87,50 @@ class PlayerTest {
     player.moveToTile(newTile, false);
     assertEquals(newTile, player.getCurrentTile());
   }
+
+  @Test
+  void isImmune() {
+    player.setImmunityTurns(2);
+    assertTrue(player.isImmune());
+
+    player.setImmunityTurns(0);
+    assertFalse(player.isImmune());
+  }
+
+  @Test
+  void testEquals() {
+    Player samePlayer = new Player("Player1", Color.RED);
+    Player differentPlayer = new Player("Player2", Color.BLUE);
+
+    assertTrue(player.equals(samePlayer));
+    assertFalse(player.equals(differentPlayer));
+    assertFalse(player.equals(null));
+    assertFalse(player.equals(new Object()));
+  }
+
+  @Test
+  void setImmunityTurns() {
+    player.setImmunityTurns(3);
+    assertTrue(player.isImmune());
+    assertEquals(3, player.getImmunityTurns());
+
+    player.setImmunityTurns(0);
+    assertFalse(player.isImmune());
+    assertEquals(0, player.getImmunityTurns());
+  }
+
+  @Test
+  void setFrozenTurns_shouldThrowExceptionForNegativeValue() {
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> player.setFrozenTurns(-1));
+    assertEquals("Frozen turns cannot be negative", exception.getMessage());
+  }
+
+  @Test
+  void setImmunityTurns_shouldThrowExceptionForNegativeValue() {
+    IllegalArgumentException exception =
+        assertThrows(IllegalArgumentException.class, () -> player.setImmunityTurns(-1));
+    assertEquals("Immunity turns cannot be negative", exception.getMessage());
+  }
+
 }
