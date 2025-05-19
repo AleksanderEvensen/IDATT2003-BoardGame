@@ -32,7 +32,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * Constructs a MainMenuController and registers it as an observer to the PlayerManager.
    */
   public MainMenuController() {
-    Application.getPlayerManager().addListener(this);
+    PlayerManager.getInstance().addListener(this);
     this.players = FXCollections.observableArrayList();
   }
 
@@ -43,7 +43,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * </p>
    */
   public void initialize() {
-    this.players.setAll(Application.getPlayerManager().getPlayers());
+    this.players.setAll(PlayerManager.getInstance().getPlayers());
   }
 
   /**
@@ -78,7 +78,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    */
   public void addPlayer(Player player) {
     logger.info("ADDing player: " + player.getName());
-    Application.getPlayerManager().addPlayer(player);
+    PlayerManager.getInstance().addPlayer(player);
   }
 
   /**
@@ -90,7 +90,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * @param player the player to remove
    */
   public void removePlayer(Player player) {
-    Application.getPlayerManager().removePlayer(player);
+    PlayerManager.getInstance().removePlayer(player);
   }
 
 
@@ -105,7 +105,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * @param newColor the new color for the player
    */
   public void updatePlayer(Player player, String newName, Color newColor) {
-    Application.getPlayerManager().updatePlayer(player, newName, newColor);
+    PlayerManager.getInstance().updatePlayer(player, newName, newColor);
   }
 
   /**
@@ -115,8 +115,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * </p>
    */
   public void savePlayersToFile() {
-    Application.getPlayerManager().savePlayers("data/players.csv",
-        Application.getPlayerManager().getPlayers());
+    PlayerManager.getInstance().savePlayers("data/players.csv");
   }
 
   // Observers

@@ -21,6 +21,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.DieComponentAnimator;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.PlayerMovementAnimator;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.animation.QueueableAction;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.AudioManager;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.audio.GameSoundEffects;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Button;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Card;
@@ -204,7 +205,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     if (action instanceof FreezeAction) {
       QueueableAction freezeAudioAction = QueueableAction.builder().action(() -> {
-        Application.getAudioManager().playAudio(GameSoundEffects.FREEZE);
+        AudioManager.playAudio(GameSoundEffects.FREEZE);
       }).build();
       animationQueue.queue(freezeAudioAction.timeline(), "Freeze action", 0);
 
@@ -212,7 +213,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     if (action instanceof ImmunityAction) {
       QueueableAction immunityAudioAction = QueueableAction.builder().action(() -> {
-        Application.getAudioManager().playAudio(GameSoundEffects.IMMUNITY);
+        AudioManager.playAudio(GameSoundEffects.IMMUNITY);
       }).build();
       animationQueue.queue(immunityAudioAction.timeline(), "Immunity action", 0);
     }
@@ -239,9 +240,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
             boolean isCorrect = gameController.answerQuestion(
                 event.getQuestion().getAnswers().get(answer));
             if (isCorrect) {
-              Application.getAudioManager().playAudio(GameSoundEffects.CORRECT_ANSWER);
+              AudioManager.playAudio(GameSoundEffects.CORRECT_ANSWER);
             } else {
-              Application.getAudioManager().playAudio(GameSoundEffects.INCORRECT_ANSWER);
+              AudioManager.playAudio(GameSoundEffects.INCORRECT_ANSWER);
             }
           });
       dialog.show();
@@ -304,9 +305,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
     QueueableAction audioEffectAction = QueueableAction.builder().action(() -> {
       if (isPositiveLadder) {
-        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_CLIMB);
+        AudioManager.playAudio(GameSoundEffects.LADDER_CLIMB);
       } else {
-        Application.getAudioManager().playAudio(GameSoundEffects.LADDER_FALL);
+        AudioManager.playAudio(GameSoundEffects.LADDER_FALL);
       }
     }).build();
 
@@ -331,7 +332,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     gameLobbyView.getRollButtonDisabledProperty().set(true);
     QueueableAction action = QueueableAction.builder().action(() -> {
 
-      Application.getAudioManager().playAudio(GameSoundEffects.VICTORY);
+      AudioManager.playAudio(GameSoundEffects.VICTORY);
 
       StackPane overlay = new StackPane();
       overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");

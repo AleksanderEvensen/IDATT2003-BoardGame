@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.view;
 
-import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.IView;
@@ -189,8 +189,8 @@ public class MainMenuView implements IView {
     gameGrid.setPrefWrapLength(600);
 
     // TODO: Use game card component
-    Application.getGameManager().getAvailableGameIds().forEach(gameId -> {
-      Game game = Application.getGameManager().getGame(gameId);
+    GameManager.getInstance().getAvailableGameIds().forEach(gameId -> {
+      Game game = GameManager.getInstance().getGame(gameId);
 
       VBox gameCard = new VBox(5);
       gameCard.setStyle(
