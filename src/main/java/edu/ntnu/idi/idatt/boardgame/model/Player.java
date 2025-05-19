@@ -12,7 +12,6 @@ import lombok.Setter;
  *
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  */
-@EqualsAndHashCode
 public class Player {
 
   private @Getter
@@ -179,12 +178,22 @@ public class Player {
 
   @Override
   public String toString() {
-    return "Player{" +
-        "name='" + name + '\'' +
-        ", color=" + color +
-        ", currentTile=" + currentTile +
-        ", frozenTurns=" + frozenTurns +
-        ", immunityTurns=" + immunityTurns +
-        '}';
+    return String.format(
+        "Player{name='%s', color=%s, currentTile=%s, frozenTurns=%d, immunityTurns=%d}",
+        name, color, currentTile, frozenTurns, immunityTurns);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Player other)) {
+      return false;
+    }
+    return name.equals(other.name) && color.equals(other.color);
   }
 }
