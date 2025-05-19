@@ -3,7 +3,7 @@
   "name": "Bezzerwizzer",
   "description": "Bezzerwizzer is a trivia board game where players answer questions from various categories to progress on the board.",
   "minPlayers": 2,
-  "maxPlayers": 4,
+  "maxPlayers": 10,
   "numberOfDice": 2,
   "imagePath": "data/images/bezzerwizzer.png",
   "board": {

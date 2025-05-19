@@ -48,9 +48,8 @@ public class Router<T> {
 
         return true;
       } catch (Exception e) {
-        e.printStackTrace();
+        throw new NavigationException(e.getMessage());
       }
-      return false;
     }
     return false;
   }

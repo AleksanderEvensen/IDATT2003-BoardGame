@@ -250,6 +250,18 @@ public class GameLobbyView implements IView {
 
     gameInfoContainer.getChildren().addAll(currentPlayerContainer, currentRoundContainer);
 
+    Header description = new Header(gameController.getGame().getDescription())
+        .withFontSize(16);
+    description.setWrapText(true);
+    description.setMaxWidth(Double.MAX_VALUE);
+    var descriptionContainer = new VBox(
+        10,
+        new Header("Description").withType(HeaderType.H4).withFontWeight(Weight.SEMIBOLD),
+        description
+    );
+    descriptionContainer.setPadding(new Insets(10, 0, 0, 0));
+    gameInfoCard.setBottom(descriptionContainer);
+
     controlPanel.getChildren().add(gameInfoCard);
 
     return controlPanel;
