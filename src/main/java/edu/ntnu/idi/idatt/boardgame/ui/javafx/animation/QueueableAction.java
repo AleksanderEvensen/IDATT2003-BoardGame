@@ -1,9 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.ui.javafx.animation;
 
-import java.util.Objects;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import lombok.NonNull;
 
 /**
  * <p>
@@ -18,16 +18,13 @@ public class QueueableAction {
 
   private final Timeline timeline;
 
-  private QueueableAction(Runnable action, Runnable preAction, Runnable postAction) {
-    Objects.requireNonNull(action, "Action cannot be null");
-
+  private QueueableAction(@NonNull Runnable action, Runnable preAction, Runnable postAction) {
     if (preAction != null) {
       preAction.run();
     }
 
     KeyFrame mainFrame = new KeyFrame(Duration.millis(1), e -> action.run());
-
-    timeline = new Timeline(mainFrame);
+    this.timeline = new Timeline(mainFrame);
 
     if (postAction != null) {
       timeline.setOnFinished(e -> postAction.run());
