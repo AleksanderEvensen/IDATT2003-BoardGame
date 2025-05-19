@@ -11,6 +11,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.kordamp.ikonli.boxicons.BoxiconsSolid;
 
+/**
+ * JavaFX-specific implementation of the goal tile style applier.
+ *
+ * <p>
+ * This class applies a specific style to goal tiles in the JavaFX UI.
+ * </p>
+ *
+ * @version v1.0.0
+ * @see TileStyleApplier
+ * @since v2.0.0
+ */
 public class JavaFxGoalStyleApplier implements TileStyleApplier {
 
   @Override

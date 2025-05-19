@@ -13,12 +13,14 @@ import lombok.Getter;
 
 /**
  * Controller for the main menu view.
+ *
  * <p>
  * This class handles the interactions and updates for the main menu, including player management
  * and navigation to the game view.
  * </p>
  *
- * @since v1.0.0
+ * @version v1.0.0
+ * @since v3.0.0
  */
 public class MainMenuController implements Observer<PlayerManager, List<Player>> {
 

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  * This action is triggered when a player lands on a tile with a ladder.
  * </p>
  *
+ * @version v1.0.0
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v0.0.1

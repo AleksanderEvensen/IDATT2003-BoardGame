@@ -7,6 +7,9 @@ import javafx.geometry.Bounds;
 
 /**
  * Utility class for ladder-related calculations and coordinate extraction.
+ *
+ * @version v1.0.0
+ * @since v3.0.0
  */
 public class LadderUtils {
 

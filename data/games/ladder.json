@@ -22,11 +22,7 @@
         "row": 9,
         "col": 1,
         "nextTileId": 2,
-        "previousTileId": 0,
-        "action": {
-          "type": "QUIZ",
-          "category": "RANDOM"
-        }
+        "previousTileId": 0
       },
       "2": {
         "tileId": 2,
@@ -47,10 +43,7 @@
         "row": 9,
         "col": 4,
         "nextTileId": 5,
-        "previousTileId": 3,
-        "action": {
-          "type": "FREEZE"
-        }
+        "previousTileId": 3
       },
       "5": {
         "tileId": 5,
@@ -71,11 +64,7 @@
         "row": 9,
         "col": 7,
         "nextTileId": 8,
-        "previousTileId": 6,
-        "action": {
-          "type": "LADDER",
-          "destinationTileId": 10
-        }
+        "previousTileId": 6
       },
       "8": {
         "tileId": 8,

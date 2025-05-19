@@ -9,6 +9,9 @@ import edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplierFactory;
 /**
  * Service class to provide easy access to the tile styling system. This class abstracts away the
  * details of the styling system and provides a simple API for applying styles to tiles.
+ *
+ * @version v1.0.0
+ * @since v2.0.0
  */
 public class TileStyleService {
 

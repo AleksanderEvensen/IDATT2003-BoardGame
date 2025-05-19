@@ -6,6 +6,9 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
 /**
  * An abstract interface for applying styles to tiles based on their actions. This decouples the
  * styling logic from specific UI implementations.
+ *
+ * @version v1.0.0
+ * @since v2.0.0
  */
 public interface TileStyleApplier {
 
