@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.javafx.view;
 
 import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
+import edu.ntnu.idi.idatt.boardgame.javafx.components.GameCard;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
@@ -13,27 +14,21 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
-import java.io.File;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import org.kordamp.ikonli.boxicons.BoxiconsRegular;
 
 /**
@@ -52,7 +47,6 @@ public class MainMenuView implements IView {
     this.controller = controller;
   }
 
-  public Image GAME_FALLBACK_IMAGE = new Image("images/not_found.png");
 
   @Override
   public void load() {
@@ -188,44 +182,12 @@ public class MainMenuView implements IView {
     gameGrid.setPadding(new Insets(10, 0, 0, 0));
     gameGrid.setPrefWrapLength(600);
 
-    // TODO: Use game card component
     GameManager.getInstance().getAvailableGameIds().forEach(gameId -> {
       Game game = GameManager.getInstance().getGame(gameId);
-
-      VBox gameCard = new VBox(5);
-      gameCard.setStyle(
-          "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"); // border-amber-200
-      gameCard.setOnMouseEntered(event -> gameCard.setStyle(
-          "-fx-border-color: #FFCA28; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
-      // hover:border-amber-400
-      gameCard.setOnMouseExited(event -> gameCard.setStyle(
-          "-fx-border-color: #FFE0B2; -fx-border-radius: 5; -fx-padding: 5; -fx-cursor: hand;"));
-
-      StackPane imagePane = new StackPane();
-      ImageView gameImageView = new ImageView(GAME_FALLBACK_IMAGE);
-      game.getImagePath().ifPresent(path -> {
-        var file = new File(path);
-        if (file.exists()) {
-          gameImageView.setImage(new Image(file.toURI().toString()));
-        }
-      });
-      gameImageView.setFitHeight(120); // Approximate height
-      gameImageView.setFitWidth(180); // Approximate width
-      imagePane.getChildren().add(gameImageView);
-      imagePane.setStyle("-fx-background-color: #EEE;"); // Placeholder background
-
-      Label gameNameLabel = new Label(game.getName());
-      gameNameLabel.setTextFill(Color.web("#E65100")); // amber-800 (approx.)
-
-      VBox cardContent = new VBox(5);
-      cardContent.setPadding(new Insets(10));
-      cardContent.getChildren().add(gameNameLabel);
-
+      GameCard gameCard = new GameCard(game);
       gameCard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
         this.controller.startGame(gameId);
       });
-
-      gameCard.getChildren().addAll(imagePane, cardContent);
       gameGrid.getChildren().add(gameCard);
     });
 
@@ -254,12 +216,12 @@ public class MainMenuView implements IView {
     saveButton.setDisable(true);
 
     TextField playerNameField = new TextField(player.getName());
+    playerNameField.setMaxWidth(Double.MAX_VALUE);
+    playerNameField.getStyleClass().add("player-name-field");
+
     ColorPicker colorPicker = new ColorPicker(Utils.toJFXColor(player.getColor()));
     colorPicker.getStyleClass().add("button");
-    Button removeButton = new Button(BoxiconsRegular.TRASH).withVariant(ButtonVariant.DESTRUCTIVE);
 
-    playerNameField.setMaxWidth(Double.MAX_VALUE);
-    playerNameField.setStyle("-fx-background-color: #555555; -fx-text-fill: white;");
     var validateUserInput = new Object() {
       public void handle() {
         var color = Utils.toModelColor(colorPicker.getValue());
@@ -270,10 +232,8 @@ public class MainMenuView implements IView {
       }
     };
 
-    playerNameField.setOnKeyTyped(e -> validateUserInput.handle());
-    colorPicker.setOnAction(e -> {
-      validateUserInput.handle();
-    });
+    playerNameField.textProperty().addListener(e -> validateUserInput.handle());
+    colorPicker.setOnAction(e -> validateUserInput.handle());
 
     saveButton.setOnAction(e -> {
       this.controller.updatePlayer(player, playerNameField.getText(),
@@ -281,6 +241,7 @@ public class MainMenuView implements IView {
     });
 
     // Remove player button
+    Button removeButton = new Button(BoxiconsRegular.TRASH).withVariant(ButtonVariant.DESTRUCTIVE);
     removeButton.setOnAction(e -> {
       this.controller.removePlayer(player);
     });

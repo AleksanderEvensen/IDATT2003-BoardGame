@@ -40,6 +40,11 @@ public class Header extends Label {
     return this;
   }
 
+  public Header withFontSize(int size) {
+    this.setStyle(String.format("-fx-font-sie: %dpx;", size));
+    return this;
+  }
+
   public Header addClasses(String... classes) {
     getStyleClass().addAll(classes);
     return this;

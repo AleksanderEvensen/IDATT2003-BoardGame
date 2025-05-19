@@ -454,6 +454,7 @@
         "tileId": 40,
         "row": 10,
         "col": 0,
+        "nextTileId": -1,
         "previousTileId": 39,
         "action": {
           "type": "GOAL"

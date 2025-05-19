@@ -1,3 +1,8 @@
 .player-color-picker {
   -fx-color-label-visible: false;
 }
+
+.player-name-field {
+  -fx-background-color: -fx-color-accent;
+  -fx-text-fill: -fx-color-accent-fg;
+}

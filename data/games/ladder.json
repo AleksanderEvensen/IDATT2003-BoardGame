@@ -688,6 +688,7 @@
         "tileId": 89,
         "row": 0,
         "col": 0,
+        "nextTileId": -1,
         "previousTileId": 88,
         "action": {
           "type": "GOAL"

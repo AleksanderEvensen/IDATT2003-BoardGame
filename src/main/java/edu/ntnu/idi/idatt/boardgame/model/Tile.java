@@ -27,13 +27,23 @@ public class Tile implements Serializable, HasTileReferenceResolver {
 
   /// The ID of the tile that comes after this one defaults to -1, indicating no next tile
   private final int nextTileId;
-  private @Getter
-  @Setter int row;
-  private @Getter
-  @Setter int col;
+
+  @Getter
+  @Setter
+  private int row;
+
+  @Getter
+  @Setter
+  private int col;
+
+  @Setter
   private TileAction action;
-  private transient @Setter Tile previousTile;
-  private transient @Setter Tile nextTile;
+
+  @Setter
+  private transient Tile previousTile;
+
+  @Setter
+  private transient Tile nextTile;
 
   /**
    * Private constructor used by the Builder.
@@ -47,7 +57,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
     this.action = builder.action;
     this.nextTileId = builder.nextTileId;
     this.previousTileId = builder.previousTileId;
-
   }
 
   /**
@@ -76,16 +85,6 @@ public class Tile implements Serializable, HasTileReferenceResolver {
    */
   public Optional<TileAction> getAction() {
     return Optional.ofNullable(action);
-  }
-
-  /**
-   * Sets the action.
-   *
-   * @param action the tile action
-   * @see TileAction
-   */
-  public void setAction(TileAction action) {
-    this.action = action;
   }
 
   /**

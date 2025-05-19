@@ -48,15 +48,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class GameLobbyView implements IView {
 
-  // JavaFX properties
-  @Getter
-  private final ObjectProperty<Player> currentPlayerProperty = new SimpleObjectProperty<>();
-  @Getter
-  private final IntegerProperty currentRoundProperty = new SimpleIntegerProperty(1);
-  @Getter
-  private final IntegerProperty lastRollProperty = new SimpleIntegerProperty(0);
-  @Getter
-  private final BooleanProperty rollButtonDisabledProperty = new SimpleBooleanProperty(false);
   @Getter
   private StackPane root;
   private GameController gameController;
@@ -106,8 +97,6 @@ public class GameLobbyView implements IView {
 
     this.root = new StackPane(content);
     this.root.getStyleClass().add("view-root");
-
-    currentPlayerProperty.set(gameController.getCurrentPlayer());
 
     return root;
   }
@@ -159,9 +148,10 @@ public class GameLobbyView implements IView {
       cell.setPadding(new Insets(0, 0, 10, 0));
       cell.getStyleClass().clear();
 
-      currentPlayerProperty.addListener((obs, oldPlayer, newPlayer) -> {
-        cell.updateItem(cell.getItem(), cell.isEmpty());
-      });
+      this.gameLobbyController.getCurrentPlayerProperty()
+          .addListener((obs, oldPlayer, newPlayer) -> {
+            cell.updateItem(cell.getItem(), cell.isEmpty());
+          });
 
       return cell;
     });
@@ -195,14 +185,12 @@ public class GameLobbyView implements IView {
     HBox lastRollContainer = new HBox(10);
     lastRollContainer.setAlignment(Pos.CENTER_LEFT);
 
-    Label lastRollPlaceholder = new Label("Last roll:");
-    lastRollPlaceholder.setStyle("-fx-font-weight: bold;");
+    Header lastRollPlaceholder = new Header("Last roll:").withFontWeight(Weight.BOLD);
     HBox.setHgrow(lastRollPlaceholder, Priority.ALWAYS);
 
-    Label lastRollLabel = new Label();
-    lastRollLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Header lastRollLabel = new Header("").withFontSize(14);
 
-    lastRollLabel.textProperty().bind(lastRollProperty.asString());
+    lastRollLabel.textProperty().bind(this.gameLobbyController.getLastRollProperty().asString());
 
     lastRollContainer.getChildren().addAll(lastRollPlaceholder, lastRollLabel);
     diceControlPanel.getChildren().add(lastRollContainer);
@@ -214,7 +202,7 @@ public class GameLobbyView implements IView {
       }
     });
 
-    rollButton.disableProperty().bind(rollButtonDisabledProperty);
+    rollButton.disableProperty().bind(this.gameLobbyController.getRollButtonDisabledProperty());
 
     diceControlPanel.getChildren().add(rollButton);
 
@@ -241,14 +229,12 @@ public class GameLobbyView implements IView {
     HBox currentPlayerContainer = new HBox(10);
     currentPlayerContainer.setAlignment(Pos.CENTER_LEFT);
 
-    Label currentPlayerPlaceholder = new Label("Current Player:");
-    currentPlayerPlaceholder.setStyle("-fx-font-weight: bold;");
+    Header currentPlayerPlaceholder = new Header("Current Player:").withFontWeight(Weight.BOLD);
     HBox.setHgrow(currentPlayerPlaceholder, Priority.ALWAYS);
 
-    Label currentPlayerLabel = new Label();
-    currentPlayerLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Header currentPlayerLabel = new Header("").withFontSize(14);
 
-    currentPlayerProperty.addListener((obs, oldPlayer, newPlayer) -> {
+    this.gameLobbyController.getCurrentPlayerProperty().addListener((obs, oldPlayer, newPlayer) -> {
       if (newPlayer != null) {
         currentPlayerLabel.setText(newPlayer.getName());
       }
@@ -259,14 +245,13 @@ public class GameLobbyView implements IView {
     HBox currentRoundContainer = new HBox(10);
     currentRoundContainer.setAlignment(Pos.CENTER_LEFT);
 
-    Label currentRoundPlaceholder = new Label("Current Round:");
-    currentRoundPlaceholder.setStyle("-fx-font-weight: bold;");
+    Header currentRoundPlaceholder = new Header("Current Round:").withFontWeight(Weight.BOLD);
     HBox.setHgrow(currentRoundPlaceholder, Priority.ALWAYS);
 
-    Label currentRoundLabel = new Label();
-    currentRoundLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+    Header currentRoundLabel = new Header("").withFontSize(14);
 
-    currentRoundLabel.textProperty().bind(currentRoundProperty.asString());
+    currentRoundLabel.textProperty()
+        .bind(this.gameLobbyController.getCurrentRoundProperty().asString());
 
     currentRoundContainer.getChildren().addAll(currentRoundPlaceholder, currentRoundLabel);
 
@@ -286,12 +271,13 @@ public class GameLobbyView implements IView {
     Card playerCard = new Card(playerEntry).withRounded(Size.SM);
     playerCard.setPadding(new Insets(10));
 
-    Label playerNameLabel = new Label(player.getName());
+    Header playerNameLabel = new Header(player.getName()).withFontSize(14);
     playerNameLabel.setMaxWidth(Double.MAX_VALUE);
-    playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
-    if (currentPlayerProperty.get().equals(player)) {
-      playerNameLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
+    if (this.gameLobbyController.getCurrentPlayerProperty().get().equals(player)) {
+      playerNameLabel.withFontWeight(Weight.BOLD);
+    } else {
+      playerNameLabel.withFontWeight(Weight.NORMAL);
     }
 
     Region spacer = new Region();
