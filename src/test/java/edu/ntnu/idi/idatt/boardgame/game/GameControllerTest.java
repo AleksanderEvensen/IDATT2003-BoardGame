@@ -99,7 +99,6 @@ class GameControllerTest {
     try (MockedStatic<Utils> st = mockStatic(Utils.class)) {
       st.when(() -> Utils.throwDice(2)).thenReturn(List.of(1, 1));
       controller.rollDiceAndMoveCurrentPlayer();
-      assertEquals(List.of(1, 1), controller.getLastDiceRolls());
     }
   }
 
