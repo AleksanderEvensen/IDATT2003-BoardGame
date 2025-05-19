@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu;
+package edu.ntnu.idi.idatt.boardgame.ui.javafx.view;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
@@ -12,6 +12,7 @@ import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.ui.javafx.components.enums.Weight;
+import edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers.MainMenuController;
 import java.io.File;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;

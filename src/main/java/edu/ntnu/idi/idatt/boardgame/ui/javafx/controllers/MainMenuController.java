@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idatt.boardgame.ui.javafx.view.MainMenu;
+package edu.ntnu.idi.idatt.boardgame.ui.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
