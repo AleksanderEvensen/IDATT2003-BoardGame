@@ -23,6 +23,7 @@ public class Header extends Label {
 
   public Header(String text, Node graphic) {
     super(text, graphic);
+    this.getStyleClass().add("Header");
   }
 
   public Header(String text) {

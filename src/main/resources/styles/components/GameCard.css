@@ -1,0 +1,7 @@
+.GameCard {
+  -fx-cursor: hand;
+}
+
+.GameCard:hover {
+  -fx-background-color: -fx-color-accent;
+}

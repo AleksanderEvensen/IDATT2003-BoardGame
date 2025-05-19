@@ -1,10 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.router.Router;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
-import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
+import edu.ntnu.idi.idatt.boardgame.router.Router;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.scene.Parent;
@@ -30,26 +30,15 @@ public class Application extends javafx.application.Application {
    * The router used for navigating between JavaFX views
    */
   public static final Router<IView> router = new Router<>(ctx -> {
-    try {
-      var lastCtx = Application.router.getCurrentContext();
-      if (lastCtx != null) {
-        IView lastView = lastCtx.getData();
-        lastView.unload();
-      }
-    } catch (Exception e) {
-      logger.info("Failed to unloading last view");
-      e.printStackTrace();
+    IView view = ctx.getData();
+    view.load(ctx);
+    var lastCtx = Application.router.getCurrentContext();
+    if (lastCtx != null) {
+      IView lastView = lastCtx.getData();
+      lastView.unload();
     }
-
-    try {
-      IView view = ctx.getData();
-      view.load(ctx);
-      Parent viewRoot = view.createRoot();
-      Application.primaryScene.setRoot(viewRoot);
-    } catch (Exception e) {
-      logger.info("Failed to navigate to view: " + ctx.getUrl());
-      e.printStackTrace();
-    }
+    Parent viewRoot = view.createRoot();
+    Application.primaryScene.setRoot(viewRoot);
   });
 
   /**

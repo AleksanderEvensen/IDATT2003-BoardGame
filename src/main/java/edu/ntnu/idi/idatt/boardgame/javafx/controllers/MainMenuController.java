@@ -7,8 +7,11 @@ import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.util.List;
 import java.util.logging.Logger;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import lombok.Getter;
 
 /**
@@ -26,9 +29,11 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
 
   private final Logger logger = Logger.getLogger(MainMenuController.class.getName());
 
+  @Getter
+  private final ObservableList<Player> players;
 
-  private final @Getter ObservableList<Player> players;
-
+  @Getter
+  private final ObjectProperty<Pair<String, String>> errorDialog = new SimpleObjectProperty<>(null);
 
   /**
    * Constructs a MainMenuController and registers it as an observer to the PlayerManager.
@@ -67,7 +72,19 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * @param gameId the ID of the game to start
    */
   public void startGame(String gameId) {
-    Application.router.navigate(String.format("/game/%s", gameId));
+    try {
+      Application.router.navigate(String.format("/game/%s", gameId));
+    } catch (Exception e) {
+      logger.severe(e.getMessage());
+      errorDialog.set(new Pair<>("Failed to start game", e.getMessage()));
+    }
+  }
+
+  /**
+   * Clears the current error state.
+   */
+  public void clearError() {
+    errorDialog.set(null);
   }
 
   /**

@@ -4,9 +4,6 @@ import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.game.QuizManager;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Button;
@@ -19,21 +16,17 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.PlayerBlipView;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.GameLobbyController;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
 import edu.ntnu.idi.idatt.boardgame.style.FreezeStyle;
 import edu.ntnu.idi.idatt.boardgame.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
@@ -256,6 +249,18 @@ public class GameLobbyView implements IView {
     currentRoundContainer.getChildren().addAll(currentRoundPlaceholder, currentRoundLabel);
 
     gameInfoContainer.getChildren().addAll(currentPlayerContainer, currentRoundContainer);
+
+    Header description = new Header(gameController.getGame().getDescription())
+        .withFontSize(16);
+    description.setWrapText(true);
+    description.setMaxWidth(Double.MAX_VALUE);
+    var descriptionContainer = new VBox(
+        10,
+        new Header("Description").withType(HeaderType.H4).withFontWeight(Weight.SEMIBOLD),
+        description
+    );
+    descriptionContainer.setPadding(new Insets(10, 0, 0, 0));
+    gameInfoCard.setBottom(descriptionContainer);
 
     controlPanel.getChildren().add(gameInfoCard);
 
