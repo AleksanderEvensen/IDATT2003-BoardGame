@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lombok.Getter;
 import lombok.NonNull;
 
 /**
@@ -17,6 +18,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
+  @Getter
   private final List<Player> players = new ArrayList<>();
 
   /**
@@ -78,15 +80,6 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     } catch (Exception e) {
       logger.log(Level.SEVERE, "Failed to save players to path: " + path, e);
     }
-  }
-
-  /**
-   * Gets the current list of players.
-   *
-   * @return the list of players
-   */
-  public List<Player> getPlayers() {
-    return new ArrayList<>(players);
   }
 
   /**

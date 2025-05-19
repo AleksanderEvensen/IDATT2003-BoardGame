@@ -13,12 +13,19 @@ import lombok.Setter;
  */
 public class Player {
 
-  private @Getter
-  @Setter String name;
-  private @Getter
-  @Setter Color color;
+  @Getter
+  @Setter
+  private String name;
+
+  @Getter
+  @Setter
+  private Color color;
+
+  @Getter
   private Tile currentTile;
+  @Getter
   private transient int frozenTurns = 0;
+  @Getter
   private transient int immunityTurns = 0;
 
   /**
@@ -32,16 +39,6 @@ public class Player {
     this.color = color;
   }
 
-
-  /**
-   * Returns the current tile the player is on.
-   *
-   * @return the current tile
-   * @see edu.ntnu.idi.idatt.boardgame.model.Tile
-   */
-  public Tile getCurrentTile() {
-    return currentTile;
-  }
 
   /**
    * Places the player on the specified tile.
@@ -128,12 +125,12 @@ public class Player {
   }
 
   /**
-   * Returns the number of turns the player is frozen.
+   * Returns whether the player is immune.
    *
-   * @return the number of turns the player is frozen
+   * @return true if the player is immune, false otherwise
    */
-  public int getFrozenTurns() {
-    return frozenTurns;
+  public boolean isImmune() {
+    return immunityTurns > 0;
   }
 
   /**
@@ -149,15 +146,6 @@ public class Player {
   }
 
   /**
-   * Returns the number of turns the player is immune.
-   *
-   * @return the number of turns the player is immune
-   */
-  public int getImmunityTurns() {
-    return immunityTurns;
-  }
-
-  /**
    * Sets the number of turns the player is immune.
    *
    * @param immunityTurns the number of turns the player is immune
@@ -167,15 +155,6 @@ public class Player {
       throw new IllegalArgumentException("Immunity turns cannot be negative");
     }
     this.immunityTurns = immunityTurns;
-  }
-
-  /**
-   * Returns whether the player is immune.
-   *
-   * @return true if the player is immune, false otherwise
-   */
-  public boolean isImmune() {
-    return immunityTurns > 0;
   }
 
   @Override

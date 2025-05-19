@@ -1,16 +1,11 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
+import lombok.experimental.StandardException;
+
 /**
  * An exception that is thrown when a file cannot be saved.
  */
+@StandardException
 public class FileSaveException extends RuntimeException {
 
-  /**
-   * Constructs a new FileSaveException with the specified detail message.
-   *
-   * @param message the detail message
-   */
-  public FileSaveException(String message) {
-    super(message);
-  }
 }
