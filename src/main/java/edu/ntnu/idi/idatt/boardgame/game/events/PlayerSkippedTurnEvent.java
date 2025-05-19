@@ -14,37 +14,9 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0
  */
-public class PlayerSkippedTurnEvent implements GameEvent {
+public record PlayerSkippedTurnEvent(
+    Player player,
+    String reason
+) implements GameEvent {
 
-  private final Player player;
-  private final String reason;
-
-  /**
-   * Creates a new PlayerSkippedTurnEvent.
-   *
-   * @param player the player whose turn was skipped
-   * @param reason the reason for skipping the turn
-   */
-  public PlayerSkippedTurnEvent(Player player, String reason) {
-    this.player = player;
-    this.reason = reason;
-  }
-
-  /**
-   * Gets the player whose turn was skipped.
-   *
-   * @return the player
-   */
-  public Player getPlayer() {
-    return player;
-  }
-
-  /**
-   * Gets the reason for skipping the turn.
-   *
-   * @return the reason
-   */
-  public String getReason() {
-    return reason;
-  }
 }

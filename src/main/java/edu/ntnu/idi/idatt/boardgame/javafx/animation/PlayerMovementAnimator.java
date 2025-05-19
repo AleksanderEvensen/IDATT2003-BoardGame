@@ -1,9 +1,9 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.animation;
 
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.PlayerBlipView;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -3,12 +3,10 @@ package edu.ntnu.idi.idatt.boardgame.javafx.components;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import java.io.File;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 /**
  * A component representing a game card to display info about a game.
@@ -18,7 +16,7 @@ import javafx.scene.paint.Color;
 public class GameCard extends VBox {
 
 
-  private static Image GAME_FALLBACK_IMAGE = new Image("images/not_found.png");
+  private static final Image GAME_FALLBACK_IMAGE = new Image("images/not_found.png");
 
 
   public GameCard(Game game) {

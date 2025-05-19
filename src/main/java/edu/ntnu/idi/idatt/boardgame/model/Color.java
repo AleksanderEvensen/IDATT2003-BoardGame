@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Color {
 
   /// The red component of the color (0-255)
@@ -69,16 +72,5 @@ public class Color {
   @Override
   public String toString() {
     return String.format("Color{r = %d, g = %d, b = %d}", r, g, b);
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof Color color)) {
-      return false;
-    }
-    return r == color.r && g == color.g && b == color.b;
   }
 }

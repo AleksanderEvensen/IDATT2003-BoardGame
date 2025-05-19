@@ -27,18 +27,6 @@ public class GameFactory {
   }
 
   /**
-   * Create a JSON representation of a game.
-   * <p>
-   *
-   * @param game the game to create a JSON representation of.
-   * @return a JSON representation of the game.
-   */
-  public static String createJson(Game game) {
-    Gson gson = getGson();
-    return gson.toJson(game);
-  }
-
-  /**
    * Create a game from a board.
    */
   private static Gson getGson() {

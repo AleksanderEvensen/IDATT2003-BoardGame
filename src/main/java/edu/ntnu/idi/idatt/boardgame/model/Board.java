@@ -12,9 +12,12 @@ import lombok.Getter;
  */
 public class Board implements HasTileReferenceResolver {
 
-  private final @Getter int rowCount;
-  private final @Getter int colCount;
-  private final @Getter Map<Integer, Tile> tiles = new HashMap<>();
+  @Getter
+  private final int rowCount;
+  @Getter
+  private final int colCount;
+  @Getter
+  private final Map<Integer, Tile> tiles = new HashMap<>();
 
   /**
    * Creates a Board with a specified number of rows and columns.

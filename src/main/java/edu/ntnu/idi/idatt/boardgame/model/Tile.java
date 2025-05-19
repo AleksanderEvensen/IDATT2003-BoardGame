@@ -20,7 +20,8 @@ import lombok.Setter;
  */
 public class Tile implements Serializable, HasTileReferenceResolver {
 
-  private final @Getter int tileId;
+  @Getter
+  private final int tileId;
 
   /// The ID of the tile that comes before this one defaults to -1, indicating no previous tile
   private final int previousTileId;

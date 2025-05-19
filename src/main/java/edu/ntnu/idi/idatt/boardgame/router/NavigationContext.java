@@ -1,13 +1,19 @@
 package edu.ntnu.idi.idatt.boardgame.router;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import lombok.Getter;
 
 public class NavigationContext<T> {
 
+  @Getter
   private final String templateUrl;
+  @Getter
   private final String url;
+  @Getter
   private final Map<String, String> params;
+  @Getter
   private final T data;
 
   /**
@@ -23,27 +29,6 @@ public class NavigationContext<T> {
     this.url = url;
     this.params = params;
     this.data = data;
-  }
-
-  public String getTemplateUrl() {
-    return templateUrl;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public T getData() {
-    return data;
-  }
-
-  /**
-   * Returns the parameters of the url as a map
-   *
-   * @return
-   */
-  public Map<String, String> getParams() {
-    return params;
   }
 
   /**

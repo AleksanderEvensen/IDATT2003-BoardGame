@@ -5,6 +5,7 @@ import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,15 +79,6 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     } catch (Exception e) {
       logger.log(Level.SEVERE, "Failed to save players to path: " + path, e);
     }
-  }
-
-  /**
-   * Gets the current list of players.
-   *
-   * @return the list of players
-   */
-  public List<Player> getPlayers() {
-    return new ArrayList<>(players);
   }
 
   /**
@@ -172,6 +164,10 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     }
     logger.info("Player index: " + index);
     return this.updatePlayer(index, new Player(newName, newColor));
+  }
+
+  public List<Player> getPlayers() {
+    return Collections.unmodifiableList(this.players);
   }
 
   private static PlayerManager instance;

@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.router;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import lombok.Getter;
 
 /**
  * Router class for handling URL routing and navigation
@@ -10,6 +11,7 @@ import java.util.function.Consumer;
 public class Router<T> {
 
   private final Map<String, T> routes = new HashMap<>();
+  @Getter
   private NavigationContext<T> currentContext;
   private final Consumer<NavigationContext<T>> navigationHandler;
 
@@ -103,7 +105,4 @@ public class Router<T> {
     return params;
   }
 
-  public NavigationContext<T> getCurrentContext() {
-    return currentContext;
-  }
 }
