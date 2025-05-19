@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * A class representing a game with a board.
@@ -14,14 +15,21 @@ import java.util.Optional;
  */
 public class Game implements HasTileReferenceResolver {
 
+  @Getter
   private final Board board;
+  @Getter
   private final String name;
+  @Getter
   private final String description;
+  @Getter
   private final String id;
+  @Getter
   private final int minPlayers;
+  @Getter
   private final int maxPlayers;
+  @Getter
   private final int numberOfDice;
-  private final Optional<String> imagePath;
+  private final String imagePath;
 
   /**
    * Constructs a game with the specified board, name, description, and ID.
@@ -40,71 +48,7 @@ public class Game implements HasTileReferenceResolver {
     this.minPlayers = minPlayers;
     this.maxPlayers = maxPlayers;
     this.numberOfDice = numberOfDice;
-    this.imagePath = Optional.ofNullable(imagePath);
-  }
-
-  /**
-   * Returns the game ID.
-   *
-   * @return the game ID
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * Returns the game board.
-   *
-   * @return the game board
-   * @see edu.ntnu.idi.idatt.boardgame.model.Board
-   */
-  public Board getBoard() {
-    return board;
-  }
-
-  /**
-   * Returns the game name.
-   *
-   * @return the game name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Returns the game description.
-   *
-   * @return the game description
-   */
-  public String getDescription() {
-    return description;
-  }
-
-  /**
-   * Returns the minimum number of players required to play the game.
-   *
-   * @return the minimum number of players
-   */
-  public int getMinPlayers() {
-    return minPlayers;
-  }
-
-  /**
-   * Returns the maximum number of players that can play the game.
-   *
-   * @return the maximum number of players
-   */
-  public int getMaxPlayers() {
-    return maxPlayers;
-  }
-
-  /**
-   * Returns the number of dice used in the game.
-   *
-   * @return the number of dice
-   */
-  public int getNumberOfDice() {
-    return numberOfDice;
+    this.imagePath = imagePath;
   }
 
   /**
@@ -113,7 +57,7 @@ public class Game implements HasTileReferenceResolver {
    * @return the path to the image
    */
   public Optional<String> getImagePath() {
-    return imagePath;
+    return Optional.ofNullable(imagePath);
   }
 
   /**

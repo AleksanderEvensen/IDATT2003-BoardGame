@@ -20,6 +20,7 @@ public class Question {
 
 
   private final Map<Integer, String> answers;
+
   @Getter
   private final int correctAnswerIndex;
 
@@ -44,15 +45,6 @@ public class Question {
    */
   public List<String> getAnswers() {
     return answers.values().stream().toList();
-  }
-
-  /**
-   * Returns the category name of the question.
-   *
-   * @return the category of the question
-   */
-  public String getCategoryName() {
-    return category.getDisplayName();
   }
 
   /**

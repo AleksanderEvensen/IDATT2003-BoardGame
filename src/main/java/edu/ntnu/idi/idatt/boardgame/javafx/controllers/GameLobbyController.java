@@ -15,8 +15,6 @@ import edu.ntnu.idi.idatt.boardgame.game.events.PlayerMovedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import edu.ntnu.idi.idatt.boardgame.javafx.animation.AnimationQueue;
 import edu.ntnu.idi.idatt.boardgame.javafx.animation.DieComponentAnimator;
 import edu.ntnu.idi.idatt.boardgame.javafx.animation.PlayerMovementAnimator;
@@ -34,6 +32,8 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.TileComponent;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
+import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
@@ -142,7 +142,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the game started event
    */
   private void handleGameStarted(GameStartedEvent event) {
-    logger.info("Game started with " + event.getPlayers().size() + " players");
+    logger.info("Game started with " + event.players().size() + " players");
     animationQueue.stopAndClear();
     currentPlayerProperty.set(gameController.getCurrentPlayer());
     currentRoundProperty.set(gameController.getRoundCount());
@@ -155,8 +155,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handlePlayerTurnChangeEvent(PlayerTurnChangedEvent event) {
     QueueableAction action = QueueableAction.builder().action(() -> {
-      logger.info("Player turn changed to " + event.getCurrentPlayer().getName());
-      currentPlayerProperty.set(event.getCurrentPlayer());
+      logger.info("Player turn changed to " + event.currentPlayer().getName());
+      currentPlayerProperty.set(event.currentPlayer());
       currentRoundProperty.set(gameController.getRoundCount());
       rollButtonDisabledProperty.set(false);
       this.players.setAll(gameController.getPlayers());
@@ -172,11 +172,11 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   private void handlePlayerMoved(PlayerMovedEvent event) {
     logger.info(
-        "Player " + event.getPlayer().getName() + " moved from tile " + (event.getFromTile() != null
-            ? event.getFromTile().getTileId()
-            : "null") + " to tile " + event.getToTile()
+        "Player " + event.player().getName() + " moved from tile " + (event.fromTile() != null
+            ? event.fromTile().getTileId()
+            : "null") + " to tile " + event.toTile()
             .getTileId());
-    animatePlayerMovement(event.getPlayer(), event.getFromTile(), event.getToTile());
+    animatePlayerMovement(event.player(), event.fromTile(), event.toTile());
     QueueableAction action = QueueableAction.builder().action(() -> {
       rollButtonDisabledProperty.set(false);
     }).build();
@@ -185,17 +185,17 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
   private void handleDiceRolled(DiceRolledEvent event) {
     rollButtonDisabledProperty.set(true);
-    Animation[] diceAnimations = IntStream.range(0, event.getIndividualRolls().size()).boxed()
+    Animation[] diceAnimations = IntStream.range(0, event.individualRolls().size()).boxed()
         .map(diceId -> {
           DieComponent die = gameLobbyView.getDiceComponents().get(diceId);
-          return DieComponentAnimator.animateRoll(die, event.getIndividualRolls().get(diceId));
+          return DieComponentAnimator.animateRoll(die, event.getDieValue(diceId));
         }).toArray(Animation[]::new);
 
     animationQueue.queue(AnimationQueue.combineAnimationsParallel(diceAnimations), "Rolling dice",
         0);
 
     QueueableAction action = QueueableAction.builder().action(() -> {
-      lastRollProperty.set(event.getTotalValue());
+      lastRollProperty.set(event.totalValue());
     }).build();
 
     animationQueue.queue(action.timeline(), "Updating last roll", 0);
@@ -207,11 +207,11 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the tile action event
    */
   private void handleTileAction(TileActionEvent event) {
-    TileAction action = event.getTileAction();
-    Player player = event.getPlayer();
+    TileAction action = event.tileAction();
+    Player player = event.player();
 
     if (action instanceof LadderAction ladderAction) {
-      Tile startTile = event.getTile();
+      Tile startTile = event.tile();
       Tile destinationTile = ladderAction.getDestinationTile();
 
       if (startTile != destinationTile) {
@@ -252,12 +252,12 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the question asked event
    */
   private void handleQuestionAsked(QuestionAskedEvent event) {
-    logger.info("Question asked: " + event.getQuestion());
+    logger.info("Question asked: " + event.question());
     QueueableAction action = QueueableAction.builder().action(() -> {
-      QuestionDialog dialog = new QuestionDialog(gameLobbyView.getRoot(), event.getQuestion(),
+      QuestionDialog dialog = new QuestionDialog(gameLobbyView.getRoot(), event.question(),
           (answer) -> {
             boolean isCorrect = gameController.answerQuestion(
-                event.getQuestion().getAnswers().get(answer));
+                event.question().getAnswers().get(answer));
             if (isCorrect) {
               AudioManager.playAudio(GameSoundEffects.CORRECT_ANSWER);
             } else {
@@ -347,7 +347,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * @param event the game ended event
    */
   private void handleGameEnded(GameEndedEvent event) {
-    logger.info("Game ended. Winner: " + event.getWinner().getName());
+    logger.info("Game ended. Winner: " + event.winner().getName());
     rollButtonDisabledProperty.set(true);
     QueueableAction action = QueueableAction.builder().action(() -> {
 
@@ -370,7 +370,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       Header header = new Header("Game Over");
       header.withType(HeaderType.H2).withFontWeight(Weight.BOLD);
 
-      Label winnerLabel = new Label(event.getWinner().getName() + " has won the game!");
+      Label winnerLabel = new Label(event.winner().getName() + " has won the game!");
       winnerLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
 
       Button returnButton = new Button("Return to Main Menu");

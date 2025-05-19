@@ -15,37 +15,9 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0
  */
-public class GameEndedEvent implements GameEvent {
+public record GameEndedEvent(
+    Game game,
+    Player winner
+) implements GameEvent {
 
-  private final Game game;
-  private final Player winner;
-
-  /**
-   * Creates a new GameEndedEvent.
-   *
-   * @param game   the game that ended
-   * @param winner the player who won
-   */
-  public GameEndedEvent(Game game, Player winner) {
-    this.game = game;
-    this.winner = winner;
-  }
-
-  /**
-   * Gets the game that ended.
-   *
-   * @return the game
-   */
-  public Game getGame() {
-    return game;
-  }
-
-  /**
-   * Gets the player who won.
-   *
-   * @return the winner
-   */
-  public Player getWinner() {
-    return winner;
-  }
 }

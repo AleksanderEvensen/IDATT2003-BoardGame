@@ -6,6 +6,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Board;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 import java.util.logging.Logger;
+import lombok.Getter;
 
 /**
  * Represents an action where a player moves to a destination tile via a ladder.
@@ -20,7 +21,9 @@ import java.util.logging.Logger;
  */
 public class LadderAction implements TileAction, HasTileReferenceResolver {
 
+  @Getter
   private final int destinationTileId;
+  @Getter
   private Tile destinationTile;
   private static final Logger logger = Logger.getLogger(LadderAction.class.getName());
 
@@ -46,25 +49,6 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
    */
   public LadderAction(int destinationTileId) {
     this.destinationTileId = destinationTileId;
-  }
-
-  /**
-   * Returns the destination tile.
-   *
-   * @return the destination tile
-   * @see edu.ntnu.idi.idatt.boardgame.model.Tile
-   */
-  public Tile getDestinationTile() {
-    return destinationTile;
-  }
-
-  /**
-   * Sets the destination tile.
-   *
-   * @param destinationTile the tile to set as the destination
-   */
-  public void setDestinationTile(Tile destinationTile) {
-    this.destinationTile = destinationTile;
   }
 
   /**
@@ -95,9 +79,7 @@ public class LadderAction implements TileAction, HasTileReferenceResolver {
 
   @Override
   public String toString() {
-    return "LadderAction{" +
-        "destinationTile=" + destinationTile +
-        '}';
+    return String.format("LadderAction{destinationTile=%s}", destinationTile);
   }
 
   /**

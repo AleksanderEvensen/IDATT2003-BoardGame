@@ -11,6 +11,7 @@ import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Manages quiz questions for the game, including loading and processing question data.
@@ -20,11 +21,12 @@ import java.util.Set;
  * </p>
  *
  * @version 1.0.0
- * @since v1.0.0
+ * @since v3.0.0
  */
 public class QuizManager {
 
   private final FileProvider fileProvider;
+  private final Logger logger = Logger.getLogger(QuizManager.class.getName());
   Set<Question> questions;
 
   /**
@@ -69,7 +71,7 @@ public class QuizManager {
       return null;
     }
     List<Question> filteredQuestions =
-        questions.stream().filter(question -> question.getCategory() == category).toList();
+        questions.stream().filter(question -> question.getCategory().equals(category)).toList();
     if (filteredQuestions.isEmpty()) {
       return null;
     }
@@ -99,7 +101,10 @@ public class QuizManager {
         questions.add(QuestionFactory.createQuestion(element.getAsJsonObject()));
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      logger.warning("Failed to load questions from path: " + path);
+      logger.warning(e.getMessage());
+    } finally {
+      logger.info(String.format("Loaded %d questions from '%s'", questions.size(), path));
     }
   }
 

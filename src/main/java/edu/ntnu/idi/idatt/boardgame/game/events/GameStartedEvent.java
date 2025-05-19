@@ -16,37 +16,9 @@ import java.util.List;
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0
  */
-public class GameStartedEvent implements GameEvent {
+public record GameStartedEvent(
+    Game game,
+    List<Player> players
+) implements GameEvent {
 
-  private final Game game;
-  private final List<Player> players;
-
-  /**
-   * Creates a new GameStartedEvent.
-   *
-   * @param game    the game that was started
-   * @param players the list of players participating
-   */
-  public GameStartedEvent(Game game, List<Player> players) {
-    this.game = game;
-    this.players = players;
-  }
-
-  /**
-   * Gets the game that was started.
-   *
-   * @return the game
-   */
-  public Game getGame() {
-    return game;
-  }
-
-  /**
-   * Gets the list of players participating in the game.
-   *
-   * @return the list of players
-   */
-  public List<Player> getPlayers() {
-    return players;
-  }
 }

@@ -60,7 +60,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   private boolean gameStarted;
   @Getter
   private boolean gameEnded;
-  private List<Integer> lastDiceRolls;
   private Question currentQuestion;
   private Tile checkpointTile;
 
@@ -77,7 +76,6 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.currentPlayerIndex = 0;
     this.gameStarted = false;
     this.gameEnded = false;
-    this.lastDiceRolls = new ArrayList<>();
     this.quizManager = quizManager;
   }
 
@@ -135,7 +133,6 @@ public class GameController extends Observable<GameController, GameEvent> {
 
     List<Integer> diceRolls = rollDice();
     int diceValue = diceRolls.stream().mapToInt(Integer::intValue).sum();
-    this.lastDiceRolls = diceRolls;
 
     notifyObservers(new DiceRolledEvent(currentPlayer, diceValue, diceRolls));
 
@@ -179,15 +176,6 @@ public class GameController extends Observable<GameController, GameEvent> {
   private List<Integer> rollDice() {
     int diceCount = game.getNumberOfDice();
     return Utils.throwDice(diceCount);
-  }
-
-  /**
-   * Gets the results of the last dice roll.
-   *
-   * @return a list of the individual dice values from the last roll
-   */
-  public List<Integer> getLastDiceRolls() {
-    return List.copyOf(lastDiceRolls);
   }
 
   /**
