@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
  * JavaFX-specific implementation of the ladder tile style applier. This class applies visual
  * styling to tiles with ladder actions and draws the ladder between them.
  *
+ * @version v1.0.0
  * @see edu.ntnu.idi.idatt.boardgame.ui.style.TileStyleApplier
  * @since v2.0.0
  */

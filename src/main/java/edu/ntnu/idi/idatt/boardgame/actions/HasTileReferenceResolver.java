@@ -8,8 +8,9 @@ import edu.ntnu.idi.idatt.boardgame.model.Board;
  * Implementing classes should provide logic to resolve references to other tiles.
  * </p>
  *
+ * @version v1.0.0
  * @see edu.ntnu.idi.idatt.boardgame.model.Board
- * @since v1.0.0
+ * @since v2.0.0
  */
 public interface HasTileReferenceResolver {
 

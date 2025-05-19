@@ -6,6 +6,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+/**
+ * A utility class for animating the rolling of a die in a JavaFX application.
+ * <p>
+ * This class provides methods to create animations for rolling a die and landing on a final value.
+ * </p>
+ *
+ * @version v1.0.0
+ * @since v3.0.0
+ */
 public class DieComponentAnimator {
 
   /**

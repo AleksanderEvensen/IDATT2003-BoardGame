@@ -28,6 +28,9 @@ import javafx.util.Duration;
  * This class provides methods to animate player blips moving along paths, following tile
  * connections, and special animations for game events like ladders.
  * </p>
+ *
+ * @version v1.0.0
+ * @since v3.0.0
  */
 public class PlayerMovementAnimator {
 

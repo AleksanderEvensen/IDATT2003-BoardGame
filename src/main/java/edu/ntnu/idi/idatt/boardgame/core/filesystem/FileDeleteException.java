@@ -5,6 +5,11 @@ package edu.ntnu.idi.idatt.boardgame.core.filesystem;
  */
 public class FileDeleteException extends RuntimeException {
 
+  /**
+   * Constructs a new FileDeleteException with the specified detail message.
+   *
+   * @param message the detail message
+   */
   public FileDeleteException(String message) {
     super(message);
   }

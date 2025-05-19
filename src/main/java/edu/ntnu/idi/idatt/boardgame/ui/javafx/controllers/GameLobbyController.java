@@ -54,6 +54,9 @@ import lombok.Getter;
  * This class observes game events and updates the game board UI accordingly, particularly handling
  * player movement animations.
  * </p>
+ *
+ * @version v1.0.1
+ * @since v3.0.0
  */
 public class GameLobbyController implements Observer<GameController, GameEvent> {
 

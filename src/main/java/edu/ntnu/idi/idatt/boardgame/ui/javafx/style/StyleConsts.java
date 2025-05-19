@@ -3,6 +3,16 @@ package edu.ntnu.idi.idatt.boardgame.ui.javafx.style;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Constants for styling JavaFX components in the game.
+ *
+ * <p>
+ * This class contains constants used for styling various components in the JavaFX UI of the game.
+ * </p>
+ *
+ * @version v1.0.0
+ * @since v2.0.0
+ */
 public class StyleConsts {
 
   // Cosntants for the javafx implementation of Tile

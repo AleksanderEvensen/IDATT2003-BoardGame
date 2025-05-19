@@ -15,6 +15,7 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 /**
  * JavaFX-specific implementation of the freeze tile style applier.
  *
+ * @version v1.0.0
  * @see TileStyleApplier
  * @since v2.0.0
  */

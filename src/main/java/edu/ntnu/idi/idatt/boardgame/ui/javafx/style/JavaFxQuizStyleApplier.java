@@ -20,7 +20,8 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
  * </p>
  *
  * @version 1.0.0
- * @since v1.0.0
+ * @see TileStyleApplier
+ * @since v3.0.0
  */
 public class JavaFxQuizStyleApplier implements TileStyleApplier {
 

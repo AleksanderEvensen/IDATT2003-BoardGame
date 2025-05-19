@@ -13,9 +13,10 @@ import lombok.Getter;
  * This action is triggered when a player lands on a tile with a quiz.
  * </p>
  *
+ * @version v1.0.0
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
- * @since v1.0.0
+ * @since v3.0.0
  */
 public class QuizTileAction implements TileAction {
 

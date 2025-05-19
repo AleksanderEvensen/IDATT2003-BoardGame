@@ -9,6 +9,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
  * tile.
  * </p>
  *
+ * @version v1.0.0
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v0.0.1
  */

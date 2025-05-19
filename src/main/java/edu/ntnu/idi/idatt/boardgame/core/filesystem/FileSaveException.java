@@ -5,6 +5,11 @@ package edu.ntnu.idi.idatt.boardgame.core.filesystem;
  */
 public class FileSaveException extends RuntimeException {
 
+  /**
+   * Constructs a new FileSaveException with the specified detail message.
+   *
+   * @param message the detail message
+   */
   public FileSaveException(String message) {
     super(message);
   }
