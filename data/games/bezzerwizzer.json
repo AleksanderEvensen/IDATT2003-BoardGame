@@ -1,10 +1,10 @@
 {
   "id": "bezzerwiser",
   "name": "Bezzerwizzer",
-  "description": "Bezzerwizzer is a trivia board game where players answer questions from various categories to progress on the board.",
+  "description": "Bezzerwizzer is a trivia board game where players answer questions from various categories to progress on the board. (QUESTIONS ARE AI GENERATED AND ANSWERS CAN BE WRONG)",
   "minPlayers": 2,
   "maxPlayers": 10,
-  "numberOfDice": 2,
+  "numberOfDice": 1,
   "imagePath": "data/images/bezzerwizzer.png",
   "board": {
     "rowCount": 11,
