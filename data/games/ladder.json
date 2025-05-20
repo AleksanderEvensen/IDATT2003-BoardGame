@@ -78,10 +78,7 @@
         "row": 8,
         "col": 8,
         "nextTileId": 10,
-        "previousTileId": 8,
-        "action": {
-          "type": "IMMUNITY"
-        }
+        "previousTileId": 8
       },
       "10": {
         "tileId": 10,
