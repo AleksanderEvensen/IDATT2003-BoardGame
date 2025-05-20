@@ -112,7 +112,6 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   @Override
   public void update(GameEvent event) {
     logger.log(Level.INFO, "Received game event: {0}", event.getClass().getSimpleName());
-
     switch (event) {
       case GameStartedEvent gameStartedEvent -> handleGameStarted(gameStartedEvent);
       case DiceRolledEvent diceRolledEvent -> handleDiceRolled(diceRolledEvent);

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * Controller for managing game state, player turns, and game actions.
@@ -67,9 +68,16 @@ public class GameController extends Observable<GameController, GameEvent> {
   private int roundCount = 0;
 
   /**
-   * Creates a new GameController instance.
+   * Constructs a GameController with the specified game, quiz manager, and players.
+   *
+   * @param game        the game to be played
+   * @param quizManager the quiz manager for handling quiz questions
+   * @param players     the list of players participating in the game
+   * @throws IllegalArgumentException if game or players are null
+   * @throws IllegalStateException    if the number of players is not within the valid range
    */
-  public GameController(Game game, QuizManager quizManager) {
+  public GameController(@NonNull Game game, @NonNull QuizManager quizManager,
+      @NonNull List<Player> players) {
     super();
     this.game = game;
     this.players = new ArrayList<>();
@@ -77,36 +85,28 @@ public class GameController extends Observable<GameController, GameEvent> {
     this.gameStarted = false;
     this.gameEnded = false;
     this.quizManager = quizManager;
-  }
 
-  /**
-   * Starts the game with the specified game and players.
-   *
-   * @param players the list of players
-   * @throws IllegalArgumentException if the game or players list is null
-   * @throws IllegalStateException    if the number of players doesn't match game requirements
-   */
-  public void startGame(List<Player> players) {
-    if (game == null) {
-      throw new IllegalArgumentException("Game cannot be null");
-    }
-    if (players == null) {
-      throw new IllegalArgumentException("Players list cannot be null");
-    }
     if (players.size() < game.getMinPlayers() || players.size() > game.getMaxPlayers()) {
       throw new IllegalStateException(
           "Invalid number of players. Required: " + game.getMinPlayers() + "-"
               + game.getMaxPlayers() + ", got: " + players.size());
     }
+    /// this will prevent updating the global player list
+    /// and makes sure the player state is internal within the game
+    addPlayers(players);
+  }
 
+  /**
+   * Starts the game with the specified game and players.
+   *
+   */
+  public void startGame() {
     this.currentPlayerIndex = 0;
     this.gameStarted = true;
     this.gameEnded = false;
     this.roundCount = 1;
 
-    /// this will prevent updating the global player list
-    /// and makes sure the player state is internal within the game
-    addPlayers(players);
+
     Tile startTile = game.getBoard().getTile(0);
     if (startTile == null) {
       throw new IllegalStateException("Game board doesn't have a start tile (ID: 0)");
@@ -327,13 +327,8 @@ public class GameController extends Observable<GameController, GameEvent> {
    * Gets the current player whose turn it is.
    *
    * @return the current player
-   * @throws IllegalStateException if the game hasn't started
    */
   public Player getCurrentPlayer() {
-    if (!gameStarted) {
-      throw new IllegalStateException("Game has not started");
-    }
-
     return players.get(currentPlayerIndex);
   }
 
