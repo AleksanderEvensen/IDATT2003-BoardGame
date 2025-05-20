@@ -1,15 +1,14 @@
 package edu.ntnu.idi.idatt.boardgame;
 
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
-import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
+import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
 import edu.ntnu.idi.idatt.boardgame.router.Router;
 import java.io.IOException;
 import java.util.logging.Logger;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -26,8 +25,15 @@ public class Application extends javafx.application.Application {
   @Getter
   private static boolean isDarkTheme = true;
 
+  public static void main(String[] args) {
+    launch();
+  }
 
-  /**
+  public static void closeApplication() {
+    if (primaryStage != null) {
+      primaryStage.close();
+    }
+  }  /**
    * The router used for navigating between JavaFX views
    */
   public static final Router<IView> router = new Router<>(ctx -> {
@@ -38,44 +44,10 @@ public class Application extends javafx.application.Application {
       IView lastView = lastCtx.getData();
       lastView.unload();
     }
-    Parent viewRoot = view.createRoot();
+    StackPane viewRoot = view.createRoot();
+    ToastProvider.setRoot(viewRoot);
     Application.primaryScene.setRoot(viewRoot);
   });
-
-  /**
-   * The main entry point for all JavaFX applications.
-   *
-   * @param stage the primary stage for this application, onto which the application scene can be
-   *              set.
-   * @throws IOException if an input or output exception occurs.
-   */
-  @Override
-  public void start(Stage stage) throws IOException {
-    primaryStage = stage;
-    primaryScene = new Scene(new Pane(), 1920, 1080);
-
-    router.createRoute("/home", new MainMenuView());
-    router.createRoute("/game/:gameId", new GameLobbyView());
-
-    router.navigate("/home");
-
-    refreshCss();
-    primaryScene.getStylesheets().add("main.css");
-    stage.setFullScreen(true);
-    stage.setTitle("Board Game");
-    stage.setScene(primaryScene);
-    stage.show();
-  }
-
-  public static void main(String[] args) {
-    launch();
-  }
-
-  public static void closeApplication() {
-    if (primaryStage != null) {
-      primaryStage.close();
-    }
-  }
 
   public static void refreshCss() {
     if (primaryScene != null) {
@@ -103,4 +75,34 @@ public class Application extends javafx.application.Application {
   public static Scene getScene() {
     return primaryScene;
   }
+
+  /**
+   * The main entry point for all JavaFX applications.
+   *
+   * @param stage the primary stage for this application, onto which the application scene can be
+   *              set.
+   * @throws IOException if an input or output exception occurs.
+   */
+  @Override
+  public void start(Stage stage) throws IOException {
+    primaryStage = stage;
+    StackPane root = new StackPane();
+    primaryScene = new Scene(root, 1920, 1080);
+
+    router.createRoute("/home", new MainMenuView());
+    router.createRoute("/game/:gameId", new GameLobbyView());
+
+    router.navigate("/home");
+
+    refreshCss();
+    primaryScene.getStylesheets().add("main.css");
+    stage.setFullScreen(true);
+    stage.setTitle("Board Game");
+    stage.setScene(primaryScene);
+    stage.show();
+  }
+
+
+
+
 }

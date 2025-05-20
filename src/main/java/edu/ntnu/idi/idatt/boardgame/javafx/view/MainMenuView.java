@@ -1,12 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.view;
 
 import edu.ntnu.idi.idatt.boardgame.Utils;
-import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Button;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Button.ButtonVariant;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Card;
-import edu.ntnu.idi.idatt.boardgame.javafx.components.ErrorDialog;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.GameCard;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
@@ -15,8 +13,6 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
-import java.util.Map;
-import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.MapChangeListener;
@@ -47,7 +43,6 @@ public class MainMenuView implements IView {
   private final MainMenuController controller;
   private ChangeListener<Pair<String, String>> errorDialogListener;
   private MapChangeListener<String, Game> gamesListener;
-  private ErrorDialog dialog;
 
   public MainMenuView() {
     this.controller = new MainMenuController();
@@ -71,11 +66,10 @@ public class MainMenuView implements IView {
   }
 
   @Override
-  public Pane createRoot() {
+  public StackPane createRoot() {
     // Create a StackPane as the root container to host both the main content and any dialogs
     StackPane root = new StackPane();
     root.getStyleClass().add("view-root");
-    dialog = new ErrorDialog(root, controller::clearError);
 
     // Main layout
     VBox mainContent = new VBox(20);
@@ -239,22 +233,6 @@ public class MainMenuView implements IView {
 
     root.getChildren().add(mainContent);
 
-    if (errorDialogListener != null) {
-      controller.getErrorDialog().removeListener(errorDialogListener);
-    }
-
-    errorDialogListener = (old, newValue, value) -> {
-      if (value == null) {
-        return;
-      }
-      dialog.show(value.getKey(), value.getValue());
-    };
-    controller.getErrorDialog().addListener(errorDialogListener);
-
-    Optional.ofNullable(controller.getErrorDialog().get()).ifPresent(value -> {
-      dialog.show(value.getKey(), value.getValue());
-    });
-
     return root;
   }
 
@@ -280,9 +258,8 @@ public class MainMenuView implements IView {
       public void handle() {
         var color = Utils.toModelColor(colorPicker.getValue());
 
-        saveButton.setDisable((playerNameField.getText().isBlank()
-            || playerNameField.getText().equals(player.getName()))
-            && color.equals(player.getColor()));
+        saveButton.setDisable((playerNameField.getText().isBlank() || playerNameField.getText()
+            .equals(player.getName())) && color.equals(player.getColor()));
       }
     };
 
