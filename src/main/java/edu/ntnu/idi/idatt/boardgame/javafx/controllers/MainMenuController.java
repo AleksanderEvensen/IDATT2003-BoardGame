@@ -2,15 +2,21 @@ package edu.ntnu.idi.idatt.boardgame.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
+import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.model.Color;
+import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import javafx.stage.FileChooser;
 import javafx.util.Pair;
 import lombok.Getter;
 
@@ -25,12 +31,15 @@ import lombok.Getter;
  * @version v1.0.0
  * @since v3.0.0
  */
-public class MainMenuController implements Observer<PlayerManager, List<Player>> {
+public class MainMenuController {
 
   private final Logger logger = Logger.getLogger(MainMenuController.class.getName());
 
   @Getter
   private final ObservableList<Player> players;
+
+  @Getter
+  private final ObservableMap<String, Game> games;
 
   @Getter
   private final ObjectProperty<Pair<String, String>> errorDialog = new SimpleObjectProperty<>(null);
@@ -39,8 +48,11 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    * Constructs a MainMenuController and registers it as an observer to the PlayerManager.
    */
   public MainMenuController() {
-    PlayerManager.getInstance().addListener(this);
     this.players = FXCollections.observableArrayList();
+    this.games = FXCollections.observableHashMap();
+
+    PlayerManager.getInstance().addListener(this.players::setAll);
+    GameManager.getInstance().addListener(this.games::putAll);
   }
 
   /**
@@ -51,6 +63,7 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    */
   public void initialize() {
     this.players.setAll(PlayerManager.getInstance().getPlayers());
+    this.games.putAll(GameManager.getInstance().getGames());
   }
 
   /**
@@ -77,6 +90,29 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
     } catch (Exception e) {
       logger.severe(e.getMessage());
       errorDialog.set(new Pair<>("Failed to start game", e.getMessage()));
+    }
+  }
+
+  public void loadGameFromFile() {
+    try {
+      FileChooser fileChooser = new FileChooser();
+      fileChooser.getExtensionFilters()
+          .add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+      File file = fileChooser.showOpenDialog(Application.getPrimaryStage());
+      logger.info("File: " + file);
+      if (file == null) {
+        return;
+      }
+      logger.info("Path: " + file.getPath());
+      if (!file.exists()) {
+        throw new Exception("File does not exist");
+      }
+      logger.info("Loading game from file: " + file.getPath());
+
+      GameManager.getInstance().loadGame(file.getPath());
+    } catch (Exception e) {
+      logger.severe(e.getMessage());
+      errorDialog.set(new Pair<>("Failed to load game", e.getMessage()));
     }
   }
 
@@ -142,12 +178,5 @@ public class MainMenuController implements Observer<PlayerManager, List<Player>>
    */
   public void toggleTheme() {
     Application.setDarkTheme(!Application.isDarkTheme());
-  }
-
-  // Observers
-  @Override
-  public void update(List<Player> value) {
-    logger.info("Updating players from observer: " + value);
-    this.players.setAll(value);
   }
 }

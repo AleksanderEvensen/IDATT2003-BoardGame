@@ -21,6 +21,7 @@ public class Application extends javafx.application.Application {
   private static final Logger logger = Logger.getLogger(Application.class.getName());
 
   private static Scene primaryScene;
+  @Getter
   private static Stage primaryStage;
   @Getter
   private static boolean isDarkTheme = true;
@@ -53,7 +54,7 @@ public class Application extends javafx.application.Application {
     primaryStage = stage;
     primaryScene = new Scene(new Pane(), 1920, 1080);
 
-    router.createRoute("/home", new MainMenuView(new MainMenuController()));
+    router.createRoute("/home", new MainMenuView());
     router.createRoute("/game/:gameId", new GameLobbyView());
 
     router.navigate("/home");

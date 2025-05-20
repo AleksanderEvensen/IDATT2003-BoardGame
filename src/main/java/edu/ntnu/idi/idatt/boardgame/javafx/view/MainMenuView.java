@@ -15,9 +15,11 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.MapChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
@@ -44,10 +46,11 @@ public class MainMenuView implements IView {
 
   private final MainMenuController controller;
   private ChangeListener<Pair<String, String>> errorDialogListener;
+  private MapChangeListener<String, Game> gamesListener;
   private ErrorDialog dialog;
 
-  public MainMenuView(MainMenuController controller) {
-    this.controller = controller;
+  public MainMenuView() {
+    this.controller = new MainMenuController();
   }
 
   @Override
@@ -61,6 +64,10 @@ public class MainMenuView implements IView {
       controller.getErrorDialog().removeListener(errorDialogListener);
     }
     controller.getErrorDialog().set(null);
+
+    if (gamesListener != null) {
+      controller.getGames().removeListener(gamesListener);
+    }
   }
 
   @Override
@@ -164,7 +171,7 @@ public class MainMenuView implements IView {
     playersControls.getChildren().addAll(playerNameControl, savePlayersButton, playersScrollPane);
     playersCard.setCenter(playersControls);
 
-    VBox bottomControls = new VBox(5);
+    VBox bottomControls = new VBox(10);
     // Exit Button
     Button exitButton = new Button("Exit to Desktop", BoxiconsRegular.EXIT);
     exitButton.withVariant(ButtonVariant.SECONDARY);
@@ -182,7 +189,15 @@ public class MainMenuView implements IView {
       controller.toggleTheme();
     });
 
-    bottomControls.getChildren().addAll(exitButton, toggleThemeButton);
+    Button loadCustomGameButton = new Button("Load Custom JSON Game", BoxiconsRegular.UPLOAD);
+    loadCustomGameButton.withVariant(ButtonVariant.SECONDARY);
+    loadCustomGameButton.setMaxWidth(Double.MAX_VALUE);
+    loadCustomGameButton.setStyle("-fx-font-size: 16px;");
+    loadCustomGameButton.setOnAction(e -> {
+      this.controller.loadGameFromFile();
+    });
+
+    bottomControls.getChildren().addAll(toggleThemeButton, loadCustomGameButton, exitButton);
 
     playersCard.setBottom(bottomControls);
 
@@ -201,14 +216,15 @@ public class MainMenuView implements IView {
     gameGrid.setPadding(new Insets(10, 0, 0, 0));
     gameGrid.setPrefWrapLength(600);
 
-    GameManager.getInstance().getAvailableGameIds().forEach(gameId -> {
-      Game game = GameManager.getInstance().getGame(gameId);
-      GameCard gameCard = new GameCard(game);
-      gameCard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-        this.controller.startGame(gameId);
-      });
-      gameGrid.getChildren().add(gameCard);
-    });
+    if (gamesListener != null) {
+      controller.getGames().removeListener(gamesListener);
+    }
+    gamesListener = (change) -> {
+      createGameEntries(gameGrid);
+    };
+    controller.getGames().addListener(gamesListener);
+
+    createGameEntries(gameGrid);
 
     ScrollPane gameScrollPane = new ScrollPane(gameGrid);
     gameScrollPane.getStyleClass().clear();
@@ -287,5 +303,16 @@ public class MainMenuView implements IView {
     // Add all components to the player entry
     playerEntry.getChildren().addAll(playerNameField, colorPicker, saveButton, removeButton);
     return playerCard;
+  }
+
+  private void createGameEntries(Pane gameContainer) {
+    gameContainer.getChildren().clear();
+    controller.getGames().forEach((gameId, game) -> {
+      GameCard gameCard = new GameCard(game);
+      gameCard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        this.controller.startGame(gameId);
+      });
+      gameContainer.getChildren().add(gameCard);
+    });
   }
 }
