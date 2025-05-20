@@ -23,7 +23,7 @@ import edu.ntnu.idi.idatt.boardgame.style.FreezeStyle;
 import edu.ntnu.idi.idatt.boardgame.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.IntStream;  
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -58,9 +58,9 @@ public class GameLobbyView implements IView {
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
     Game game = GameManager.getInstance().getGame(gameId);
-    this.gameController = new GameController(game, QuizManager.getInstance());
-    gameController.startGame(PlayerManager.getInstance().getPlayers());
+    this.gameController = new GameController(game, QuizManager.getInstance(), PlayerManager.getInstance().getPlayers());
     gameLobbyController = new GameLobbyController(this, gameController);
+    gameController.startGame();
     animationQueue = new AnimationQueue();
     gameBoard = gameLobbyController.createGameBoard();
   }
@@ -227,11 +227,8 @@ public class GameLobbyView implements IView {
 
     Header currentPlayerLabel = new Header("").withFontSize(14);
 
-    this.gameLobbyController.getCurrentPlayerProperty().addListener((obs, oldPlayer, newPlayer) -> {
-      if (newPlayer != null) {
-        currentPlayerLabel.setText(newPlayer.getName());
-      }
-    });
+    currentPlayerLabel.textProperty()
+        .bind(this.gameLobbyController.getCurrentPlayerProperty().map(Player::getName));
 
     currentPlayerContainer.getChildren().addAll(currentPlayerPlaceholder, currentPlayerLabel);
 

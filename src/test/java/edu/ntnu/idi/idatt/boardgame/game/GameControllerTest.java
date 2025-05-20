@@ -61,7 +61,7 @@ class GameControllerTest {
       return tile1;
     });
 
-    controller = new GameController(game, quizManager);
+    controller = new GameController(game, quizManager, List.of(newPlayer("a"), newPlayer("b")));
   }
 
   private Player newPlayer(String name) {
@@ -74,17 +74,12 @@ class GameControllerTest {
   @Test
   @DisplayName("startGame happy path")
   void startGameOk() {
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     assertTrue(controller.isGameStarted());
     assertEquals(1, controller.getRoundCount());
     assertEquals(2, controller.getPlayers().size());
   }
 
-  @Test
-  @DisplayName("startGame with null player list throws")
-  void startGameNullPlayers() {
-    assertThrows(IllegalArgumentException.class, () -> controller.startGame(null));
-  }
 
   @Test
   @DisplayName("rollDice before start throws")
@@ -95,7 +90,7 @@ class GameControllerTest {
   @Test
   @DisplayName("rollDice normal move records dice")
   void rollDiceRecordsDice() {
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     try (MockedStatic<Utils> st = mockStatic(Utils.class)) {
       st.when(() -> Utils.throwDice(2)).thenReturn(List.of(1, 1));
       controller.rollDiceAndMoveCurrentPlayer();
@@ -105,7 +100,7 @@ class GameControllerTest {
   @Test
   @DisplayName("round count increments after a full cycle")
   void roundCountIncrements() {
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     try (MockedStatic<Utils> st = mockStatic(Utils.class)) {
       st.when(() -> Utils.throwDice(2)).thenReturn(List.of(1, 1));
       controller.rollDiceAndMoveCurrentPlayer();
@@ -123,7 +118,7 @@ class GameControllerTest {
     when(goalTile.getAction()).thenReturn(Optional.of(new GoalTileAction()));
     when(board.getTile(anyInt())).thenReturn(goalTile);
 
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     try (MockedStatic<Utils> st = mockStatic(Utils.class)) {
       st.when(() -> Utils.throwDice(2)).thenReturn(List.of(2, 0));
       controller.rollDiceAndMoveCurrentPlayer();
@@ -134,7 +129,7 @@ class GameControllerTest {
   @Test
   @DisplayName("answerQuestion returns true on correct answer")
   void answerQuestionCorrect() throws Exception {
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     Question q = mock(Question.class);
     when(q.getCorrectAnswer()).thenReturn("X");
     Field cq = GameController.class.getDeclaredField("currentQuestion");
@@ -156,7 +151,7 @@ class GameControllerTest {
     when(otherTile.getAction()).thenReturn(Optional.empty());
     when(board.getTile(5)).thenReturn(otherTile);
 
-    controller.startGame(List.of(newPlayer("a"), newPlayer("b")));
+    controller.startGame();
     Player internal = controller.getCurrentPlayer();
     controller.placePlayerOnTile(internal, 5);
 
