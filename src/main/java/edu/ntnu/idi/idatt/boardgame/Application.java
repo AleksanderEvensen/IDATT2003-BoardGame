@@ -33,21 +33,7 @@ public class Application extends javafx.application.Application {
     if (primaryStage != null) {
       primaryStage.close();
     }
-  }  /**
-   * The router used for navigating between JavaFX views
-   */
-  public static final Router<IView> router = new Router<>(ctx -> {
-    IView view = ctx.getData();
-    view.load(ctx);
-    var lastCtx = Application.router.getCurrentContext();
-    if (lastCtx != null) {
-      IView lastView = lastCtx.getData();
-      lastView.unload();
-    }
-    StackPane viewRoot = view.createRoot();
-    ToastProvider.setRoot(viewRoot);
-    Application.primaryScene.setRoot(viewRoot);
-  });
+  }
 
   public static void refreshCss() {
     if (primaryScene != null) {
@@ -102,7 +88,21 @@ public class Application extends javafx.application.Application {
     stage.show();
   }
 
-
+  /**
+   * The router used for navigating between JavaFX views
+   */
+  public static final Router<IView> router = new Router<>(ctx -> {
+    IView view = ctx.getData();
+    view.load(ctx);
+    var lastCtx = Application.router.getCurrentContext();
+    if (lastCtx != null) {
+      IView lastView = lastCtx.getData();
+      lastView.unload();
+    }
+    StackPane viewRoot = view.createRoot();
+    ToastProvider.setRoot(viewRoot);
+    Application.primaryScene.setRoot(viewRoot);
+  });
 
 
 }
