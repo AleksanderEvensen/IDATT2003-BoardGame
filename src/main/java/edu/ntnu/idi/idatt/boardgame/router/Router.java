@@ -53,7 +53,6 @@ public class Router<T> {
         logger.warning("Error while navigating to " + url + ": " + e.getMessage());
         throw new NavigationException(e.getMessage());
       }
-      return false;
     }
     return false;
   }
