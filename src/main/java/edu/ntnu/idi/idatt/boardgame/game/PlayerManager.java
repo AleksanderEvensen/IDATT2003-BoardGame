@@ -57,15 +57,14 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     } catch (Exception e) {
       logger.log(Level.SEVERE, "Failed to load players from path: " + path, e);
     } finally {
-      notifyObservers(players);
+      notifyObservers(Collections.unmodifiableList(players));
     }
   }
 
   /**
    * Saves players to a file.
    *
-   * @param path    the path to save to
-   * @param players the players to save
+   * @param path the path to save to
    */
   public void savePlayers(String path) {
     StringBuilder sb = new StringBuilder();
@@ -94,7 +93,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     }
 
     players.add(player);
-    notifyObservers(players);
+    notifyObservers(Collections.unmodifiableList(players));
     logger.info("Added player: " + player.getName());
     return true;
   }
@@ -111,7 +110,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
       return false;
     }
     players.remove(playerId);
-    notifyObservers(players);
+    notifyObservers(Collections.unmodifiableList(players));
     return false;
   }
 
@@ -128,7 +127,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
       return false;
     }
     players.set(playerId, updatedPlayer);
-    notifyObservers(players);
+    notifyObservers(Collections.unmodifiableList(players));
     logger.info("Updated player information for: " + updatedPlayer.getName());
     return true;
   }

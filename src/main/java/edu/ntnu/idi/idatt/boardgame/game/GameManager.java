@@ -1,9 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.game;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
+import edu.ntnu.idi.idatt.boardgame.game.exceptions.GameLoadException;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -17,10 +21,10 @@ import java.util.logging.Logger;
  * @see edu.ntnu.idi.idatt.boardgame.model.Game
  * @since v1.0.0
  */
-public class GameManager {
+public class GameManager extends Observable<GameManager, Map<String, Game>> {
 
   private static final String DEFAULT_GAME_PATH = "data/games";
-  private final HashMap<String, Game> games = new HashMap<>();
+  private final Map<String, Game> games = new HashMap<>();
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(GameManager.class.getName());
 
@@ -47,9 +51,11 @@ public class GameManager {
       String json = new String(fileProvider.get(path));
       Game game = GameFactory.createGame(json);
       games.put(game.getId(), game);
+      this.notifyObservers(Collections.unmodifiableMap(games));
     } catch (Exception e) {
       logger.severe("Failed to load game from path: " + path);
       logger.severe("Error: " + e.getMessage());
+      throw new GameLoadException("Failed to load game from path: " + path, e);
     }
   }
 
