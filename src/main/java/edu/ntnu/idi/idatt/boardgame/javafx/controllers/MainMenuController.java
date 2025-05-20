@@ -63,6 +63,7 @@ public class MainMenuController {
    */
   public void initialize() {
     this.players.setAll(PlayerManager.getInstance().getPlayers());
+    this.games.putAll(GameManager.getInstance().getGames());
   }
 
   /**
@@ -95,6 +96,8 @@ public class MainMenuController {
   public void loadGameFromFile() {
     try {
       FileChooser fileChooser = new FileChooser();
+      fileChooser.getExtensionFilters()
+          .add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
       File file = fileChooser.showOpenDialog(Application.getPrimaryStage());
       logger.info("File: " + file);
       if (file == null) {
@@ -109,7 +112,7 @@ public class MainMenuController {
       GameManager.getInstance().loadGame(file.getPath());
     } catch (Exception e) {
       logger.severe(e.getMessage());
-      errorDialog.set(new Pair("Failed to load game", e.getMessage()));
+      errorDialog.set(new Pair<>("Failed to load game", e.getMessage()));
     }
   }
 

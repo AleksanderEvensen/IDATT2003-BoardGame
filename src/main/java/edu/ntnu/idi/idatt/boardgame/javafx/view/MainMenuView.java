@@ -307,8 +307,7 @@ public class MainMenuView implements IView {
 
   private void createGameEntries(Pane gameContainer) {
     gameContainer.getChildren().clear();
-    GameManager.getInstance().getAvailableGameIds().forEach(gameId -> {
-      Game game = GameManager.getInstance().getGame(gameId);
+    controller.getGames().forEach((gameId, game) -> {
       GameCard gameCard = new GameCard(game);
       gameCard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
         this.controller.startGame(gameId);

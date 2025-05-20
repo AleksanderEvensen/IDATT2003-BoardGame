@@ -79,6 +79,15 @@ public class GameManager extends Observable<GameManager, Map<String, Game>> {
     return games.keySet();
   }
 
+  /**
+   * Returns an unmodifiable view of the games map.
+   *
+   * @return a map of game IDs to games
+   */
+  public Map<String, Game> getGames() {
+    return Collections.unmodifiableMap(games);
+  }
+
 
   /**
    * Loads games from the default path.
