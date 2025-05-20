@@ -35,8 +35,6 @@ public class JavaFxLadderStyleApplier implements TileStyleApplier {
         findTileComponent(gameBoard, ladderAction.getDestinationTile().getTileId());
 
     if (startTile == null || destinationTile == null) {
-      System.err.println("Could not find tile components for ladder from " +
-          tile.getTileId() + " to " + ladderAction.getDestinationTile().getTileId());
       return;
     }
 

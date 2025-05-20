@@ -49,10 +49,10 @@ public class LocalFileProvider implements FileProvider {
         throw new FileSaveException("Failed to create directories for path: " + path);
       }
     }
+
     try (OutputStream writer = Files.newOutputStream(filePath, StandardOpenOption.CREATE)) {
       writer.write(bytes);
     } catch (IOException e) {
-      e.printStackTrace();
       logger.warning("Failed to save file at path: " + path);
       throw new FileSaveException("Failed to save file at path: " + path);
     }
@@ -74,7 +74,6 @@ public class LocalFileProvider implements FileProvider {
     try {
       return Files.deleteIfExists(Path.of(path));
     } catch (IOException e) {
-      e.printStackTrace();
       throw new FileDeleteException("Failed to delete file at path: " + path);
     }
   }
@@ -107,7 +106,6 @@ public class LocalFileProvider implements FileProvider {
     try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(file))) {
       return buff.readAllBytes();
     } catch (IOException e) {
-      e.printStackTrace();
       logger.warning("Failed to read file from path: " + path);
       throw new FileReadException("Failed to read file at path: " + path);
     }
@@ -121,22 +119,26 @@ public class LocalFileProvider implements FileProvider {
    */
   @Override
   public List<String> listFiles(String path) {
-    File directory = new File(path);
+    try {
+      File directory = new File(path);
+      // TODO: custom exception?
+      if (!directory.exists()) {
+        throw new IllegalArgumentException("Directory does not exist: " + path);
+      }
 
-    // TODO: custom exception?
-    if (!directory.exists()) {
-      throw new IllegalArgumentException("Directory does not exist: " + path);
-    }
+      // TODO: custom exception?
+      if (!directory.isDirectory()) {
+        throw new IllegalArgumentException("Path is not a directory: " + path);
+      }
 
-    // TODO: custom exception?
-    if (!directory.isDirectory()) {
-      throw new IllegalArgumentException("Path is not a directory: " + path);
+      String[] files = directory.list();
+      if (files == null) {
+        return List.of();
+      }
+      return List.of(files);
+    } catch (Exception e) {
+      logger.warning("Failed to list files in directory: " + path);
+      throw new DirectoryListException("Failed to list files in directory: " + path, e);
     }
-
-    String[] files = directory.list();
-    if (files == null) {
-      return List.of();
-    }
-    return List.of(files);
   }
 }

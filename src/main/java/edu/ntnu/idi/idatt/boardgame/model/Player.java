@@ -35,6 +35,13 @@ public class Player {
    * @param color the player's color
    */
   public Player(String name, Color color) {
+    if (name == null || name.isEmpty() || name.length() > 20) {
+      throw new IllegalArgumentException(
+          "Name cannot be null or empty and must be less than 20 characters");
+    }
+    if (color == null) {
+      throw new IllegalArgumentException("Color cannot be null");
+    }
     this.name = name;
     this.color = color;
   }

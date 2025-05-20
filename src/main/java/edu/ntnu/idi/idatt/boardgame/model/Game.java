@@ -34,13 +34,29 @@ public class Game implements HasTileReferenceResolver {
   /**
    * Constructs a game with the specified board, name, description, and ID.
    *
-   * @param board       the game board
-   * @param name        the game name
-   * @param description the game description
-   * @param id          the game ID
+   * @param board        the game board
+   * @param name         the game name
+   * @param description  the game description
+   * @param id           the game ID
+   * @param minPlayers   the minimum number of players
+   * @param maxPlayers   the maximum number of players
+   * @param numberOfDice the number of dice used in the game
+   * @param imagePath    the path to the game's image
+   * @throws IllegalArgumentException if any numeric value is invalid
    */
   public Game(Board board, String name, String description, String id, int minPlayers,
       int maxPlayers, int numberOfDice, String imagePath) {
+    if (minPlayers <= 0) {
+      throw new IllegalArgumentException("Minimum players must be greater than 0.");
+    }
+    if (maxPlayers < minPlayers || maxPlayers > 10) {
+      throw new IllegalArgumentException(
+          "Maximum players must be greater than or equal to minimum players and less than or equal to 10.");
+    }
+    if (numberOfDice < 0 || numberOfDice > 10) {
+      throw new IllegalArgumentException("Number of dice cannot be negative or greater than 10.");
+    }
+
     this.board = board;
     this.name = name;
     this.description = description;

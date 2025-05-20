@@ -354,7 +354,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       AudioManager.playAudio(GameSoundEffects.VICTORY);
 
       StackPane overlay = new StackPane();
-      overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
+      overlay.getStyleClass().add("overlay");
       overlay.setPrefSize(gameLobbyView.getRoot().getWidth(), gameLobbyView.getRoot().getHeight());
 
       Card winnerCard = new Card();
@@ -371,7 +371,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       header.withType(HeaderType.H2).withFontWeight(Weight.BOLD);
 
       Label winnerLabel = new Label(event.winner().getName() + " has won the game!");
-      winnerLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
+      winnerLabel.getStyleClass().add("winner-label");
 
       Button returnButton = new Button("Return to Main Menu");
       returnButton.setOnAction(evt -> {

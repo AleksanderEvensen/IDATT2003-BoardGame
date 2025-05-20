@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.boardgame.router;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 import lombok.Getter;
 
 /**
@@ -14,6 +15,7 @@ public class Router<T> {
   @Getter
   private NavigationContext<T> currentContext;
   private final Consumer<NavigationContext<T>> navigationHandler;
+  private final Logger logger = Logger.getLogger(Router.class.getName());
 
   public Router(Consumer<NavigationContext<T>> navigationHandler) {
     this.navigationHandler = navigationHandler;
@@ -48,6 +50,7 @@ public class Router<T> {
 
         return true;
       } catch (Exception e) {
+        logger.warning("Error while navigating to " + url + ": " + e.getMessage());
         throw new NavigationException(e.getMessage());
       }
     }
