@@ -30,7 +30,9 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.PlayerBlipView;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.QuestionDialog;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.TileComponent;
+import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.ToastStyle;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
+import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
@@ -52,6 +54,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import lombok.Getter;
 
 /**
@@ -172,9 +175,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handlePlayerMoved(PlayerMovedEvent event) {
     logger.info(
         "Player " + event.player().getName() + " moved from tile " + (event.fromTile() != null
-            ? event.fromTile().getTileId()
-            : "null") + " to tile " + event.toTile()
-            .getTileId());
+            ? event.fromTile().getTileId() : "null") + " to tile " + event.toTile().getTileId());
     animatePlayerMovement(event.player(), event.fromTile(), event.toTile());
     QueueableAction action = QueueableAction.builder().action(() -> {
       rollButtonDisabledProperty.set(false);
@@ -184,8 +185,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
 
   private void handleDiceRolled(DiceRolledEvent event) {
     rollButtonDisabledProperty.set(true);
-    Animation[] diceAnimations = IntStream.range(0, event.individualRolls().size()).boxed()
-        .map(diceId -> {
+    Animation[] diceAnimations =
+        IntStream.range(0, event.individualRolls().size()).boxed().map(diceId -> {
           DieComponent die = gameLobbyView.getDiceComponents().get(diceId);
           return DieComponentAnimator.animateRoll(die, event.getDieValue(diceId));
         }).toArray(Animation[]::new);
@@ -224,6 +225,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     if (action instanceof FreezeAction) {
       QueueableAction freezeAudioAction = QueueableAction.builder().action(() -> {
         AudioManager.playAudio(GameSoundEffects.FREEZE);
+        ToastProvider.show("You are frozen for 1 turn");
       }).build();
       animationQueue.queue(freezeAudioAction.timeline(), "Freeze action", 0);
 
@@ -232,6 +234,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     if (action instanceof ImmunityAction) {
       QueueableAction immunityAudioAction = QueueableAction.builder().action(() -> {
         AudioManager.playAudio(GameSoundEffects.IMMUNITY);
+        ToastProvider.show(
+            "You are immune against negative actions - total: " + event.player().getImmunityTurns()
+                + " turns");
       }).build();
       animationQueue.queue(immunityAudioAction.timeline(), "Immunity action", 0);
     }
@@ -253,14 +258,18 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handleQuestionAsked(QuestionAskedEvent event) {
     logger.info("Question asked: " + event.question());
     QueueableAction action = QueueableAction.builder().action(() -> {
-      QuestionDialog dialog = new QuestionDialog(gameLobbyView.getRoot(), event.question(),
-          (answer) -> {
-            boolean isCorrect = gameController.answerQuestion(
-                event.question().getAnswers().get(answer));
+      QuestionDialog dialog =
+          new QuestionDialog(gameLobbyView.getRoot(), event.question(), (answer) -> {
+            boolean isCorrect =
+                gameController.answerQuestion(event.question().getAnswers().get(answer));
             if (isCorrect) {
               AudioManager.playAudio(GameSoundEffects.CORRECT_ANSWER);
+              ToastProvider.show("Correct! you stay on the current tile", Duration.seconds(5),
+                  ToastStyle.SUCCESS);
             } else {
               AudioManager.playAudio(GameSoundEffects.INCORRECT_ANSWER);
+              ToastProvider.show("Wrong! go back to your previous tile", Duration.seconds(5),
+                  ToastStyle.ERROR);
             }
           });
       dialog.show();
@@ -283,20 +292,19 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       return;
     }
 
-    TileComponent toTileComponent = gameLobbyView.getGameBoard()
-        .getTileComponent(toTile.getTileId());
+    TileComponent toTileComponent =
+        gameLobbyView.getGameBoard().getTileComponent(toTile.getTileId());
     if (toTileComponent == null) {
       logger.warning("No tile component found for destination tile ID: " + toTile.getTileId());
       return;
     }
 
-    var animation = PlayerMovementAnimator.createPathAnimation(gameLobbyView.getGameBoard(), player,
-        fromTile,
-        toTile);
+    var animation =
+        PlayerMovementAnimator.createPathAnimation(gameLobbyView.getGameBoard(), player, fromTile,
+            toTile);
 
     String description = "Player " + player.getName() + " moving from tile " + (fromTile != null
-        ? fromTile.getTileId()
-        : "null") + " to tile " + toTile.getTileId();
+        ? fromTile.getTileId() : "null") + " to tile " + toTile.getTileId();
 
     animationQueue.queue(animation, description, 500);
     logger.fine("Queued animation: " + description);
@@ -315,9 +323,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       return;
     }
 
-    var animation = PlayerMovementAnimator.createLadderAnimation(gameLobbyView.getGameBoard(),
-        player, fromTile,
-        toTile);
+    var animation =
+        PlayerMovementAnimator.createLadderAnimation(gameLobbyView.getGameBoard(), player, fromTile,
+            toTile);
 
     boolean isPositiveLadder = toTile.getTileId() > fromTile.getTileId();
 

@@ -1,15 +1,14 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
-import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.ToastStyle;
+import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
 import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.io.File;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import javafx.util.Pair;
 import lombok.Getter;
 
@@ -89,10 +89,14 @@ public class MainMenuController {
       Application.router.navigate(String.format("/game/%s", gameId));
     } catch (Exception e) {
       logger.severe(e.getMessage());
-      errorDialog.set(new Pair<>("Failed to start game", e.getMessage()));
+      ToastProvider.show("Failed to start game: " + e.getMessage(), Duration.seconds(5),
+          ToastStyle.ERROR);
     }
   }
 
+  /**
+   * Loads a game from a file.
+   */
   public void loadGameFromFile() {
     try {
       FileChooser fileChooser = new FileChooser();

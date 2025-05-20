@@ -23,10 +23,9 @@ import edu.ntnu.idi.idatt.boardgame.style.FreezeStyle;
 import edu.ntnu.idi.idatt.boardgame.style.ImmunityStyle;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;  
+import java.util.stream.IntStream;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
@@ -58,7 +57,8 @@ public class GameLobbyView implements IView {
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
     Game game = GameManager.getInstance().getGame(gameId);
-    this.gameController = new GameController(game, QuizManager.getInstance(), PlayerManager.getInstance().getPlayers());
+    this.gameController = new GameController(game, QuizManager.getInstance(),
+        PlayerManager.getInstance().getPlayers());
     gameLobbyController = new GameLobbyController(this, gameController);
     gameController.startGame();
     animationQueue = new AnimationQueue();
@@ -73,7 +73,8 @@ public class GameLobbyView implements IView {
   }
 
   @Override
-  public Parent createRoot() {
+  public StackPane createRoot() {
+
     BorderPane content = new BorderPane();
     content.setPadding(new Insets(20));
 

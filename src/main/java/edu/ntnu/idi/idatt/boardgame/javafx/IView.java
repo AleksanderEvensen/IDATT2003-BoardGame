@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.javafx;
 
 import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
-import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 
 public interface IView {
 
@@ -27,5 +27,5 @@ public interface IView {
   /**
    * A function for creating the view
    */
-  Parent createRoot();
+  StackPane createRoot();
 }
