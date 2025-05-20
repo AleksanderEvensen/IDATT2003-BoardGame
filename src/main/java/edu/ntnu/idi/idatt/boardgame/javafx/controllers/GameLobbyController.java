@@ -12,6 +12,7 @@ import edu.ntnu.idi.idatt.boardgame.game.events.GameEndedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameStartedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerMovedEvent;
+import edu.ntnu.idi.idatt.boardgame.game.events.PlayerSkippedTurnEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.PlayerTurnChangedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.QuestionAskedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.TileActionEvent;
@@ -122,6 +123,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       case TileActionEvent tileActionEvent -> handleTileAction(tileActionEvent);
       case PlayerTurnChangedEvent playerTurnChangedEvent ->
           handlePlayerTurnChangeEvent(playerTurnChangedEvent);
+      case PlayerSkippedTurnEvent playerSkippedTurnEvent ->
+          handlePlayerSkippedTurn(playerSkippedTurnEvent);
       case QuestionAskedEvent questionAskedEvent -> handleQuestionAsked(questionAskedEvent);
       case GameEndedEvent gameEndedEvent -> handleGameEnded(gameEndedEvent);
       default -> logger.warning("Unhandled event type: " + event.getClass().getSimpleName());
@@ -276,6 +279,21 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     }).build();
     animationQueue.queue(action.timeline(), "Question asked", 0);
     rollButtonDisabledProperty.set(true);
+  }
+
+  /**
+   * Handles player skipped turn events.
+   *
+   * @param event the player skipped turn event
+   */
+  public void handlePlayerSkippedTurn(PlayerSkippedTurnEvent event) {
+    logger.info("Player " + event.player().getName() + " skipped turn: " + event.reason());
+    QueueableAction action = QueueableAction.builder().action(() -> {
+      ToastProvider.show(String.format(
+              "Player %s skipped turn, reason: %s", event.player().getName(), event.reason()),
+          Duration.seconds(5), ToastStyle.INFO);
+    }).build();
+    animationQueue.queue(action.timeline(), "Player skipped turn", 0);
   }
 
   /**
