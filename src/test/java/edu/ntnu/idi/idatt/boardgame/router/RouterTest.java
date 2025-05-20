@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doThrow;
@@ -109,9 +110,7 @@ class RouterTest {
   void navigate_withErrorInHandler_shouldReturnFalse() {
     doThrow(new RuntimeException("Test exception")).when(navigationHandler).accept(any());
 
-    boolean result = router.navigate("/home");
-
-    assertFalse(result);
+    assertThrows(NavigationException.class, () -> router.navigate("/home"));
   }
 
   @Test
