@@ -62,7 +62,7 @@ public class QuizManager {
     if (questions.isEmpty()) {
       return null;
     }
-    int idx = Utils.getRandomNumber(0, questions.size());
+    int idx = Utils.getRandomNumber(0, questions.size() - 1);
     return questions.get(idx);
   }
 
