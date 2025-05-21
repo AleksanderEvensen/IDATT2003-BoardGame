@@ -8,97 +8,98 @@ import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
 import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
-import java.util.HashSet;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * Manages quiz questions for the game, including loading and processing question data.
- * <p>
- * This class is responsible for loading quiz questions from a file and providing access to the
- * loaded questions.
- * </p>
- *
- * @version 1.0.0
- * @since v3.0.0
+ * The QuizManager class is responsible for managing quiz questions and their categories. It
+ * provides functionality to load questions from a file, retrieve random questions, and retrieve
+ * random questions from specific categories.
  */
 public class QuizManager {
 
+  private static QuizManager instance;
   private final FileProvider fileProvider;
   private final Logger logger = Logger.getLogger(QuizManager.class.getName());
-  Set<Question> questions;
+  private final List<Question> questions = new ArrayList<>();
+  private final Map<QuestionCategory, List<Question>> questionsByCategory =
+      new EnumMap<>(QuestionCategory.class);
 
   /**
-   * Constructs a QuizManager with the specified file provider.
+   * Constructs a QuizManager instance with the specified FileProvider. Loads questions from the
+   * default file path.
    *
-   * @param fileProvider the file provider for loading question files
+   * @param fileProvider The FileProvider used to access the question file.
    */
   public QuizManager(FileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    this.questions = new HashSet<>();
     loadQuestions("data/questions.json");
   }
 
+  /**
+   * Retrieves the singleton instance of QuizManager. If the instance does not exist, it is created
+   * with a LocalFileProvider.
+   *
+   * @return The singleton instance of QuizManager.
+   */
+  public static QuizManager getInstance() {
+    if (instance == null) {
+      instance = new QuizManager(new LocalFileProvider());
+    }
+    return instance;
+  }
 
   /**
-   * Retrieves a random question from the loaded questions.
-   * <p>
-   * If no questions are available, null is returned.
-   * </p>
+   * Retrieves a random question from the list of loaded questions.
    *
-   * @return a random question, or null if none are available
+   * @return A random Question, or null if no questions are available.
    */
   public Question getRandomQuestion() {
     if (questions.isEmpty()) {
       return null;
     }
-    Integer questionIndex = Utils.getRandomNumber(0, questions.size());
-    return questions.stream().skip(questionIndex).findFirst().orElse(null);
+    int idx = Utils.getRandomNumber(0, questions.size());
+    return questions.get(idx);
   }
 
   /**
-   * Retrieves a random question from the specified category.
-   * <p>
-   * If no questions are available in the specified category, null is returned.
-   * </p>
+   * Retrieves a random question from a specific category.
    *
-   * @param category the category of the question
-   * @return a random question from the specified category, or null if none are available
+   * @param category The category from which to retrieve a random question.
+   * @return A random Question from the specified category, or null if no questions are available in
+   * that category.
    */
   public Question getRandomQuestionFromCategory(QuestionCategory category) {
-    if (questions.isEmpty()) {
+    List<Question> list = questionsByCategory.get(category);
+    if (list == null || list.isEmpty()) {
       return null;
     }
-    List<Question> filteredQuestions =
-        questions.stream().filter(question -> question.getCategory().equals(category)).toList();
-    if (filteredQuestions.isEmpty()) {
-      return null;
-    }
-    Integer questionIndex = Utils.getRandomNumber(0, filteredQuestions.size());
-    return filteredQuestions.stream().skip(questionIndex).findFirst().orElse(null);
+    int idx = Utils.getRandomNumber(0, list.size() - 1);
+    return list.get(idx);
   }
 
   /**
-   * Loads quiz questions from the specified file path.
-   * <p>
-   * The questions are loaded from a JSON file and stored in the questions set.
-   * </p>
+   * Loads questions from the specified file path. Parses the JSON data and populates the questions
+   * and questionsByCategory collections.
    *
-   * @param path the path to the question file
+   * @param path The file path to load questions from.
    */
   private void loadQuestions(String path) {
     try {
-      String jsonData = new String(fileProvider.get(path));
+      String jsonData = new String(fileProvider.get(path), StandardCharsets.UTF_8);
       JsonArray jsonArray = JsonParser.parseString(jsonData).getAsJsonArray();
+
       for (JsonElement element : jsonArray) {
-        if (element.isJsonNull()) {
-          continue;
-        }
         if (!element.isJsonObject()) {
           continue;
         }
-        questions.add(QuestionFactory.createQuestion(element.getAsJsonObject()));
+        Question q = QuestionFactory.createQuestion(element.getAsJsonObject());
+        questions.add(q);
+        questionsByCategory.computeIfAbsent(q.getCategory(), __ -> new ArrayList<>()).add(q);
       }
     } catch (Exception e) {
       logger.warning("Failed to load questions from path: " + path);
@@ -106,19 +107,5 @@ public class QuizManager {
     } finally {
       logger.info(String.format("Loaded %d questions from '%s'", questions.size(), path));
     }
-  }
-
-  private static QuizManager instance;
-
-  /**
-   * Creates and/or gets the singleton instance of {@link QuizManager}.
-   *
-   * @return the singleton instance of {@link QuizManager}
-   */
-  public static QuizManager getInstance() {
-    if (instance == null) {
-      instance = new QuizManager(new LocalFileProvider());
-    }
-    return instance;
   }
 }

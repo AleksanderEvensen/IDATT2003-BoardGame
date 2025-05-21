@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.view;
 
-import edu.ntnu.idi.idatt.boardgame.game.GameController;
+import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.game.GameManager;
 import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.game.QuizManager;
@@ -38,11 +38,14 @@ import javafx.scene.paint.Paint;
 import lombok.Getter;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * The view for the game lobby where the game will be played
+ */
 public class GameLobbyView implements IView {
 
   @Getter
   private StackPane root;
-  private GameController gameController;
+  private GameEngine gameEngine;
   @Getter
   private List<DieComponent> diceComponents;
   @Getter
@@ -57,10 +60,10 @@ public class GameLobbyView implements IView {
   public void load(NavigationContext<?> ctx) {
     String gameId = ctx.getParamOrThrow("gameId");
     Game game = GameManager.getInstance().getGame(gameId);
-    this.gameController = new GameController(game, QuizManager.getInstance(),
+    this.gameEngine = new GameEngine(game, QuizManager.getInstance(),
         PlayerManager.getInstance().getPlayers());
-    gameLobbyController = new GameLobbyController(this, gameController);
-    gameController.startGame();
+    gameLobbyController = new GameLobbyController(this, gameEngine);
+    gameEngine.startGame();
     animationQueue = new AnimationQueue();
     gameBoard = gameLobbyController.createGameBoard();
   }
@@ -68,7 +71,7 @@ public class GameLobbyView implements IView {
   @Override
   public void unload() {
     gameLobbyController = null;
-    gameController = null;
+    gameEngine = null;
     gameBoard = null;
   }
 
@@ -111,9 +114,7 @@ public class GameLobbyView implements IView {
     playersCard.setCenter(playersList);
 
     Button backToMenuButton = new Button("Back to Menu");
-    backToMenuButton.setOnAction(e -> {
-      gameLobbyController.exitGame();
-    });
+    backToMenuButton.setOnAction(e -> gameLobbyController.exitGame());
 
     Region spacer = new Region();
     VBox.setVgrow(spacer, Priority.ALWAYS);
@@ -143,9 +144,8 @@ public class GameLobbyView implements IView {
       cell.getStyleClass().clear();
 
       this.gameLobbyController.getCurrentPlayerProperty()
-          .addListener((obs, oldPlayer, newPlayer) -> {
-            cell.updateItem(cell.getItem(), cell.isEmpty());
-          });
+          .addListener(
+              (obs, oldPlayer, newPlayer) -> cell.updateItem(cell.getItem(), cell.isEmpty()));
 
       return cell;
     });
@@ -167,7 +167,7 @@ public class GameLobbyView implements IView {
     diceContainer.setAlignment(Pos.CENTER);
 
     diceComponents = new ArrayList<>();
-    IntStream.range(0, gameController.getGame().getNumberOfDice()).forEach(i -> {
+    IntStream.range(0, gameEngine.getGame().getNumberOfDice()).forEach(i -> {
       DieComponent dieComponent = new DieComponent();
       dieComponent.setValue(1);
       diceComponents.add(dieComponent);
@@ -191,8 +191,8 @@ public class GameLobbyView implements IView {
 
     rollButton = new Button("Roll Dice");
     rollButton.setOnAction(e -> {
-      if (gameController.isGameStarted() && !gameController.isGameEnded()) {
-        gameController.rollDiceAndMoveCurrentPlayer();
+      if (gameEngine.isGameStarted() && !gameEngine.isGameEnded()) {
+        gameEngine.rollDiceAndMoveCurrentPlayer();
       }
     });
 
@@ -248,7 +248,7 @@ public class GameLobbyView implements IView {
 
     gameInfoContainer.getChildren().addAll(currentPlayerContainer, currentRoundContainer);
 
-    Header description = new Header(gameController.getGame().getDescription())
+    Header description = new Header(gameEngine.getGame().getDescription())
         .withFontSize(16);
     description.setWrapText(true);
     description.setMaxWidth(Double.MAX_VALUE);

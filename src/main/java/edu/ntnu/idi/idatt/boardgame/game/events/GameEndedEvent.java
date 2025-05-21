@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.game.events;
 
+import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.model.Game;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 
@@ -10,7 +11,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Player;
  * observe this event to display a game over screen.
  * </p>
  *
- * @see edu.ntnu.idi.idatt.boardgame.game.GameController
+ * @see GameEngine
  * @see edu.ntnu.idi.idatt.boardgame.model.Game
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0

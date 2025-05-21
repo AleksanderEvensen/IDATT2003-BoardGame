@@ -6,7 +6,7 @@ import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
 import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
 import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observer;
-import edu.ntnu.idi.idatt.boardgame.game.GameController;
+import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.game.events.DiceRolledEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEndedEvent;
 import edu.ntnu.idi.idatt.boardgame.game.events.GameEvent;
@@ -59,7 +59,7 @@ import javafx.util.Duration;
 import lombok.Getter;
 
 /**
- * Controller that connects the GameController with the GameBoard UI component.
+ * Controller that connects the GameEngine with the GameBoard UI component.
  * <p>
  * This class observes game events and updates the game board UI accordingly, particularly handling
  * player movement animations.
@@ -68,12 +68,12 @@ import lombok.Getter;
  * @version v1.0.1
  * @since v3.0.0
  */
-public class GameLobbyController implements Observer<GameController, GameEvent> {
+public class GameLobbyController implements Observer<GameEngine, GameEvent> {
 
   private static final Logger logger = Logger.getLogger(GameLobbyController.class.getName());
 
   private final GameLobbyView gameLobbyView;
-  private final GameController gameController;
+  private final GameEngine gameEngine;
 
   @Getter
   private final ObservableList<Player> players;
@@ -92,18 +92,18 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   /**
    * Creates a new GameLobbyController.
    *
-   * @param gameLobbyView  the game view
-   * @param gameController the game controller
+   * @param gameLobbyView the game view
+   * @param gameEngine    the game controller
    */
-  public GameLobbyController(GameLobbyView gameLobbyView, GameController gameController) {
+  public GameLobbyController(GameLobbyView gameLobbyView, GameEngine gameEngine) {
     this.gameLobbyView = gameLobbyView;
-    this.gameController = gameController;
+    this.gameEngine = gameEngine;
     this.animationQueue = new AnimationQueue();
 
-    this.players = FXCollections.observableArrayList(gameController.getPlayers());
+    this.players = FXCollections.observableArrayList(gameEngine.getPlayers());
 
-    gameController.addListener(this);
-    this.currentPlayerProperty.set(gameController.getCurrentPlayer());
+    gameEngine.addListener(this);
+    this.currentPlayerProperty.set(gameEngine.getCurrentPlayer());
 
     logger.info("GameLobbyController initialized");
   }
@@ -149,8 +149,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
   private void handleGameStarted(GameStartedEvent event) {
     logger.info("Game started with " + event.players().size() + " players");
     animationQueue.stopAndClear();
-    currentPlayerProperty.set(gameController.getCurrentPlayer());
-    currentRoundProperty.set(gameController.getRoundCount());
+    currentPlayerProperty.set(gameEngine.getCurrentPlayer());
+    currentRoundProperty.set(gameEngine.getRoundCount());
   }
 
   /**
@@ -162,9 +162,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     QueueableAction action = QueueableAction.builder().action(() -> {
       logger.info("Player turn changed to " + event.currentPlayer().getName());
       currentPlayerProperty.set(event.currentPlayer());
-      currentRoundProperty.set(gameController.getRoundCount());
+      currentRoundProperty.set(gameEngine.getRoundCount());
       rollButtonDisabledProperty.set(false);
-      this.players.setAll(gameController.getPlayers());
+      this.players.setAll(gameEngine.getPlayers());
     }).build();
 
     animationQueue.queue(action.timeline(), "Player turn changed", 0);
@@ -180,9 +180,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
         "Player " + event.player().getName() + " moved from tile " + (event.fromTile() != null
             ? event.fromTile().getTileId() : "null") + " to tile " + event.toTile().getTileId());
     animatePlayerMovement(event.player(), event.fromTile(), event.toTile());
-    QueueableAction action = QueueableAction.builder().action(() -> {
-      rollButtonDisabledProperty.set(false);
-    }).build();
+    QueueableAction action =
+        QueueableAction.builder().action(() -> rollButtonDisabledProperty.set(false)).build();
     animationQueue.queue(action.timeline(), "Enabling roll button", 0);
   }
 
@@ -197,9 +196,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
     animationQueue.queue(AnimationQueue.combineAnimationsParallel(diceAnimations), "Rolling dice",
         0);
 
-    QueueableAction action = QueueableAction.builder().action(() -> {
-      lastRollProperty.set(event.totalValue());
-    }).build();
+    QueueableAction action =
+        QueueableAction.builder().action(() -> lastRollProperty.set(event.totalValue())).build();
 
     animationQueue.queue(action.timeline(), "Updating last roll", 0);
   }
@@ -221,7 +219,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
         logger.info("Triggering ladder animation");
         animateLadderMovement(player, startTile, destinationTile);
       } else {
-        logger.warning("Invalid tiles for ladder animation");
+        logger.warning("Invalid exceptions for ladder animation");
       }
     }
 
@@ -249,8 +247,8 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    * Creates the game board.
    */
   public GameBoard createGameBoard() {
-    return new GameBoard.Builder(gameController).addTiles().resolveActionStyles()
-        .addPlayers(gameController.getPlayers()).build();
+    return new GameBoard.Builder(gameEngine).addTiles().resolveActionStyles()
+        .addPlayers(gameEngine.getPlayers()).build();
   }
 
   /**
@@ -264,7 +262,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       QuestionDialog dialog =
           new QuestionDialog(gameLobbyView.getRoot(), event.question(), (answer) -> {
             boolean isCorrect =
-                gameController.answerQuestion(event.question().getAnswers().get(answer));
+                gameEngine.answerQuestion(event.question().getAnswers().get(answer));
             if (isCorrect) {
               AudioManager.playAudio(GameSoundEffects.CORRECT_ANSWER);
               ToastProvider.show("Correct! you stay on the current tile", Duration.seconds(5),
@@ -288,11 +286,9 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
    */
   public void handlePlayerSkippedTurn(PlayerSkippedTurnEvent event) {
     logger.info("Player " + event.player().getName() + " skipped turn: " + event.reason());
-    QueueableAction action = QueueableAction.builder().action(() -> {
-      ToastProvider.show(String.format(
-              "Player %s skipped turn, reason: %s", event.player().getName(), event.reason()),
-          Duration.seconds(5), ToastStyle.INFO);
-    }).build();
+    QueueableAction action = QueueableAction.builder().action(() -> ToastProvider.show(
+        String.format("Player %s skipped turn, reason: %s", event.player().getName(),
+            event.reason()), Duration.seconds(5), ToastStyle.INFO)).build();
     animationQueue.queue(action.timeline(), "Player skipped turn", 0);
   }
 
@@ -399,9 +395,7 @@ public class GameLobbyController implements Observer<GameController, GameEvent> 
       winnerLabel.getStyleClass().add("winner-label");
 
       Button returnButton = new Button("Return to Main Menu");
-      returnButton.setOnAction(evt -> {
-        exitGame();
-      });
+      returnButton.setOnAction(evt -> exitGame());
 
       content.getChildren().addAll(header, winnerLabel, returnButton);
       winnerCard.setCenter(content);

@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.game.events;
 
+import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * individual values of each die. This allows UI components to display the dice accurately.
  * </p>
  *
- * @see edu.ntnu.idi.idatt.boardgame.game.GameController
+ * @see GameEngine
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @since v2.0.0
  */

@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.boardgame.game;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
+import edu.ntnu.idi.idatt.boardgame.game.exceptions.PlayerExistsException;
 import edu.ntnu.idi.idatt.boardgame.model.Color;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import lombok.NonNull;
  */
 public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
+  private static PlayerManager instance;
   private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
   private final List<Player> players = new ArrayList<>();
@@ -28,6 +30,18 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
   public PlayerManager(LocalFileProvider fileProvider) {
     this.fileProvider = fileProvider;
     loadPlayers("data/players.csv");
+  }
+
+  /**
+   * Creates and/or gets the singleton instance of {@link PlayerManager}.
+   *
+   * @return the singleton instance of {@link PlayerManager}
+   */
+  public static PlayerManager getInstance() {
+    if (instance == null) {
+      instance = new PlayerManager(new LocalFileProvider());
+    }
+    return instance;
   }
 
   /**
@@ -90,6 +104,12 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     if (player == null) {
       logger.warning("Attempted to add null player");
       return false;
+    }
+
+    if (players.contains(player)) {
+      logger.warning("Player already exists: " + player.getName());
+      throw new PlayerExistsException(
+          String.format("Player with same name '%s' and color already exists", player.getName()));
     }
 
     players.add(player);
@@ -162,24 +182,15 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
       return false;
     }
     logger.info("Player index: " + index);
-    return this.updatePlayer(index, new Player(newName, newColor));
+    Player updatedPlayer = new Player(newName, newColor);
+    if (players.contains(updatedPlayer)) {
+      throw new PlayerExistsException(
+          String.format("Player with same name '%s' and color already exists", newName));
+    }
+    return this.updatePlayer(index, updatedPlayer);
   }
 
   public List<Player> getPlayers() {
     return Collections.unmodifiableList(this.players);
-  }
-
-  private static PlayerManager instance;
-
-  /**
-   * Creates and/or gets the singleton instance of {@link PlayerManager}.
-   *
-   * @return the singleton instance of {@link PlayerManager}
-   */
-  public static PlayerManager getInstance() {
-    if (instance == null) {
-      instance = new PlayerManager(new LocalFileProvider());
-    }
-    return instance;
   }
 }

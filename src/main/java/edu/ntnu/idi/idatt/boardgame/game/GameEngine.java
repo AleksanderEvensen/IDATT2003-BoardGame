@@ -26,7 +26,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Controller for managing game state, player turns, and game actions.
+ * engine for managing game state, player turns, and game actions.
  * <p>
  * This controller manages all aspects of game flow, including:
  * <ul>
@@ -37,7 +37,7 @@ import lombok.NonNull;
  * </ul>
  * </p>
  * <p>
- * The controller extends the Observable class to allow UI components to observe
+ * The engine extends the Observable class to allow UI components to observe
  * and react to game
  * events without tight coupling.
  * </p>
@@ -49,9 +49,9 @@ import lombok.NonNull;
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  * @since v2.0.0
  */
-public class GameController extends Observable<GameController, GameEvent> {
+public class GameEngine extends Observable<GameEngine, GameEvent> {
 
-  private final Logger logger = Logger.getLogger(GameController.class.getName());
+  private final Logger logger = Logger.getLogger(GameEngine.class.getName());
   private final QuizManager quizManager;
   @Getter
   private final Game game;
@@ -68,7 +68,7 @@ public class GameController extends Observable<GameController, GameEvent> {
   private int roundCount = 0;
 
   /**
-   * Constructs a GameController with the specified game, quiz manager, and players.
+   * Constructs a GameEngine with the specified game, quiz manager, and players.
    *
    * @param game        the game to be played
    * @param quizManager the quiz manager for handling quiz questions
@@ -76,7 +76,7 @@ public class GameController extends Observable<GameController, GameEvent> {
    * @throws IllegalArgumentException if game or players are null
    * @throws IllegalStateException    if the number of players is not within the valid range
    */
-  public GameController(@NonNull Game game, @NonNull QuizManager quizManager,
+  public GameEngine(@NonNull Game game, @NonNull QuizManager quizManager,
       @NonNull List<Player> players) {
     super();
     this.game = game;
@@ -98,14 +98,12 @@ public class GameController extends Observable<GameController, GameEvent> {
 
   /**
    * Starts the game with the specified game and players.
-   *
    */
   public void startGame() {
     this.currentPlayerIndex = 0;
     this.gameStarted = true;
     this.gameEnded = false;
     this.roundCount = 1;
-
 
     Tile startTile = game.getBoard().getTile(0);
     if (startTile == null) {

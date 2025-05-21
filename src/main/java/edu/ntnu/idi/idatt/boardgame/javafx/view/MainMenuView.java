@@ -55,11 +55,6 @@ public class MainMenuView implements IView {
 
   @Override
   public void unload() {
-    if (errorDialogListener != null) {
-      controller.getErrorDialog().removeListener(errorDialogListener);
-    }
-    controller.getErrorDialog().set(null);
-
     if (gamesListener != null) {
       controller.getGames().removeListener(gamesListener);
     }
@@ -113,11 +108,7 @@ public class MainMenuView implements IView {
     Button addPlayerButton =
         new Button("Add Player", BoxiconsRegular.PLUS).withVariant(ButtonVariant.SUCCESS);
     addPlayerButton.setOnAction(e -> {
-      if (playerNameField.getText().trim().isBlank()) {
-        return;
-      }
-      var newPlayer = new Player(playerNameField.getText().trim(), Utils.getRandomColor());
-      this.controller.addPlayer(newPlayer);
+      this.controller.addPlayer(playerNameField.getText());
       playerNameField.clear();
     });
 

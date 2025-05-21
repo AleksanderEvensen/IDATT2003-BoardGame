@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
 import edu.ntnu.idi.idatt.boardgame.actions.HasTileReferenceResolver;
-import edu.ntnu.idi.idatt.boardgame.model.tiles.BoardRangeException;
+import edu.ntnu.idi.idatt.boardgame.model.exceptions.BoardRangeException;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;

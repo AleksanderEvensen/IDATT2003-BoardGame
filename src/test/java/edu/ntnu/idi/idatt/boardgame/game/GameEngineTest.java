@@ -25,14 +25,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-class GameControllerTest {
+class GameEngineTest {
 
   private Game game;
   private Board board;
   private Tile startTile;
   private Tile tile1;
   private QuizManager quizManager;
-  private GameController controller;
+  private GameEngine controller;
 
   @BeforeEach
   void setUp() {
@@ -61,7 +61,7 @@ class GameControllerTest {
       return tile1;
     });
 
-    controller = new GameController(game, quizManager, List.of(newPlayer("a"), newPlayer("b")));
+    controller = new GameEngine(game, quizManager, List.of(newPlayer("a"), newPlayer("b")));
   }
 
   private Player newPlayer(String name) {
@@ -132,10 +132,10 @@ class GameControllerTest {
     controller.startGame();
     Question q = mock(Question.class);
     when(q.getCorrectAnswer()).thenReturn("X");
-    Field cq = GameController.class.getDeclaredField("currentQuestion");
+    Field cq = GameEngine.class.getDeclaredField("currentQuestion");
     cq.setAccessible(true);
     cq.set(controller, q);
-    Field cp = GameController.class.getDeclaredField("checkpointTile");
+    Field cp = GameEngine.class.getDeclaredField("checkpointTile");
     cp.setAccessible(true);
     cp.set(controller, startTile);
     boolean res = controller.answerQuestion("X");
@@ -157,10 +157,10 @@ class GameControllerTest {
 
     Question q = mock(Question.class);
     when(q.getCorrectAnswer()).thenReturn("X");
-    Field cq = GameController.class.getDeclaredField("currentQuestion");
+    Field cq = GameEngine.class.getDeclaredField("currentQuestion");
     cq.setAccessible(true);
     cq.set(controller, q);
-    Field cp = GameController.class.getDeclaredField("checkpointTile");
+    Field cp = GameEngine.class.getDeclaredField("checkpointTile");
     cp.setAccessible(true);
     cp.set(controller, startTile);
 

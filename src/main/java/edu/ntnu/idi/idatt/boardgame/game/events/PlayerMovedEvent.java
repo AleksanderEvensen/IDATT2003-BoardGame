@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.game.events;
 
+import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.model.Player;
 import edu.ntnu.idi.idatt.boardgame.model.Tile;
 
@@ -11,7 +12,7 @@ import edu.ntnu.idi.idatt.boardgame.model.Tile;
  * moved. UI components can observe this event to animate player movements on the board.
  * </p>
  *
- * @see edu.ntnu.idi.idatt.boardgame.game.GameController
+ * @see GameEngine
  * @see edu.ntnu.idi.idatt.boardgame.model.Player
  * @see edu.ntnu.idi.idatt.boardgame.model.Tile
  * @since v2.0.0
