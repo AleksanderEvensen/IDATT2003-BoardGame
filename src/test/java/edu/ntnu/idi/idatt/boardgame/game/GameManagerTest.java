@@ -12,8 +12,10 @@ import static org.mockito.Mockito.when;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
 import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -81,7 +83,9 @@ class GameManagerTest {
             testGameJson.replace("\"id\": \"simple-game\"", "\"id\": \"other-game\"").getBytes());
 
     // Initialize with mock
-    gameManager = new GameManager(mockFileProvider);
+    GameManager.init(() -> mockFileProvider);
+    gameManager = GameManager.getInstance();
+    gameManager.loadGamesFromDefaultPath();
   }
 
   @Test
@@ -136,7 +140,15 @@ class GameManagerTest {
       GameManager instance = GameManager.getInstance();
       assertSame(gameManager, instance);
 
-      mockedStatic.verify(() -> GameManager.getInstance());
+      mockedStatic.verify(GameManager::getInstance);
     }
   }
+
+  @AfterEach
+  void tearDown() throws Exception {
+    Field instanceField = GameManager.class.getDeclaredField("instance");
+    instanceField.setAccessible(true);
+    instanceField.set(null, null);
+  }
 }
+

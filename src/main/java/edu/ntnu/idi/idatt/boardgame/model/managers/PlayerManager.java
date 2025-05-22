@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.model.managers;
 
-import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
@@ -8,6 +8,7 @@ import edu.ntnu.idi.idatt.boardgame.model.exceptions.PlayerExistsException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.NonNull;
@@ -18,7 +19,8 @@ import lombok.NonNull;
 public class PlayerManager extends Observable<PlayerManager, List<Player>> {
 
   private static PlayerManager instance;
-  private final LocalFileProvider fileProvider;
+  private static volatile Supplier<FileProvider> fileProviderSupplier;
+  private final FileProvider fileProvider;
   private final Logger logger = Logger.getLogger(PlayerManager.class.getName());
   private final List<Player> players = new ArrayList<>();
 
@@ -27,21 +29,40 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
    *
    * @param fileProvider the file provider for loading and saving player data
    */
-  public PlayerManager(LocalFileProvider fileProvider) {
+  private PlayerManager(FileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    loadPlayers("data/players.csv");
+  }
+
+
+  /**
+   * Constructs a PlayerManager with a specified file provider.
+   *
+   * @param fileProvider the file provider to use for loading game files
+   */
+  public static synchronized void init(Supplier<FileProvider> fileProvider) {
+    if (instance != null) {
+      throw new IllegalStateException("PlayerManager already initialised");
+    }
+    if (fileProvider == null) {
+      throw new NullPointerException("fileProvider must not be null");
+    }
+    fileProviderSupplier = fileProvider;
   }
 
   /**
-   * Creates and/or gets the singleton instance of {@link PlayerManager}.
+   * Returns the singleton instance of PlayerManager.
    *
-   * @return the singleton instance of {@link PlayerManager}
+   * @return the singleton instance of PlayerManager
    */
-  public static PlayerManager getInstance() {
-    if (instance == null) {
-      instance = new PlayerManager(new LocalFileProvider());
+  public static synchronized PlayerManager getInstance() {
+    if (fileProviderSupplier == null) {
+      throw new IllegalStateException("PlayerManager not initialised");
     }
-    return instance;
+    if (instance != null) {
+      return instance;
+    }
+
+    return instance = new PlayerManager(fileProviderSupplier.get());
   }
 
   /**
@@ -168,7 +189,7 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
   }
 
   /**
-   * Updates player information by finding the player in the list
+   * Updates player information by finding the player in the list.
    *
    * @param player   the player to update
    * @param newName  the new name for the player

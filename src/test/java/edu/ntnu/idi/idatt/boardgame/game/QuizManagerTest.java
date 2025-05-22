@@ -10,6 +10,7 @@ import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Question;
 import edu.ntnu.idi.idatt.boardgame.model.entities.QuestionCategory;
 import edu.ntnu.idi.idatt.boardgame.model.managers.QuizManager;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,31 +44,42 @@ class QuizManagerTest {
 
   private AutoCloseable mocks;
   private FileProvider fileProvider;
-  private QuizManager quizManager;
 
   @BeforeEach
-  void setup() {
+  void setup() throws Exception {
     mocks = MockitoAnnotations.openMocks(this);
     fileProvider = mock(FileProvider.class);
     when(fileProvider.get("data/questions.json"))
         .thenReturn(SAMPLE_JSON.getBytes(StandardCharsets.UTF_8));
-    quizManager = new QuizManager(fileProvider);
+    resetQuizManagerSingleton();
+    QuizManager.init(() -> fileProvider);
   }
 
   @AfterEach
   void teardown() throws Exception {
     mocks.close();
+    resetQuizManagerSingleton();
+  }
+
+  private void resetQuizManagerSingleton() throws Exception {
+    Field instanceField = QuizManager.class.getDeclaredField("instance");
+    instanceField.setAccessible(true);
+    instanceField.set(null, null);
   }
 
   @Test
   @DisplayName("getRandomQuestion returns non-null")
   void randomQuestionNotNull() {
+    QuizManager quizManager = QuizManager.getInstance();
+    quizManager.loadQuestions("data/questions.json");
     assertNotNull(quizManager.getRandomQuestion());
   }
 
   @Test
   @DisplayName("getRandomQuestionFromCategory returns expected category")
   void randomQuestionFromCategoryOk() {
+    QuizManager quizManager = QuizManager.getInstance();
+    quizManager.loadQuestions("data/questions.json");
     Question q = quizManager.getRandomQuestionFromCategory(QuestionCategory.GEOGRAPHY);
     assertNotNull(q);
     assertEquals(QuestionCategory.GEOGRAPHY, q.getCategory());
@@ -76,28 +88,36 @@ class QuizManagerTest {
   @Test
   @DisplayName("absent category returns null")
   void categoryAbsentReturnsNull() {
+    QuizManager quizManager = QuizManager.getInstance();
+    quizManager.loadQuestions("data/questions.json");
     assertNull(quizManager.getRandomQuestionFromCategory(QuestionCategory.SCIENCE));
   }
 
   @Test
   @DisplayName("empty data file results in null responses")
-  void emptyJsonFile() {
+  void emptyJsonFile() throws Exception {
     FileProvider empty = mock(FileProvider.class);
     when(empty.get("data/questions.json"))
         .thenReturn("[]".getBytes(StandardCharsets.UTF_8));
-    QuizManager mgr = new QuizManager(empty);
-    assertNull(mgr.getRandomQuestion());
-    assertNull(mgr.getRandomQuestionFromCategory(QuestionCategory.GEOGRAPHY));
+    resetQuizManagerSingleton();
+    QuizManager.init(() -> empty);
+    QuizManager quizManager = QuizManager.getInstance();
+    quizManager.loadQuestions("data/questions.json");
+    assertNull(quizManager.getRandomQuestion());
+    assertNull(quizManager.getRandomQuestionFromCategory(QuestionCategory.GEOGRAPHY));
   }
 
   @Test
   @DisplayName("malformed JSON results in null responses")
-  void malformedJson() {
+  void malformedJson() throws Exception {
     FileProvider bad = mock(FileProvider.class);
     when(bad.get("data/questions.json"))
         .thenReturn("not json".getBytes(StandardCharsets.UTF_8));
-    QuizManager mgr = new QuizManager(bad);
-    assertNull(mgr.getRandomQuestion());
-    assertNull(mgr.getRandomQuestionFromCategory(QuestionCategory.GEOGRAPHY));
+    resetQuizManagerSingleton();
+    QuizManager.init(() -> bad);
+    QuizManager quizManager = QuizManager.getInstance();
+    quizManager.loadQuestions("data/questions.json");
+    assertNull(quizManager.getRandomQuestion());
+    assertNull(quizManager.getRandomQuestionFromCategory(QuestionCategory.GEOGRAPHY));
   }
 }

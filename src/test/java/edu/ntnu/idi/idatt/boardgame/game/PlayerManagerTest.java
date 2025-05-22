@@ -14,7 +14,9 @@ import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
 import edu.ntnu.idi.idatt.boardgame.model.managers.PlayerManager;
+import java.lang.reflect.Field;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -23,14 +25,16 @@ class PlayerManagerTest {
 
   private LocalFileProvider mockFileProvider;
   private PlayerManager playerManager;
-  private final String testPlayerData = "John;#FF0000\nJane;#00FF00";
 
   @BeforeEach
   void setUp() {
     mockFileProvider = mock(LocalFileProvider.class);
+    String testPlayerData = "John;#FF0000\nJane;#00FF00";
     when(mockFileProvider.get("data/players.csv")).thenReturn(testPlayerData.getBytes());
 
-    playerManager = new PlayerManager(mockFileProvider);
+    PlayerManager.init(() -> mockFileProvider);
+    playerManager = PlayerManager.getInstance();
+    playerManager.loadPlayers("data/players.csv");
   }
 
   @Test
@@ -41,7 +45,7 @@ class PlayerManagerTest {
 
     assertEquals(2, players.size());
 
-    Player player1 = players.get(0);
+    Player player1 = players.getFirst();
     assertEquals("John", player1.getName());
     assertEquals(Color.fromHex("#FF0000"), player1.getColor());
 
@@ -97,17 +101,16 @@ class PlayerManagerTest {
 
     List<Player> remainingPlayers = playerManager.getPlayers();
     assertEquals(initialCount - 1, remainingPlayers.size());
-    assertEquals("Jane", remainingPlayers.get(0).getName());
+    assertEquals("Jane", remainingPlayers.getFirst().getName());
   }
 
   @Test
   void updatePlayer_shouldUpdateExistingPlayer() {
-    Player originalPlayer = playerManager.getPlayers().get(0);
     Player updatedPlayer = new Player("John Updated", Color.fromHex("#0000FF"));
 
     playerManager.updatePlayer(0, updatedPlayer);
 
-    Player resultPlayer = playerManager.getPlayers().get(0);
+    Player resultPlayer = playerManager.getPlayers().getFirst();
     assertEquals("John Updated", resultPlayer.getName());
     assertEquals(Color.fromHex("#0000FF"), resultPlayer.getColor());
   }
@@ -119,5 +122,12 @@ class PlayerManagerTest {
 
     assertNotNull(instance1);
     assertSame(instance1, instance2);
+  }
+
+  @AfterEach
+  void tearDown() throws Exception {
+    Field instanceField = PlayerManager.class.getDeclaredField("instance");
+    instanceField.setAccessible(true);
+    instanceField.set(null, null);
   }
 }
