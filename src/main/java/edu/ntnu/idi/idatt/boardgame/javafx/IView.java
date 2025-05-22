@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.javafx;
 
-import edu.ntnu.idi.idatt.boardgame.router.NavigationContext;
+import edu.ntnu.idi.idatt.boardgame.core.router.NavigationContext;
 import javafx.scene.layout.StackPane;
 
 public interface IView {

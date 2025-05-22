@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.ntnu.idi.idatt.boardgame.core.router.NavigationContext;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;

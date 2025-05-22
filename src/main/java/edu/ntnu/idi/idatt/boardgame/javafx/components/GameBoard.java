@@ -1,12 +1,12 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.game.GameEngine;
 import edu.ntnu.idi.idatt.boardgame.javafx.style.LadderUtils;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import edu.ntnu.idi.idatt.boardgame.style.TileStyleService;
+import edu.ntnu.idi.idatt.boardgame.model.GameEngine;
+import edu.ntnu.idi.idatt.boardgame.model.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.style.TileStyleService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

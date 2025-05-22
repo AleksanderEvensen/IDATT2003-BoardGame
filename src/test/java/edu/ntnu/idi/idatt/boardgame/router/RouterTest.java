@@ -14,6 +14,9 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
+import edu.ntnu.idi.idatt.boardgame.core.router.NavigationContext;
+import edu.ntnu.idi.idatt.boardgame.core.router.NavigationException;
+import edu.ntnu.idi.idatt.boardgame.core.router.Router;
 import java.util.Map;
 import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;

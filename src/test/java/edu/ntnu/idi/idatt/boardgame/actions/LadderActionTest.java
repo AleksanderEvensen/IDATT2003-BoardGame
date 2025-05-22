@@ -1,11 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.actions;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.model.Color;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +17,7 @@ class LadderActionTest {
   LadderAction ladderAction2;
   Tile tile;
   Player player;
+
   @BeforeEach
   void setUp() {
     tile = new Tile.Builder(1)
@@ -44,6 +47,6 @@ class LadderActionTest {
     // Arrange
     // Act
     // Assert
-    assertThrows(IllegalArgumentException.class, () ->     ladderAction2 = new LadderAction(null));
+    assertThrows(IllegalArgumentException.class, () -> ladderAction2 = new LadderAction(null));
   }
 }

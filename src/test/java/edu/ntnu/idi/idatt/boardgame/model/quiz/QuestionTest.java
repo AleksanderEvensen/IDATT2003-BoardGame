@@ -3,6 +3,8 @@ package edu.ntnu.idi.idatt.boardgame.model.quiz;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.ntnu.idi.idatt.boardgame.model.entities.Question;
+import edu.ntnu.idi.idatt.boardgame.model.entities.QuestionCategory;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

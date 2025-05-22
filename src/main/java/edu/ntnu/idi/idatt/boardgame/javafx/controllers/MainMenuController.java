@@ -2,13 +2,13 @@ package edu.ntnu.idi.idatt.boardgame.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
 import edu.ntnu.idi.idatt.boardgame.Utils;
-import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.ToastStyle;
 import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
-import edu.ntnu.idi.idatt.boardgame.model.Color;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.PlayerManager;
 import java.io.File;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;

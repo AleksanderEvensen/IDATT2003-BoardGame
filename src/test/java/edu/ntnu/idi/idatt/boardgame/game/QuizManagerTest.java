@@ -7,8 +7,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Question;
+import edu.ntnu.idi.idatt.boardgame.model.entities.QuestionCategory;
+import edu.ntnu.idi.idatt.boardgame.model.managers.QuizManager;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

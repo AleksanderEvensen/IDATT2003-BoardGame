@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;

@@ -3,7 +3,9 @@ package edu.ntnu.idi.idatt.boardgame.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Board;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

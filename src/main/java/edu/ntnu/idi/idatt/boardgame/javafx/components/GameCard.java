@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.components;
 
 import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
 import java.io.File;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
