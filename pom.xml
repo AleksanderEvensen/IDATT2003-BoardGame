@@ -7,7 +7,7 @@
   <!-- Project Information -->
   <groupId>edu.ntnu.idi.idatt</groupId>
   <artifactId>BoardGame</artifactId>
-  <version>2.0</version>
+  <version>3.0</version>
   <name>BoardGame</name>
 
   <!-- Properties -->

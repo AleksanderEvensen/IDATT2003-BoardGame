@@ -1,10 +1,15 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.router.Router;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
+import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.QuizManager;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.scene.Scene;
@@ -24,6 +29,8 @@ public class Application extends javafx.application.Application {
   private static Stage primaryStage;
   @Getter
   private static boolean isDarkTheme = true;
+
+  private FileProvider fileProvider;
 
   public static void main(String[] args) {
     launch();
@@ -71,6 +78,16 @@ public class Application extends javafx.application.Application {
    */
   @Override
   public void start(Stage stage) throws IOException {
+    fileProvider = new LocalFileProvider();
+    GameManager.init(() -> fileProvider);
+    GameManager.getInstance().loadGamesFromDefaultPath();
+
+    QuizManager.init(() -> fileProvider);
+    QuizManager.getInstance().loadQuestions("data/questions.json");
+
+    PlayerManager.init(() -> fileProvider);
+    PlayerManager.getInstance().loadPlayers("data/players.csv");
+
     primaryStage = stage;
     StackPane root = new StackPane();
     primaryScene = new Scene(root, 1920, 1080);

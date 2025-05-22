@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame.model.managers;
 
-import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.reactivity.Observable;
 import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
 import edu.ntnu.idi.idatt.boardgame.model.exceptions.GameLoadException;
@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
+import lombok.NonNull;
 
 /**
  * Manages the loading and retrieval of games.
@@ -25,19 +27,52 @@ import java.util.logging.Logger;
 public class GameManager extends Observable<GameManager, Map<String, Game>> {
 
   private static final String DEFAULT_GAME_PATH = "data/games";
+  private static volatile Supplier<FileProvider> fileProviderSupplier;
+  private static GameManager instance;
   private final Map<String, Game> games = new HashMap<>();
-  private final LocalFileProvider fileProvider;
   private final Logger logger = Logger.getLogger(GameManager.class.getName());
+  private final FileProvider fileProvider;
 
   /**
-   * Constructs a GameManager with the specified file provider.
+   * Constructs a GameManager.
    *
-   * @param fileProvider the file provider for loading game files
+   * @param fileProvider the file provider to use for loading game files
    */
-  public GameManager(LocalFileProvider fileProvider) {
+  private GameManager(@NonNull FileProvider fileProvider) {
     this.fileProvider = fileProvider;
-    loadGamesFromDefaultPath();
   }
+
+  /**
+   * Constructs a GameManager with a specified file provider.
+   *
+   * @param fileProvider the file provider to use for loading game files
+   */
+  public static synchronized void init(Supplier<FileProvider> fileProvider) {
+    if (instance != null) {
+      throw new IllegalStateException("GameManager already initialised");
+    }
+    if (fileProvider == null) {
+      throw new NullPointerException("fileProvider must not be null");
+    }
+    fileProviderSupplier = fileProvider;
+  }
+
+  /**
+   * Returns the singleton instance of GameManager.
+   *
+   * @return the singleton instance of GameManager
+   */
+  public static synchronized GameManager getInstance() {
+    if (fileProviderSupplier == null) {
+      throw new IllegalStateException("GameManager not initialised");
+    }
+    if (instance == null) {
+      return instance = new GameManager(fileProviderSupplier.get());
+    }
+
+    return instance;
+  }
+
 
   /**
    * Loads a game from the specified file path.
@@ -96,7 +131,7 @@ public class GameManager extends Observable<GameManager, Map<String, Game>> {
    * This method loads all game files from the default path and adds them to the games map.
    * </p>
    */
-  private void loadGamesFromDefaultPath() {
+  public void loadGamesFromDefaultPath() {
     List<String> directoryFiles = fileProvider.listFiles(DEFAULT_GAME_PATH).stream()
         .filter(fileName -> fileName.endsWith(".json")).toList();
 
@@ -106,17 +141,5 @@ public class GameManager extends Observable<GameManager, Map<String, Game>> {
     }
   }
 
-  private static GameManager instance;
 
-  /**
-   * Creates and/or gets the singleton instance of {@link GameManager}.
-   *
-   * @return the singleton instance of {@link GameManager}
-   */
-  public static GameManager getInstance() {
-    if (instance == null) {
-      instance = new GameManager(new LocalFileProvider());
-    }
-    return instance;
-  }
 }
