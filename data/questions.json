@@ -1,0 +1,4809 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Madrid",
+      "2": "Paris",
+      "3": "Brasília"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of Germany?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Berlin",
+      "2": "Ottawa",
+      "3": "Canberra"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Italy?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Ottawa",
+      "2": "New Delhi",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the capital of Spain?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Canberra",
+      "1": "Madrid",
+      "2": "Brasília",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Canada?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Paris",
+      "1": "Ottawa",
+      "2": "Berlin",
+      "3": "Rome"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "Canberra",
+      "2": "Ottawa",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Moscow",
+      "1": "Rome",
+      "2": "Brasília",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the capital of India?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Berlin",
+      "1": "Madrid",
+      "2": "Rome",
+      "3": "New Delhi"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Russia?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Brasília",
+      "1": "New Delhi",
+      "2": "Paris",
+      "3": "Moscow"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the capital of Egypt?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Rome",
+      "1": "Brasília",
+      "2": "Canberra",
+      "3": "Cairo"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Nigeria located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "Oceania",
+      "2": "South America",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is Argentina located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Africa",
+      "1": "South America",
+      "2": "Asia",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which continent is Thailand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Oceania",
+      "3": "Asia"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which continent is Norway located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "Europe",
+      "1": "Asia",
+      "2": "South America",
+      "3": "Oceania"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which continent is New Zealand located in?",
+    "category": "GEOGRAPHY",
+    "answers": {
+      "0": "South America",
+      "1": "Africa",
+      "2": "Oceania",
+      "3": "Europe"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Water?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "H2O",
+      "3": "CO2"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Oxygen?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Carbon Dioxide?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "O2",
+      "1": "C6H12O6",
+      "2": "CO2",
+      "3": "H2O"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the chemical symbol for Salt?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "O2",
+      "2": "H2O",
+      "3": "NaCl"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the chemical symbol for Glucose?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "C6H12O6",
+      "1": "NaCl",
+      "2": "CO2",
+      "3": "O2"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many planets are there in the solar system?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "7",
+      "1": "10",
+      "2": "9",
+      "3": "8"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What part of the cell contains genetic material?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Cytoplasm",
+      "1": "Ribosome",
+      "2": "Mitochondria",
+      "3": "Nucleus"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did World War II end happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1945",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the Berlin Wall fall happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In what year did the U.S. declare independence happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "44 BC",
+      "2": "1989",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year did the moon landing occur happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1989",
+      "1": "44 BC",
+      "2": "1969",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In what year did Julius Caesar get assassinated happen?",
+    "category": "HISTORY",
+    "answers": {
+      "0": "1969",
+      "1": "1945",
+      "2": "44 BC",
+      "3": "1776"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2014?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Spain",
+      "1": "Brazil",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2018?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Germany",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2010?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Spain",
+      "2": "France",
+      "3": "Italy"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2006?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Italy",
+      "1": "France",
+      "2": "Spain",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country won the FIFA World Cup in 2002?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brazil",
+      "1": "Italy",
+      "2": "France",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many players are on a soccer team on the field?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "10",
+      "1": "12",
+      "2": "9",
+      "3": "11"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie Inception?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Quentin Tarantino",
+      "2": "Wes Anderson",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Titanic?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "James Cameron",
+      "1": "Wes Anderson",
+      "2": "Christopher Nolan",
+      "3": "Steven Spielberg"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the movie Pulp Fiction?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "Steven Spielberg",
+      "2": "James Cameron",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who directed the movie E.T.?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Christopher Nolan",
+      "1": "James Cameron",
+      "2": "Steven Spielberg",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who directed the movie The Grand Budapest Hotel?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Steven Spielberg",
+      "1": "Christopher Nolan",
+      "2": "Wes Anderson",
+      "3": "Quentin Tarantino"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Starry Night?",
+    "category": "ART",
+    "answers": {
+      "0": "Edvard Munch",
+      "1": "Pablo Picasso",
+      "2": "Vincent van Gogh",
+      "3": "Salvador Dalí"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Last Supper?",
+    "category": "ART",
+    "answers": {
+      "0": "Salvador Dalí",
+      "1": "Edvard Munch",
+      "2": "Leonardo da Vinci",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Persistence of Memory?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Leonardo da Vinci",
+      "2": "Salvador Dalí",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted The Scream?",
+    "category": "ART",
+    "answers": {
+      "0": "Vincent van Gogh",
+      "1": "Salvador Dalí",
+      "2": "Edvard Munch",
+      "3": "Leonardo da Vinci"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted Guernica?",
+    "category": "ART",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Vincent van Gogh",
+      "2": "Edvard Munch",
+      "3": "Pablo Picasso"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many continents are there?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "6",
+      "1": "8",
+      "2": "7",
+      "3": "5"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which language has the most native speakers?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "English",
+      "1": "Spanish",
+      "2": "Hindi",
+      "3": "Mandarin Chinese"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what country did the first Starbucks open outside of North America?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Japan",
+      "1": "Egypt",
+      "2": "India",
+      "3": "France"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does CODA stand for?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Children of Deaf Adults",
+      "1": "Child of Disabled Adults",
+      "2": "Child of Hearing Adults",
+      "3": "Child of Deaf Adults"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In a website browser address bar, what does \"www\" stand for?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "World Wide Web",
+      "1": "World Web Wide",
+      "2": "World Wide Website",
+      "3": "Wide World Web"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Where were the Declaration of Independence, the Constitution and the Bill of Rights stored during World War II?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Fort Benning",
+      "1": "Fort Knox",
+      "2": "Fort Sumter",
+      "3": "Fort Bragg"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the tiny piece at the end of a shoelace called?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Battle of the Bulge",
+      "1": "A tray of assorted appetizers",
+      "2": "The Tomb of the Unknown Soldier",
+      "3": "An aglet"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which company's slogan is \"You're in good hands?\"",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Wrigley's Juicy Fruit gum",
+      "1": "118",
+      "2": "The Kellogg Company (Kellogg's)",
+      "3": "Allstate"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who was the first televised President?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Cure for Insomnia",
+      "1": "Franklin D. Roosevelt",
+      "2": "Battle of the Bulge",
+      "3": "The Tomb of the Unknown Soldier"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Pocahontas was baptized and given what English name?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Anastasia and Drizella",
+      "1": "January, March, May, July, August, October and December",
+      "2": "Sleepy, Sneezy, Happy, Grumpy, Dopey, Doc and Bashful",
+      "3": "Rebecca"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Originally, Amazon only sold what kind of product?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Electronics",
+      "1": "Music",
+      "2": "Toys",
+      "3": "Books"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In 2009, what became the first Morse code character to be added since WWII?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The hashtag symbol",
+      "1": "The dollar sign",
+      "2": "The \"@\" symbol",
+      "3": "The euro symbol"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who painted the Mona Lisa?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Leonardo da Vinci",
+      "1": "Michelangelo",
+      "2": "Pablo Picasso",
+      "3": "Vincent van Gogh"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who was the first woman to win a Nobel Prize?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Marie Curie (1903)",
+      "1": "Jane Addams",
+      "2": "Mother Teresa",
+      "3": "Pearl Buck"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which kind of bulbs were once exchanged as a form of currency?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Tulips",
+      "1": "Daffodils",
+      "2": "Lilies",
+      "3": "Hyacinths"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What was the original purpose of the tiny pocket in jeans?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "To hold coins",
+      "1": "To store matches",
+      "2": "To store pocket watches",
+      "3": "To hold keys"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What does SPF in sunscreen stand for?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Sun Preventive Factor",
+      "1": "Skin Protection Factor",
+      "2": "Solar Protection Factor",
+      "3": "Sun Protection Factor"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Chrome, Safari, Firefox and Explorer are different types of what?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Pacific, Atlantic, Arctic, Indian and Southern",
+      "1": "Child of Deaf Adults",
+      "2": "Thymus or pancreas of calf or lamb",
+      "3": "Web browsers"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In what year was the Internet opened to the public?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "1993",
+      "1": "1994",
+      "2": "1995",
+      "3": "1992"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who is often credited with creating the world's first car?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Enzo Ferrari",
+      "1": "Gottlieb Daimler",
+      "2": "Karl Benz",
+      "3": "Henry Ford"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Demolition of the Berlin wall separating East and West Germany began in what year?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "1988",
+      "1": "1989",
+      "2": "1990",
+      "3": "1991"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who was the first woman pilot to fly solo across the Atlantic?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Amelia Earhart",
+      "1": "Harriet Quimby",
+      "2": "Sally Ride",
+      "3": "Bessie Coleman"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "When did Facebook first launch?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "2004",
+      "1": "2005",
+      "2": "2003",
+      "3": "2006"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "\"Ladies and gentlemen, rock and roll,\" were the first words spoken on what cable channel that launched at 12:01 a.m. on August 1, 1981?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "MTV",
+      "1": "A DeLorean",
+      "2": "January, March, May, July, August, October and December",
+      "3": "Anastasia and Drizella"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "A 401(k) is a type of tax-advantaged defined-contribution account designed to help you save for what withdrawal from working life?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "A tray of assorted appetizers",
+      "1": "Retirement",
+      "2": "To store pocket watches.",
+      "3": "The Cure for Insomnia"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the last name of the business tycoon behind the \"No. 5\" perfume?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Battle of the Bulge",
+      "1": "Chanel",
+      "2": "The Tomb of the Unknown Soldier",
+      "3": "The breed of chicken"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Some of our favorite collective nouns for animals include a congregation of alligators, a business of ferrets, an ostentation of peacocks and a gaggle of what other fowl?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "A tray of assorted appetizers",
+      "1": "Child of Deaf Adults",
+      "2": "A stick",
+      "3": "Geese"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "The digital yuan is giving Alipay a run for its money as the largest mobile payment network based in what country?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "China",
+      "1": "Mexico",
+      "2": "Malaysia",
+      "3": "France"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What food manufacturing company headquartered in Battle Creek, Michigan, uses several animal mascots to sell its cereals, such as Newton the Owl, Tony the Tiger and a rooster named Cornelius?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Battle of the Bulge",
+      "1": "The Kellogg Company (Kellogg's)",
+      "2": "A tray of assorted appetizers",
+      "3": "Steals a towel"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In the insurance business, what is the name of a person whose job it is to analyze statistics to calculate risks and price premiums accordingly?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The breed of chicken",
+      "1": "Battle of the Bulge",
+      "2": "A tray of assorted appetizers",
+      "3": "Actuary"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "An important ratio that helps home buyers determine how much house they can afford, DTI, stands for what in real-estate parlance?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "An aglet",
+      "1": "The Cure for Insomnia",
+      "2": "They believed it improved eyesight.",
+      "3": "Debt to Income"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In the Catholic Church, the Bishop of Rome is a title more commonly known as what?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "A tray of assorted appetizers",
+      "1": "Battle of the Bulge",
+      "2": "Pope",
+      "3": "The Tomb of the Unknown Soldier"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Known mainly for spreading a specific type of food, what Massachusetts-born 19th-century man was also fond of spreading religion throughout the country on his journeys?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Johnny Appleseed",
+      "1": "Battle of the Bulge",
+      "2": "The Cure for Insomnia",
+      "3": "The Tomb of the Unknown Soldier"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "From 1944 to 1945, the Germans increased their troops surrounding the Ardennes Forest for what World War II Battle and major counteroffensive? It gets its name from the rounded swelling of German troops in the region.",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Cure for Insomnia",
+      "1": "The breed of chicken",
+      "2": "The Tomb of the Unknown Soldier",
+      "3": "Battle of the Bulge"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Michael Joseph Blassie, who died in the Vietnam War, was identified through DNA testing in 1998 and was reinterred after having been buried in what specific location for the previous 26 years?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Cure for Insomnia",
+      "1": "The Tomb of the Unknown Soldier",
+      "2": "The Scoville scale",
+      "3": "The \"@\" symbol"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the human body's heaviest organ?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Battle of the Bulge",
+      "1": "The skin",
+      "2": "The Kellogg Company (Kellogg's)",
+      "3": "The Emerald City"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Where is the \"Mona Lisa\" painting on display?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Louvre Museum",
+      "1": "The Metropolitan Museum of Art",
+      "2": "The Prado Museum",
+      "3": "The National Gallery"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the longest day of the year?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Winter solstice",
+      "1": "Vernal equinox",
+      "2": "Autumnal equinox",
+      "3": "Summer solstice"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the sixth sign of the zodiac?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Tomb of the Unknown Soldier",
+      "1": "The breed of chicken",
+      "2": "Virgo",
+      "3": "Battle of the Bulge"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "When is \"National Ice Cream\" month?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "Fish",
+      "1": "118",
+      "2": "Kale",
+      "3": "July"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the best-selling book of all time?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Bible",
+      "1": "Don Quixote",
+      "2": "The Lord of the Rings",
+      "3": "Harry Potter series"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is January's birthstone?",
+    "category": "GENERAL_KNOWLEDGE",
+    "answers": {
+      "0": "The Kellogg Company (Kellogg's)",
+      "1": "January, March, May, July, August, October and December",
+      "2": "Wrigley's Juicy Fruit gum",
+      "3": "Garnet"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In which city did the famous film Lady Bird take place?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Portland",
+      "1": "Austin",
+      "2": "San Francisco",
+      "3": "Sacramento (California)"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who provided the voice of Groot in the Guardians of the Galaxy movies?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Vin Diesel",
+      "1": "Chris Pratt",
+      "2": "Dave Bautista",
+      "3": "Bradley Cooper"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who directed the ultimate Marvel movie Avengers: End Game?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Sopranos",
+      "1": "The Lion King",
+      "2": "DJ Jazzy Jeff & The Fresh Prince",
+      "3": "Joe & Anthony Russo"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which is the highest-grossing R-rated film in North America?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "13: The Musical",
+      "1": "DJ Jazzy Jeff & The Fresh Prince",
+      "2": "The Passion of the Christ",
+      "3": "The Sopranos"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In which city is Studio 54 located?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "California",
+      "1": "Kentucky",
+      "2": "New York",
+      "3": "Washington"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In the horror film Alien, what was the name of the spaceship?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Beauty and the Beast",
+      "1": "USCSS Nostromo",
+      "2": "The Passion of the Christ",
+      "3": "The Phantom of the Opera"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "This singer is famously called the \"Material Girl”?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Green Lantern",
+      "1": "DJ Jazzy Jeff & The Fresh Prince",
+      "2": "Madonna",
+      "3": "The Sopranos"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which famous pop band was called \"Kara’s Flowers\" up until 2001?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Maroon 5",
+      "1": "Alison",
+      "2": "Siegfried & Roy",
+      "3": "9"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What was the coffee shop named in the hit TV show Friends?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "The Green Lantern",
+      "2": "Central Perk",
+      "3": "13: The Musical"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How old was Rose in the Titanic movie when she was recounting her story",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "101",
+      "1": "100 years old",
+      "2": "99",
+      "3": "102"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first Disney animated feature movie that was not based on an already existing story?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Sopranos",
+      "1": "Beauty and the Beast",
+      "2": "The Lion King",
+      "3": "The Phantom of the Opera"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many Harry Potter books and movies are there? (Hint: They are not the same number!)",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "13: The Musical",
+      "1": "Beauty and the Beast",
+      "2": "DJ Jazzy Jeff & The Fresh Prince",
+      "3": "7 books & 8 movies"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the longest-running Broadway show?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Green Lantern",
+      "1": "The Phantom of the Opera",
+      "2": "The Lion King",
+      "3": "The Sopranos"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is Rihanna's real name?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Beyoncé (88 nominations)",
+      "1": "The Green Lantern",
+      "2": "Robin Fenty",
+      "3": "Vin Diesel"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Mickey Mouse almost went by a different name. What was it?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "A snake",
+      "1": "Mortimer Mouse",
+      "2": "Mulan",
+      "3": "Sacramento (California)"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What day is known as Star Wars Day?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Alison",
+      "1": "The Phantom of the Opera",
+      "2": "May 4th",
+      "3": "Canada"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Directing Schindler's List gave who their first Oscar for Best Picture?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "George Lucas",
+      "1": "James Cameron",
+      "2": "Steven Spielberg",
+      "3": "Peter Jackson"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What magic duo performed at the Mirage casino in Las Vagas from 1990 to 2003?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Beauty and the Beast",
+      "1": "The Passion of the Christ",
+      "2": "Siegfried & Roy",
+      "3": "DJ Jazzy Jeff & The Fresh Prince"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How many Star Wars movies are there (not including spin-offs like Rogue One: A Star Wars Story and Solo)?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "10",
+      "1": "8",
+      "2": "11",
+      "3": "9"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who was Walt Disney's favorite princess?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Elton John",
+      "1": "A snake",
+      "2": "19 years old",
+      "3": "Cinderella"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who was the actor to first portray James Bond?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "The Phantom of the Opera",
+      "2": "The Passion of the Christ",
+      "3": "Barry Nelson"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the highest-grossing romantic comedy movie?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Sopranos",
+      "1": "The Phantom of the Opera",
+      "2": "Beauty and the Beast",
+      "3": "My Big Fat Greek Wedding"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What was the first cable television series to win an Emmy for Outstanding Drama Series?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Beauty and the Beast",
+      "1": "The Passion of the Christ",
+      "2": "The Sopranos",
+      "3": "The Lion King"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "In which country did the first season of Survivor take place?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Mexico",
+      "1": "Malaysia",
+      "2": "Scotland",
+      "3": "Germany"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who won the first season of American Idol?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Beauty and the Beast",
+      "1": "The Passion of the Christ",
+      "2": "Kelly Clarkson",
+      "3": "The Phantom of the Opera"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Before he was the frontman for Foo Fighters, Dave Grohl was the drummer for which band?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Phantom of the Opera",
+      "1": "Nirvana",
+      "2": "The Passion of the Christ",
+      "3": "Beauty and the Beast"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which duo won the first Grammy for Best Rap Performance?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "The Phantom of the Opera",
+      "2": "Beauty and the Beast",
+      "3": "DJ Jazzy Jeff & The Fresh Prince"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What singer holds the most Grammy nominations?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "DJ Jazzy Jeff & The Fresh Prince",
+      "1": "Beyoncé (88 nominations)",
+      "2": "The Green Lantern",
+      "3": "The Lion King"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Who is the most recent person to achieve EGOT (Emmy, Grammy, Oscar, Tony) status?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "Beauty and the Beast",
+      "2": "13: The Musical",
+      "3": "Elton John"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What animal did Britney Spears famously carry on her shoulders during a performance?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Green Lantern",
+      "1": "My Big Fat Greek Wedding",
+      "2": "Vin Diesel",
+      "3": "A snake"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many years passed between the release of Avatar and its sequel, Avatar: The Way of Water?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Passion of the Christ",
+      "1": "Beauty and the Beast",
+      "2": "The Phantom of the Opera",
+      "3": "13 years"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "On The Mandalorian, what is Baby Yoda's real name?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "13: The Musical",
+      "1": "The Phantom of the Opera",
+      "2": "Grogu",
+      "3": "The Passion of the Christ"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Before Mike Myers was selected to perform Shrek's voice, who was the other Saturday Night Live performer initially cast as Shrek?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Green Lantern",
+      "1": "Chris Farley",
+      "2": "The Sopranos",
+      "3": "13: The Musical"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Actor Tom Holland lip-synced what song on the show Lip Sync Battle?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "13: The Musical",
+      "1": "The Phantom of the Opera",
+      "2": "\"Umbrella\"",
+      "3": "The Lion King"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What was the first magazine cover Kendal Jenner appeared on?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "DJ Jazzy Jeff & The Fresh Prince",
+      "2": "Beauty and the Beast",
+      "3": "American Cheerleader magazine"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many seasons of Wheel of Fortune did Pat Sajak host?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Phantom of the Opera",
+      "1": "The Passion of the Christ",
+      "2": "41 seasons",
+      "3": "Sacramento (California)"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How old is Penelope Featherington supposed to be in season three of Bridgerton?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "20",
+      "1": "21",
+      "2": "19 years old",
+      "3": "18"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What's the name of Miley Cyrus' famous godmother?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Phantom of the Opera",
+      "1": "Dolly Parton",
+      "2": "The Passion of the Christ",
+      "3": "The Lion King"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which country is Ryan Gosling from?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "Germany",
+      "1": "Canada",
+      "2": "Spain",
+      "3": "United States"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first live-action Disney remake to get a PG-13 rating?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "13: The Musical",
+      "1": "DJ Jazzy Jeff & The Fresh Prince",
+      "2": "Mulan",
+      "3": "A snake"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is Taylor Swift's middle name?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "100 years old",
+      "1": "Alison",
+      "2": "Margot Robbie",
+      "3": "Kelly Clarkson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the name of the singing group Camila Cabello was part of before she went solo?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Phantom of the Opera",
+      "1": "The Passion of the Christ",
+      "2": "The Lion King",
+      "3": "5th Harmony"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What was the first animated movie to be nominated for Best Picture at the Oscars?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Sopranos",
+      "1": "The Phantom of the Opera",
+      "2": "Beauty and the Beast",
+      "3": "The Lion King"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is Princess Mia's full name in The Princess Diaries?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Passion of the Christ",
+      "1": "DJ Jazzy Jeff & The Fresh Prince",
+      "2": "Amelia Mignonette Thermopolis Renaldi",
+      "3": "13: The Musical"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who plays Barbie in the 2024 live-action film?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "DJ Jazzy Jeff & The Fresh Prince",
+      "1": "The Passion of the Christ",
+      "2": "Margot Robbie",
+      "3": "Beauty and the Beast"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What Broadway musical was Ariana Grande in when she was a teenager?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "41 seasons",
+      "1": "Steven Spielberg",
+      "2": "A snake",
+      "3": "13: The Musical"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What was the full first name of Corey Matthews on the show Boy Meets World?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "DJ Jazzy Jeff & The Fresh Prince",
+      "1": "The Phantom of the Opera",
+      "2": "Cornelius",
+      "3": "The Passion of the Christ"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Before marrying Prince Harry, what law-themed show was Meghan Markle an actress on?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Lion King",
+      "1": "Suits",
+      "2": "DJ Jazzy Jeff & The Fresh Prince",
+      "3": "Kelly Clarkson"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What film set did Ryan Reynolds and Blake Lively meet on?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "DJ Jazzy Jeff & The Fresh Prince",
+      "1": "Mortimer Mouse",
+      "2": "The Green Lantern",
+      "3": "Beauty and the Beast"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What character does actor Steve Carell play in the TV series \"The Office\"?",
+    "category": "ENTERTAINMENT",
+    "answers": {
+      "0": "The Phantom of the Opera",
+      "1": "The Lion King",
+      "2": "Beauty and the Beast",
+      "3": "Michael Scott"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which NFL player spent two years in prison for being one of the chief operators of Bad News Kennels?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Michael Vick",
+      "1": "Three years old",
+      "2": "The Bengals",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which country originated the sport of curling?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Scotland",
+      "1": "Australia",
+      "2": "Egypt",
+      "3": "Sudan"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the national sport of Canada?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "Lacrosse",
+      "2": "The Indy 500",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "In what year were the first Air Jordan sneakers released?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "1985",
+      "1": "1986",
+      "2": "1983",
+      "3": "1984"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What US city hosted the 1994 World Cup final?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "Pasadena (California)",
+      "2": "The USA",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What sporting event is held every Memorial Day?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Japan",
+      "1": "The Indy 500",
+      "2": "Three years old",
+      "3": "High-Intensity Interval Training"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which athlete has won the most Olympic medals?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "The Bengals",
+      "2": "Michael Phelps (28 medals)",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the national sport of Japan?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The USA",
+      "1": "Sumo wrestling",
+      "2": "The Bengals",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Where is the largest bowling center located?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Thailand",
+      "1": "Mexico",
+      "2": "Japan",
+      "3": "Egypt"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the signature food dish served at Wimbledon?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "The Bengals",
+      "2": "Strawberries and cream",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which NFL quarterback has thrown the most touchdowns?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Brett Favre",
+      "1": "Peyton Manning",
+      "2": "Tom Brady (649)",
+      "3": "Drew Brees"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Who is the all-time leading NBA scorer?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "LeBron James (over 41,243 points)",
+      "1": "Karl Malone",
+      "2": "Michael Jordan",
+      "3": "Kareem Abdul-Jabbar"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "The first sport invented was what?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Wrestling",
+      "1": "The Indy 500",
+      "2": "The USA",
+      "3": "The Bengals"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How long is a marathon?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "27.2",
+      "1": "26.2 miles",
+      "2": "25.2",
+      "3": "28.2"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is Muhammad Ali's real name?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Pasadena (California)",
+      "1": "Scotland",
+      "2": "Cassius Clay",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which country has the most Olympic medals in swimming?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "Michael Phelps (28 medals)",
+      "2": "The Bengals",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "In bowling, three strikes in a row is called?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Lacrosse",
+      "1": "LeBron James (over 41,243 points)",
+      "2": "A turkey",
+      "3": "Three years old"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Bruce Lee was famous in what sport?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "LeBron James (over 41,243 points)",
+      "1": "Wushu",
+      "2": "Burpee",
+      "3": "Tennis"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many players are on each side of the net in beach volleyball?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The USA",
+      "1": "The Indy 500",
+      "2": "Two players",
+      "3": "The Bengals"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which athlete won the Tour de France every year from 1999 to 2005?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Lance Armstrong",
+      "1": "The Indy 500",
+      "2": "The Bengals",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Who is the youngest golfer ever to win the U.S. Junior Amateur title?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Tiger Woods",
+      "1": "The Indy 500",
+      "2": "The Bengals",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Ping-pong is an alternative name for which sport?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Table tennis",
+      "1": "Wrestling",
+      "2": "Rabbit punch",
+      "3": "Lacrosse"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In which sport can you win the Davis Cup?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Tennis",
+      "1": "The Indy 500",
+      "2": "The Bengals",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How old are the horses that run in the Kentucky Derby?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "The Indy 500",
+      "2": "The USA",
+      "3": "Three years old"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What was Wilt Chamberlain's record for most points in a single game?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "A turkey",
+      "1": "LeBron James (over 41,243 points)",
+      "2": "Burpee",
+      "3": "100 points"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Who is the all-time home run leader?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "The Bengals",
+      "2": "The USA",
+      "3": "Barry Bonds (762)"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only country to have played in every single soccer World Cup?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "India",
+      "1": "Spain",
+      "2": "United Kingdom",
+      "3": "Brazil"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What sport were women allowed to play in the Olympics for the first time?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "The Indy 500",
+      "2": "The USA",
+      "3": "Tennis"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What six-letter word names both a seed company and an exercise that combines a squat, a pushup and a jump in the air?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Burpee",
+      "1": "Strawberries and cream",
+      "2": "A turkey",
+      "3": "The Bengals"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Celebrated for its ability to improve athletic capacity and glucose metabolism, HIIT is typically a cardiovascular exercise strategy alternating periods of intense exercise with recovery. What does HIIT stand for?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "High-Intensity Interval Training",
+      "1": "Michael Vick",
+      "2": "Strawberries and cream",
+      "3": "A turkey"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Greg Lemond, who won the Tour de France three times in the late 1980s, was the first cyclist to appear on the cover of which American sports magazine?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "Sports Illustrated",
+      "2": "The USA",
+      "3": "The Bengals"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "It can be played indoors or outdoors. It's notable for attracting a wide range of ages and fitness levels. It combines elements of tennis, badminton and ping-pong. Its highest governing body is the IFP. What sport is it?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Pickleball",
+      "1": "The USA",
+      "2": "The Indy 500",
+      "3": "Tennis"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Since he pitched 749 games in his 22-year career (including a perfect game in 1904), which MLB player has an award for great pitchers named after him?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "Tiger Woods",
+      "1": "A turkey",
+      "2": "Cy Young",
+      "3": "The Bengals"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Mount Whitney is the finish line for the ultramarathon race that starts 135 miles earlier at Badwater, the scorching basin of what national park?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "Death Valley",
+      "2": "26.2 miles",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the name of Travis Kelce’s brother?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Indy 500",
+      "1": "The Bengals",
+      "2": "Jason",
+      "3": "The USA"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What NFL team does Joe Burrow quarterback for?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "1984",
+      "1": "The Bengals",
+      "2": "Cassius Clay",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which Canadian hockey player is considered to be the greatest of all time?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The USA",
+      "1": "The Indy 500",
+      "2": "The Bengals",
+      "3": "Wayne Gretzky"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many numbers are on a dartboard?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "20",
+      "1": "19",
+      "2": "22",
+      "3": "21"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "In fighting, what is an illegal punch to the back of the head called?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "The USA",
+      "2": "The Indy 500",
+      "3": "Rabbit punch"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which team won the first Super Bowl?",
+    "category": "SPORTS",
+    "answers": {
+      "0": "The Bengals",
+      "1": "Green Bay Packers",
+      "2": "The USA",
+      "3": "The Indy 500"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What animal is the fastest on land?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Butterfly",
+      "1": "Cheetah",
+      "2": "Dolphin",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What is the loudest animal on Earth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Howler monkey",
+      "1": "Lion",
+      "2": "The sperm whale",
+      "3": "Elephant"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is the tallest breed of dog?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Saint Bernard",
+      "1": "Irish Wolfhound",
+      "2": "German Shepherd",
+      "3": "Great Dane"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "How many hearts does an octopus have?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "One",
+      "1": "Two",
+      "2": "Four",
+      "3": "Three"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What are the only two mammals that lay eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "Echidna and platypus",
+      "2": "The Great Barrier Reef",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What color is a giraffe's tongue?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Black",
+      "1": "A billion years",
+      "2": "A clutch",
+      "3": "A kaleidoscope"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "How many bones do sharks have?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Zero",
+      "1": "Drones",
+      "2": "Alan Shephard",
+      "3": "Nuclear fission"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the fear of spiders called?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Claustrophobia",
+      "1": "Acrophobia",
+      "2": "Nyctophobia",
+      "3": "Arachnophobia"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the largest animal on the planet?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The sperm whale",
+      "1": "Elephant",
+      "2": "Giraffe",
+      "3": "Antarctic Blue Whale"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Which animal is the fastest on land?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Butterfly",
+      "1": "Cheetah",
+      "2": "Dolphin",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "While often confused with llamas, what breed of camelid is used for fleece production while its cousin, the llama, is not?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Alpaca",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The Great Barrier Reef",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What creature with an equine name has no teeth or stomach, mates for life and is the only species on Earth where the male carries the unborn offspring?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Seahorse",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the name of the second tallest bird on the planet? This animal is found only in Australia and is related to the ostrich.",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Great Barrier Reef",
+      "1": "Emu",
+      "2": "Echidna and platypus",
+      "3": "Displacement of water due to an undersea earthquake or landslide"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The largest living lizard can't breathe fire, but it does have a venomous bite that inhibits blood clotting. What creature is this?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Giraffe",
+      "1": "Tiger",
+      "2": "Komodo dragon",
+      "3": "Dog"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "The Sumatran species of what famously horned mammal officially went extinct in Malaysia in November 2019?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Rhino",
+      "1": "Hippo",
+      "2": "Lizard",
+      "3": "Lion"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does the bat use to navigate and locate its prey?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Great Barrier Reef",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The sperm whale",
+      "3": "Echolocation"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the fastest fish in the ocean that can reach up to 68 MPH?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "The Great Barrier Reef",
+      "2": "The Basenji",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the color of the most poisonous frog in the world?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "The Basenji",
+      "2": "The Wright Brothers",
+      "3": "Yellow"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What are male honeybees called?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Arachnophobia",
+      "1": "Drones",
+      "2": "The Basenji",
+      "3": "Hair"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "How many compartments do cows have in their stomach?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "The skin",
+      "2": "Venus",
+      "3": "Four"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What are the only birds that can fly backward?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "Hummingbirds",
+      "2": "The skin",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call animals that eat everything (meat, plants and fish)?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Echidna and platypus",
+      "1": "The Basenji",
+      "2": "Crust, mantle and core",
+      "3": "Omnivores"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What shark is thought to be the largest to have ever lived on Earth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The sperm whale",
+      "1": "The Great Barrier Reef",
+      "2": "The Wright Brothers",
+      "3": "Megalodon"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "Besides elephants and rhinoceroses, what other animals are considered pachyderms?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Hippopotamuses",
+      "1": "Crust, mantle and core",
+      "2": "Echidna and platypus",
+      "3": "Four"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the largest land predator?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The Great Barrier Reef",
+      "2": "The sperm whale",
+      "3": "Polar bear"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What fish is known as a poor man's lobster?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A billion years",
+      "1": "A clutch",
+      "2": "Monkfish",
+      "3": "A kaleidoscope"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "What is a rhinoceros horn made of?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "Hair",
+      "2": "A starfish",
+      "3": "A clutch"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "This is the only snake that builds a nest.",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "King cobra",
+      "1": "The Basenji",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the closest living relative to the T-Rex?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Lizard",
+      "1": "Elephant",
+      "2": "Chicken",
+      "3": "Komodo dragon"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Adult wolves have how many teeth?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "43",
+      "1": "44",
+      "2": "41",
+      "3": "42"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What do you call a group of butterflies?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A swarm",
+      "1": "A kaleidoscope",
+      "2": "A flutter",
+      "3": "A colony"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What do you call a group of turtle eggs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "A nest",
+      "1": "A clutch",
+      "2": "A batch",
+      "3": "A brood"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which bird has the largest wingspan?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Penguin",
+      "1": "Albatross",
+      "2": "Hawk",
+      "3": "Giraffe"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What was the first animal placed on the endangered species list?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Basenji",
+      "1": "The inland taipan",
+      "2": "Peregrine falcon",
+      "3": "The Great Barrier Reef"
+    },
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "Which animal has the longest migration route?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Arctic tern",
+      "2": "The Great Barrier Reef",
+      "3": "The skin"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "The age of a lion can be determined by its?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Nose",
+      "1": "Displacement of water due to an undersea earthquake or landslide",
+      "2": "The inland taipan",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What bird cannot move their eyeballs?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "-40 degrees",
+      "1": "Owls",
+      "2": "42",
+      "3": "Seahorse"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "A group of crows is called what?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Murder",
+      "1": "A kaleidoscope",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "A starfish"
+    },
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What kind of creature is a Portuguese Man O' War?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Displacement of water due to an undersea earthquake or landslide",
+      "1": "A billion years",
+      "2": "A starfish",
+      "3": "Jellyfish"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the national animal of Scotland?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The Wright Brothers",
+      "1": "Unicorn",
+      "2": "Displacement of water due to an undersea earthquake or landslide",
+      "3": "The sperm whale"
+    },
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "What bird's tongue is so long that it ends up wrapping around its skull when it's not in use?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "Sailfish",
+      "1": "A parliament",
+      "2": "Echolocation",
+      "3": "Woodpecker"
+    },
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the only dog breed that can't bark?",
+    "category": "SCIENCE",
+    "answers": {
+      "0": "The inland taipan",
+      "1": "The Great Barrier Reef",
+      "2": "The skin",
+      "3": "The Basenji"
+    },
+    "correctAnswerIndex": 3
+  }
+]

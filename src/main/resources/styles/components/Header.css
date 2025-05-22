@@ -1,0 +1,33 @@
+.Header {
+  -fx-fill: -fx-color-text;
+  -fx-text-fill: -fx-color-text;
+}
+
+.Header .ikonli-font-icon {
+  -fx-fill: -fx-color-text;
+}
+
+.Header-type-h1 {
+  -fx-font-size: 40px;
+}
+
+.Header-type-h2 {
+  -fx-font-size: 32px;
+}
+
+.Header-type-h3 {
+  -fx-font-size: 28px;
+}
+
+.Header-type-h4 {
+  -fx-font-size: 20px;
+}
+
+.Header-type-h5 {
+  -fx-font-size: 16px;
+}
+
+.Header-type-h6 {
+  -fx-font-size: 10px;
+}
+

@@ -1,0 +1,40 @@
+
+.Button {
+  -fx-cursor: hand;
+}
+
+.Button:hover {
+  -fx-opacity: 0.8;
+}
+
+.Button-variant-primary, .Button-variant-primary .ikonli-font-icon {
+  -fx-background-color: -fx-color-primary;
+  -fx-text-fill: -fx-color-primary-fg;
+  -fx-fill: -fx-color-primary-fg;
+}
+
+.Button-variant-secondary, .Button-variant-secondary .ikonli-font-icon {
+  -fx-background-color: -fx-color-secondary;
+  -fx-text-fill: -fx-color-secondary-fg;
+  -fx-fill: -fx-color-secondary-fg;
+}
+
+.Button-variant-destructive, .Button-variant-destructive .ikonli-font-icon {
+  -fx-background-color: -fx-color-destructive;
+  -fx-text-fill: -fx-color-destructive-fg;
+  -fx-fill: -fx-color-destructive-fg;
+}
+
+.Button-variant-outline, .Button-variant-outline .ikonli-font-icon {
+  -fx-background-color: transparent;
+  -fx-border-color: -fx-color-border;
+  -fx-border-width: 1px;
+  -fx-text-fill: -fx-color-fg;
+  -fx-fill: -fx-color-fg;
+}
+
+.Button-variant-success, .Button-variant-success .ikonli-font-icon {
+  -fx-background-color: -fx-color-green;
+  -fx-text-fill: -fx-color-primary-fg;
+  -fx-fill: -fx-color-primary-fg;
+}

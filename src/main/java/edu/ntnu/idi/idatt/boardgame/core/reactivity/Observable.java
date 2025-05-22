@@ -1,6 +1,8 @@
 package edu.ntnu.idi.idatt.boardgame.core.reactivity;
+
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
 
 /**
  * An observable class for the observer pattern.
@@ -10,9 +12,10 @@ import java.util.Set;
  */
 public abstract class Observable<T, K> {
 
-  HashSet<Observer<T, K>> observers;
+  @Getter
+  Set<Observer<T, K>> observers;
 
-  Observable() {
+  public Observable() {
     observers = new HashSet<>();
   }
 
@@ -57,15 +60,6 @@ public abstract class Observable<T, K> {
    */
   public int getObserverCount() {
     return observers.size();
-  }
-
-  /**
-   * Returns a set of all observers.
-   *
-   * @return a set of all observers.
-   */
-  public Set<Observer<T, K>> getObservers() {
-    return observers;
   }
 
 }

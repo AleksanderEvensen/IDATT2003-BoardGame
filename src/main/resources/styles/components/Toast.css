@@ -1,0 +1,25 @@
+.toast {
+  -fx-background-radius: 8;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+
+.toast-message {
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 10px;
+}
+
+.toast-info {
+  -fx-background-color: -fx-color-muted;
+  -fx-text-fill: -fx-color-muted-fg !important;
+}
+
+.toast-success {
+  -fx-background-color: rgba(0, 255, 0, 0.8);
+
+}
+
+.toast-error {
+  -fx-background-color: -fx-color-destructive;
+  -fx-text-fill: -fx-color-destructive-fg !important;
+}

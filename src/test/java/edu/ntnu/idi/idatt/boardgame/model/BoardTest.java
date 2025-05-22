@@ -1,30 +1,37 @@
 package edu.ntnu.idi.idatt.boardgame.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.idi.idatt.boardgame.model.tiles.BoardRangeException;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Board;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.exceptions.BoardRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for the Board class.
+ */
 class BoardTest {
 
-  Board board;
+  private Board board;
+
   @BeforeEach
   void setUp() {
-    board = new Board(5,5);
+    board = new Board(5, 5);
   }
 
   @Test
   void addTile() {
-    //Arrange
-    Tile tile = new Tile(1, 0, 0);
-    Tile tile2 = new Tile(2 , 1, 1);
+    Tile tile = new Tile.Builder(1).position(0, 0).build();
+    Tile tile2 = new Tile.Builder(2).position(1, 1).build();
 
-    //Act
     board.addTile(tile);
     board.addTile(tile2);
 
-    //Assert
     assertEquals(tile, board.getTile(1));
     assertEquals(tile2, board.getTile(2));
     assertNull(board.getTile(3));
@@ -32,15 +39,12 @@ class BoardTest {
 
   @Test
   void getTile() {
-    //Arrange
-    Tile tile = new Tile(1);
-    Tile tile2 = new Tile(2);
+    Tile tile = new Tile.Builder(1).build();
+    Tile tile2 = new Tile.Builder(2).build();
 
-    //Act
     board.addTile(tile);
     board.addTile(tile2);
 
-    //Assert
     assertEquals(tile, board.getTile(1));
     assertEquals(tile2, board.getTile(2));
     assertNull(board.getTile(3));
@@ -48,15 +52,12 @@ class BoardTest {
 
   @Test
   void getTiles() {
-    //Arrange
-    Tile tile = new Tile(1, 0, 0);
-    Tile tile2 = new Tile(2, 1, 1);
+    Tile tile = new Tile.Builder(1).position(0, 0).build();
+    Tile tile2 = new Tile.Builder(2).position(1, 1).build();
 
-    //Act
     board.addTile(tile);
     board.addTile(tile2);
 
-    //Assert
     assertEquals(2, board.getTiles().size());
     assertTrue(board.getTiles().containsKey(1));
     assertTrue(board.getTiles().containsKey(2));
@@ -64,18 +65,33 @@ class BoardTest {
   }
 
   @Test
-  void tileColisionTest() {
-    //Arrange
-    Tile tile = new Tile(1, 0, 0);
-    Tile tile2 = new Tile(2, 7, 0);
+  void tileCollisionTest() {
+    Tile tile = new Tile.Builder(1).position(0, 0).build();
+    Tile tile2 = new Tile.Builder(2).position(7, 0).build();
 
-    //Act
     board.addTile(tile);
 
-
-    //Assert
     assertEquals(1, board.getTiles().size());
     assertTrue(board.getTiles().containsKey(1));
     assertThrows(BoardRangeException.class, () -> board.addTile(tile2));
+  }
+
+  @Test
+  void getRowAndColCount() {
+    assertEquals(5, board.getRowCount());
+    assertEquals(5, board.getColCount());
+  }
+
+  @Test
+  void resolveReferences() {
+    Tile tile1 = new Tile.Builder(1).position(0, 0).nextTileId(2).build();
+    Tile tile2 = new Tile.Builder(2).position(0, 1).build();
+
+    board.addTile(tile1);
+    board.addTile(tile2);
+
+    board.resolveReferences(board);
+
+    assertEquals(tile2, tile1.getNextTile().get());
   }
 }

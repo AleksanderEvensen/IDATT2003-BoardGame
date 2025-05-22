@@ -1,0 +1,465 @@
+{
+  "id": "bezzerwiser",
+  "name": "Bezzerwizzer",
+  "description": "Bezzerwizzer is a trivia board game where players answer questions from various categories to progress on the board. (QUESTIONS ARE AI GENERATED AND ANSWERS CAN BE WRONG)",
+  "minPlayers": 2,
+  "maxPlayers": 10,
+  "numberOfDice": 1,
+  "imagePath": "data/images/bezzerwizzer.png",
+  "board": {
+    "rowCount": 11,
+    "colCount": 11,
+    "tiles": {
+      "0": {
+        "tileId": 0,
+        "row": 10,
+        "col": 0,
+        "nextTileId": 1,
+        "previousTileId": 39,
+        "action": {
+          "type": "QUIZ",
+          "category": "GEOGRAPHY"
+        }
+      },
+      "1": {
+        "tileId": 1,
+        "row": 10,
+        "col": 1,
+        "nextTileId": 2,
+        "previousTileId": 0,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "2": {
+        "tileId": 2,
+        "row": 10,
+        "col": 2,
+        "nextTileId": 3,
+        "previousTileId": 1,
+        "action": {
+          "type": "QUIZ",
+          "category": "HISTORY"
+        }
+      },
+      "3": {
+        "tileId": 3,
+        "row": 10,
+        "col": 3,
+        "nextTileId": 4,
+        "previousTileId": 2,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "4": {
+        "tileId": 4,
+        "row": 10,
+        "col": 4,
+        "nextTileId": 5,
+        "previousTileId": 3,
+        "action": {
+          "type": "QUIZ",
+          "category": "HISTORY"
+        }
+      },
+      "5": {
+        "tileId": 5,
+        "row": 10,
+        "col": 5,
+        "nextTileId": 6,
+        "previousTileId": 4,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "6": {
+        "tileId": 6,
+        "row": 10,
+        "col": 6,
+        "nextTileId": 7,
+        "previousTileId": 5,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "7": {
+        "tileId": 7,
+        "row": 10,
+        "col": 7,
+        "nextTileId": 8,
+        "previousTileId": 6,
+        "action": {
+          "type": "QUIZ",
+          "category": "HISTORY"
+        }
+      },
+      "8": {
+        "tileId": 8,
+        "row": 10,
+        "col": 8,
+        "nextTileId": 9,
+        "previousTileId": 7,
+        "action": {
+          "type": "QUIZ",
+          "category": "ENTERTAINMENT"
+        }
+      },
+      "9": {
+        "tileId": 9,
+        "row": 10,
+        "col": 9,
+        "nextTileId": 10,
+        "previousTileId": 8,
+        "action": {
+          "type": "QUIZ",
+          "category": "GEOGRAPHY"
+        }
+      },
+      "10": {
+        "tileId": 10,
+        "row": 10,
+        "col": 10,
+        "nextTileId": 11,
+        "previousTileId": 9,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "11": {
+        "tileId": 11,
+        "row": 9,
+        "col": 10,
+        "nextTileId": 12,
+        "previousTileId": 10,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "12": {
+        "tileId": 12,
+        "row": 8,
+        "col": 10,
+        "nextTileId": 13,
+        "previousTileId": 11,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "13": {
+        "tileId": 13,
+        "row": 7,
+        "col": 10,
+        "nextTileId": 14,
+        "previousTileId": 12,
+        "action": {
+          "type": "QUIZ",
+          "category": "ENTERTAINMENT"
+        }
+      },
+      "14": {
+        "tileId": 14,
+        "row": 6,
+        "col": 10,
+        "nextTileId": 15,
+        "previousTileId": 13,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "15": {
+        "tileId": 15,
+        "row": 5,
+        "col": 10,
+        "nextTileId": 16,
+        "previousTileId": 14,
+        "action": {
+          "type": "QUIZ",
+          "category": "ENTERTAINMENT"
+        }
+      },
+      "16": {
+        "tileId": 16,
+        "row": 4,
+        "col": 10,
+        "nextTileId": 17,
+        "previousTileId": 15,
+        "action": {
+          "type": "QUIZ",
+          "category": "SPORTS"
+        }
+      },
+      "17": {
+        "tileId": 17,
+        "row": 3,
+        "col": 10,
+        "nextTileId": 18,
+        "previousTileId": 16,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "18": {
+        "tileId": 18,
+        "row": 2,
+        "col": 10,
+        "nextTileId": 19,
+        "previousTileId": 17,
+        "action": {
+          "type": "QUIZ",
+          "category": "RANDOM"
+        }
+      },
+      "19": {
+        "tileId": 19,
+        "row": 1,
+        "col": 10,
+        "nextTileId": 20,
+        "previousTileId": 18,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "20": {
+        "tileId": 20,
+        "row": 0,
+        "col": 10,
+        "nextTileId": 21,
+        "previousTileId": 19,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "21": {
+        "tileId": 21,
+        "row": 0,
+        "col": 9,
+        "nextTileId": 22,
+        "previousTileId": 20,
+        "action": {
+          "type": "QUIZ",
+          "category": "SPORTS"
+        }
+      },
+      "22": {
+        "tileId": 22,
+        "row": 0,
+        "col": 8,
+        "nextTileId": 23,
+        "previousTileId": 21,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "23": {
+        "tileId": 23,
+        "row": 0,
+        "col": 7,
+        "nextTileId": 24,
+        "previousTileId": 22,
+        "action": {
+          "type": "QUIZ",
+          "category": "SPORTS"
+        }
+      },
+      "24": {
+        "tileId": 24,
+        "row": 0,
+        "col": 6,
+        "nextTileId": 25,
+        "previousTileId": 23,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "25": {
+        "tileId": 25,
+        "row": 0,
+        "col": 5,
+        "nextTileId": 26,
+        "previousTileId": 24,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "26": {
+        "tileId": 26,
+        "row": 0,
+        "col": 4,
+        "nextTileId": 27,
+        "previousTileId": 25,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "27": {
+        "tileId": 27,
+        "row": 0,
+        "col": 3,
+        "nextTileId": 28,
+        "previousTileId": 26,
+        "action": {
+          "type": "QUIZ",
+          "category": "SPORTS"
+        }
+      },
+      "28": {
+        "tileId": 28,
+        "row": 0,
+        "col": 2,
+        "nextTileId": 29,
+        "previousTileId": 27,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "29": {
+        "tileId": 29,
+        "row": 0,
+        "col": 1,
+        "nextTileId": 30,
+        "previousTileId": 28,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "30": {
+        "tileId": 30,
+        "row": 0,
+        "col": 0,
+        "nextTileId": 31,
+        "previousTileId": 29,
+        "action": {
+          "type": "QUIZ",
+          "category": "GEOGRAPHY"
+        }
+      },
+      "31": {
+        "tileId": 31,
+        "row": 1,
+        "col": 0,
+        "nextTileId": 32,
+        "previousTileId": 30,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "32": {
+        "tileId": 32,
+        "row": 2,
+        "col": 0,
+        "nextTileId": 33,
+        "previousTileId": 31,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "33": {
+        "tileId": 33,
+        "row": 3,
+        "col": 0,
+        "nextTileId": 34,
+        "previousTileId": 32,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "34": {
+        "tileId": 34,
+        "row": 4,
+        "col": 0,
+        "nextTileId": 35,
+        "previousTileId": 33,
+        "action": {
+          "type": "QUIZ",
+          "category": "ENTERTAINMENT"
+        }
+      },
+      "35": {
+        "tileId": 35,
+        "row": 5,
+        "col": 0,
+        "nextTileId": 36,
+        "previousTileId": 34,
+        "action": {
+          "type": "QUIZ",
+          "category": "ART"
+        }
+      },
+      "36": {
+        "tileId": 36,
+        "row": 6,
+        "col": 0,
+        "nextTileId": 37,
+        "previousTileId": 35,
+        "action": {
+          "type": "QUIZ",
+          "category": "GEOGRAPHY"
+        }
+      },
+      "37": {
+        "tileId": 37,
+        "row": 7,
+        "col": 0,
+        "nextTileId": 38,
+        "previousTileId": 36,
+        "action": {
+          "type": "QUIZ",
+          "category": "SCIENCE"
+        }
+      },
+      "38": {
+        "tileId": 38,
+        "row": 8,
+        "col": 0,
+        "nextTileId": 39,
+        "previousTileId": 37,
+        "action": {
+          "type": "QUIZ",
+          "category": "ENTERTAINMENT"
+        }
+      },
+      "39": {
+        "tileId": 39,
+        "row": 9,
+        "col": 0,
+        "nextTileId": 40,
+        "previousTileId": 38,
+        "action": {
+          "type": "QUIZ",
+          "category": "GENERAL_KNOWLEDGE"
+        }
+      },
+      "40": {
+        "tileId": 40,
+        "row": 10,
+        "col": 0,
+        "nextTileId": -1,
+        "previousTileId": 39,
+        "action": {
+          "type": "GOAL"
+        }
+      }
+    }
+  }
+}

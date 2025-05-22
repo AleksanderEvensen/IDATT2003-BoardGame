@@ -1,10 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.core.filesystem;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.AfterEach;
@@ -13,9 +16,9 @@ import org.junit.jupiter.api.Test;
 
 class LocalFileProviderTest {
 
-  private LocalFileProvider fileProvider;
   private final String testFilePath = "testDir/testFile.txt";
   private final String testDirPath = "testDir";
+  private LocalFileProvider fileProvider;
 
   @BeforeEach
   void setUp() {
@@ -32,10 +35,9 @@ class LocalFileProviderTest {
   void save() {
     // Arrange
     String content = "Hello, World!";
-    InputStream data = new ByteArrayInputStream(content.getBytes());
 
     // Act
-    fileProvider.save(testFilePath, data);
+    fileProvider.save(testFilePath, content.getBytes());
 
     // Assert
     Path path = Path.of(testFilePath);
@@ -82,15 +84,54 @@ class LocalFileProviderTest {
     Files.writeString(Path.of(testFilePath), content);
 
     // Act
-    InputStream result = fileProvider.get(testFilePath);
+    byte[] result = fileProvider.get(testFilePath);
 
     // Assert
     assertNotNull(result);
-    try {
-      String retrievedContent = new String(result.readAllBytes());
-      assertEquals(content, retrievedContent);
-    } catch (IOException e) {
-      fail("Failed to read retrieved file content");
-    }
+
+    String retrievedContent = new String(result);
+    assertEquals(content, retrievedContent);
+  }
+
+
+  @Test
+  void save_nullData_shouldThrowNullPointerException() {
+    // Arrange
+    String path = testFilePath;
+
+    // Act & Assert
+    assertThrows(NullPointerException.class, () -> fileProvider.save(path, null));
+  }
+
+  @Test
+  void delete_nonExistentFile_shouldReturnFalse() {
+    // Act
+    boolean result = fileProvider.delete("nonExistentFile.txt");
+
+    // Assert
+    assertFalse(result);
+  }
+
+
+  @Test
+  void get_invalidPath_shouldThrowFileReadException() {
+    // Arrange
+    String invalidPath = "invalid:/path/file.txt";
+
+    // Act & Assert
+    assertThrows(FileReadException.class, () -> fileProvider.get(invalidPath));
+  }
+
+  @Test
+  void listFiles_nonExistentDirectory_shouldThrowIllegalArgumentException() {
+    // Act & Assert
+    assertThrows(DirectoryListException.class, () -> fileProvider.listFiles("nonExistentDir"));
+  }
+
+  @Test
+  void listFiles_fileInsteadOfDirectory_shouldThrowIllegalArgumentException() throws IOException {
+
+    // Act & Assert
+    assertThrows(DirectoryListException.class, () -> fileProvider.listFiles(testFilePath));
   }
 }

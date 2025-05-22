@@ -1,81 +1,125 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.actions.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.core.filesystem.FileProvider;
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
-import edu.ntnu.idi.idatt.boardgame.game.GameFactory;
-import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.model.Board;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
+import edu.ntnu.idi.idatt.boardgame.core.router.Router;
+import edu.ntnu.idi.idatt.boardgame.javafx.IView;
+import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
+import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
+import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
+import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.QuizManager;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.logging.Logger;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import lombok.Getter;
 
 /**
  * The main application class.
  */
 public class Application extends javafx.application.Application {
-    public List<Player> players = new ArrayList<>();
-    public int currentPlayerIndex = 0;
 
-    /**
-     * The main entry point for all JavaFX applications.
-     * @param stage the primary stage for this application, onto which the application scene can be set.
-     * @throws IOException if an input or output exception occurs.
-     */
-    @Override
-    public void start(Stage stage) throws IOException {
+  private static final Logger logger = Logger.getLogger(Application.class.getName());
 
-        LocalFileProvider fileProvider = new LocalFileProvider();
-        GameManager gameManager = new GameManager(fileProvider);
-        Game game = gameManager.getGame("ladder");
-        this.players.add(new Player(1, "Aleks"));
-        this.players.add(new Player(2, "Yazan"));
-        this.players.forEach(player -> player.placeOnTile(game.getBoard().getTile(0)));
-        System.out.println("Players:");
+  private static Scene primaryScene;
+  @Getter
+  private static Stage primaryStage;
+  @Getter
+  private static boolean isDarkTheme = true;
 
-        System.out.println("====================================");
+  private FileProvider fileProvider;
 
+  public static void main(String[] args) {
+    launch();
+  }
 
-        var btn = new Button("Hello!");
-        btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            var dice = Utils.throwDice(1).get(0);
-            Player currentPlayer = players.get(currentPlayerIndex);
-
-            System.out.printf("Player %s rolled %d\n", currentPlayer.getName(), dice);
-            System.out.printf("Player moved %d tiles\n", dice);
-            currentPlayer.move(dice);
-            if (currentPlayer.getCurrentTile().getTileId() == 90) {
-                System.out.printf("Player %s won the game!\n", currentPlayer.getName());
-                System.exit(0);
-            }
-
-            System.out.println("Player status:");
-            players.forEach(player -> {
-                System.out.printf("  Player(%d, %s) is on tile %d\n", player.getPlayerId(), player.getName(), player.getCurrentTile().getTileId());
-            });
-            System.out.println("====================================");
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
-            System.out.printf("\n Current player: %s\n", players.get(currentPlayerIndex).getName());
-        });
-        var box = new VBox(btn);
-        box.setAlignment(javafx.geometry.Pos.CENTER);
-
-        Scene scene = new Scene(box, 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+  public static void closeApplication() {
+    if (primaryStage != null) {
+      primaryStage.close();
     }
+  }
 
-    public static void main(String[] args) {
-        launch();
+  public static void refreshCss() {
+    if (primaryScene != null) {
+      primaryScene.getStylesheets().clear();
+      if (isDarkTheme) {
+        primaryScene.getStylesheets().add("theme.css");
+      } else {
+        primaryScene.getStylesheets().add("theme-light.css");
+      }
+      primaryScene.getStylesheets().add("main.css");
+      logger.info("CSS reloaded");
     }
+  }
+
+  /**
+   * Sets and refreshes the theme setting.
+   *
+   * @param isDarkTheme true for dark theme, false for light theme.
+   */
+  public static void setDarkTheme(boolean isDarkTheme) {
+    Application.isDarkTheme = isDarkTheme;
+    refreshCss();
+  }
+
+  public static Scene getScene() {
+    return primaryScene;
+  }
+
+  /**
+   * The main entry point for all JavaFX applications.
+   *
+   * @param stage the primary stage for this application, onto which the application scene can be
+   *              set.
+   * @throws IOException if an input or output exception occurs.
+   */
+  @Override
+  public void start(Stage stage) throws IOException {
+    fileProvider = new LocalFileProvider();
+    GameManager.init(() -> fileProvider);
+    GameManager.getInstance().loadGamesFromDefaultPath();
+
+    QuizManager.init(() -> fileProvider);
+    QuizManager.getInstance().loadQuestions("data/questions.json");
+
+    PlayerManager.init(() -> fileProvider);
+    PlayerManager.getInstance().loadPlayers("data/players.csv");
+
+    primaryStage = stage;
+    StackPane root = new StackPane();
+    primaryScene = new Scene(root, 1920, 1080);
+
+    router.createRoute("/home", new MainMenuView());
+    router.createRoute("/game/:gameId", new GameLobbyView());
+
+    router.navigate("/home");
+
+    refreshCss();
+    primaryScene.getStylesheets().add("main.css");
+    stage.setFullScreen(true);
+    stage.setTitle("Board Game");
+    stage.setScene(primaryScene);
+    stage.show();
+  }
+
+  /**
+   * The router used for navigating between JavaFX views
+   */
+  public static final Router<IView> router = new Router<>(ctx -> {
+    IView view = ctx.getData();
+    view.load(ctx);
+    var lastCtx = Application.router.getCurrentContext();
+    if (lastCtx != null) {
+      IView lastView = lastCtx.getData();
+      lastView.unload();
+    }
+    StackPane viewRoot = view.createRoot();
+    ToastProvider.setRoot(viewRoot);
+    Application.primaryScene.setRoot(viewRoot);
+  });
+
+
 }

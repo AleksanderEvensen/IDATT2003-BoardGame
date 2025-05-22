@@ -1,0 +1,64 @@
+.root {
+  /* Catppuccin theme: Latte */
+  -fx-color-rosewater: #dc8a78;
+  -fx-color-flamingo: #dd7878;
+  -fx-color-pink: #ea76cb;
+  -fx-color-mauve: #8839ef;
+  -fx-color-red: #d20f39;
+  -fx-color-maroon: #e64553;
+  -fx-color-peach: #fe640b;
+  -fx-color-yellow: #df8e1d;
+  -fx-color-green: #40a02b;
+  -fx-color-teal: #179299;
+  -fx-color-sky: #04a5e5;
+  -fx-color-sapphire: #209fb5;
+  -fx-color-blue: #1e66f5;
+  -fx-color-lavender: #7287fd;
+  -fx-color-text: #4c4f69;
+  -fx-color-subtext1: #5c5f77;
+  -fx-color-subtext0: #6c6f85;
+  -fx-color-overlay2: #7c7f93;
+  -fx-color-overlay1: #8c8fa1;
+  -fx-color-overlay0: #9ca0b0;
+  -fx-color-surface2: #acb0be;
+  -fx-color-surface1: #bcc0cc;
+  -fx-color-surface0: #ccd0da;
+  -fx-color-base: #eff1f5;
+  -fx-color-mantle: #e6e9ef;
+  -fx-color-crust: #dce0e8;
+
+
+  -fx-color-bg: -fx-color-base;
+  -fx-color-fg: -fx-color-text;
+
+  -fx-color-muted: -fx-color-surface0;
+  -fx-color-muted-fg: -fx-color-subtext1;
+
+  -fx-color-popover: -fx-color-base;
+  -fx-color-popover-fg: -fx-color-text;
+
+  -fx-color-card: -fx-color-mantle;
+  -fx-color-card-fg: -fx-color-text;
+
+  -fx-color-border: -fx-color-surface1;
+  -fx-color-input: -fx-color-surface1;
+
+  -fx-color-primary: -fx-color-blue; /* accent - Blue */
+  -fx-color-primary-fg: -fx-color-base;
+
+  -fx-color-secondary: -fx-color-surface0;
+  -fx-color-secondary-fg: -fx-color-text;
+
+  -fx-color-accent: -fx-color-surface0;
+  -fx-color-accent-fg: -fx-color-text;
+
+  -fx-color-destructive: -fx-color-red;
+  -fx-color-destructive-fg: -fx-color-mantle;
+
+  -fx-color-ring: -fx-color-text;
+}
+
+/* Default styling */
+.root {
+  -fx-text-fill: -fx-color-text;
+}
