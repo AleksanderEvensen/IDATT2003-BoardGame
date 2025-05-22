@@ -1,23 +1,21 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.controllers;
 
 import edu.ntnu.idi.idatt.boardgame.Application;
-import edu.ntnu.idi.idatt.boardgame.game.GameManager;
-import edu.ntnu.idi.idatt.boardgame.game.PlayerManager;
+import edu.ntnu.idi.idatt.boardgame.Utils;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.ToastStyle;
 import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
-import edu.ntnu.idi.idatt.boardgame.model.Color;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
+import edu.ntnu.idi.idatt.boardgame.model.managers.PlayerManager;
 import java.io.File;
 import java.util.logging.Logger;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import lombok.Getter;
 
 /**
@@ -41,8 +39,6 @@ public class MainMenuController {
   @Getter
   private final ObservableMap<String, Game> games;
 
-  @Getter
-  private final ObjectProperty<Pair<String, String>> errorDialog = new SimpleObjectProperty<>(null);
 
   /**
    * Constructs a MainMenuController and registers it as an observer to the PlayerManager.
@@ -116,15 +112,8 @@ public class MainMenuController {
       GameManager.getInstance().loadGame(file.getPath());
     } catch (Exception e) {
       logger.severe(e.getMessage());
-      errorDialog.set(new Pair<>("Failed to load game", e.getMessage()));
+      ToastProvider.show(e.getMessage());
     }
-  }
-
-  /**
-   * Clears the current error state.
-   */
-  public void clearError() {
-    errorDialog.set(null);
   }
 
   /**
@@ -133,11 +122,19 @@ public class MainMenuController {
    * This method is called when the user chooses to add a new player.
    * </p>
    *
-   * @param player the player to add
+   * @param playerName the playerName to add
    */
-  public void addPlayer(Player player) {
-    logger.info("ADDing player: " + player.getName());
-    PlayerManager.getInstance().addPlayer(player);
+  public void addPlayer(String playerName) {
+    logger.info("Adding player: " + playerName);
+    if (playerName.trim().isBlank()) {
+      ToastProvider.show("Please enter a player name", Duration.seconds(5), ToastStyle.ERROR);
+    }
+    try {
+      PlayerManager.getInstance().addPlayer(new Player(playerName, Utils.getRandomColor()));
+      ToastProvider.show("New player was added");
+    } catch (Exception e) {
+      ToastProvider.show(e.getMessage(), Duration.seconds(5), ToastStyle.ERROR);
+    }
   }
 
   /**
@@ -164,7 +161,11 @@ public class MainMenuController {
    * @param newColor the new color for the player
    */
   public void updatePlayer(Player player, String newName, Color newColor) {
-    PlayerManager.getInstance().updatePlayer(player, newName, newColor);
+    try {
+      PlayerManager.getInstance().updatePlayer(player, newName, newColor);
+    } catch (Exception e) {
+      ToastProvider.show(e.getMessage(), Duration.seconds(5), ToastStyle.ERROR);
+    }
   }
 
   /**

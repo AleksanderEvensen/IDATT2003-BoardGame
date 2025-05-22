@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

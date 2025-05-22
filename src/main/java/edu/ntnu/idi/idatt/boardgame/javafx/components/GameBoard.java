@@ -1,12 +1,12 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.components;
 
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.game.GameController;
 import edu.ntnu.idi.idatt.boardgame.javafx.style.LadderUtils;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import edu.ntnu.idi.idatt.boardgame.style.TileStyleService;
+import edu.ntnu.idi.idatt.boardgame.model.GameEngine;
+import edu.ntnu.idi.idatt.boardgame.model.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.style.TileStyleService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class GameBoard extends GridPane {
 
 
   private final Map<Player, PlayerBlipView> playerBlips;
-  private final GameController gameController;
+  private final GameEngine gameEngine;
   private final Map<TileComponent, LadderComponent> ladderComponents;
 
   private int maxCol = 0;
@@ -40,13 +40,13 @@ public class GameBoard extends GridPane {
   /**
    * Creates a new GameBoard.
    *
-   * @param gameController The game controller managing the game logic.
+   * @param gameEngine The game controller managing the game logic.
    */
-  public GameBoard(GameController gameController) {
+  public GameBoard(GameEngine gameEngine) {
     this.tileComponents = new HashMap<>();
     this.overlayPane = new Pane();
     this.playerBlips = new ConcurrentHashMap<>();
-    this.gameController = gameController;
+    this.gameEngine = gameEngine;
     this.ladderComponents = new ConcurrentHashMap<>();
 
     setupResizingListener();
@@ -204,7 +204,7 @@ public class GameBoard extends GridPane {
     this.layout();
 
     ladderComponents.forEach((tileComponent, ladderComponent) -> {
-      Tile tile = gameController.getGame().getBoard().getTile(tileComponent.getTileId());
+      Tile tile = gameEngine.getGame().getBoard().getTile(tileComponent.getTileId());
       if (tile != null && tile.getAction().isPresent() && tile.getAction()
           .get() instanceof LadderAction ladderAction) {
 
@@ -252,11 +252,11 @@ public class GameBoard extends GridPane {
     /**
      * Creates a new Builder for the GameBoard.
      *
-     * @param gameController The game controller managing the game logic.
+     * @param gameEngine The game controller managing the game logic.
      */
-    public Builder(GameController gameController) {
-      this.game = gameController.getGame();
-      gameBoard = new GameBoard(gameController);
+    public Builder(GameEngine gameEngine) {
+      this.game = gameEngine.getGame();
+      gameBoard = new GameBoard(gameEngine);
     }
 
     /**
@@ -265,9 +265,7 @@ public class GameBoard extends GridPane {
      * @return This builder for chaining.
      */
     public Builder addTiles() {
-      game.getBoard().getTiles().forEach((id, tile) -> {
-        gameBoard.add(tile);
-      });
+      game.getBoard().getTiles().forEach((id, tile) -> gameBoard.add(tile));
       return this;
     }
 
@@ -277,9 +275,8 @@ public class GameBoard extends GridPane {
      * @return This builder for chaining.
      */
     public Builder resolveActionStyles() {
-      game.getBoard().getTiles().forEach((id, tile) -> {
-        tile.getAction().ifPresent(action -> TileStyleService.applyStyle(tile, action, gameBoard));
-      });
+      game.getBoard().getTiles().forEach((id, tile) -> tile.getAction()
+          .ifPresent(action -> TileStyleService.applyStyle(tile, action, gameBoard)));
       return this;
     }
 

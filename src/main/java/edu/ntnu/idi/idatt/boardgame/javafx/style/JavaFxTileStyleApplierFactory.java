@@ -1,13 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.style;
 
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-import edu.ntnu.idi.idatt.boardgame.actions.freeze.FreezeAction;
-import edu.ntnu.idi.idatt.boardgame.actions.goal.GoalTileAction;
-import edu.ntnu.idi.idatt.boardgame.actions.immunity.ImmunityAction;
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
-import edu.ntnu.idi.idatt.boardgame.actions.quiz.QuizTileAction;
-import edu.ntnu.idi.idatt.boardgame.style.TileStyleApplier;
-import edu.ntnu.idi.idatt.boardgame.style.TileStyleApplierFactory;
+import edu.ntnu.idi.idatt.boardgame.model.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.freeze.FreezeAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.goal.GoalTileAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.immunity.ImmunityAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.quiz.QuizTileAction;
+import edu.ntnu.idi.idatt.boardgame.model.style.TileStyleApplier;
+import edu.ntnu.idi.idatt.boardgame.model.style.TileStyleApplierFactory;
 
 /**
  * JavaFX implementation of the TileStyleApplierFactory. This factory creates JavaFX-specific style

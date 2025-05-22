@@ -3,7 +3,8 @@ package edu.ntnu.idi.idatt.boardgame.actions.goal;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
-import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.actions.goal.GoalTileAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

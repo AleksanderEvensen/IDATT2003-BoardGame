@@ -11,8 +11,8 @@ import edu.ntnu.idi.idatt.boardgame.javafx.components.Header.HeaderType;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Size;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.enums.Weight;
 import edu.ntnu.idi.idatt.boardgame.javafx.controllers.MainMenuController;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
-import edu.ntnu.idi.idatt.boardgame.model.Player;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Player;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.MapChangeListener;
@@ -55,11 +55,6 @@ public class MainMenuView implements IView {
 
   @Override
   public void unload() {
-    if (errorDialogListener != null) {
-      controller.getErrorDialog().removeListener(errorDialogListener);
-    }
-    controller.getErrorDialog().set(null);
-
     if (gamesListener != null) {
       controller.getGames().removeListener(gamesListener);
     }
@@ -113,11 +108,7 @@ public class MainMenuView implements IView {
     Button addPlayerButton =
         new Button("Add Player", BoxiconsRegular.PLUS).withVariant(ButtonVariant.SUCCESS);
     addPlayerButton.setOnAction(e -> {
-      if (playerNameField.getText().trim().isBlank()) {
-        return;
-      }
-      var newPlayer = new Player(playerNameField.getText().trim(), Utils.getRandomColor());
-      this.controller.addPlayer(newPlayer);
+      this.controller.addPlayer(playerNameField.getText());
       playerNameField.clear();
     });
 

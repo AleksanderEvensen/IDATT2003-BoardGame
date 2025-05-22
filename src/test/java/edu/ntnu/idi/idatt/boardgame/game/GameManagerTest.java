@@ -10,7 +10,8 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import edu.ntnu.idi.idatt.boardgame.core.filesystem.LocalFileProvider;
-import edu.ntnu.idi.idatt.boardgame.model.Game;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Game;
+import edu.ntnu.idi.idatt.boardgame.model.managers.GameManager;
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;

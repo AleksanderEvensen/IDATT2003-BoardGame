@@ -1,10 +1,10 @@
 package edu.ntnu.idi.idatt.boardgame;
 
+import edu.ntnu.idi.idatt.boardgame.core.router.Router;
 import edu.ntnu.idi.idatt.boardgame.javafx.IView;
 import edu.ntnu.idi.idatt.boardgame.javafx.providers.ToastProvider;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.GameLobbyView;
 import edu.ntnu.idi.idatt.boardgame.javafx.view.MainMenuView;
-import edu.ntnu.idi.idatt.boardgame.router.Router;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.scene.Scene;

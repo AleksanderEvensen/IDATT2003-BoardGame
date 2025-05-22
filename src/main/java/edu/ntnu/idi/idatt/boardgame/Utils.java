@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idatt.boardgame;
 
-import edu.ntnu.idi.idatt.boardgame.model.Color;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -41,13 +41,13 @@ public class Utils {
   // and unreadable
 
   public static javafx.scene.paint.Color toJFXColor(
-      edu.ntnu.idi.idatt.boardgame.model.Color color) {
+      Color color) {
     return javafx.scene.paint.Color.rgb(color.r, color.g, color.b);
   }
 
-  public static edu.ntnu.idi.idatt.boardgame.model.Color toModelColor(
+  public static Color toModelColor(
       javafx.scene.paint.Color color) {
-    return new edu.ntnu.idi.idatt.boardgame.model.Color((int) (color.getRed() * 255),
+    return new Color((int) (color.getRed() * 255),
         (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
   }
 

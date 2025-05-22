@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.ntnu.idi.idatt.boardgame.model.entities.Color;
 import java.util.List;
 import java.util.Set;
 import javafx.scene.Node;
@@ -72,8 +73,8 @@ class UtilsTest {
   @Test
   void toJFXColor_validModelColor_shouldReturnEquivalentJFXColor() {
     // Arrange
-    edu.ntnu.idi.idatt.boardgame.model.Color modelColor =
-        new edu.ntnu.idi.idatt.boardgame.model.Color(255, 0, 0);
+    Color modelColor =
+        new Color(255, 0, 0);
 
     // Act
     javafx.scene.paint.Color jfxColor = Utils.toJFXColor(modelColor);
@@ -90,7 +91,7 @@ class UtilsTest {
     javafx.scene.paint.Color jfxColor = javafx.scene.paint.Color.rgb(0, 255, 0);
 
     // Act
-    edu.ntnu.idi.idatt.boardgame.model.Color modelColor = Utils.toModelColor(jfxColor);
+    Color modelColor = Utils.toModelColor(jfxColor);
 
     // Assert
     assertEquals(0, modelColor.r);

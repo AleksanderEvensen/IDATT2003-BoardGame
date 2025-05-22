@@ -1,13 +1,13 @@
 package edu.ntnu.idi.idatt.boardgame.javafx.style;
 
-import edu.ntnu.idi.idatt.boardgame.actions.TileAction;
-import edu.ntnu.idi.idatt.boardgame.actions.ladder.LadderAction;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.GameBoard;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.LadderComponent;
 import edu.ntnu.idi.idatt.boardgame.javafx.components.TileComponent;
-import edu.ntnu.idi.idatt.boardgame.model.Tile;
-import edu.ntnu.idi.idatt.boardgame.style.LadderTileStyle;
-import edu.ntnu.idi.idatt.boardgame.style.TileStyleApplier;
+import edu.ntnu.idi.idatt.boardgame.model.actions.TileAction;
+import edu.ntnu.idi.idatt.boardgame.model.actions.ladder.LadderAction;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Tile;
+import edu.ntnu.idi.idatt.boardgame.model.style.LadderTileStyle;
+import edu.ntnu.idi.idatt.boardgame.model.style.TileStyleApplier;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;

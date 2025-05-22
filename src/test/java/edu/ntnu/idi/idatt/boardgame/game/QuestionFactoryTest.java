@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.Question;
-import edu.ntnu.idi.idatt.boardgame.model.quiz.QuestionCategory;
+import edu.ntnu.idi.idatt.boardgame.model.entities.Question;
+import edu.ntnu.idi.idatt.boardgame.model.entities.QuestionCategory;
+import edu.ntnu.idi.idatt.boardgame.model.factories.QuestionFactory;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
