@@ -201,16 +201,17 @@ Example game definition format:
 ## Data Files
 
 ### Players (data/players.csv)
-Contains player statistics and save data in CSV format.
+Contains player info data in CSV format.
 
 ### Questions (data/questions.json)
 Contains quiz questions for use with the Quiz tile action.
 
 ## Themes
 
-The application supports theme customization through CSS files:
 - `theme.css` - Dark theme (default)
 - `theme-light.css` - Light theme
+
+- `theme-fetcher.ts` - TypeScript script for fetching themes from Catppuccin Repo 
 
 You can switch between themes in the application.
 
