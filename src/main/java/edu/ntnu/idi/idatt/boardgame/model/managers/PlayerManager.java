@@ -58,11 +58,11 @@ public class PlayerManager extends Observable<PlayerManager, List<Player>> {
     if (fileProviderSupplier == null) {
       throw new IllegalStateException("PlayerManager not initialised");
     }
-    if (instance != null) {
-      return instance;
+    if (instance == null) {
+      return instance = new PlayerManager(fileProviderSupplier.get());
     }
+    return instance;
 
-    return instance = new PlayerManager(fileProviderSupplier.get());
   }
 
   /**

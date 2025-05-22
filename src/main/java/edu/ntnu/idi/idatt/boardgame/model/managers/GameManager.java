@@ -66,11 +66,11 @@ public class GameManager extends Observable<GameManager, Map<String, Game>> {
     if (fileProviderSupplier == null) {
       throw new IllegalStateException("GameManager not initialised");
     }
-    if (instance != null) {
-      return instance;
+    if (instance == null) {
+      return instance = new GameManager(fileProviderSupplier.get());
     }
 
-    return instance = new GameManager(fileProviderSupplier.get());
+    return instance;
   }
 
 

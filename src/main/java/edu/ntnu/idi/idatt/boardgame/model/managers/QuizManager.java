@@ -66,11 +66,11 @@ public class QuizManager {
     if (fileProviderSupplier == null) {
       throw new IllegalStateException("QuizManager not initialised");
     }
-    if (instance != null) {
-      return instance;
+    if (instance == null) {
+      return instance = new QuizManager(fileProviderSupplier.get());
     }
+    return instance;
 
-    return instance = new QuizManager(fileProviderSupplier.get());
   }
 
   /**
