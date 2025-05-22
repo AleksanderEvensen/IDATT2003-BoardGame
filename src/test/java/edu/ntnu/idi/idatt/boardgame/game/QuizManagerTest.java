@@ -61,6 +61,11 @@ class QuizManagerTest {
     resetQuizManagerSingleton();
   }
 
+  /**
+   * Resets the singleton instance of QuizManager using reflection.
+   * This is necessary to ensure test isolation and prevent side effects
+   * from the singleton state persisting between tests.
+   */
   private void resetQuizManagerSingleton() throws Exception {
     Field instanceField = QuizManager.class.getDeclaredField("instance");
     instanceField.setAccessible(true);
